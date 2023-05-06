@@ -1,0 +1,8 @@
+prefix=/home/zhang/magmed_ws/devel
+
+Name: demo01_camera_connect_test
+Description: Description of demo01_camera_connect_test
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

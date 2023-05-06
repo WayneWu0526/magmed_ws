@@ -1,0 +1,8 @@
+prefix=/home/zhang/magmed_ws/devel
+
+Name: magmed_manipulator
+Description: Description of magmed_manipulator
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

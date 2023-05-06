@@ -1,0 +1,8 @@
+prefix=/home/zhang/magmed_ws/install
+
+Name: demo01_diana7api_connect_test
+Description: Description of demo01_diana7api_connect_test
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
