@@ -132,7 +132,11 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/zhang/magmed_ws/build/gtest/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_camera/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/magmed_controller/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/magmed_maglocater/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_manipulator/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/magmed_virtualsurgery/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/magmed_visionfb/cmake_install.cmake")
 
 endif()
 

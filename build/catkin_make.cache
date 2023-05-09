@@ -1,2 +1,2 @@
-magmed_camera:magmed_manipulator
+magmed_camera:magmed_controller:magmed_maglocater:magmed_manipulator:magmed_virtualsurgery:magmed_visionfb
 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/zhang/magmed_ws/devel -DCMAKE_INSTALL_PREFIX=/home/zhang/magmed_ws/install -G Unix Makefiles

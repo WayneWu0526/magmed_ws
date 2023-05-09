@@ -1,12 +1,12 @@
 {
     "python.autoComplete.extraPaths": [
+        "/home/zhang/base_ws/devel/lib/python3/dist-packages",
+        "/home/zhang/catkin_diana7_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
     "python.analysis.extraPaths": [
+        "/home/zhang/base_ws/devel/lib/python3/dist-packages",
+        "/home/zhang/catkin_diana7_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
-    ],
-    "files.associations": {
-        "iostream": "cpp",
-        "chrono": "cpp"
-    }
+    ]
 }

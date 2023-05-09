@@ -468,10 +468,34 @@ magmed_camera_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_camera
 magmed_camera_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_camera
 
 //Value Computed by CMake
+magmed_controller_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_controller
+
+//Value Computed by CMake
+magmed_controller_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_controller
+
+//Value Computed by CMake
+magmed_maglocater_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_maglocater
+
+//Value Computed by CMake
+magmed_maglocater_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_maglocater
+
+//Value Computed by CMake
 magmed_manipulator_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_manipulator
 
 //Value Computed by CMake
 magmed_manipulator_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_manipulator
+
+//Value Computed by CMake
+magmed_virtualsurgery_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_virtualsurgery
+
+//Value Computed by CMake
+magmed_virtualsurgery_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_virtualsurgery
+
+//Value Computed by CMake
+magmed_visionfb_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_visionfb
+
+//Value Computed by CMake
+magmed_visionfb_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_visionfb
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
@@ -653,7 +677,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "MvCameraControl.h"
+#include "/opt/MVS/include/MvCameraControl.h"
 // 等待用户输入enter键来结束取流或结束程序
 // wait for user to input enter to stop grabbing or end the sample program
 void PressEnterToExit(void)
@@ -79,9 +79,9 @@ int main()
             printf("Find No Devices!\n");
             break;
         }
-        printf("Please Intput camera index: ");
-        unsigned int nIndex = 0;
-        scanf("%d", &nIndex);
+        // printf("Please Intput camera index: ");
+        unsigned int nIndex = 0; // 默认使用第0号摄像头
+        // scanf("%d", &nIndex);
         if (nIndex >= stDeviceList.nDeviceNum)
         {
             printf("Intput error!\n");

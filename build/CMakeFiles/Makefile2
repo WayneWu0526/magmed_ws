@@ -55,14 +55,22 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 # The main recursive "all" target.
 all: gtest/all
 all: magmed_camera/all
+all: magmed_controller/all
+all: magmed_maglocater/all
 all: magmed_manipulator/all
+all: magmed_virtualsurgery/all
+all: magmed_visionfb/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: magmed_camera/preinstall
+preinstall: magmed_controller/preinstall
+preinstall: magmed_maglocater/preinstall
 preinstall: magmed_manipulator/preinstall
+preinstall: magmed_virtualsurgery/preinstall
+preinstall: magmed_visionfb/preinstall
 
 .PHONY : preinstall
 
@@ -74,7 +82,11 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: magmed_camera/clean
+clean: magmed_controller/clean
+clean: magmed_maglocater/clean
 clean: magmed_manipulator/clean
+clean: magmed_virtualsurgery/clean
+clean: magmed_visionfb/clean
 
 .PHONY : clean
 
@@ -169,6 +181,42 @@ magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py
 .PHONY : magmed_camera/clean
 
 #=============================================================================
+# Directory level rules for directory magmed_controller
+
+# Recursive "all" directory target.
+magmed_controller/all:
+
+.PHONY : magmed_controller/all
+
+# Recursive "preinstall" directory target.
+magmed_controller/preinstall:
+
+.PHONY : magmed_controller/preinstall
+
+# Recursive "clean" directory target.
+magmed_controller/clean:
+
+.PHONY : magmed_controller/clean
+
+#=============================================================================
+# Directory level rules for directory magmed_maglocater
+
+# Recursive "all" directory target.
+magmed_maglocater/all:
+
+.PHONY : magmed_maglocater/all
+
+# Recursive "preinstall" directory target.
+magmed_maglocater/preinstall:
+
+.PHONY : magmed_maglocater/preinstall
+
+# Recursive "clean" directory target.
+magmed_maglocater/clean:
+
+.PHONY : magmed_maglocater/clean
+
+#=============================================================================
 # Directory level rules for directory magmed_manipulator
 
 # Recursive "all" directory target.
@@ -185,6 +233,42 @@ magmed_manipulator/preinstall:
 magmed_manipulator/clean: magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/clean
 
 .PHONY : magmed_manipulator/clean
+
+#=============================================================================
+# Directory level rules for directory magmed_virtualsurgery
+
+# Recursive "all" directory target.
+magmed_virtualsurgery/all:
+
+.PHONY : magmed_virtualsurgery/all
+
+# Recursive "preinstall" directory target.
+magmed_virtualsurgery/preinstall:
+
+.PHONY : magmed_virtualsurgery/preinstall
+
+# Recursive "clean" directory target.
+magmed_virtualsurgery/clean:
+
+.PHONY : magmed_virtualsurgery/clean
+
+#=============================================================================
+# Directory level rules for directory magmed_visionfb
+
+# Recursive "all" directory target.
+magmed_visionfb/all:
+
+.PHONY : magmed_visionfb/all
+
+# Recursive "preinstall" directory target.
+magmed_visionfb/preinstall:
+
+.PHONY : magmed_visionfb/preinstall
+
+# Recursive "clean" directory target.
+magmed_visionfb/clean:
+
+.PHONY : magmed_visionfb/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
