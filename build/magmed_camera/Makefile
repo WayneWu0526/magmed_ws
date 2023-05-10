@@ -56,6 +56,51 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -79,17 +124,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -100,40 +134,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,214 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/rule
-.PHONY : magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/rule
+magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-demo01_camera_connect_test: magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/rule
+rosgraph_msgs_generate_messages_py: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
-.PHONY : demo01_camera_connect_test
+.PHONY : rosgraph_msgs_generate_messages_py
 
 # fast build rule for target.
-demo01_camera_connect_test/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/build
-.PHONY : demo01_camera_connect_test/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
@@ -393,46 +198,475 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+geometry_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_py
+.PHONY : geometry_msgs_generate_messages_cpp
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
-src/demo01_camera_connect_test.o: src/demo01_camera_connect_test.cpp.o
+# Convenience name for target.
+magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : src/demo01_camera_connect_test.o
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
+
+# Convenience name for target.
+demo03_imageprocess: magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
+
+.PHONY : demo03_imageprocess
+
+# fast build rule for target.
+demo03_imageprocess/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/build
+.PHONY : demo03_imageprocess/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
+
+# Convenience name for target.
+demo01_camera_connect: magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
+
+.PHONY : demo01_camera_connect
+
+# fast build rule for target.
+demo01_camera_connect/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/build
+.PHONY : demo01_camera_connect/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/demo02_grabimage.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
+
+# Convenience name for target.
+demo02_grabimage: magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
+
+.PHONY : demo02_grabimage
+
+# fast build rule for target.
+demo02_grabimage/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/build
+.PHONY : demo02_grabimage/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+src/demo01_camera_connect.o: src/demo01_camera_connect.cpp.o
+
+.PHONY : src/demo01_camera_connect.o
 
 # target to build an object file
-src/demo01_camera_connect_test.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/src/demo01_camera_connect_test.cpp.o
-.PHONY : src/demo01_camera_connect_test.cpp.o
+src/demo01_camera_connect.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/src/demo01_camera_connect.cpp.o
+.PHONY : src/demo01_camera_connect.cpp.o
 
-src/demo01_camera_connect_test.i: src/demo01_camera_connect_test.cpp.i
+src/demo01_camera_connect.i: src/demo01_camera_connect.cpp.i
 
-.PHONY : src/demo01_camera_connect_test.i
+.PHONY : src/demo01_camera_connect.i
 
 # target to preprocess a source file
-src/demo01_camera_connect_test.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/src/demo01_camera_connect_test.cpp.i
-.PHONY : src/demo01_camera_connect_test.cpp.i
+src/demo01_camera_connect.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/src/demo01_camera_connect.cpp.i
+.PHONY : src/demo01_camera_connect.cpp.i
 
-src/demo01_camera_connect_test.s: src/demo01_camera_connect_test.cpp.s
+src/demo01_camera_connect.s: src/demo01_camera_connect.cpp.s
 
-.PHONY : src/demo01_camera_connect_test.s
+.PHONY : src/demo01_camera_connect.s
 
 # target to generate assembly for a file
-src/demo01_camera_connect_test.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect_test.dir/src/demo01_camera_connect_test.cpp.s
-.PHONY : src/demo01_camera_connect_test.cpp.s
+src/demo01_camera_connect.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/src/demo01_camera_connect.cpp.s
+.PHONY : src/demo01_camera_connect.cpp.s
+
+src/demo02_grabimage.o: src/demo02_grabimage.cpp.o
+
+.PHONY : src/demo02_grabimage.o
+
+# target to build an object file
+src/demo02_grabimage.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.o
+.PHONY : src/demo02_grabimage.cpp.o
+
+src/demo02_grabimage.i: src/demo02_grabimage.cpp.i
+
+.PHONY : src/demo02_grabimage.i
+
+# target to preprocess a source file
+src/demo02_grabimage.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.i
+.PHONY : src/demo02_grabimage.cpp.i
+
+src/demo02_grabimage.s: src/demo02_grabimage.cpp.s
+
+.PHONY : src/demo02_grabimage.s
+
+# target to generate assembly for a file
+src/demo02_grabimage.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.s
+.PHONY : src/demo02_grabimage.cpp.s
+
+src/demo03_imageprocess.o: src/demo03_imageprocess.cpp.o
+
+.PHONY : src/demo03_imageprocess.o
+
+# target to build an object file
+src/demo03_imageprocess.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.o
+.PHONY : src/demo03_imageprocess.cpp.o
+
+src/demo03_imageprocess.i: src/demo03_imageprocess.cpp.i
+
+.PHONY : src/demo03_imageprocess.i
+
+# target to preprocess a source file
+src/demo03_imageprocess.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.i
+.PHONY : src/demo03_imageprocess.cpp.i
+
+src/demo03_imageprocess.s: src/demo03_imageprocess.cpp.s
+
+.PHONY : src/demo03_imageprocess.s
+
+# target to generate assembly for a file
+src/demo03_imageprocess.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.s
+.PHONY : src/demo03_imageprocess.cpp.s
 
 # Help Target
 help:
@@ -440,32 +674,50 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... demo01_camera_connect_test"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... list_install_components"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... install"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... install/strip"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_lisp"
+	@echo "... install"
+	@echo "... list_install_components"
+	@echo "... edit_cache"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... src/demo01_camera_connect_test.o"
-	@echo "... src/demo01_camera_connect_test.i"
-	@echo "... src/demo01_camera_connect_test.s"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... install/local"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... demo03_imageprocess"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... rebuild_cache"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... demo01_camera_connect"
+	@echo "... demo02_grabimage"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... src/demo01_camera_connect.o"
+	@echo "... src/demo01_camera_connect.i"
+	@echo "... src/demo01_camera_connect.s"
+	@echo "... src/demo02_grabimage.o"
+	@echo "... src/demo02_grabimage.i"
+	@echo "... src/demo02_grabimage.s"
+	@echo "... src/demo03_imageprocess.o"
+	@echo "... src/demo03_imageprocess.i"
+	@echo "... src/demo03_imageprocess.s"
 .PHONY : help
 
 

@@ -352,6 +352,15 @@ LSB_RELEASE_EXECUTABLE:FILEPATH=/usr/bin/lsb_release
 //Path to a program.
 NOSETESTS:FILEPATH=/usr/bin/nosetests3
 
+//The directory containing a CMake configuration file for OpenCV4.
+OpenCV4_DIR:PATH=OpenCV4_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=OpenCV_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for OpenCv.
+OpenCv_DIR:PATH=OpenCv_DIR-NOTFOUND
+
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3
 
@@ -400,6 +409,9 @@ catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
+//The directory containing a CMake configuration file for cv_bridge.
+cv_bridge_DIR:PATH=/opt/ros/noetic/share/cv_bridge/cmake
+
 //Value Computed by CMake
 demo01_camera_connect_test_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_camera
 
@@ -411,6 +423,9 @@ demo01_diana7api_connect_test_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magm
 
 //Value Computed by CMake
 demo01_diana7api_connect_test_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_manipulator
+
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/gtest/googlemock
@@ -500,6 +515,12 @@ magmed_visionfb_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_visionfb
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
+//The directory containing a CMake configuration file for opencv4.
+opencv4_DIR:PATH=opencv4_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for opencv.
+opencv_DIR:PATH=opencv_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
 
@@ -520,6 +541,9 @@ rospy_DIR:PATH=/opt/ros/noetic/share/rospy/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
+
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/noetic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake
@@ -720,6 +744,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding OpenCV
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr][v4.2.0()]
 //Details about finding PY_em
 FIND_PACKAGE_MESSAGE_DETAILS_PY_em:INTERNAL=[/usr/lib/python3/dist-packages/em.py][v()]
 //Details about finding PythonInterp

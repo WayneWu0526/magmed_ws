@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(magmed_camera)
 
+set(OpenCV_DIR /usr/lib/x86_64-linux-gnu/cmake/opencv4/)
+# SET(CMAKE_BUILD_TYPE "RelWithDebInfo")
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -11,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  OpenCV REQUIRED # 加上了 REQUIRED，那么如果找不到指定的软件包，CMake 就会停止构建过程，并且输出错误信息，提示找不到软件包。
+  cv_bridge
 )
 
 ## System dependencies are found with CMake's conventions
@@ -139,8 +143,9 @@ link_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/demo02_camera_test_node.cpp)
-add_executable(demo01_camera_connect_test src/demo01_camera_connect_test.cpp)
+add_executable(demo01_camera_connect src/demo01_camera_connect.cpp)
 add_executable(demo02_grabimage src/demo02_grabimage.cpp)
+add_executable(demo03_imageprocess src/demo03_imageprocess.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,13 +161,19 @@ add_executable(demo02_grabimage src/demo02_grabimage.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(demo01_camera_connect_test
+target_link_libraries(demo01_camera_connect
   ${catkin_LIBRARIES}
   MvCameraControl
 )
 
 target_link_libraries(demo02_grabimage
   ${catkin_LIBRARIES}
+  MvCameraControl
+)
+
+target_link_libraries(demo03_imageprocess
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES} # 不写这一段貌似也没问题
   MvCameraControl
 )
 
