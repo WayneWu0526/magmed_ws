@@ -73,8 +73,8 @@ int main(int argc, char *argv[])
             ROS_INFO("Find No Devices!\n");
             break;
         }
-        // ROS_INFO("Please Intput camera index: ");
         unsigned int nIndex = 0; // 默认使用第0号摄像头
+        ROS_INFO("Defalut camera index: %d", nIndex);
         // scanf("%d", &nIndex);
         if (nIndex >= stDeviceList.nDeviceNum)
         {
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 
         ros::NodeHandle nh;
 
-        int ii = 0;
+        cv::Mat img;
         while (ros::ok())
         {
             nRet = MV_CC_GetImageBuffer(handle, &stOutFrame, 1000);
@@ -139,16 +139,14 @@ int main(int argc, char *argv[])
             {
                 ROS_INFO("Get One Frame: Width[%d], Height[%d], nFrameNum[%d]\n",
                          stOutFrame.stFrameInfo.nWidth, stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nFrameNum);
+                // image show
+                img = cv::Mat(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, CV_8UC3, *stOutFrame.pBufAddr);
+                cv::imshow("img", img);
             }
             else
             {
                 ROS_INFO("No data[0x%x]\n", nRet);
             }
-
-            // image show
-            cv::Mat img = cv::Mat(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, CV_8UC3, stOutFrame.pBufAddr);
-            cv::imshow("img", img);
-            cv::waitKey(0);
 
             if (NULL != stOutFrame.pBufAddr)
             {
@@ -162,19 +160,26 @@ int main(int argc, char *argv[])
             ros::spinOnce();
         }
 
-        // 停止取流
-        // end grab image
+        // ch:停止取流 | en:Stop grab image
         nRet = MV_CC_StopGrabbing(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("MV_CC_StopGrabbing fail! nRet [%x]\n", nRet);
+            printf("Stop Grabbing fail! nRet [0x%x]\n", nRet);
+            break;
         }
-        // 销毁句柄
-        // destroy handle
+        // ch:关闭设备 | Close device
+        nRet = MV_CC_CloseDevice(handle);
+        if (MV_OK != nRet)
+        {
+            printf("ClosDevice fail! nRet [0x%x]\n", nRet);
+            break;
+        }
+        // ch:销毁句柄 | Destroy handle
         nRet = MV_CC_DestroyHandle(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("MV_CC_DestroyHandle fail! nRet [%x]\n", nRet);
+            printf("Destroy Handle fail! nRet [0x%x]\n", nRet);
+            break;
         }
     } while (0);
 
@@ -185,11 +190,6 @@ int main(int argc, char *argv[])
             MV_CC_DestroyHandle(handle);
             handle = NULL;
         }
-    }
-    if (pData)
-    {
-        free(pData);
-        pData = NULL;
     }
     return 0;
 }

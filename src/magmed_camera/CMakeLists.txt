@@ -14,7 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   OpenCV REQUIRED # 加上了 REQUIRED，那么如果找不到指定的软件包，CMake 就会停止构建过程，并且输出错误信息，提示找不到软件包。
-  cv_bridge
 )
 
 ## System dependencies are found with CMake's conventions
