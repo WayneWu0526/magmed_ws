@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-magmed_camera/CMakeFiles/demo02_grabimage.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
+magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule
 
 # Convenience name for target.
-demo02_grabimage: magmed_camera/CMakeFiles/demo02_grabimage.dir/rule
+demo02_grabimagebuffer: magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule
 
-.PHONY : demo02_grabimage
+.PHONY : demo02_grabimagebuffer
 
 # fast build rule for target.
-demo02_grabimage/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/build
-.PHONY : demo02_grabimage/fast
+demo02_grabimagebuffer/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build
+.PHONY : demo02_grabimagebuffer/fast
 
 # Convenience name for target.
 magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule:
@@ -303,21 +303,6 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
-magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
-.PHONY : magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
-
-# Convenience name for target.
-demo03_imageprocess: magmed_camera/CMakeFiles/demo03_imageprocess.dir/rule
-
-.PHONY : demo03_imageprocess
-
-# fast build rule for target.
-demo03_imageprocess/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/build
-.PHONY : demo03_imageprocess/fast
-
-# Convenience name for target.
 magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 .PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
@@ -361,6 +346,21 @@ rosgraph_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/rosgraph_msgs_gene
 rosgraph_msgs_generate_messages_cpp/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule
+
+# Convenience name for target.
+demo03_grabimageBGR: magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule
+
+.PHONY : demo03_grabimageBGR
+
+# fast build rule for target.
+demo03_grabimageBGR/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build
+.PHONY : demo03_grabimageBGR/fast
 
 # Convenience name for target.
 magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
@@ -464,59 +464,59 @@ src/demo01_camera_connect.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/src/demo01_camera_connect.cpp.s
 .PHONY : src/demo01_camera_connect.cpp.s
 
-src/demo02_grabimage.o: src/demo02_grabimage.cpp.o
+src/demo02_grabimagebuffer.o: src/demo02_grabimagebuffer.cpp.o
 
-.PHONY : src/demo02_grabimage.o
-
-# target to build an object file
-src/demo02_grabimage.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.o
-.PHONY : src/demo02_grabimage.cpp.o
-
-src/demo02_grabimage.i: src/demo02_grabimage.cpp.i
-
-.PHONY : src/demo02_grabimage.i
-
-# target to preprocess a source file
-src/demo02_grabimage.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.i
-.PHONY : src/demo02_grabimage.cpp.i
-
-src/demo02_grabimage.s: src/demo02_grabimage.cpp.s
-
-.PHONY : src/demo02_grabimage.s
-
-# target to generate assembly for a file
-src/demo02_grabimage.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/src/demo02_grabimage.cpp.s
-.PHONY : src/demo02_grabimage.cpp.s
-
-src/demo03_imageprocess.o: src/demo03_imageprocess.cpp.o
-
-.PHONY : src/demo03_imageprocess.o
+.PHONY : src/demo02_grabimagebuffer.o
 
 # target to build an object file
-src/demo03_imageprocess.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.o
-.PHONY : src/demo03_imageprocess.cpp.o
+src/demo02_grabimagebuffer.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/src/demo02_grabimagebuffer.cpp.o
+.PHONY : src/demo02_grabimagebuffer.cpp.o
 
-src/demo03_imageprocess.i: src/demo03_imageprocess.cpp.i
+src/demo02_grabimagebuffer.i: src/demo02_grabimagebuffer.cpp.i
 
-.PHONY : src/demo03_imageprocess.i
+.PHONY : src/demo02_grabimagebuffer.i
 
 # target to preprocess a source file
-src/demo03_imageprocess.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.i
-.PHONY : src/demo03_imageprocess.cpp.i
+src/demo02_grabimagebuffer.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/src/demo02_grabimagebuffer.cpp.i
+.PHONY : src/demo02_grabimagebuffer.cpp.i
 
-src/demo03_imageprocess.s: src/demo03_imageprocess.cpp.s
+src/demo02_grabimagebuffer.s: src/demo02_grabimagebuffer.cpp.s
 
-.PHONY : src/demo03_imageprocess.s
+.PHONY : src/demo02_grabimagebuffer.s
 
 # target to generate assembly for a file
-src/demo03_imageprocess.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/src/demo03_imageprocess.cpp.s
-.PHONY : src/demo03_imageprocess.cpp.s
+src/demo02_grabimagebuffer.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/src/demo02_grabimagebuffer.cpp.s
+.PHONY : src/demo02_grabimagebuffer.cpp.s
+
+src/demo03_grabimageBGR.o: src/demo03_grabimageBGR.cpp.o
+
+.PHONY : src/demo03_grabimageBGR.o
+
+# target to build an object file
+src/demo03_grabimageBGR.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/src/demo03_grabimageBGR.cpp.o
+.PHONY : src/demo03_grabimageBGR.cpp.o
+
+src/demo03_grabimageBGR.i: src/demo03_grabimageBGR.cpp.i
+
+.PHONY : src/demo03_grabimageBGR.i
+
+# target to preprocess a source file
+src/demo03_grabimageBGR.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/src/demo03_grabimageBGR.cpp.i
+.PHONY : src/demo03_grabimageBGR.cpp.i
+
+src/demo03_grabimageBGR.s: src/demo03_grabimageBGR.cpp.s
+
+.PHONY : src/demo03_grabimageBGR.s
+
+# target to generate assembly for a file
+src/demo03_grabimageBGR.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/src/demo03_grabimageBGR.cpp.s
+.PHONY : src/demo03_grabimageBGR.cpp.s
 
 # Help Target
 help:
@@ -528,7 +528,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... demo02_grabimage"
+	@echo "... demo02_grabimagebuffer"
 	@echo "... demo01_camera_connect"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
@@ -539,11 +539,11 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... install"
-	@echo "... demo03_imageprocess"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... install/strip"
+	@echo "... demo03_grabimageBGR"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
@@ -552,12 +552,12 @@ help:
 	@echo "... src/demo01_camera_connect.o"
 	@echo "... src/demo01_camera_connect.i"
 	@echo "... src/demo01_camera_connect.s"
-	@echo "... src/demo02_grabimage.o"
-	@echo "... src/demo02_grabimage.i"
-	@echo "... src/demo02_grabimage.s"
-	@echo "... src/demo03_imageprocess.o"
-	@echo "... src/demo03_imageprocess.i"
-	@echo "... src/demo03_imageprocess.s"
+	@echo "... src/demo02_grabimagebuffer.o"
+	@echo "... src/demo02_grabimagebuffer.i"
+	@echo "... src/demo02_grabimagebuffer.s"
+	@echo "... src/demo03_grabimageBGR.o"
+	@echo "... src/demo03_grabimageBGR.i"
+	@echo "... src/demo03_grabimageBGR.s"
 .PHONY : help
 
 

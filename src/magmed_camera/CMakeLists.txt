@@ -143,8 +143,8 @@ link_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/demo02_camera_test_node.cpp)
 add_executable(demo01_camera_connect src/demo01_camera_connect.cpp)
-add_executable(demo02_grabimage src/demo02_grabimage.cpp)
-add_executable(demo03_imageprocess src/demo03_imageprocess.cpp)
+add_executable(demo02_grabimagebuffer src/demo02_grabimagebuffer.cpp)
+add_executable(demo03_grabimageBGR src/demo03_grabimageBGR.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -165,14 +165,13 @@ target_link_libraries(demo01_camera_connect
   MvCameraControl
 )
 
-target_link_libraries(demo02_grabimage
+target_link_libraries(demo02_grabimagebuffer
   ${catkin_LIBRARIES}
   MvCameraControl
 )
 
-target_link_libraries(demo03_imageprocess
+target_link_libraries(demo03_grabimageBGR
   ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES} # 不写这一段貌似也没问题
   MvCameraControl
 )
 

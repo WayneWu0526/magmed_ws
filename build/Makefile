@@ -285,17 +285,17 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named demo02_grabimage
+# Target rules for targets named demo02_grabimagebuffer
 
 # Build rule for target.
-demo02_grabimage: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo02_grabimage
-.PHONY : demo02_grabimage
+demo02_grabimagebuffer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo02_grabimagebuffer
+.PHONY : demo02_grabimagebuffer
 
 # fast build rule for target.
-demo02_grabimage/fast:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage.dir/build
-.PHONY : demo02_grabimage/fast
+demo02_grabimagebuffer/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build
+.PHONY : demo02_grabimagebuffer/fast
 
 #=============================================================================
 # Target rules for targets named demo01_camera_connect
@@ -402,19 +402,6 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named demo03_imageprocess
-
-# Build rule for target.
-demo03_imageprocess: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo03_imageprocess
-.PHONY : demo03_imageprocess
-
-# fast build rule for target.
-demo03_imageprocess/fast:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_imageprocess.dir/build.make magmed_camera/CMakeFiles/demo03_imageprocess.dir/build
-.PHONY : demo03_imageprocess/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -452,6 +439,19 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 rosgraph_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named demo03_grabimageBGR
+
+# Build rule for target.
+demo03_grabimageBGR: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo03_grabimageBGR
+.PHONY : demo03_grabimageBGR
+
+# fast build rule for target.
+demo03_grabimageBGR/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build
+.PHONY : demo03_grabimageBGR/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
@@ -553,7 +553,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... demo02_grabimage"
+	@echo "... demo02_grabimagebuffer"
 	@echo "... demo01_camera_connect"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
@@ -562,10 +562,10 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
-	@echo "... demo03_imageprocess"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... demo03_grabimageBGR"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
