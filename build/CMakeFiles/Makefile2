@@ -151,9 +151,9 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory magmed_camera
 
 # Recursive "all" directory target.
-magmed_camera/all: magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/all
+magmed_camera/all: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
+magmed_camera/all: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
 magmed_camera/all: magmed_camera/CMakeFiles/demo01_camera_connect.dir/all
-magmed_camera/all: magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/all
 
 .PHONY : magmed_camera/all
 
@@ -163,7 +163,8 @@ magmed_camera/preinstall:
 .PHONY : magmed_camera/preinstall
 
 # Recursive "clean" directory target.
-magmed_camera/clean: magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/clean
+magmed_camera/clean: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
+magmed_camera/clean: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/demo01_camera_connect.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
@@ -175,7 +176,6 @@ magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/cl
 magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
@@ -519,31 +519,58 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir
+# Target rules for target magmed_camera/CMakeFiles/demo03_grabimage_callback.dir
 
 # All Build rule for target.
-magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target demo02_grabimagebuffer"
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/all
+magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/depend
+	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target demo03_grabimage_callback"
+.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule: cmake_check_build_system
+magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule
+.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
 
 # Convenience name for target.
-demo02_grabimagebuffer: magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/rule
+demo03_grabimage_callback: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
 
-.PHONY : demo02_grabimagebuffer
+.PHONY : demo03_grabimage_callback
 
 # clean rule for target.
-magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/clean
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/clean
+magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
+.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir
+
+# All Build rule for target.
+magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/depend
+	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target demo02_grabimage_activestream"
+.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule
+
+# Convenience name for target.
+demo02_grabimage_activestream: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule
+
+.PHONY : demo02_grabimage_activestream
+
+# clean rule for target.
+magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
+.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
 
 #=============================================================================
 # Target rules for target magmed_camera/CMakeFiles/demo01_camera_connect.dir
@@ -841,33 +868,6 @@ rosgraph_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/rosgraph_msgs_gene
 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
 	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 .PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/demo03_grabimageBGR.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target demo03_grabimageBGR"
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule
-
-# Convenience name for target.
-demo03_grabimageBGR: magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/rule
-
-.PHONY : demo03_grabimageBGR
-
-# clean rule for target.
-magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/clean
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/clean
 
 #=============================================================================
 # Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir

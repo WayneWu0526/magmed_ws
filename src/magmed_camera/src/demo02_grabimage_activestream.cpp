@@ -14,7 +14,7 @@ bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
     if (NULL == pstMVDevInfo)
     {
-        ROS_INFO("The Pointer of pstMVDevInfo is NULL!\n");
+        printf("The Pointer of pstMVDevInfo is NULL!\n");
         return false;
     }
     if (pstMVDevInfo->nTLayerType == MV_GIGE_DEVICE)
@@ -24,21 +24,22 @@ bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
         int nIp3 = ((pstMVDevInfo->SpecialInfo.stGigEInfo.nCurrentIp & 0x0000ff00) >> 8);
         int nIp4 = (pstMVDevInfo->SpecialInfo.stGigEInfo.nCurrentIp & 0x000000ff);
         // ch:打印当前相机ip和用户自定义名字 | en:print current ip and user defined name
-        ROS_INFO("CurrentIp: %d.%d.%d.%d\n" , nIp1, nIp2, nIp3, nIp4);
-        ROS_INFO("UserDefinedName: %s\n\n" , pstMVDevInfo->SpecialInfo.stGigEInfo.chUserDefinedName);
+        printf("CurrentIp: %d.%d.%d.%d\n" , nIp1, nIp2, nIp3, nIp4);
+        printf("UserDefinedName: %s\n\n" , pstMVDevInfo->SpecialInfo.stGigEInfo.chUserDefinedName);
     }
     else if (pstMVDevInfo->nTLayerType == MV_USB_DEVICE)
     {
-        ROS_INFO("UserDefinedName: %s\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.chUserDefinedName);
-        ROS_INFO("Serial Number: %s\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.chSerialNumber);
-        ROS_INFO("Device Number: %d\n\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.nDeviceNumber);
+        printf("UserDefinedName: %s\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.chUserDefinedName);
+        printf("Serial Number: %s\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.chSerialNumber);
+        printf("Device Number: %d\n\n", pstMVDevInfo->SpecialInfo.stUsb3VInfo.nDeviceNumber);
     }
     else
     {
-        ROS_INFO("Not support.\n");
+        printf("Not support.\n");
     }
     return true;
 }
+
 static  void* WorkThread(void* pUser)
 {
     int nRet = MV_OK;
@@ -50,9 +51,9 @@ static  void* WorkThread(void* pUser)
         nRet = MV_CC_GetImageBuffer(pUser, &stOutFrame, 1000);
         if (nRet == MV_OK)
         {
-            ROS_INFO("Get One Frame: Width[%d], Height[%d], nFrameNum[%d]\n",
+            printf("Get One Frame: Width[%d], Height[%d], nFrameNum[%d]\n",
                 stOutFrame.stFrameInfo.nWidth, stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nFrameNum);
-            
+
             pDataForRGB = (unsigned char*)malloc(stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 4 + 2048);
                     if (NULL == pDataForRGB)
                     {
@@ -76,38 +77,44 @@ static  void* WorkThread(void* pUser)
                     nRet = MV_CC_ConvertPixelType(pUser, &stConvertParam);
                     if (MV_OK != nRet)
                     {
-                        ROS_INFO("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
+                        printf("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
                         break;
                     }
-            // imshow
+            // img process
             cv::Mat img = cv::Mat(stConvertParam.nHeight, stConvertParam.nWidth, CV_8UC3, pDataForRGB);
+            // turn BGR to gray
+            cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
+            // threshold the image
+            cv::threshold(img, img, 100, 255, cv::THRESH_BINARY);
+            // show the image
             cv::imshow("img", img);
             cv::waitKey(1);
         }
         else
         {
-            ROS_INFO("No data[0x%x]\n", nRet);
+            printf("No data[0x%x]\n", nRet);
         }
         if(NULL != stOutFrame.pBufAddr)
         {
             nRet = MV_CC_FreeImageBuffer(pUser, &stOutFrame);
             if(nRet != MV_OK)
             {
-                ROS_INFO("Free Image Buffer fail! nRet [0x%x]\n", nRet);
+                printf("Free Image Buffer fail! nRet [0x%x]\n", nRet);
             }
+        }
+        if(pDataForRGB)
+        {
+            free(pDataForRGB);
+            pDataForRGB = NULL;
         }
         if(g_bExit)
         {
             break;
         }
     }
-    if (pDataForRGB)
-    {
-        free(pDataForRGB);
-        pDataForRGB = NULL;
-    }
     return 0;
 }
+
 int main(int argc, char **argv)
 {
     int nRet = MV_OK;
@@ -120,14 +127,14 @@ int main(int argc, char **argv)
         nRet = MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, &stDeviceList);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Enum Devices fail! nRet [0x%x]\n", nRet);
+            printf("Enum Devices fail! nRet [0x%x]\n", nRet);
             break;
         }
         if (stDeviceList.nDeviceNum > 0)
         {
             for (unsigned int i = 0; i < stDeviceList.nDeviceNum; i++)
             {
-                ROS_INFO("[device %d]:\n", i);
+                printf("[device %d]:\n", i);
                 MV_CC_DEVICE_INFO* pDeviceInfo = stDeviceList.pDeviceInfo[i];
                 if (NULL == pDeviceInfo)
                 {
@@ -138,35 +145,29 @@ int main(int argc, char **argv)
         } 
         else
         {
-            ROS_INFO("Find No Devices!\n");
+            printf("Find No Devices!\n");
             break;
         }
         unsigned int nIndex = 0;
-        ROS_INFO("Default camera index: %d", nIndex);
-        // if (nIndex >= stDeviceList.nDeviceNum)
-        // {
-        //     ROS_INFO("Intput error!\n");
-        //     break;
-        // }
-        // ch:选择设备并创建句柄 | en:Select device and create handle
+        printf("Default camera index: %d", nIndex);
         nRet = MV_CC_CreateHandle(&handle, stDeviceList.pDeviceInfo[nIndex]);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Create Handle fail! nRet [0x%x]\n", nRet);
+            printf("Create Handle fail! nRet [0x%x]\n", nRet);
             break;
         }
         // ch:打开设备 | en:Open device
         nRet = MV_CC_OpenDevice(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Open Device fail! nRet [0x%x]\n", nRet);
+            printf("Open Device fail! nRet [0x%x]\n", nRet);
             break;
         }
         // ch:设置触发模式为off | en:Set trigger mode as off
         nRet = MV_CC_SetEnumValue(handle, "TriggerMode", 0);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Set Trigger Mode fail! nRet [0x%x]\n", nRet);
+            printf("Set Trigger Mode fail! nRet [0x%x]\n", nRet);
             break;
         }
         // ch:获取数据包大小 | en:Get payload size
@@ -175,7 +176,7 @@ int main(int argc, char **argv)
         nRet = MV_CC_GetIntValue(handle, "PayloadSize", &stParam);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Get PayloadSize fail! nRet [0x%x]\n", nRet);
+            printf("Get PayloadSize fail! nRet [0x%x]\n", nRet);
             break;
         }
         g_nPayloadSize = stParam.nCurValue;
@@ -183,14 +184,14 @@ int main(int argc, char **argv)
         nRet = MV_CC_StartGrabbing(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Start Grabbing fail! nRet [0x%x]\n", nRet);
+            printf("Start Grabbing fail! nRet [0x%x]\n", nRet);
             break;
         }
         pthread_t nThreadID;
         nRet = pthread_create(&nThreadID, NULL ,WorkThread , handle);
         if (nRet != 0)
         {
-            ROS_INFO("thread create failed.ret = %d\n",nRet);
+            printf("thread create failed.ret = %d\n",nRet);
             break;
         }
         
@@ -208,21 +209,21 @@ int main(int argc, char **argv)
         nRet = MV_CC_StopGrabbing(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Stop Grabbing fail! nRet [0x%x]\n", nRet);
+            printf("Stop Grabbing fail! nRet [0x%x]\n", nRet);
             break;
         }
         // ch:关闭设备 | Close device
         nRet = MV_CC_CloseDevice(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("ClosDevice fail! nRet [0x%x]\n", nRet);
+            printf("ClosDevice fail! nRet [0x%x]\n", nRet);
             break;
         }
         // ch:销毁句柄 | Destroy handle
         nRet = MV_CC_DestroyHandle(handle);
         if (MV_OK != nRet)
         {
-            ROS_INFO("Destroy Handle fail! nRet [0x%x]\n", nRet);
+            printf("Destroy Handle fail! nRet [0x%x]\n", nRet);
             break;
         }
     } while (0);

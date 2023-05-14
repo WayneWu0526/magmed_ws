@@ -285,17 +285,30 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named demo02_grabimagebuffer
+# Target rules for targets named demo03_grabimage_callback
 
 # Build rule for target.
-demo02_grabimagebuffer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo02_grabimagebuffer
-.PHONY : demo02_grabimagebuffer
+demo03_grabimage_callback: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo03_grabimage_callback
+.PHONY : demo03_grabimage_callback
 
 # fast build rule for target.
-demo02_grabimagebuffer/fast:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build.make magmed_camera/CMakeFiles/demo02_grabimagebuffer.dir/build
-.PHONY : demo02_grabimagebuffer/fast
+demo03_grabimage_callback/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build
+.PHONY : demo03_grabimage_callback/fast
+
+#=============================================================================
+# Target rules for targets named demo02_grabimage_activestream
+
+# Build rule for target.
+demo02_grabimage_activestream: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo02_grabimage_activestream
+.PHONY : demo02_grabimage_activestream
+
+# fast build rule for target.
+demo02_grabimage_activestream/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build
+.PHONY : demo02_grabimage_activestream/fast
 
 #=============================================================================
 # Target rules for targets named demo01_camera_connect
@@ -441,19 +454,6 @@ rosgraph_msgs_generate_messages_cpp/fast:
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named demo03_grabimageBGR
-
-# Build rule for target.
-demo03_grabimageBGR: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo03_grabimageBGR
-.PHONY : demo03_grabimageBGR
-
-# fast build rule for target.
-demo03_grabimageBGR/fast:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build.make magmed_camera/CMakeFiles/demo03_grabimageBGR.dir/build
-.PHONY : demo03_grabimageBGR/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -553,7 +553,8 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... demo02_grabimagebuffer"
+	@echo "... demo03_grabimage_callback"
+	@echo "... demo02_grabimage_activestream"
 	@echo "... demo01_camera_connect"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
@@ -565,7 +566,6 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... demo03_grabimageBGR"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
