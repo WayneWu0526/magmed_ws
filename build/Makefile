@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named pubTipAngle
+
+# Build rule for target.
+pubTipAngle: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pubTipAngle
+.PHONY : pubTipAngle
+
+# fast build rule for target.
+pubTipAngle/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/build
+.PHONY : pubTipAngle/fast
+
+#=============================================================================
 # Target rules for targets named demo03_grabimage_callback
 
 # Build rule for target.
@@ -322,6 +335,19 @@ demo01_camera_connect: cmake_check_build_system
 demo01_camera_connect/fast:
 	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/build
 .PHONY : demo01_camera_connect/fast
+
+#=============================================================================
+# Target rules for targets named imageProcess
+
+# Build rule for target.
+imageProcess: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 imageProcess
+.PHONY : imageProcess
+
+# fast build rule for target.
+imageProcess/fast:
+	$(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/build
+.PHONY : imageProcess/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
@@ -553,9 +579,11 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... pubTipAngle"
 	@echo "... demo03_grabimage_callback"
 	@echo "... demo02_grabimage_activestream"
 	@echo "... demo01_camera_connect"
+	@echo "... imageProcess"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"

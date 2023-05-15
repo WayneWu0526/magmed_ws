@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+magmed_camera/CMakeFiles/pubTipAngle.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/pubTipAngle.dir/rule
+.PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/rule
+
+# Convenience name for target.
+pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/rule
+
+.PHONY : pubTipAngle
+
+# fast build rule for target.
+pubTipAngle/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/build
+.PHONY : pubTipAngle/fast
+
+# Convenience name for target.
 magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
 .PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
@@ -211,6 +226,21 @@ demo01_camera_connect: magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
 demo01_camera_connect/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/build
 .PHONY : demo01_camera_connect/fast
+
+# Convenience name for target.
+magmed_camera/CMakeFiles/imageProcess.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/imageProcess.dir/rule
+.PHONY : magmed_camera/CMakeFiles/imageProcess.dir/rule
+
+# Convenience name for target.
+imageProcess: magmed_camera/CMakeFiles/imageProcess.dir/rule
+
+.PHONY : imageProcess
+
+# fast build rule for target.
+imageProcess/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/build
+.PHONY : imageProcess/fast
 
 # Convenience name for target.
 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
@@ -518,6 +548,60 @@ src/demo03_grabimage_callback.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/src/demo03_grabimage_callback.cpp.s
 .PHONY : src/demo03_grabimage_callback.cpp.s
 
+src/imageProcess.o: src/imageProcess.cpp.o
+
+.PHONY : src/imageProcess.o
+
+# target to build an object file
+src/imageProcess.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.o
+.PHONY : src/imageProcess.cpp.o
+
+src/imageProcess.i: src/imageProcess.cpp.i
+
+.PHONY : src/imageProcess.i
+
+# target to preprocess a source file
+src/imageProcess.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.i
+.PHONY : src/imageProcess.cpp.i
+
+src/imageProcess.s: src/imageProcess.cpp.s
+
+.PHONY : src/imageProcess.s
+
+# target to generate assembly for a file
+src/imageProcess.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.s
+.PHONY : src/imageProcess.cpp.s
+
+src/pubTipAngle.o: src/pubTipAngle.cpp.o
+
+.PHONY : src/pubTipAngle.o
+
+# target to build an object file
+src/pubTipAngle.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o
+.PHONY : src/pubTipAngle.cpp.o
+
+src/pubTipAngle.i: src/pubTipAngle.cpp.i
+
+.PHONY : src/pubTipAngle.i
+
+# target to preprocess a source file
+src/pubTipAngle.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.i
+.PHONY : src/pubTipAngle.cpp.i
+
+src/pubTipAngle.s: src/pubTipAngle.cpp.s
+
+.PHONY : src/pubTipAngle.s
+
+# target to generate assembly for a file
+src/pubTipAngle.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.s
+.PHONY : src/pubTipAngle.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -528,9 +612,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... pubTipAngle"
 	@echo "... demo03_grabimage_callback"
 	@echo "... demo02_grabimage_activestream"
 	@echo "... demo01_camera_connect"
+	@echo "... imageProcess"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"
@@ -558,6 +644,12 @@ help:
 	@echo "... src/demo03_grabimage_callback.o"
 	@echo "... src/demo03_grabimage_callback.i"
 	@echo "... src/demo03_grabimage_callback.s"
+	@echo "... src/imageProcess.o"
+	@echo "... src/imageProcess.i"
+	@echo "... src/imageProcess.s"
+	@echo "... src/pubTipAngle.o"
+	@echo "... src/pubTipAngle.i"
+	@echo "... src/pubTipAngle.s"
 .PHONY : help
 
 

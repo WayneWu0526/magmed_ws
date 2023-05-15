@@ -6,6 +6,7 @@
 #include "/opt/MVS/include/MvCameraControl.h"
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
+#include "magmed_camera/imageProcess.h"
 
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
@@ -55,33 +56,33 @@ static  void* WorkThread(void* pUser)
                 stOutFrame.stFrameInfo.nWidth, stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nFrameNum);
 
             pDataForRGB = (unsigned char*)malloc(stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 4 + 2048);
-                    if (NULL == pDataForRGB)
-                    {
-                        break;
-                    }
-                    // 像素格式转换
-                    // convert pixel format 
-                    MV_CC_PIXEL_CONVERT_PARAM stConvertParam = {0};
-                    // 从上到下依次是：图像宽，图像高，输入数据缓存，输入数据大小，源像素格式，
-                    // 目标像素格式，输出数据缓存，提供的输出缓冲区大小
-                    // Top to bottom are：image width, image height, input data buffer, input data size, source pixel format, 
-                    // destination pixel format, output data buffer, provided output buffer size
-                    stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth;
-                    stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight;
-                    stConvertParam.pSrcData = stOutFrame.pBufAddr;
-                    stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen;
-                    stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType;
-                    stConvertParam.enDstPixelType = PixelType_Gvsp_BGR8_Packed;
-                    stConvertParam.pDstBuffer = pDataForRGB;
-                    stConvertParam.nDstBufferSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight *  4 + 2048;
-                    nRet = MV_CC_ConvertPixelType(pUser, &stConvertParam);
-                    if (MV_OK != nRet)
-                    {
-                        printf("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
-                        break;
-                    }
-            // img process
-            cv::Mat img = cv::Mat(stConvertParam.nHeight, stConvertParam.nWidth, CV_8UC3, pDataForRGB);
+            if (NULL == pDataForRGB)
+            {
+                break;
+            }
+            // 像素格式转换
+            // convert pixel format 
+            MV_CC_PIXEL_CONVERT_PARAM stConvertParam = {0};
+            // 从上到下依次是：图像宽，图像高，输入数据缓存，输入数据大小，源像素格式，
+            // 目标像素格式，输出数据缓存，提供的输出缓冲区大小
+            // Top to bottom are：image width, image height, input data buffer, input data size, source pixel format, 
+            // destination pixel format, output data buffer, provided output buffer size
+            stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth;
+            stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight;
+            stConvertParam.pSrcData = stOutFrame.pBufAddr;
+            stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen;
+            stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType;
+            stConvertParam.enDstPixelType = PixelType_Gvsp_BGR8_Packed;
+            stConvertParam.pDstBuffer = pDataForRGB;
+            stConvertParam.nDstBufferSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight *  4 + 2048;
+            nRet = MV_CC_ConvertPixelType(pUser, &stConvertParam);
+            if (MV_OK != nRet)
+            {
+                printf("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
+                break;
+            }
+            // load image
+            cv::Mat img(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, CV_8UC3, pDataForRGB);
             // turn BGR to gray
             cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
             // threshold the image
@@ -89,6 +90,7 @@ static  void* WorkThread(void* pUser)
             // show the image
             cv::imshow("img", img);
             cv::waitKey(1);
+                    
         }
         else
         {
@@ -180,6 +182,31 @@ int main(int argc, char **argv)
             break;
         }
         g_nPayloadSize = stParam.nCurValue;
+        // ch:设置ROI大小
+         // 设置int型变量
+        // set IInteger variable
+        // 宽高设置时需考虑步进(16)，即设置宽高需16的倍数
+        // Step (16) should be considered when setting width and height, that is the width and height should be a multiple of 16
+        nRet = MV_CC_SetIntValue(handle, "Height", 16*20);    
+        if (MV_OK != nRet)
+        {
+            printf("set height failed! nRet [%x]\n\n", nRet);
+        }
+        nRet = MV_CC_SetIntValue(handle, "Width", 16*20);    
+        if (MV_OK != nRet)
+        {
+            printf("set width failed! nRet [%x]\n\n", nRet);
+        }
+        nRet = MV_CC_SetIntValue(handle, "OffsetX", 500);    
+        if (MV_OK != nRet)
+        {
+            printf("set OffsetX failed! nRet [%x]\n\n", nRet);
+        }
+        nRet = MV_CC_SetIntValue(handle, "OffsetY", 500);    
+        if (MV_OK != nRet)
+        {
+            printf("set OffsetY failed! nRet [%x]\n\n", nRet);
+        }
         // ch:开始取流 | en:Start grab image
         nRet = MV_CC_StartGrabbing(handle);
         if (MV_OK != nRet)

@@ -39,9 +39,11 @@
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/rebuild_cache.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/test.dir
+/home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/pubTipAngle.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/demo03_grabimage_callback.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/demo01_camera_connect.dir
+/home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/imageProcess.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 /home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir
