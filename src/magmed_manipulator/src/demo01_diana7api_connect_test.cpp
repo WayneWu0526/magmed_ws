@@ -53,70 +53,80 @@ int main(int argc, char *argv[])
     pinfo->LocHeartbeatPort = 0;
     pinfo->LocRobotStatePort = 0;
     pinfo->LocSrvPort = 0;
+    int nRet = 0;
 
-    int ret = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
-    if (ret < 0)
-    {
-        printf("192.168.10.75 initSrv failed! Return value = %d\n", ret);
-    }
-    if (pinfo)
-    {
-        delete pinfo;
-        pinfo = nullptr;
-    }
+    do{
+        nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
+        if (nRet < 0)
+        {
+            printf("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
+            break;
+        }
+        if (pinfo)
+        {
+            delete pinfo;
+            pinfo = nullptr;
+        }
+        // 打开指定 IP 地址机械臂的抱闸，启动机械臂。调用该接口后，需要调用者延时 2s后再做其他操作。
+        nRet = releaseBrake(strIpAddress);
+        if (nRet < 0)
+        {
+            printf("releaseBrake failed! nReturn value = %d\n", nRet);
+            break;
+        }
+        M_SLEEP(2000);
 
-    // 打开指定 IP 地址机械臂的抱闸，启动机械臂。调用该接口后，需要调用者延时 2s后再做其他操作。
-    ret = releaseBrake(strIpAddress);
-    if (ret < 0)
-    {
-        printf("releaseBrake failed! Return value = %d\n", ret);
-    }
-    M_SLEEP(2000);
+        // 初始化ros节点
+        ros::init(argc, argv, "diana7api_connect_test");
+        // 创建节点句柄
+        ros::NodeHandle nh;
+        // 创建发布对象
+        ros::Rate rate(1);
 
-    /*
-        codes
-    */
+        joint_direction_e dtype = T_MOVE_UP;
+        double vel = 0.5;
+        double acc = 0.5;
+        int index = 0;
 
-    // double joints[JOINT_NUM] = {0.0};
-    // ret = getJointPos(joints, strIpAddress);
-    // if (ret < 0)
-    // {
-    //     printf("getJointPos failed! Return value =%d\n", ret);
-    // }
-    // else
-    // {
-    //     printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0],
-    //            joints[1], joints[2], joints[3], joints[4], joints[5], joints[6]);
-    // }
+        while(ros::ok())
+        {
+            ros::Rate rate(1);
+        }
 
-    // 初始化ros节点
-    ros::init(argc, argv, "connect_test");
-    // 创建节点句柄
-    ros::NodeHandle nh;
-    // 创建发布对象
+        /*
+            codes
+        */
 
-    ros::Rate rate(1);
+        // double joints[JOINT_NUM] = {0.0};
+        // nRet = getJointPos(joints, strIpAddress);
+        // if (nRet < 0)
+        // {
+        //     printf("getJointPos failed! nReturn value =%d\n", nRet);
+        // }
+        // else
+        // {
+        //     printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0],
+        //            joints[1], joints[2], joints[3], joints[4], joints[5], joints[6]);
+        // }
 
-    joint_direction_e dtype = T_MOVE_UP;
-    double vel = 0.5;
-    double acc = 0.5;
-    int index = 0;
+        nRet = moveJoint(dtype, index, vel, acc, strIpAddress);
+        if (nRet < 0)
+        {
+            printf("moveJoint failed! nReturn value = %d\n", nRet);
+            break;
+        }
+        M_SLEEP(4000);
+        stop(strIpAddress);
 
-    ret = moveJoint(dtype, index, vel, acc, strIpAddress);
-    if (ret < 0)
-    {
-        printf("moveJoint failed! Return value = %d\n", ret);
-    }
-    M_SLEEP(4000);
-    stop(strIpAddress);
+        // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
+        nRet = holdBrake(strIpAddress);
+        if (nRet < 0)
+        {
+            printf("holdBrake failed! nReturn value = %d\n", nRet);
+            break;
+        }
 
-    // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
-    ret = holdBrake(strIpAddress);
-    if (ret < 0)
-    {
-        printf("holdBrake failed! Return value = %d\n", ret);
-    }
-
+    }while(0);
     // 结束调用 API，用于结束时释放指定 IP 地址机械臂的资源。
     // 如果该函数未被调用就退出系统（例如客户端程序在运行期间崩溃），服务端将因为检测不到心跳而认为客户端异常掉线，直至客户端再次运行，重新连接。除此之外不会引起严重后果。
     destroySrv(strIpAddress);

@@ -34,3 +34,7 @@ test log: 2023/5/12
 
     不建议在demo03_grabimage_callback的callback函数中添加额外的耗时图像处理
 
+test log: 2023/5/15
+
+    新增 pubTipAngle 和 imageProcess 
+

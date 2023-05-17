@@ -81,7 +81,7 @@ static  void* WorkThread(void* pUser)
                 printf("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
                 break;
             }
-            double tipAngle = 0.0;
+            float tipAngle = 0.0;
             magmed_camera::imageProcess imageProcess;
             tipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB);      
         }
@@ -144,7 +144,7 @@ int main(int argc, char **argv)
             break;
         }
         unsigned int nIndex = 0;
-        printf("Default camera index: %d", nIndex);
+        printf("Default camera index: %d\n", nIndex);
         nRet = MV_CC_CreateHandle(&handle, stDeviceList.pDeviceInfo[nIndex]);
         if (MV_OK != nRet)
         {
@@ -177,28 +177,32 @@ int main(int argc, char **argv)
         g_nPayloadSize = stParam.nCurValue;
         // ch:设置ROI大小
          // 设置int型变量
-        // set IInteger variable
+        // set IInteger variablet
         // 宽高设置时需考虑步进(16)，即设置宽高需16的倍数
         // Step (16) should be considered when setting width and height, that is the width and height should be a multiple of 16
-        nRet = MV_CC_SetIntValue(handle, "Height", 16*20);    
-        if (MV_OK != nRet)
-        {
-            printf("set height failed! nRet [%x]\n\n", nRet);
-        }
-        nRet = MV_CC_SetIntValue(handle, "Width", 16*20);    
+        nRet = MV_CC_SetIntValue(handle, "Width", 16*30);    
         if (MV_OK != nRet)
         {
             printf("set width failed! nRet [%x]\n\n", nRet);
+            break;
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetX", 500);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetX", 16*40);    
         if (MV_OK != nRet)
         {
             printf("set OffsetX failed! nRet [%x]\n\n", nRet);
+            break;
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetY", 500);    
+        nRet = MV_CC_SetIntValue(handle, "Height", 16*30);    
+        if (MV_OK != nRet)
+        {
+            printf("set height failed! nRet [%x]\n\n", nRet);
+            break;
+        }
+        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*45);    
         if (MV_OK != nRet)
         {
             printf("set OffsetY failed! nRet [%x]\n\n", nRet);
+            break;
         }
         // ch:开始取流 | en:Start grab image
         nRet = MV_CC_StartGrabbing(handle);
