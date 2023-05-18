@@ -38,3 +38,7 @@ test log: 2023/5/15
 
     新增 pubTipAngle 和 imageProcess 
 
+test log: 2023/5/17
+
+    完成了tipAngle的计算，使用二阶函数拟合，可能在90度附近出现问题
+
