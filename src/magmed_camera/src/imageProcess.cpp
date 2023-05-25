@@ -56,8 +56,8 @@ namespace magmed_camera
         Eigen::Vector2f distalEnd = {0.0, 0.0};
         Eigen::Vector2f proximalEnd = {0.0, 0.0};
 
-        // if r2 < 120, use quadratic function to fit the curve
-        if (r2 < 120.0)
+        // if r2 < 130, use quadratic function to fit the curve
+        if (r2 < 130.0)
         {
             // 采用二次函数拟合
             // 创建扩展矩阵，添加 x^2 和常数项 1
@@ -75,13 +75,15 @@ namespace magmed_camera
             do
             {
                 sum = 0;
-                for (int i = -1; i <= 1; i++)
-                {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        sum += img.at<uchar>(round(proximalEnd(1)) + i, round(proximalEnd(0)) + j);
-                    }
-                }
+                sum += img.at<uchar>(round(proximalEnd(1)), round(proximalEnd(0)));
+                // for more robustness, calculate the sum of the pixels in a 3x3 neighborhood of the tip position in img
+                // for (int i = -1; i <= 1; i++)
+                // {
+                //     for (int j = -1; j <= 1; j++)
+                //     {
+                //         sum += img.at<uchar>(round(proximalEnd(1)) + i, round(proximalEnd(0)) + j);
+                //     }
+                // }
                 // iterate the proximalEnd
                 proximalEnd(1) += -curve(0) * 2.0 * proximalEnd(0) + curve(0) - curve(1);
                 proximalEnd(0) -= 1.0;
@@ -92,26 +94,28 @@ namespace magmed_camera
             do
             {
                 sum = 0;
-                for (int i = -1; i <= 1; i++)
-                {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        sum += img.at<uchar>(round(distalEnd(1)) + i, round(distalEnd(0)) + j);
-                    }
-                }
+                sum += img.at<uchar>(round(distalEnd(1)), round(distalEnd(0)));
+                // for more robustness, calculate the sum of the pixels in a 3x3 neighborhood of the tip position in img
+                // for (int i = -1; i <= 1; i++)
+                // {
+                //     for (int j = -1; j <= 1; j++)
+                //     {
+                //         sum += img.at<uchar>(round(distalEnd(1)) + i, round(distalEnd(0)) + j);
+                //     }
+                // }
                 // iterate the distalEnd
                 distalEnd(1) += curve(0) * 2.0 * distalEnd(0) + curve(1) + curve(0);
                 distalEnd(0) += 1.0;
             } while (sum);
             // calculate the derivative of two tipPoints
-            float derivariveOfProximalEnd = 2 * curve(0) * (proximalEnd(0) - 1.0) + curve(1);
-            float derivativeOfDistalEnd = 2 * curve(0) * (distalEnd(0) - 1.0) + curve(1);
+            float derivariveOfProximalEnd = 2 * curve(0) * (proximalEnd(0)) + curve(1); // proximalEnd(0) + 1.0
+            float derivativeOfDistalEnd = 2 * curve(0) * (distalEnd(0) + 1.0) + curve(1); // distalEnd(0) + 1.0
             // print the derivative
             // std::cout << "derivariveOfProximalEnd = " << derivariveOfProximalEnd << "derivativeOfDistalEnd = " << derivativeOfDistalEnd <<  std::endl;
             // calculate the angle in radians
             float tipAngle = -atan(derivativeOfDistalEnd); // because the y axis is downward
             // print the angle in degrees
-            std::cout << "tipAngle = " << tipAngle * 180 / PI << std::endl;
+            std::cout << "tipAngleParabola = " << tipAngle << std::endl;
 
             // print the curve
             // std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl;
@@ -173,65 +177,107 @@ namespace magmed_camera
             {
                 baryCenterAngle0 += 2 * PI;
             }
-            Eigen::Vector2f crossPoint0 = {ellipseCoeff(1) * cos(baryCenterAngle0), ellipseCoeff(0) * sin(baryCenterAngle0)};
 
             int sum = 0;
             Eigen::Vector2f originalCrossPoint = {0.0, 0.0};
-            Eigen::Vector2f crossPoint = crossPoint0;
+            Eigen::Vector2f crossPoint;
             float baryCenterAngle = baryCenterAngle0;
             do
             {
                 sum = 0;
+                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
                 originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
                 // transform the crossPoint back to the original coordinate system
-                for (int i = -1; i <= 1; i++)
-                {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
-                    }
-                }
+                sum += img.at<uchar>(round(originalCrossPoint(1)), round(originalCrossPoint(0)));
+                // for more accuracy, we can also add the 3x3 neighborhood of the crossPoint
+                // for (int i = -1; i <= 1; i++)
+                // {
+                //     for (int j = -1; j <= 1; j++)
+                //     {
+                //         sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
+                //     }
+                // }
                 // iterate the baryCenterAngle
                 baryCenterAngle -= 0.01;
-                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
             } while (sum);
 
+            baryCenterAngle += 0.03;
+            crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
+            originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
+            Eigen::Vector2f originalCrossPoint1 = originalCrossPoint;
+            
             double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
                 (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
             double B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
                 (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
             float tipAngle1 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
-            std::cout << tipAngle1 << std::endl;
             
-            crossPoint = crossPoint0;
             baryCenterAngle = baryCenterAngle0;
             do
             {
                 sum = 0;
+                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
                 originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
                 // transform the crossPoint back to the original coordinate system
-                for (int i = -1; i <= 1; i++)
-                {
-                    for (int j = -1; j <= 1; j++)
-                    {
-                        sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
-                    }
-                }
+                sum += img.at<uchar>(round(originalCrossPoint(1)), round(originalCrossPoint(0)));
+                // for more accuracy, we can also add the 3x3 neighborhood of the crossPoint
+                // for (int i = -1; i <= 1; i++)
+                // {
+                //     for (int j = -1; j <= 1; j++)
+                //     {
+                //         sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
+                //     }
+                // }
                 // iterate the baryCenterAngle
                 baryCenterAngle += 0.01;
-                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
             } while (sum);
-            double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
+
+            baryCenterAngle -= 0.03;
+            crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
+            originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
+            Eigen::Vector2f originalCrossPoint2 = originalCrossPoint;
+
+            A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
                 (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
-            double B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
+            B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
                 (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
             float tipAngle2 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
 
-            // choose the larger to be tipAngle
-            float tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
+            // when abs(tipAngle1) >= abs(tipAngle2), distalEnd = originalCrossPoint1, else proximalEnd = originalCrossPoint2, and vice versa
+            Eigen::Vector2f proximalEnd = abs(tipAngle1) >= abs(tipAngle2) ? originalCrossPoint2 : originalCrossPoint1;
+            Eigen::Vector2f distalEnd = abs(tipAngle1) >= abs(tipAngle2) ? originalCrossPoint1 : originalCrossPoint2;
+            float tipAngle = 0.0;
+            if (distalEnd.norm() < proximalEnd.norm()) // the rod is upward deflected
+            {
+                // choose the larger to be tipAngle
+                tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
+                if (tipAngle < 0)
+                {
+                    tipAngle = -tipAngle;
+                }
+                else
+                {
+                    tipAngle = PI - tipAngle;
+                }                
+            }
+            else // the rod is downward deflected
+            {
+               // choose the larger to be tipAngle
+                tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
+                if (tipAngle > 0)
+                {
+                    tipAngle = -tipAngle;
+                }
+                else
+                {
+                    tipAngle = -PI - tipAngle;
+                } 
+            }
 
-            // print the ellipse
-            std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
+            std::cout << "tipAngleEllipse = " << tipAngle << std::endl;
+
+            // // print the ellipse
+            // std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
 
             // 在图像上绘制拟合椭圆
             // create a new image
@@ -242,34 +288,23 @@ namespace magmed_camera
                 img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
             }
             // draw a cross at crossPoint
-            // for (int i = 0; i < Width; i++)
-            // {
-            //     img1.at<cv::Vec3b>(originalCrossPoint(1), i) = cv::Vec3b(0, 0, 255);
-            // }
-            // for (int i = 0; i < Height; i++)
-            // {
-            //     img1.at<cv::Vec3b>(i, originalCrossPoint(0)) = cv::Vec3b(0, 0, 255);
-            // }
-            // draw a cross at crossPoint
-            // for (int i = 0; i < Width; i++)
-            // {
-            //     img1.at<cv::Vec3b>(baryCenter(1), i) = cv::Vec3b(0, 0, 255);
-            // }
-            // for (int i = 0; i < Height; i++)
-            // {
-            //     img1.at<cv::Vec3b>(i, baryCenter(0)) = cv::Vec3b(0, 0, 255);
-            // }
-
-
+            for (int i = 0; i < Width; i++)
+            {
+                img1.at<cv::Vec3b>(originalCrossPoint(1), i) = cv::Vec3b(0, 0, 255);
+            }
+            for (int i = 0; i < Height; i++)
+            {
+                img1.at<cv::Vec3b>(i, originalCrossPoint(0)) = cv::Vec3b(0, 0, 255);
+            }
 
             // draw the ellipse
             cv::ellipse(img1, ellipse, cv::Scalar(0, 0, 255), 1);
             // show the image
             cv::imshow("img1", img1);
             cv::waitKey(1);
-        }
 
-        return 0.0;
+            return tipAngle;
+        }
     }
 
 }
