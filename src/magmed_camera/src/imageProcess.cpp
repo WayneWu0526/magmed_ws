@@ -121,38 +121,32 @@ namespace magmed_camera
             // std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl;
             // 在图像上绘制拟合曲线
             // create a new image
-            cv::Mat img2 = cv::Mat::zeros(Height, Width, CV_8UC3);
+            cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
             // draw the nonzero coordinates
             for (int i = 0; i < nonzeroCoordinates.rows; i++)
             {
-                img2.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
+                img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
             }
-            // // draw the distal point and its 3x3 neighborhood
-            // for (int i = -1; i <= 1; i++)
-            // {
-            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0)) - 1) = cv::Vec3b(0, 255, 0);
-            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0))) = cv::Vec3b(0, 255, 0);
-            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0)) + 1) = cv::Vec3b(0, 255, 0);
-            // }
-
-            // // draw the baryCenter and its 3x3 neighborhood
-            // for (int i = -1; i <= 1; i++)
-            // {
-            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0)) - 1) = cv::Vec3b(0, 255, 0);
-            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0))) = cv::Vec3b(0, 255, 0);
-            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0)) + 1) = cv::Vec3b(0, 255, 0);
-            // }
+            // draw a cross at crossPoint
+            for (int i = 0; i < Width; i++)
+            {
+                img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
+            }
+            for (int i = 0; i < Height; i++)
+            {
+                img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
+            }
             // draw the curve
             for (int i = 0; i < Width; i++)
             {
                 int y = curve(0) * i * i + curve(1) * i + curve(2);
                 if (y >= 0 && y < Height)
                 {
-                    img2.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
+                    img1.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
                 }
             }
             // show the image
-            cv::imshow("img2", img2);
+            cv::imshow("img1", img1);
             cv::waitKey(1);
 
             return tipAngle;
@@ -290,11 +284,11 @@ namespace magmed_camera
             // draw a cross at crossPoint
             for (int i = 0; i < Width; i++)
             {
-                img1.at<cv::Vec3b>(originalCrossPoint(1), i) = cv::Vec3b(0, 0, 255);
+                img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
             }
             for (int i = 0; i < Height; i++)
             {
-                img1.at<cv::Vec3b>(i, originalCrossPoint(0)) = cv::Vec3b(0, 0, 255);
+                img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
             }
 
             // draw the ellipse
