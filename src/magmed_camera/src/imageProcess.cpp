@@ -6,123 +6,270 @@
 #include <cmath>
 #define PI 3.1415926
 
-namespace magmed_camera{
+namespace magmed_camera
+{
 
-float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char * pData){
+    float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData)
+    {
 
-    // load image
-    cv::Mat img = cv::Mat(Height, Width, CV_8UC3, pData);
-    // turn BGR to gray
-    cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
-    // threshold the image
-    cv::threshold(img, img, 170, 255, cv::THRESH_BINARY_INV);
-    // show the image
-    // cv::imshow("img", img);
-    // cv::waitKey(1);
+        // load image
+        cv::Mat img = cv::Mat(Height, Width, CV_8UC3, pData);
+        // turn BGR to gray
+        cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
+        // threshold the image
+        cv::threshold(img, img, 170, 255, cv::THRESH_BINARY_INV);
+        // 快速滤波
+        // cv::fastNlMeansDenoising(img, img, 3, 7, 21);
+        // show the image
+        // cv::imshow("img", img);
+        // cv::waitKey(1);
 
-    // extract the nonzero coordinates
-    cv::Mat nonzeroCoordinates;
-    cv::findNonZero(img, nonzeroCoordinates);
-    // if there is no nonzero coordinates, print error
-    if (nonzeroCoordinates.empty()){
-        std::cout << "No nonzero coordinates!" << std::endl;
-        return 0.0;
-    }
-    // fit a line to the nonzeroCoordinates and calculate the coefficient of determination
-    cv::Vec4f line;
-    cv::fitLine(nonzeroCoordinates, line, cv::DIST_L2, 0, 0.01, 0.01);
-    // calculate the coefficient of determination
-    float r2 = 0.0;
-    for (int i = 0; i < nonzeroCoordinates.rows; i++){
-        float y = line(1) / line(0) * (nonzeroCoordinates.at<cv::Point>(i).x - line(2)) + line(3);
-        r2 += pow(y - nonzeroCoordinates.at<cv::Point>(i).y, 2);
-    }
-    r2 /= nonzeroCoordinates.rows;
-    // if r2 < 120, use quadratic function to fit the curve
-    if(r2 < 120.0){
+        // extract the nonzero coordinates
+        cv::Mat nonzeroCoordinates;
+        cv::findNonZero(img, nonzeroCoordinates);
+        // if there is no nonzero coordinates, print error
+        if (nonzeroCoordinates.empty())
+        {
+            std::cout << "No nonzero coordinates!" << std::endl;
+            return 0.0;
+        }
+
         // create an Eigen matrix to store the coordinates
         Eigen::MatrixXf coordinates(nonzeroCoordinates.rows, 2);
         // copy every point in nonzeroCoordinates to coordinates
-        for (int i = 0; i < nonzeroCoordinates.rows; i++){
+        for (int i = 0; i < nonzeroCoordinates.rows; i++)
+        {
             coordinates(i, 0) = nonzeroCoordinates.at<cv::Point>(i).x;
             coordinates(i, 1) = nonzeroCoordinates.at<cv::Point>(i).y;
         }
+        // calculate the baryCenter of the rod in the image using Eigen
+        Eigen::Vector2f baryCenter = {coordinates.col(0).sum() / coordinates.rows(), coordinates.col(1).sum() / coordinates.rows()};
 
-        // 采用二次函数拟合    
-        // 创建扩展矩阵，添加 x^2 和常数项 1
-        Eigen::MatrixXf extendedCoordinates(coordinates.rows(), 3);
-        extendedCoordinates.col(0) = coordinates.col(0).array().square();
-        extendedCoordinates.col(1) = coordinates.col(0);
-        extendedCoordinates.col(2) = Eigen::VectorXf::Ones(coordinates.rows());
-        // 使用 QR 分解求解拟合系数
-        Eigen::Vector3f curve = extendedCoordinates.colPivHouseholderQr().solve(coordinates.col(1));
-        // find the point with maximum x coordinate use Eigen
-        float maxX = coordinates.col(0).maxCoeff();
-        // calculate the derivative of the curve at the point with maximum x coordinate
-        float derivative = 2 * curve(0) * maxX + curve(1);
-        // print the derivative
-        std::cout << "derivative = " << derivative << std::endl;
-        // calculate the angle in radians
-        float tipAngle = -atan(derivative); // because the y axis is downward
-        // print the angle in degrees
-        std::cout << "tipAngle = " << tipAngle * 180 / PI << std::endl;
+        // fit a line to the nonzeroCoordinates and calculate the coefficient of determination
+        cv::Vec4f line;
+        cv::fitLine(nonzeroCoordinates, line, cv::DIST_L2, 0, 0.01, 0.01);
+        // calculate the coefficient of determination using Eigen
+        Eigen::MatrixXf y = line(1) / line(0) * (coordinates.col(0).array() - line(2)) + line(3);
+        float r2 = (y - coordinates.col(1)).array().square().sum() / coordinates.rows();
+        // std::cout << "r2 = " << r2 << std::endl;
 
-        // print the curve
-        std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl; 
-        // 在图像上绘制拟合曲线
-        // create a new image
-        cv::Mat img2 = cv::Mat::zeros(Height, Width, CV_8UC3);
-        // draw the nonzero coordinates
-        for (int i = 0; i < nonzeroCoordinates.rows; i++){
-            img2.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
-        }
-        // draw the curve
-        for (int i = 0; i < Width; i++){
-            int y = curve(0) * i * i + curve(1) * i + curve(2);
-            if (y >= 0 && y < Height){
-                img2.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
+        Eigen::Vector2f distalEnd = {0.0, 0.0};
+        Eigen::Vector2f proximalEnd = {0.0, 0.0};
+
+        // if r2 < 120, use quadratic function to fit the curve
+        if (r2 < 120.0)
+        {
+            // 采用二次函数拟合
+            // 创建扩展矩阵，添加 x^2 和常数项 1
+            Eigen::MatrixXf extendedCoordinates(coordinates.rows(), 3);
+            extendedCoordinates.col(0) = coordinates.col(0).array().square();
+            extendedCoordinates.col(1) = coordinates.col(0);
+            extendedCoordinates.col(2) = Eigen::VectorXf::Ones(coordinates.rows());
+            // 使用 QR 分解求解拟合系数
+            Eigen::Vector3f curve = extendedCoordinates.colPivHouseholderQr().solve(coordinates.col(1));
+
+            // find the proximal and distal end of the rod in the image
+            proximalEnd = {baryCenter(0), curve(0) * baryCenter(0) * baryCenter(0) + curve(1) * baryCenter(0) + curve(2)};
+            // calculate the sum of the pixels in a 3x3 neighborhood of the tip position in img
+            int sum = 0;
+            do
+            {
+                sum = 0;
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        sum += img.at<uchar>(round(proximalEnd(1)) + i, round(proximalEnd(0)) + j);
+                    }
+                }
+                // iterate the proximalEnd
+                proximalEnd(1) += -curve(0) * 2.0 * proximalEnd(0) + curve(0) - curve(1);
+                proximalEnd(0) -= 1.0;
+            } while (sum);
+
+            distalEnd = {baryCenter(0), curve(0) * baryCenter(0) * baryCenter(0) + curve(1) * baryCenter(0) + curve(2)};
+            // calculate the sum of the pixels in a 3x3 neighborhood of the distal position in img
+            do
+            {
+                sum = 0;
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        sum += img.at<uchar>(round(distalEnd(1)) + i, round(distalEnd(0)) + j);
+                    }
+                }
+                // iterate the distalEnd
+                distalEnd(1) += curve(0) * 2.0 * distalEnd(0) + curve(1) + curve(0);
+                distalEnd(0) += 1.0;
+            } while (sum);
+            // calculate the derivative of two tipPoints
+            float derivariveOfProximalEnd = 2 * curve(0) * (proximalEnd(0) - 1.0) + curve(1);
+            float derivativeOfDistalEnd = 2 * curve(0) * (distalEnd(0) - 1.0) + curve(1);
+            // print the derivative
+            // std::cout << "derivariveOfProximalEnd = " << derivariveOfProximalEnd << "derivativeOfDistalEnd = " << derivativeOfDistalEnd <<  std::endl;
+            // calculate the angle in radians
+            float tipAngle = -atan(derivativeOfDistalEnd); // because the y axis is downward
+            // print the angle in degrees
+            std::cout << "tipAngle = " << tipAngle * 180 / PI << std::endl;
+
+            // print the curve
+            // std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl;
+            // 在图像上绘制拟合曲线
+            // create a new image
+            cv::Mat img2 = cv::Mat::zeros(Height, Width, CV_8UC3);
+            // draw the nonzero coordinates
+            for (int i = 0; i < nonzeroCoordinates.rows; i++)
+            {
+                img2.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
             }
-        } 
-        // show the image
-        cv::imshow("img2", img2);
-        cv::waitKey(1);
-    }
-    else{
-        // fit an ellipse to the nonzeroCoordinates
-        cv::RotatedRect ellipse = cv::fitEllipse(nonzeroCoordinates);
-        // print the ellipse
-        // std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
-        // calculate the coefficients of the ellipse in the form of ax^2 + bxy + cy^2 + dx + ey + f = 0
-        float a = pow(ellipse.size.width / 2, 2) * pow(sin(ellipse.angle / 180 * PI), 2) + pow(ellipse.size.height / 2, 2) * pow(cos(ellipse.angle / 180 * PI), 2);
-        float b = 2 * (pow(ellipse.size.height / 2, 2) - pow(ellipse.size.width / 2, 2)) * sin(ellipse.angle / 180 * PI) * cos(ellipse.angle / 180 * PI);
-        float c = pow(ellipse.size.width / 2, 2) * pow(cos(ellipse.angle / 180 * PI), 2) + pow(ellipse.size.height / 2, 2) * pow(sin(ellipse.angle / 180 * PI), 2);
-        float d = -2 * a * ellipse.center.x - b * ellipse.center.y;
-        float e = -b * ellipse.center.x - 2 * c * ellipse.center.y;
-        float f = a * pow(ellipse.center.x, 2) + b * ellipse.center.x * ellipse.center.y + c * pow(ellipse.center.y, 2) - pow(ellipse.size.width / 2, 2) * pow(ellipse.size.height / 2, 2);
-        // calculate the scope of the ellipse at the point with maximum x in nonzeroCoordinates
-        float maxX = nonzeroCoordinates.at<cv::Point>(0).x;
-        for (int i = 1; i < nonzeroCoordinates.rows; i++){
-            if (nonzeroCoordinates.at<cv::Point>(i).x > maxX){
-                maxX = nonzeroCoordinates.at<cv::Point>(i).x;
+            // // draw the distal point and its 3x3 neighborhood
+            // for (int i = -1; i <= 1; i++)
+            // {
+            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0)) - 1) = cv::Vec3b(0, 255, 0);
+            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0))) = cv::Vec3b(0, 255, 0);
+            //     img2.at<cv::Vec3b>(round(distalEnd(1)) + i, round(distalEnd(0)) + 1) = cv::Vec3b(0, 255, 0);
+            // }
+
+            // // draw the baryCenter and its 3x3 neighborhood
+            // for (int i = -1; i <= 1; i++)
+            // {
+            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0)) - 1) = cv::Vec3b(0, 255, 0);
+            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0))) = cv::Vec3b(0, 255, 0);
+            //     img2.at<cv::Vec3b>(round(baryCenter(1)) + i, round(baryCenter(0)) + 1) = cv::Vec3b(0, 255, 0);
+            // }
+            // draw the curve
+            for (int i = 0; i < Width; i++)
+            {
+                int y = curve(0) * i * i + curve(1) * i + curve(2);
+                if (y >= 0 && y < Height)
+                {
+                    img2.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
+                }
             }
-        }
-        
+            // show the image
+            cv::imshow("img2", img2);
+            cv::waitKey(1);
 
-        // 在图像上绘制拟合椭圆
-        // create a new image
-        cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
-        // draw the nonzero coordinates
-        for (int i = 0; i < nonzeroCoordinates.rows; i++){
-            img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
+            return tipAngle;
         }
-        // draw the ellipse
-        cv::ellipse(img1, ellipse, cv::Scalar(0, 0, 255), 1);
-        // show the image
-        cv::imshow("img1", img1);
-        cv::waitKey(1);
+        else
+        {
+            // fit an ellipse to the nonzeroCoordinates
+            cv::RotatedRect ellipse = cv::fitEllipse(nonzeroCoordinates);
+            Eigen::Vector2f ellipseCenter = {ellipse.center.x, ellipse.center.y};
+            Eigen::Vector2f ellipseCoeff = {ellipse.size.height / 2.0, ellipse.size.width / 2.0};
+            float ellipseAngle = ellipse.angle * PI / 180.0;
+
+            // create a 2x2 Eigen rotation matrix
+            Eigen::Matrix2f Rot;
+            Rot << cos(ellipseAngle), sin(ellipseAngle), 
+                -sin(ellipseAngle), cos(ellipseAngle);
+            Eigen::Vector2f transformedbaryCenter = Rot * (baryCenter - ellipseCenter);
+ 
+            // calculate the angle of the baryCenter
+            float baryCenterAngle0 = atan2(ellipseCoeff(1) * transformedbaryCenter(1), ellipseCoeff(0) * transformedbaryCenter(0));
+            if (baryCenterAngle0 < 0)
+            {
+                baryCenterAngle0 += 2 * PI;
+            }
+            Eigen::Vector2f crossPoint0 = {ellipseCoeff(1) * cos(baryCenterAngle0), ellipseCoeff(0) * sin(baryCenterAngle0)};
+
+            int sum = 0;
+            Eigen::Vector2f originalCrossPoint = {0.0, 0.0};
+            Eigen::Vector2f crossPoint = crossPoint0;
+            float baryCenterAngle = baryCenterAngle0;
+            do
+            {
+                sum = 0;
+                originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
+                // transform the crossPoint back to the original coordinate system
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
+                    }
+                }
+                // iterate the baryCenterAngle
+                baryCenterAngle -= 0.01;
+                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
+            } while (sum);
+
+            double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
+                (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
+            double B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
+                (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
+            float tipAngle1 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
+            std::cout << tipAngle1 << std::endl;
+            
+            crossPoint = crossPoint0;
+            baryCenterAngle = baryCenterAngle0;
+            do
+            {
+                sum = 0;
+                originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
+                // transform the crossPoint back to the original coordinate system
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        sum += img.at<uchar>(round(originalCrossPoint(1)) + i, round(originalCrossPoint(0)) + j);
+                    }
+                }
+                // iterate the baryCenterAngle
+                baryCenterAngle += 0.01;
+                crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
+            } while (sum);
+            double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
+                (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
+            double B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
+                (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
+            float tipAngle2 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
+
+            // choose the larger to be tipAngle
+            float tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
+
+            // print the ellipse
+            std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
+
+            // 在图像上绘制拟合椭圆
+            // create a new image
+            cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
+            // draw the nonzero coordinates
+            for (int i = 0; i < nonzeroCoordinates.rows; i++)
+            {
+                img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
+            }
+            // draw a cross at crossPoint
+            // for (int i = 0; i < Width; i++)
+            // {
+            //     img1.at<cv::Vec3b>(originalCrossPoint(1), i) = cv::Vec3b(0, 0, 255);
+            // }
+            // for (int i = 0; i < Height; i++)
+            // {
+            //     img1.at<cv::Vec3b>(i, originalCrossPoint(0)) = cv::Vec3b(0, 0, 255);
+            // }
+            // draw a cross at crossPoint
+            // for (int i = 0; i < Width; i++)
+            // {
+            //     img1.at<cv::Vec3b>(baryCenter(1), i) = cv::Vec3b(0, 0, 255);
+            // }
+            // for (int i = 0; i < Height; i++)
+            // {
+            //     img1.at<cv::Vec3b>(i, baryCenter(0)) = cv::Vec3b(0, 0, 255);
+            // }
+
+
+
+            // draw the ellipse
+            cv::ellipse(img1, ellipse, cv::Scalar(0, 0, 255), 1);
+            // show the image
+            cv::imshow("img1", img1);
+            cv::waitKey(1);
+        }
+
+        return 0.0;
     }
-
-    return 0.0;
-}
 
 }

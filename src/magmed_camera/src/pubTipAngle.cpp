@@ -8,6 +8,8 @@
 #include <opencv2/opencv.hpp>
 #include "magmed_camera/imageProcess.h"
 
+// #include <time.h>
+
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 
@@ -47,6 +49,9 @@ static  void* WorkThread(void* pUser)
     unsigned char *pDataForRGB = NULL;
     MV_FRAME_OUT stOutFrame = {0};
     memset(&stOutFrame, 0, sizeof(MV_FRAME_OUT));
+
+    // clock_t start, finish;
+    // start = clock();
     while(1)
     {
         nRet = MV_CC_GetImageBuffer(pUser, &stOutFrame, 1000);
@@ -106,6 +111,12 @@ static  void* WorkThread(void* pUser)
         {
             break;
         }
+        // if(stOutFrame.stFrameInfo.nFrameNum > 1000)
+        // {
+        //     finish = clock();
+        //     std::cout << "time: " << (finish - start) / CLOCKS_PER_SEC << std::endl;
+        //     break;
+        // }
     }
     return 0;
 }
@@ -198,7 +209,7 @@ int main(int argc, char **argv)
             printf("set height failed! nRet [%x]\n\n", nRet);
             break;
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*45);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*50);    
         if (MV_OK != nRet)
         {
             printf("set OffsetY failed! nRet [%x]\n\n", nRet);
