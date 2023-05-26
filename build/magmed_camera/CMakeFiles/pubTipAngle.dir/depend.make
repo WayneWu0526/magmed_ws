@@ -25,6 +25,7 @@ magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/message.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/message_event.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/message_forward.h
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/message_operations.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/message_traits.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/names.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/node_handle.h
@@ -62,6 +63,7 @@ magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/wall_timer.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/ros/wall_timer_options.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/rosconsole/macros_generated.h
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/std_msgs/Float64.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
 magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o: /usr/include/opencv4/opencv2/calib3d.hpp

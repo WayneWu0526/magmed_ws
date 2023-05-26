@@ -6,12 +6,14 @@
 #include "/opt/MVS/include/MvCameraControl.h"
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
+#include <std_msgs/Float64.h>
 #include "magmed_camera/imageProcess.h"
 
 // #include <time.h>
 
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
+float g_fTipAngle = 0.0;
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -43,7 +45,7 @@ bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
     return true;
 }
 
-static  void* WorkThread(void* pUser)
+static  void* WorkThread(void* pUser) // 工作线程 | work thread
 {
     int nRet = MV_OK;
     unsigned char *pDataForRGB = NULL;
@@ -86,9 +88,8 @@ static  void* WorkThread(void* pUser)
                 printf("MV_CC_ConvertPixelType fail! nRet [%x]\n", nRet);
                 break;
             }
-            float tipAngle = 0.0;
             magmed_camera::imageProcess imageProcess;
-            tipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB);      
+            g_fTipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB);      
         }
         else
         {
@@ -230,13 +231,23 @@ int main(int argc, char **argv)
             break;
         }
         
-        ros::init(argc, argv, "image_publisher");
+        ros::init(argc, argv, "pubTipAngle");
 
         ros::NodeHandle nh;
 
+        ros::Publisher pub = nh.advertise<std_msgs::Float64>("tipAngle", 1000);
+
+        ros::Rate r(1);
+
+        ros::Duration(3.0).sleep();
+
         while(ros::ok())
         {
-
+            std_msgs::Float64 msg;
+            msg.data = g_fTipAngle;
+            pub.publish(msg);
+            ros::spinOnce();
+            r.sleep();
         }
         g_bExit = true;
 

@@ -4,14 +4,21 @@
 #include <eigen3/Eigen/Dense>
 #include <opencv2/core/eigen.hpp>
 #include <cmath>
+#include <csignal>
 #define PI 3.1415926
+
+void signalHandler(int signal) {
+    std::cout << "Segmentation fault occurred." << std::endl;
+    // 可以添加适当的处理代码，或者什么都不做
+}
 
 namespace magmed_camera
 {
 
     float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData)
     {
-
+        // 注册信号处理函数
+        std::signal(SIGSEGV, signalHandler);
         // load image
         cv::Mat img = cv::Mat(Height, Width, CV_8UC3, pData);
         // turn BGR to gray
@@ -115,7 +122,7 @@ namespace magmed_camera
             // calculate the angle in radians
             float tipAngle = -atan(derivativeOfDistalEnd); // because the y axis is downward
             // print the angle in degrees
-            std::cout << "tipAngleParabola = " << tipAngle << std::endl;
+            // std::cout << "tipAngleParabola = " << tipAngle << std::endl;
 
             // print the curve
             // std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl;
@@ -241,7 +248,7 @@ namespace magmed_camera
             Eigen::Vector2f proximalEnd = abs(tipAngle1) >= abs(tipAngle2) ? originalCrossPoint2 : originalCrossPoint1;
             Eigen::Vector2f distalEnd = abs(tipAngle1) >= abs(tipAngle2) ? originalCrossPoint1 : originalCrossPoint2;
             float tipAngle = 0.0;
-            if (distalEnd.norm() < proximalEnd.norm()) // the rod is upward deflected
+            if (distalEnd(1) < proximalEnd(1)) // the rod is upward deflected
             {
                 // choose the larger to be tipAngle
                 tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
@@ -268,7 +275,7 @@ namespace magmed_camera
                 } 
             }
 
-            std::cout << "tipAngleEllipse = " << tipAngle << std::endl;
+            // std::cout << "tipAngleEllipse = " << tipAngle << std::endl;
 
             // // print the ellipse
             // std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
