@@ -23,6 +23,8 @@ unistd.h
 -
 time.h
 -
+std_msgs/Float64.h
+/home/zhang/magmed_ws/src/magmed_manipulator/src/std_msgs/Float64.h
 
 /opt/ros/noetic/include/ros/advertise_options.h
 ros/forwards.h
@@ -671,6 +673,22 @@ ros/forwards.h
 /opt/ros/noetic/include/ros/ros/forwards.h
 
 /opt/ros/noetic/include/rosconsole/macros_generated.h
+
+/opt/ros/noetic/include/std_msgs/Float64.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/noetic/include/std_msgs/String.h
 string

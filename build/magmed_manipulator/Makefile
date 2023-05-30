@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule
+.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule
+
+# Convenience name for target.
+dianaManipulator: magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule
+
+.PHONY : dianaManipulator
+
+# fast build rule for target.
+dianaManipulator/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
+.PHONY : dianaManipulator/fast
+
+# Convenience name for target.
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
 .PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
@@ -209,6 +224,33 @@ src/demo01_diana7api_connect_test.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.s
 .PHONY : src/demo01_diana7api_connect_test.cpp.s
 
+src/dianaManipulator.o: src/dianaManipulator.cpp.o
+
+.PHONY : src/dianaManipulator.o
+
+# target to build an object file
+src/dianaManipulator.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/src/dianaManipulator.cpp.o
+.PHONY : src/dianaManipulator.cpp.o
+
+src/dianaManipulator.i: src/dianaManipulator.cpp.i
+
+.PHONY : src/dianaManipulator.i
+
+# target to preprocess a source file
+src/dianaManipulator.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/src/dianaManipulator.cpp.i
+.PHONY : src/dianaManipulator.cpp.i
+
+src/dianaManipulator.s: src/dianaManipulator.cpp.s
+
+.PHONY : src/dianaManipulator.s
+
+# target to generate assembly for a file
+src/dianaManipulator.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/src/dianaManipulator.cpp.s
+.PHONY : src/dianaManipulator.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +261,7 @@ help:
 	@echo "... install/local"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... dianaManipulator"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -226,6 +269,9 @@ help:
 	@echo "... src/demo01_diana7api_connect_test.o"
 	@echo "... src/demo01_diana7api_connect_test.i"
 	@echo "... src/demo01_diana7api_connect_test.s"
+	@echo "... src/dianaManipulator.o"
+	@echo "... src/dianaManipulator.i"
+	@echo "... src/dianaManipulator.s"
 .PHONY : help
 
 

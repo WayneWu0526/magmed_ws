@@ -3,6 +3,7 @@ project(magmed_camera)
 
 set(OpenCV_DIR /usr/lib/x86_64-linux-gnu/cmake/opencv4/)
 set(Eigen3_DIR /usr/local/share/eigen3/cmake/)
+
 # SET(CMAKE_BUILD_TYPE "RelWithDebInfo")
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)

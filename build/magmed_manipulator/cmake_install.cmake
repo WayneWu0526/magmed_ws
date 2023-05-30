@@ -52,23 +52,3 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_manipulator" TYPE FILE FILES "/home/zhang/magmed_ws/src/magmed_manipulator/package.xml")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test")
-    file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test"
-         RPATH "")
-  endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator" TYPE EXECUTABLE FILES "/home/zhang/magmed_ws/devel/lib/magmed_manipulator/demo01_diana7api_connect_test")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test")
-    file(RPATH_CHANGE
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test"
-         OLD_RPATH "/usr/local/DianaApi/lib:/opt/ros/noetic/lib:"
-         NEW_RPATH "")
-    if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/magmed_manipulator/demo01_diana7api_connect_test")
-    endif()
-  endif()
-endif()
-

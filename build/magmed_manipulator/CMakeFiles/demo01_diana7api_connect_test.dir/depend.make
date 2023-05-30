@@ -58,6 +58,7 @@ magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/ros/wall_timer.h
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/ros/wall_timer_options.h
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/rosconsole/macros_generated.h
+magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/std_msgs/Float64.h
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/std_msgs/String.h
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h

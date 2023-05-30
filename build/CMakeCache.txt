@@ -306,9 +306,6 @@ EMPY_EXECUTABLE:FILEPATH=EMPY_EXECUTABLE-NOTFOUND
 //Empy script
 EMPY_SCRIPT:STRING=/usr/lib/python3/dist-packages/em.py
 
-//The directory containing a CMake configuration file for Eigen.
-Eigen_DIR:PATH=Eigen_DIR-NOTFOUND
-
 //Path to a library.
 GMOCK_LIBRARY:FILEPATH=GMOCK_LIBRARY-NOTFOUND
 
@@ -400,14 +397,11 @@ _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 
-//The directory containing a CMake configuration file for cmath.
-cmath_DIR:PATH=cmath_DIR-NOTFOUND
-
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
-//The directory containing a CMake configuration file for eigen3.
-eigen3_DIR:PATH=eigen3_DIR-NOTFOUND
+//Dependencies for the target
+getJacobianOfMCR_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/gtest/googlemock
@@ -474,10 +468,34 @@ magmed_controller_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_controlle
 magmed_controller_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_controller
 
 //Value Computed by CMake
+magmed_deeplearning_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_deeplearning
+
+//Value Computed by CMake
+magmed_deeplearning_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_deeplearning
+
+//Value Computed by CMake
+magmed_feeder_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_feeder
+
+//Value Computed by CMake
+magmed_feeder_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_feeder
+
+//Value Computed by CMake
+magmed_joystick_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_joystick
+
+//Value Computed by CMake
+magmed_joystick_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_joystick
+
+//Value Computed by CMake
 magmed_maglocater_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_maglocater
 
 //Value Computed by CMake
 magmed_maglocater_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_maglocater
+
+//Value Computed by CMake
+magmed_maglocator_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_maglocator
+
+//Value Computed by CMake
+magmed_maglocator_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_maglocator
 
 //Value Computed by CMake
 magmed_manipulator_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_manipulator
@@ -677,7 +695,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

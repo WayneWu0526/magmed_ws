@@ -167,6 +167,90 @@ depend:
 	cd /home/zhang/magmed_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+magmed_controller/CMakeFiles/velocityController.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velocityController.dir/rule
+.PHONY : magmed_controller/CMakeFiles/velocityController.dir/rule
+
+# Convenience name for target.
+velocityController: magmed_controller/CMakeFiles/velocityController.dir/rule
+
+.PHONY : velocityController
+
+# fast build rule for target.
+velocityController/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
+.PHONY : velocityController/fast
+
+# Convenience name for target.
+magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
+.PHONY : magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
+
+# Convenience name for target.
+getJacobianOfMCR: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
+
+.PHONY : getJacobianOfMCR
+
+# fast build rule for target.
+getJacobianOfMCR/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
+.PHONY : getJacobianOfMCR/fast
+
+src/getJacobianOfMCR.o: src/getJacobianOfMCR.cpp.o
+
+.PHONY : src/getJacobianOfMCR.o
+
+# target to build an object file
+src/getJacobianOfMCR.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.o
+.PHONY : src/getJacobianOfMCR.cpp.o
+
+src/getJacobianOfMCR.i: src/getJacobianOfMCR.cpp.i
+
+.PHONY : src/getJacobianOfMCR.i
+
+# target to preprocess a source file
+src/getJacobianOfMCR.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.i
+.PHONY : src/getJacobianOfMCR.cpp.i
+
+src/getJacobianOfMCR.s: src/getJacobianOfMCR.cpp.s
+
+.PHONY : src/getJacobianOfMCR.s
+
+# target to generate assembly for a file
+src/getJacobianOfMCR.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.s
+.PHONY : src/getJacobianOfMCR.cpp.s
+
+src/velocityController.o: src/velocityController.cpp.o
+
+.PHONY : src/velocityController.o
+
+# target to build an object file
+src/velocityController.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
+.PHONY : src/velocityController.cpp.o
+
+src/velocityController.i: src/velocityController.cpp.i
+
+.PHONY : src/velocityController.i
+
+# target to preprocess a source file
+src/velocityController.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.i
+.PHONY : src/velocityController.cpp.i
+
+src/velocityController.s: src/velocityController.cpp.s
+
+.PHONY : src/velocityController.s
+
+# target to generate assembly for a file
+src/velocityController.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.s
+.PHONY : src/velocityController.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -180,6 +264,14 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... velocityController"
+	@echo "... getJacobianOfMCR"
+	@echo "... src/getJacobianOfMCR.o"
+	@echo "... src/getJacobianOfMCR.i"
+	@echo "... src/getJacobianOfMCR.s"
+	@echo "... src/velocityController.o"
+	@echo "... src/velocityController.i"
+	@echo "... src/velocityController.s"
 .PHONY : help
 
 

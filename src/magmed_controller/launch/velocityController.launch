@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="magmed_camera" type="pubTipAngle" name="pubTipAngle" />
+    <node pkg="magmed_manipulator" type="dianaManipulator" name="dianaManipulator" />
+</launch>

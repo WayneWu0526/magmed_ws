@@ -6,6 +6,7 @@
 #include <iostream>
 #include <unistd.h> // 类似于windows.h
 #include <time.h> // 常用标准库
+#include "std_msgs/Float64.h"
 #define JOINT_NUM 7
 
 // M_SLEEP宏定义
@@ -74,14 +75,14 @@ int main(int argc, char *argv[])
             printf("releaseBrake failed! nReturn value = %d\n", nRet);
             break;
         }
-        M_SLEEP(2000);
+        M_SLEEP(2000); // delay 2s
 
         // 初始化ros节点
         ros::init(argc, argv, "diana7api_connect_test");
         // 创建节点句柄
         ros::NodeHandle nh;
-        // 创建发布对象
-        ros::Rate rate(1);
+        // 创建订阅对象
+        ros::Rate rate(100);
 
         joint_direction_e dtype = T_MOVE_UP;
         double vel = 0.5;
@@ -90,7 +91,11 @@ int main(int argc, char *argv[])
 
         while(ros::ok())
         {
-            ros::Rate rate(1);
+
+
+            rate.sleep();
+
+            ros::spinOnce();
         }
 
         /*

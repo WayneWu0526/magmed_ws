@@ -140,7 +140,7 @@ link_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/demo01_diana7api_test_node.cpp)
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
-
+add_executable(dianaManipulator src/dianaManipulator.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -159,14 +159,18 @@ target_link_libraries(demo01_diana7api_connect_test
   ${catkin_LIBRARIES}
   DianaApi
 )
-
-# Set environment variable for DianaApi binaries (not necessary)
-set(CMAKE_INSTALL_RPATH /usr/local/DianaApi/bin)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-install(TARGETS demo01_diana7api_connect_test
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+target_link_libraries(dianaManipulator
+  ${catkin_LIBRARIES}
+  DianaApi
 )
+
+# # Set environment variable for DianaApi binaries (not necessary)
+# set(CMAKE_INSTALL_RPATH /usr/local/DianaApi/bin)
+# set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+# install(TARGETS demo01_diana7api_connect_test
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
 
 #############
 ## Install ##

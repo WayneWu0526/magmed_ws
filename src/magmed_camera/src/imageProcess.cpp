@@ -15,7 +15,7 @@ void signalHandler(int signal) {
 namespace magmed_camera
 {
 
-    float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData)
+    float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData, bool isImageShow)
     {
         // 注册信号处理函数
         std::signal(SIGSEGV, signalHandler);
@@ -25,6 +25,13 @@ namespace magmed_camera
         cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         // threshold the image
         cv::threshold(img, img, 170, 255, cv::THRESH_BINARY_INV);
+        
+        // // dilate the image
+        // cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
+        // cv::dilate(img, img, element);
+        // element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+        // cv::erode(img, img, element);
+
         // 快速滤波
         // cv::fastNlMeansDenoising(img, img, 3, 7, 21);
         // show the image
@@ -126,35 +133,38 @@ namespace magmed_camera
 
             // print the curve
             // std::cout << "a = " << curve(0) << ", b = " << curve(1) << ", c = " << curve(2) << std::endl;
-            // 在图像上绘制拟合曲线
-            // create a new image
-            cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
-            // draw the nonzero coordinates
-            for (int i = 0; i < nonzeroCoordinates.rows; i++)
+            if (isImageShow)
             {
-                img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
-            }
-            // draw a cross at crossPoint
-            for (int i = 0; i < Width; i++)
-            {
-                img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
-            }
-            for (int i = 0; i < Height; i++)
-            {
-                img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
-            }
-            // draw the curve
-            for (int i = 0; i < Width; i++)
-            {
-                int y = curve(0) * i * i + curve(1) * i + curve(2);
-                if (y >= 0 && y < Height)
+                // 在图像上绘制拟合曲线
+                // create a new image
+                cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
+                // draw the nonzero coordinates
+                for (int i = 0; i < nonzeroCoordinates.rows; i++)
                 {
-                    img1.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
+                    img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
                 }
+                // draw a cross at crossPoint
+                for (int i = 0; i < Width; i++)
+                {
+                    img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
+                }
+                for (int i = 0; i < Height; i++)
+                {
+                    img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
+                }
+                // draw the curve
+                for (int i = 0; i < Width; i++)
+                {
+                    int y = curve(0) * i * i + curve(1) * i + curve(2);
+                    if (y >= 0 && y < Height)
+                    {
+                        img1.at<cv::Vec3b>(y, i) = cv::Vec3b(0, 0, 255);
+                    }
+                }
+                // show the image
+                cv::imshow("img1", img1);
+                cv::waitKey(1);
             }
-            // show the image
-            cv::imshow("img1", img1);
-            cv::waitKey(1);
 
             return tipAngle;
         }
@@ -280,29 +290,31 @@ namespace magmed_camera
             // // print the ellipse
             // std::cout << "ellipse center = " << ellipse.center << ", ellipse size = " << ellipse.size << ", ellipse angle = " << ellipse.angle << std::endl;
 
-            // 在图像上绘制拟合椭圆
-            // create a new image
-            cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
-            // draw the nonzero coordinates
-            for (int i = 0; i < nonzeroCoordinates.rows; i++)
+            if (isImageShow)
             {
-                img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
+                // 在图像上绘制拟合椭圆
+                // create a new image
+                cv::Mat img1 = cv::Mat::zeros(Height, Width, CV_8UC3);
+                // draw the nonzero coordinates
+                for (int i = 0; i < nonzeroCoordinates.rows; i++)
+                {
+                    img1.at<cv::Vec3b>(nonzeroCoordinates.at<cv::Point>(i)) = cv::Vec3b(255, 255, 255);
+                }
+                // draw a cross at crossPoint
+                for (int i = 0; i < Width; i++)
+                {
+                    img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
+                }
+                for (int i = 0; i < Height; i++)
+                {
+                    img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
+                }
+                // draw the ellipse
+                cv::ellipse(img1, ellipse, cv::Scalar(0, 0, 255), 1);
+                // show the image
+                cv::imshow("img1", img1);
+                cv::waitKey(1);
             }
-            // draw a cross at crossPoint
-            for (int i = 0; i < Width; i++)
-            {
-                img1.at<cv::Vec3b>(distalEnd(1), i) = cv::Vec3b(0, 0, 255);
-            }
-            for (int i = 0; i < Height; i++)
-            {
-                img1.at<cv::Vec3b>(i, distalEnd(0)) = cv::Vec3b(0, 0, 255);
-            }
-
-            // draw the ellipse
-            cv::ellipse(img1, ellipse, cv::Scalar(0, 0, 255), 1);
-            // show the image
-            cv::imshow("img1", img1);
-            cv::waitKey(1);
 
             return tipAngle;
         }

@@ -14,6 +14,7 @@
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 float g_fTipAngle = 0.0;
+bool g_bIsImageShow = false;
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -89,7 +90,7 @@ static  void* WorkThread(void* pUser) // 工作线程 | work thread
                 break;
             }
             magmed_camera::imageProcess imageProcess;
-            g_fTipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB);      
+            g_fTipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB, g_bIsImageShow);      
         }
         else
         {
@@ -126,6 +127,18 @@ int main(int argc, char **argv)
 {
     int nRet = MV_OK;
     void* handle = NULL;
+
+    ros::init(argc, argv, "pubTipAngle");
+
+    ros::NodeHandle nh("~");
+
+    nh.param<bool>("isImageShow", g_bIsImageShow, false);
+
+    ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);
+    
+    // publish the tip angle at 100Hz
+    ros::Rate rate(100);
+
     do 
     {
         // ch:枚举设备 | en:Enum device
@@ -192,7 +205,7 @@ int main(int argc, char **argv)
         // set IInteger variablet
         // 宽高设置时需考虑步进(16)，即设置宽高需16的倍数
         // Step (16) should be considered when setting width and height, that is the width and height should be a multiple of 16
-        nRet = MV_CC_SetIntValue(handle, "Width", 16*30);    
+        nRet = MV_CC_SetIntValue(handle, "Width", 16*25);    
         if (MV_OK != nRet)
         {
             printf("set width failed! nRet [%x]\n\n", nRet);
@@ -204,7 +217,7 @@ int main(int argc, char **argv)
             printf("set OffsetX failed! nRet [%x]\n\n", nRet);
             break;
         }
-        nRet = MV_CC_SetIntValue(handle, "Height", 16*30);    
+        nRet = MV_CC_SetIntValue(handle, "Height", 16*25);    
         if (MV_OK != nRet)
         {
             printf("set height failed! nRet [%x]\n\n", nRet);
@@ -230,15 +243,8 @@ int main(int argc, char **argv)
             printf("thread create failed.ret = %d\n",nRet);
             break;
         }
-        
-        ros::init(argc, argv, "pubTipAngle");
 
-        ros::NodeHandle nh;
-
-        ros::Publisher pub = nh.advertise<std_msgs::Float64>("tipAngle", 1000);
-
-        ros::Rate r(1);
-
+        // wait for the camera to start
         ros::Duration(3.0).sleep();
 
         while(ros::ok())
@@ -246,8 +252,9 @@ int main(int argc, char **argv)
             std_msgs::Float64 msg;
             msg.data = g_fTipAngle;
             pub.publish(msg);
+            // ROS_INFO("tipAngle: %f", msg.data);
+            rate.sleep();
             ros::spinOnce();
-            r.sleep();
         }
         g_bExit = true;
 

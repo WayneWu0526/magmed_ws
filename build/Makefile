@@ -545,6 +545,45 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named velocityController
+
+# Build rule for target.
+velocityController: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 velocityController
+.PHONY : velocityController
+
+# fast build rule for target.
+velocityController/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
+.PHONY : velocityController/fast
+
+#=============================================================================
+# Target rules for targets named getJacobianOfMCR
+
+# Build rule for target.
+getJacobianOfMCR: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 getJacobianOfMCR
+.PHONY : getJacobianOfMCR
+
+# fast build rule for target.
+getJacobianOfMCR/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
+.PHONY : getJacobianOfMCR/fast
+
+#=============================================================================
+# Target rules for targets named dianaManipulator
+
+# Build rule for target.
+dianaManipulator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator
+.PHONY : dianaManipulator
+
+# fast build rule for target.
+dianaManipulator/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
+.PHONY : dianaManipulator/fast
+
+#=============================================================================
 # Target rules for targets named demo01_diana7api_connect_test
 
 # Build rule for target.
@@ -599,6 +638,9 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... velocityController"
+	@echo "... getJacobianOfMCR"
+	@echo "... dianaManipulator"
 	@echo "... demo01_diana7api_connect_test"
 .PHONY : help
 
