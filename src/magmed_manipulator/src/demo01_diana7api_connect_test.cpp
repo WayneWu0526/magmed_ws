@@ -4,10 +4,13 @@
 #include "std_msgs/String.h"
 #include <cstring>
 #include <iostream>
+#include <pthread.h>
 #include <unistd.h> // 类似于windows.h
 #include <time.h> // 常用标准库
 #include "std_msgs/Float64.h"
 #define JOINT_NUM 7
+
+bool g_bExit = false;
 
 // M_SLEEP宏定义
 void M_SLEEP(int milliseconds)
@@ -16,6 +19,33 @@ void M_SLEEP(int milliseconds)
     ts.tv_sec = milliseconds / 1000;
     ts.tv_nsec = (milliseconds % 1000) * 1000000;
     nanosleep(&ts, NULL);
+}
+
+// work thread
+static void* WorkThread(void* pUser)
+{
+    int nRet = 0;
+    const char *strIpAddress = "192.168.10.75";
+    while(1)
+    {
+        double speeds[JOINT_NUM] = {0.0};
+        speeds[6]=0.0;
+        double acc =0.0;
+        const char* strIpAddress = "192.168.10.75";
+        int ret = speedJ(speeds, acc, 0, strIpAddress);
+        if(ret < 0)
+        {
+            printf("speedJ failed! Return value = %d\n", ret);
+        }
+
+
+        if(g_bExit)
+        {
+            break;
+        }
+    }
+    stop(strIpAddress);
+    return 0;
 }
 
 void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
@@ -46,6 +76,13 @@ void errorControl(int e, const char *strIpAddress)
 
 int main(int argc, char *argv[])
 {
+    // 初始化ros节点
+    ros::init(argc, argv, "diana7api_connect_test");
+    // 创建节点句柄
+    ros::NodeHandle nh;
+    // 创建订阅对象
+    ros::Rate rate(100);
+
     // 初始化 API，完成其他功能函数使用前的初始化准备工作。
     const char *strIpAddress = "192.168.10.75";
     srv_net_st *pinfo = new srv_net_st();
@@ -77,52 +114,47 @@ int main(int argc, char *argv[])
         }
         M_SLEEP(2000); // delay 2s
 
-        // 初始化ros节点
-        ros::init(argc, argv, "diana7api_connect_test");
-        // 创建节点句柄
-        ros::NodeHandle nh;
-        // 创建订阅对象
-        ros::Rate rate(100);
+        pthread_t nThreadID;
+        nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
+        if (nRet != 0)
+        {
+            printf("thread create failed.ret = %d\n",nRet);
+            break;
+        }
 
-        joint_direction_e dtype = T_MOVE_UP;
-        double vel = 0.5;
-        double acc = 0.5;
-        int index = 0;
+        double dblMaxAcc[7]={0};
+        nRet = getMechanicalMaxJointsAcc(dblMaxAcc, strIpAddress);
+        printf("getMechanicalMaxJointsAcc ret = %d dblMaxAcc = {%f,%f,%f,%f,%f,%f,%f}\n"
+        , nRet
+        , dblMaxAcc[0]
+        , dblMaxAcc[1]
+        , dblMaxAcc[2]
+        , dblMaxAcc[3]
+        , dblMaxAcc[4]
+        , dblMaxAcc[5]
+        , dblMaxAcc[6]);
+
+        double dblMaxVel[7]={0};
+        nRet = getMechanicalMaxJointsVel(dblMaxVel, strIpAddress);
+        printf("getMechanicalMaxJointsVel ret = %d dblMaxVel = {%f,%f,%f,%f,%f,%f,%f}\n"
+        , nRet
+        , dblMaxVel[0]
+        , dblMaxVel[1]
+        , dblMaxVel[2]
+        , dblMaxVel[3]
+        , dblMaxVel[4]
+        , dblMaxVel[5]
+        , dblMaxVel[6]);
 
         while(ros::ok())
         {
-
-
             rate.sleep();
 
             ros::spinOnce();
         }
+        g_bExit = true;
 
-        /*
-            codes
-        */
-
-        // double joints[JOINT_NUM] = {0.0};
-        // nRet = getJointPos(joints, strIpAddress);
-        // if (nRet < 0)
-        // {
-        //     printf("getJointPos failed! nReturn value =%d\n", nRet);
-        // }
-        // else
-        // {
-        //     printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0],
-        //            joints[1], joints[2], joints[3], joints[4], joints[5], joints[6]);
-        // }
-
-        nRet = moveJoint(dtype, index, vel, acc, strIpAddress);
-        if (nRet < 0)
-        {
-            printf("moveJoint failed! nReturn value = %d\n", nRet);
-            break;
-        }
-        M_SLEEP(4000);
-        stop(strIpAddress);
-
+        M_SLEEP(2000); // delay 2s 否则可能会报和socket有关的错误。初步猜测是因为线程还没退出，就调用了destroySrv，导致线程中的socket被关闭了。
         // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
         nRet = holdBrake(strIpAddress);
         if (nRet < 0)

@@ -55,13 +55,23 @@ int main(int argc, char *argv[])
 
         // position of the magnet
         // Eigen::Vector3d pa = { mcr.pr.L, 0, 150.0e-3};
-        Eigen::Vector3d pa = { 0.0, 0.0, 150.0e-3};
+        Eigen::Vector3d pa = { 0.0, 0.0, 207.0e-3};
         // get jacobian of the robot
-        double jacobian = mcr.get_jacobian(g_fPsi, pa);
-        // std::cout << jacobian << std::endl;
+        double jacobian = mcr.get_jacobian(g_fPsi + M_PI, pa);
+        std::cout << "jacobian:" << jacobian << std::endl;
 
         // applying quasi-static controller to calculate the angular velocity of the magnet
         double dPsi = (v2dThetaR(0) + k * (v2dThetaR(1) - g_fThetaL)) / jacobian;
+
+        // if dPsi > M_PI, dPsi = M_PI, else if dPsi < -M_PI, dPsi = -M_PI
+        if(dPsi > 3.0)
+        {
+            dPsi = 3.0;
+        }
+        else if(dPsi < -3.0)
+        {
+            dPsi = -3.0;
+        }
 
         std_msgs::Float64 msg;
         msg.data = dPsi;

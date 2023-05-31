@@ -14,7 +14,7 @@
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 float g_fTipAngle = 0.0;
-bool g_bIsImageShow = false;
+bool g_bIsImageShow;
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -130,9 +130,9 @@ int main(int argc, char **argv)
 
     ros::init(argc, argv, "pubTipAngle");
 
-    ros::NodeHandle nh("~");
+    ros::NodeHandle nh;
 
-    nh.param<bool>("isImageShow", g_bIsImageShow, false);
+    nh.param<bool>("isImageShow", g_bIsImageShow, true);
 
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);
     
@@ -243,7 +243,6 @@ int main(int argc, char **argv)
             printf("thread create failed.ret = %d\n",nRet);
             break;
         }
-
         // wait for the camera to start
         ros::Duration(3.0).sleep();
 

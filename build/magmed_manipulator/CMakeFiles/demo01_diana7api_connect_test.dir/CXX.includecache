@@ -19,6 +19,8 @@ cstring
 -
 iostream
 -
+pthread.h
+-
 unistd.h
 -
 time.h

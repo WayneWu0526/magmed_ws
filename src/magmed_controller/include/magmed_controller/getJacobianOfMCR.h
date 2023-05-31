@@ -16,18 +16,18 @@ namespace magmed_controller
         //physical properties of the robot
         struct Properties
         {
-            double E = 909.0e3; // the Young's modulus of the robot
-            // double r = 0.5e-3;
-            // double I = M_PI * pow(r, 4) / 4.0;
-            // double A = M_PI * r * r;
-            // double L = 10.0 * 2.0 * r;
+            double E = 3.0e6; //909.0e3; // the Young's modulus of the robot
+            double r = (1.086e-03)/2.0;
+            double I = M_PI * pow(r, 4) / 4.0;
+            double A = M_PI * r * r;
+            double L = 24.0e-3; // the length of the robot
 
-            double W = 1.0e-3;
-            double I = pow(W, 4)/12.0;
-            double A = W*W;
-            double L = 10.0*W;
+            // double W = 1.0e-3;
+            // double I = pow(W, 4)/12.0;
+            // double A = W*W;
+            // double L = 10.0*W;
             Vector3d hatM = {1.0, 0.0, 0.0}; // the magnetization direction of the robot
-            double normM = 144.0e3; // the norm of the magnetization of the robot
+            double normM = 13.0e4; //144.0e3; // the norm of the magnetization of the robot
         };
 
     public:
