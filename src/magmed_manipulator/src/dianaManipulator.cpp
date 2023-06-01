@@ -20,8 +20,9 @@ static void* WorkThread(void* pUser)
     while(1)
     {
         double speeds[JOINT_NUM] = {0.0};
-        speeds[6]= 0.2; //3.0; // g_dPsi; // the sign of the speed is the direction of the joint
-        double acc = 0.2; // 1.0; // acceleration
+        speeds[6]= g_dPsi; //3.0; // g_dPsi; // the sign of the speed is the direction of the joint
+        std::cout << "g_dPsi: " << g_dPsi << std::endl;
+        double acc = 0.1; // 1.0; // acceleration
         nRet = speedJ(speeds, acc, 0, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
@@ -29,6 +30,10 @@ static void* WorkThread(void* pUser)
         if(nRet < 0)
         {
             printf("speedJ failed! Return value = %d\n", nRet);
+        }
+        else
+        {
+            printf("Activate speedJ model\n");
         }
 
         if(g_bExit)
@@ -126,6 +131,14 @@ int main(int argc, char *argv[])
             break;
         }
         M_SLEEP(2000); // delay 2s
+
+        pthread_t nThreadID;
+        nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
+        if (nRet != 0)
+        {
+            printf("thread create failed.ret = %d\n",nRet);
+            break;
+        }
 
         double joints[JOINT_NUM] = {0.0};
 

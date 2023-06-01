@@ -2,5 +2,5 @@
     <arg name="arg_to_isImageShow" default="false"/>
     <node pkg="magmed_camera" type="pubTipAngle" name="pubTipAngle"/>
     <param name="isImageShow" value="$(arg arg_to_isImageShow)"/>
-    <node pkg="magmed_manipulator" type="dianaManipulator" name="dianaManipulator" output="screen"/>
+    <node pkg="magmed_manipulator" type="dianaManipulator" name="dianaManipulator"/>
 </launch>
