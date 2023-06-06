@@ -92,6 +92,7 @@
 /home/zhang/magmed_ws/build/magmed_joystick/CMakeFiles/rebuild_cache.dir
 /home/zhang/magmed_ws/build/magmed_joystick/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_joystick/CMakeFiles/test.dir
+/home/zhang/magmed_ws/build/magmed_joystick/CMakeFiles/readJoystick.dir
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/install/strip.dir
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/install/local.dir
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/install.dir

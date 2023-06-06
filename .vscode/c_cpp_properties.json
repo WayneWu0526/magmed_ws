@@ -11,6 +11,7 @@
       },
       "includePath": [
         "/opt/ros/noetic/include/**",
+        "/opt/ros/noetic/share/**",
         "/usr/include/**",
         "/usr/local/DianaApi/include/**",
         "/opt/MVS/include/**",

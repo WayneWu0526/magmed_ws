@@ -167,6 +167,48 @@ depend:
 	cd /home/zhang/magmed_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+magmed_joystick/CMakeFiles/readJoystick.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
+
+# Convenience name for target.
+readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/rule
+
+.PHONY : readJoystick
+
+# fast build rule for target.
+readJoystick/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
+.PHONY : readJoystick/fast
+
+src/readJoystick.o: src/readJoystick.cpp.o
+
+.PHONY : src/readJoystick.o
+
+# target to build an object file
+src/readJoystick.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.o
+.PHONY : src/readJoystick.cpp.o
+
+src/readJoystick.i: src/readJoystick.cpp.i
+
+.PHONY : src/readJoystick.i
+
+# target to preprocess a source file
+src/readJoystick.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.i
+.PHONY : src/readJoystick.cpp.i
+
+src/readJoystick.s: src/readJoystick.cpp.s
+
+.PHONY : src/readJoystick.s
+
+# target to generate assembly for a file
+src/readJoystick.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.s
+.PHONY : src/readJoystick.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -180,6 +222,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... readJoystick"
+	@echo "... src/readJoystick.o"
+	@echo "... src/readJoystick.i"
+	@echo "... src/readJoystick.s"
 .PHONY : help
 
 

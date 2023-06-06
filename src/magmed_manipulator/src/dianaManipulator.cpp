@@ -22,7 +22,7 @@ static void* WorkThread(void* pUser)
         double speeds[JOINT_NUM] = {0.0};
         speeds[6]= g_dPsi; //3.0; // g_dPsi; // the sign of the speed is the direction of the joint
         std::cout << "g_dPsi: " << g_dPsi << std::endl;
-        double acc = 0.1; // 1.0; // acceleration
+        double acc = 3; // 1.0; // acceleration
         nRet = speedJ(speeds, acc, 0, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达

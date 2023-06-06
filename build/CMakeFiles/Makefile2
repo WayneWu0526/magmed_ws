@@ -254,7 +254,7 @@ magmed_feeder/clean:
 # Directory level rules for directory magmed_joystick
 
 # Recursive "all" directory target.
-magmed_joystick/all:
+magmed_joystick/all: magmed_joystick/CMakeFiles/readJoystick.dir/all
 
 .PHONY : magmed_joystick/all
 
@@ -264,7 +264,7 @@ magmed_joystick/preinstall:
 .PHONY : magmed_joystick/preinstall
 
 # Recursive "clean" directory target.
-magmed_joystick/clean:
+magmed_joystick/clean: magmed_joystick/CMakeFiles/readJoystick.dir/clean
 
 .PHONY : magmed_joystick/clean
 
@@ -1144,7 +1144,7 @@ magmed_controller/CMakeFiles/velocityController.dir/all: magmed_camera/CMakeFile
 magmed_controller/CMakeFiles/velocityController.dir/all: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target velocityController"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=27,28 "Built target velocityController"
 .PHONY : magmed_controller/CMakeFiles/velocityController.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1204,6 +1204,33 @@ getJacobianOfMCR: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
 magmed_controller/CMakeFiles/getJacobianOfMCR.dir/clean:
 	$(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/clean
 .PHONY : magmed_controller/CMakeFiles/getJacobianOfMCR.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_joystick/CMakeFiles/readJoystick.dir
+
+# All Build rule for target.
+magmed_joystick/CMakeFiles/readJoystick.dir/all:
+	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/depend
+	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target readJoystick"
+.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_joystick/CMakeFiles/readJoystick.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
+
+# Convenience name for target.
+readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/rule
+
+.PHONY : readJoystick
+
+# clean rule for target.
+magmed_joystick/CMakeFiles/readJoystick.dir/clean:
+	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/clean
+.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/clean
 
 #=============================================================================
 # Target rules for target magmed_manipulator/CMakeFiles/dianaManipulator.dir

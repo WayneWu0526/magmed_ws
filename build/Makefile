@@ -571,6 +571,19 @@ getJacobianOfMCR/fast:
 .PHONY : getJacobianOfMCR/fast
 
 #=============================================================================
+# Target rules for targets named readJoystick
+
+# Build rule for target.
+readJoystick: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 readJoystick
+.PHONY : readJoystick
+
+# fast build rule for target.
+readJoystick/fast:
+	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
+.PHONY : readJoystick/fast
+
+#=============================================================================
 # Target rules for targets named dianaManipulator
 
 # Build rule for target.
@@ -640,6 +653,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... velocityController"
 	@echo "... getJacobianOfMCR"
+	@echo "... readJoystick"
 	@echo "... dianaManipulator"
 	@echo "... demo01_diana7api_connect_test"
 .PHONY : help
