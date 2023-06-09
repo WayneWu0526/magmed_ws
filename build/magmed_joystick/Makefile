@@ -182,6 +182,81 @@ readJoystick/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
 .PHONY : readJoystick/fast
 
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_cpp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
+
 src/readJoystick.o: src/readJoystick.cpp.o
 
 .PHONY : src/readJoystick.o
@@ -223,6 +298,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... readJoystick"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... src/readJoystick.o"
 	@echo "... src/readJoystick.i"
 	@echo "... src/readJoystick.s"

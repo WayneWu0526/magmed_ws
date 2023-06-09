@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -141,6 +142,7 @@ link_directories(
 # add_executable(${PROJECT_NAME}_node src/demo01_diana7api_test_node.cpp)
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
 add_executable(dianaManipulator src/dianaManipulator.cpp)
+add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -160,6 +162,10 @@ target_link_libraries(demo01_diana7api_connect_test
   DianaApi
 )
 target_link_libraries(dianaManipulator
+  ${catkin_LIBRARIES}
+  DianaApi
+)
+target_link_libraries(dianaManipulator_joystick
   ${catkin_LIBRARIES}
   DianaApi
 )

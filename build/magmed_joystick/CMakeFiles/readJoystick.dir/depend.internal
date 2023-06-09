@@ -3,6 +3,8 @@
 
 magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.o
  /home/zhang/magmed_ws/src/magmed_joystick/src/readJoystick.cpp
+ /opt/ros/noetic/include/geometry_msgs/Twist.h
+ /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h
@@ -21,6 +23,7 @@ magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.o
  /opt/ros/noetic/include/ros/message.h
  /opt/ros/noetic/include/ros/message_event.h
  /opt/ros/noetic/include/ros/message_forward.h
+ /opt/ros/noetic/include/ros/message_operations.h
  /opt/ros/noetic/include/ros/message_traits.h
  /opt/ros/noetic/include/ros/names.h
  /opt/ros/noetic/include/ros/node_handle.h

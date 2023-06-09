@@ -89,6 +89,7 @@ readJoystick_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /opt/ros/noetic/lib/libxmlrpcpp.so
+/home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /opt/ros/noetic/lib/libserial.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /opt/ros/noetic/lib/libroscpp_serialization.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /opt/ros/noetic/lib/librostime.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
@@ -96,7 +97,6 @@ readJoystick_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: /opt/ros/noetic/lib/libserial.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/zhang/magmed_ws/devel/lib/magmed_joystick/readJoystick"
 	cd /home/zhang/magmed_ws/build/magmed_joystick && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/readJoystick.dir/link.txt --verbose=$(VERBOSE)
