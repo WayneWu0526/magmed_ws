@@ -1,13 +1,15 @@
  [Info]  [CRobotApiSystem::addRobotApi] the specified ip Robot add success, ip:  192.168.10.75
- [Info] [CSessionUDP::initSession] ret： 1 session type: 0 local ip-port: 0.0.0.0-41920
- [Info] [CSessionUDP::initSession] ret： 1 session type: 1 local ip-port: 0.0.0.0-59422
- [Info] [CSessionUDP::initSession] ret： 1 session type: 2 local ip-port: 0.0.0.0-45119
- [Info] [CSessionUDP::initSession] ret： 1 session type: 3 local ip-port: 0.0.0.0-40584
- [Info] [CSessionUDP::initSession] ret： 1 session type: 4 local ip-port: 0.0.0.0-58036
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 0 local ip-port: 0.0.0.0-45279
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 1 local ip-port: 0.0.0.0-50261
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 2 local ip-port: 0.0.0.0-49013
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 3 local ip-port: 0.0.0.0-50622
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 4 local ip-port: 0.0.0.0-56433
  [Info] [CThreadProcessorBase::start] start thread processor
  [Info] [CThreadProcessorBase::start] start thread processor
  [Info] [CRobotApiImp::requestJointCount] joint cout is  7
  [Error] [CSocketUDPRaw::receiveFrom] recv failed. error code: 11
- [Warning]  [CRobotConnectorUDP::receivePacketV1] receive size 0, session type: 0, service_id: 14, seq: 102056 ,iLen: -1
- [Error] [CSocketUDPRaw::receiveFrom] recv failed. error code: 11
- [Warning]  [CRobotConnectorUDP::receivePacketV1] receive size 0, session type: 0, service_id: 14, seq: 102056 ,iLen: -1
+ [Warning]  [CRobotConnectorUDP::receivePacketV1] receive size 0, session type: 0, service_id: 14, seq: 138719 ,iLen: -1
+ [Info] [CRobotStatusThreadProcessor::run] robot status thread stop
+
+ [Info] [CHeartbeatThreadProcessor::run] heartbeat thread stop
+ 
