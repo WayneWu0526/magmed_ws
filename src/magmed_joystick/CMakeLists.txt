@@ -138,6 +138,8 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/magmed_joystick_node.cpp)
 add_executable(readJoystick src/readJoystick.cpp)
 
+add_executable(refSignal src/refSignal.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -153,6 +155,10 @@ add_executable(readJoystick src/readJoystick.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(readJoystick
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(refSignal
   ${catkin_LIBRARIES}
 )
 

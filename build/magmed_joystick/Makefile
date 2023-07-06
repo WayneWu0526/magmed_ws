@@ -68,17 +68,48 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install
 install: preinstall
@@ -92,48 +123,17 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,19 +168,49 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-magmed_joystick/CMakeFiles/readJoystick.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
+magmed_joystick/CMakeFiles/refSignal.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/refSignal.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/refSignal.dir/rule
 
 # Convenience name for target.
-readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/rule
+refSignal: magmed_joystick/CMakeFiles/refSignal.dir/rule
 
-.PHONY : readJoystick
+.PHONY : refSignal
 
 # fast build rule for target.
-readJoystick/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
-.PHONY : readJoystick/fast
+refSignal/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
+.PHONY : refSignal/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_cpp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
@@ -198,19 +228,19 @@ geometry_msgs_generate_messages_nodejs/fast:
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+magmed_joystick/CMakeFiles/readJoystick.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_py: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_py
+.PHONY : readJoystick
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+readJoystick/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
+.PHONY : readJoystick/fast
 
 # Convenience name for target.
 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
@@ -242,21 +272,6 @@ geometry_msgs_generate_messages_eus/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
 .PHONY : geometry_msgs_generate_messages_eus/fast
 
-# Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_cpp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
 src/readJoystick.o: src/readJoystick.cpp.o
 
 .PHONY : src/readJoystick.o
@@ -284,6 +299,33 @@ src/readJoystick.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.s
 .PHONY : src/readJoystick.cpp.s
 
+src/refSignal.o: src/refSignal.cpp.o
+
+.PHONY : src/refSignal.o
+
+# target to build an object file
+src/refSignal.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.o
+.PHONY : src/refSignal.cpp.o
+
+src/refSignal.i: src/refSignal.cpp.i
+
+.PHONY : src/refSignal.i
+
+# target to preprocess a source file
+src/refSignal.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.i
+.PHONY : src/refSignal.cpp.i
+
+src/refSignal.s: src/refSignal.cpp.s
+
+.PHONY : src/refSignal.s
+
+# target to generate assembly for a file
+src/refSignal.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.s
+.PHONY : src/refSignal.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -291,21 +333,25 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... readJoystick"
-	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... refSignal"
 	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... readJoystick"
+	@echo "... test"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... install"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... install/local"
 	@echo "... src/readJoystick.o"
 	@echo "... src/readJoystick.i"
 	@echo "... src/readJoystick.s"
+	@echo "... src/refSignal.o"
+	@echo "... src/refSignal.i"
+	@echo "... src/refSignal.s"
 .PHONY : help
 
 

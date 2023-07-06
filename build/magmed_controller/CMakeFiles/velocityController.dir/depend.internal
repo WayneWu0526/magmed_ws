@@ -61,5 +61,8 @@ magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
  /opt/ros/noetic/include/ros/wall_timer_options.h
  /opt/ros/noetic/include/rosconsole/macros_generated.h
  /opt/ros/noetic/include/std_msgs/Float64.h
+ /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
+ /opt/ros/noetic/include/std_msgs/MultiArrayDimension.h
+ /opt/ros/noetic/include/std_msgs/MultiArrayLayout.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h

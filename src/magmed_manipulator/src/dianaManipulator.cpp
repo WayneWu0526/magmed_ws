@@ -5,7 +5,7 @@
 #include <cstring>
 #include <iostream>
 #include <unistd.h> // 类似于windows.h
-#include <time.h> // 常用标准库
+#include <time.h>   // 常用标准库
 #include "std_msgs/Float64.h"
 #define JOINT_NUM 7
 
@@ -13,21 +13,21 @@ bool g_bExit = false;
 double g_dPsi = 0.0;
 
 // work thread
-static void* WorkThread(void* pUser)
+static void *WorkThread(void *pUser)
 {
     int nRet = 0;
     const char *strIpAddress = "192.168.10.75";
-    while(1)
+    while (1)
     {
         double speeds[JOINT_NUM] = {0.0};
-        speeds[6]= g_dPsi; //3.0; // g_dPsi; // the sign of the speed is the direction of the joint
+        speeds[6] = g_dPsi; // 3.0; // g_dPsi; // the sign of the speed is the direction of the joint
         std::cout << "g_dPsi: " << g_dPsi << std::endl;
-        double acc = 3; // 1.0; // acceleration
+        double acc = 0.3; // 1.0; // acceleration
         nRet = speedJ(speeds, acc, 0, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
         到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
-        if(nRet < 0)
+        if (nRet < 0)
         {
             printf("speedJ failed! Return value = %d\n", nRet);
         }
@@ -36,7 +36,7 @@ static void* WorkThread(void* pUser)
             printf("Activate speedJ model\n");
         }
 
-        if(g_bExit)
+        if (g_bExit)
         {
             break;
         }
@@ -52,6 +52,24 @@ void M_SLEEP(int milliseconds)
     ts.tv_sec = milliseconds / 1000;
     ts.tv_nsec = (milliseconds % 1000) * 1000000;
     nanosleep(&ts, NULL);
+}
+
+void wait_move(const char *strIpAddress)
+{
+    M_SLEEP(20);
+    while (true)
+    {
+        const char state = getRobotState(strIpAddress);
+        if (state != 0)
+        {
+            break;
+        }
+        else
+        {
+            M_SLEEP(1);
+        }
+    }
+    stop(strIpAddress);
 }
 
 void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
@@ -80,7 +98,7 @@ void errorControl(int e, const char *strIpAddress)
     printf("error code (%d):%s\n", e, strError);
 }
 
-void psiCallback(const std_msgs::Float64::ConstPtr& msg)
+void psiCallback(const std_msgs::Float64::ConstPtr &msg)
 {
     ROS_INFO("Psi reseived: [%f]", msg->data);
     g_dPsi = msg->data;
@@ -110,8 +128,10 @@ int main(int argc, char *argv[])
     pinfo->LocRobotStatePort = 0;
     pinfo->LocSrvPort = 0;
     int nRet = 0;
+    double joints[JOINT_NUM] = {0.0};
 
-    do{
+    do
+    {
         nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
         if (nRet < 0)
         {
@@ -132,30 +152,46 @@ int main(int argc, char *argv[])
         }
         M_SLEEP(2000); // delay 2s
 
+        // 开启前将机械臂移动到初始位置
+        nRet = getJointPos(joints, strIpAddress);
+        if (nRet < 0)
+        {
+            printf("getJointPos failed! Return value = %d\n", nRet);
+            break;
+        }
+        joints[6] = 0.0;
+        nRet = moveJToTarget(joints, 3, 3, strIpAddress);
+        if (nRet < 0)
+        {
+            printf("moveLToTarget failed! Return value = %d\n", nRet);
+            break;
+        }
+        wait_move(strIpAddress);
+
+        // 启动机械臂的速度控制模式，该模式下，机械臂的运动由用户控制。
         pthread_t nThreadID;
         nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
         if (nRet != 0)
         {
-            printf("thread create failed.ret = %d\n",nRet);
+            printf("thread create failed.ret = %d\n", nRet);
             break;
         }
 
-        double joints[JOINT_NUM] = {0.0};
-
-        while(ros::ok())
+        while (ros::ok())
         {
-            int ret = getJointPos(joints, strIpAddress);
-            if(ret < 0)
+            nRet = getJointPos(joints, strIpAddress);
+            if (nRet < 0)
             {
-                printf("getJointPos failed! Return value = %d\n", ret);
+                printf("getJointPos failed! Return value = %d\n", nRet);
                 break;
             }
-            else{
+            else
+            {
                 std_msgs::Float64 msg;
                 msg.data = joints[6]; // pub the angle of end_effector
                 pub.publish(msg);
-                
-                // printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0], 
+
+                // printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0],
                 // joints[1],joints[2],joints[3],joints[4],joints[5],joints[6]);
             }
             rate.sleep();
@@ -172,8 +208,9 @@ int main(int argc, char *argv[])
             break;
         }
 
-    }while(0);
+    } while (0);
     // 结束调用 API，用于结束时释放指定 IP 地址机械臂的资源。
+
     // 如果该函数未被调用就退出系统（例如客户端程序在运行期间崩溃），服务端将因为检测不到心跳而认为客户端异常掉线，直至客户端再次运行，重新连接。除此之外不会引起严重后果。
     destroySrv(strIpAddress);
 

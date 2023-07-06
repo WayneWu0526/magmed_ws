@@ -132,6 +132,7 @@ int main(int argc, char **argv)
 
     ros::NodeHandle nh;
 
+    // whether to show the image
     nh.param<bool>("isImageShow", g_bIsImageShow, false);
 
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);

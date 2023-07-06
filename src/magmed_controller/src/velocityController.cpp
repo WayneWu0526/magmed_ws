@@ -2,10 +2,12 @@
 #include <eigen3/Eigen/Dense>
 #include "magmed_controller/getJacobianOfMCR.h"
 #include <std_msgs/Float64.h>
+#include <std_msgs/Float64MultiArray.h>
 #include <iostream>
 
 float g_fThetaL = 0.0;
 float g_fPsi = 0.0;
+double g_dThetaR[2] = {0.0, 0.0};
 
 void tipAngleCallback(const std_msgs::Float64::ConstPtr& msg)
 {
@@ -19,23 +21,49 @@ void psiCallback(const std_msgs::Float64::ConstPtr& msg)
     g_fPsi = msg->data;
 }
 
+void refSignalCallback(const std_msgs::Float64MultiArray::ConstPtr& msg)
+{
+    // ROS_INFO("refSignal received: [%f, %f]", msg->data[0], msg->data[1]);
+    g_dThetaR[0] = msg->data[0];
+    g_dThetaR[1] = msg->data[1];
+}
+
 Vector2d LESO(double dThetaR, double controlInput, double jacobian, Vector2d hatx, int nf)
 {
     float beta1 = 0.001;
     float beta2 = 0.001;
     float epsilon = 0.1;
 
-    Vector2d next_hatx = {0.0, 0.0};
-    next_hatx(0) = hatx(0) + 1.0 / nf * (hatx(1) + beta1/epsilon * (dThetaR - hatx(0)) + jacobian * controlInput);
-    next_hatx(1) = hatx(1) + 1.0 / nf * (beta2/(epsilon*epsilon) * (dThetaR - hatx(0)));
-    return next_hatx;
+    double error = dThetaR - hatx(0);
+    hatx(0) = hatx(0) + (hatx(1) + beta1 / epsilon * error + jacobian * controlInput) / nf;
+    hatx(1) = hatx(1) + (beta2 / (epsilon * epsilon) * error) / nf;
+    std::cout << "estimate perturbation: " << hatx(1) << std::endl;
+    return hatx;
 }
 
-double PD_controller(Vector2d dThetaR, Vector2d hatx, double jacobian, double thetaL)
+double PD_controller(Vector2d hatx, double jacobian, double thetaL)
 {
-    float fk = 20.0;
+    float fk = 1.0;
+    hatx(1) = 0.0;
+    std::cout << "PD controller:" << g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) << std::endl;
+    return (g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx(1)) / jacobian;
+}
 
-    return 1.0/jacobian * (dThetaR(1) + fk * (dThetaR(0) - thetaL) - hatx(1));
+// saturation function
+double sat(double x, double xmin, double xmax)
+{
+    if (x < xmin)
+    {
+        return xmin;
+    }
+    else if (x > xmax)
+    {
+        return xmax;
+    }
+    else
+    {
+        return x;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -50,6 +78,9 @@ int main(int argc, char *argv[])
     // get rotation angle of the magnet
     ros::Subscriber subPsi = nh.subscribe("/magmed_manipulator/magnetAngle", 1000, psiCallback);
 
+    // get reference theta
+    ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/referenceSignal", 1000, refSignalCallback);
+
     // publish the angular velocity of the magnet
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_controller/angularVelocity", 1000);
 
@@ -63,53 +94,40 @@ int main(int argc, char *argv[])
     // wait for the camera to start
     ros::Duration(3.0).sleep();
 
-    // input reference theta
-    Vector2d v2dThetaR = {0.0, 0.0};
-
     // position of the magnet
     // Eigen::Vector3d pa = { mcr.pr.L, 0, 150.0e-3};
-    Eigen::Vector3d pa = { 0.0, 0.0, 191.0e-3};
+    Eigen::Vector3d pa = { mcr.pr.L, 0.0, 180.0e-3};
 
     // initialize LESO
     Vector2d v2dhatx = {0.0, 0.0};
 
-    // record the initial time
-    ros::Time t0 = ros::Time::now();
-
     while(ros::ok())
     {   
         // // the rotation angle of work space
-        // double phi = M_PI / 2.0;
-
-        // calculate the time difference to reach t0 and return seconds
-        double dt = (ros::Time::now() - t0).toSec();
-
-        // input reference theta in sine wave
-        float fphaseshift = 0.0;
-        v2dThetaR(0) = 0.33 * M_PI * sin(2 * M_PI * dt + fphaseshift);
-        v2dThetaR(1) = 0.33 * M_PI * 2 * M_PI * cos(2 * M_PI * dt + fphaseshift);
+        // double phi = M_PI / 2.0;        
 
         // get jacobian of the robot
-        double jacobian = mcr.get_jacobian(g_fPsi + M_PI, pa);
+        double jacobian = mcr.get_jacobian(g_fPsi, pa);
         ROS_INFO("jacobian: %f", jacobian);
 
         // calculate the control input
-        double controlInput = PD_controller(v2dThetaR, v2dhatx, jacobian, g_fThetaL);
+        double controlInput = PD_controller(v2dhatx, jacobian, g_fThetaL);
 
         // update LESO
-        v2dhatx = LESO(v2dThetaR(0), controlInput, jacobian, v2dhatx, nf);
+        v2dhatx = LESO(g_dThetaR[0], controlInput, jacobian, v2dhatx, nf);
 
         // // set coefficient of the controller (positive)
         // float k = 3.0;
         // // applying quasi-static controller to calculate the angular velocity of the magnet
         // double dPsi = (v2dThetaR(1) + k * (v2dThetaR(0) - g_fThetaL)) / jacobian;
         // error of theta
-        ROS_INFO("error of theta: %f", v2dThetaR(0) - g_fThetaL);
+        ROS_INFO("error of theta: %f", g_dThetaR[0] - g_fThetaL);
 
         // 控制器自带软限位
 
         std_msgs::Float64 msg;
-        msg.data = controlInput;
+        float fLimit = 10.0;
+        msg.data = sat(controlInput, -fLimit, fLimit);
         pub.publish(msg);
         ROS_INFO("angular velocity: %f", msg.data);
 

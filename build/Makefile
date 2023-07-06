@@ -571,17 +571,43 @@ getJacobianOfMCR/fast:
 .PHONY : getJacobianOfMCR/fast
 
 #=============================================================================
-# Target rules for targets named readJoystick
+# Target rules for targets named refSignal
 
 # Build rule for target.
-readJoystick: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 readJoystick
-.PHONY : readJoystick
+refSignal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 refSignal
+.PHONY : refSignal
 
 # fast build rule for target.
-readJoystick/fast:
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
-.PHONY : readJoystick/fast
+refSignal/fast:
+	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
+.PHONY : refSignal/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_py
+
+# Build rule for target.
+geometry_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	$(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_cpp
+
+# Build rule for target.
+geometry_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_cpp
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_nodejs
@@ -597,17 +623,17 @@ geometry_msgs_generate_messages_nodejs/fast:
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_py
+# Target rules for targets named readJoystick
 
 # Build rule for target.
-geometry_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
-.PHONY : geometry_msgs_generate_messages_py
+readJoystick: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 readJoystick
+.PHONY : readJoystick
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	$(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+readJoystick/fast:
+	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
+.PHONY : readJoystick/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_lisp
@@ -634,19 +660,6 @@ geometry_msgs_generate_messages_eus: cmake_check_build_system
 geometry_msgs_generate_messages_eus/fast:
 	$(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
 .PHONY : geometry_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_cpp
-
-# Build rule for target.
-geometry_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_cpp
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named dianaManipulator_joystick
@@ -731,12 +744,13 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... velocityController"
 	@echo "... getJacobianOfMCR"
-	@echo "... readJoystick"
-	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... refSignal"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... readJoystick"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator"
 	@echo "... demo01_diana7api_connect_test"
