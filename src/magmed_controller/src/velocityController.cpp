@@ -4,6 +4,7 @@
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
 #include <iostream>
+#include <vector>
 
 float g_fThetaL = 0.0;
 float g_fPsi = 0.0;
@@ -28,25 +29,24 @@ void refSignalCallback(const std_msgs::Float64MultiArray::ConstPtr& msg)
     g_dThetaR[1] = msg->data[1];
 }
 
-Vector2d LESO(double dThetaR, double controlInput, double jacobian, Vector2d hatx, int nf)
+void LESO(double controlInput, double jacobian, std::vector<float>& hatx, int nf)
 {
-    float beta1 = 0.001;
-    float beta2 = 0.001;
-    float epsilon = 0.1;
+    float beta1 = 1;
+    float beta2 = 0.01;
+    float epsilon = 0.01;
 
-    double error = dThetaR - hatx(0);
-    hatx(0) = hatx(0) + (hatx(1) + beta1 / epsilon * error + jacobian * controlInput) / nf;
-    hatx(1) = hatx(1) + (beta2 / (epsilon * epsilon) * error) / nf;
-    std::cout << "estimate perturbation: " << hatx(1) << std::endl;
-    return hatx;
+    double error = g_dThetaR[0] - hatx[0];
+    hatx[0] += (hatx[0] + beta1 / epsilon * error + jacobian * controlInput) / nf;
+    hatx[1] += (beta2 / (epsilon * epsilon) * error) / nf;
+    std::cout << "estimate perturbation: " << hatx[1] << std::endl;
 }
 
-double PD_controller(Vector2d hatx, double jacobian, double thetaL)
+double PD_controller(std::vector<float>& hatx, double jacobian, double thetaL)
 {
     float fk = 1.0;
-    hatx(1) = 0.0;
+    hatx[1] = 0.0;
     std::cout << "PD controller:" << g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) << std::endl;
-    return (g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx(1)) / jacobian;
+    return (g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx[1]) / jacobian;
 }
 
 // saturation function
@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
     ros::Subscriber subPsi = nh.subscribe("/magmed_manipulator/magnetAngle", 1000, psiCallback);
 
     // get reference theta
+    // ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/TDSignal", 1000, refSignalCallback);
     ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/referenceSignal", 1000, refSignalCallback);
 
     // publish the angular velocity of the magnet
@@ -99,7 +100,7 @@ int main(int argc, char *argv[])
     Eigen::Vector3d pa = { mcr.pr.L, 0.0, 180.0e-3};
 
     // initialize LESO
-    Vector2d v2dhatx = {0.0, 0.0};
+    std::vector<float> hatx = {0.0, 0.0};
 
     while(ros::ok())
     {   
@@ -111,10 +112,10 @@ int main(int argc, char *argv[])
         ROS_INFO("jacobian: %f", jacobian);
 
         // calculate the control input
-        double controlInput = PD_controller(v2dhatx, jacobian, g_fThetaL);
+        double controlInput = PD_controller(hatx, jacobian, g_fThetaL);
 
         // update LESO
-        v2dhatx = LESO(g_dThetaR[0], controlInput, jacobian, v2dhatx, nf);
+        LESO(controlInput, jacobian, hatx, nf);
 
         // // set coefficient of the controller (positive)
         // float k = 3.0;

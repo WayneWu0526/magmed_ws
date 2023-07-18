@@ -6,7 +6,7 @@
             "args": [
                 "--directory",
                 "/home/zhang/magmed_ws",
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
             ],
             "problemMatcher": [
                 "$catkin-gcc"

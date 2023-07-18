@@ -4,4 +4,5 @@
     <param name="isImageShow" value="$(arg arg_to_isImageShow)"/>
     <node pkg="magmed_manipulator" type="dianaManipulator" name="dianaManipulator"/>
     <node pkg="magmed_controller" type="velocityController" name="velocityController" output="screen"/>
+    <node pkg="magmed_joystick" type="refSignal" name="refSignal"/>
 </launch>

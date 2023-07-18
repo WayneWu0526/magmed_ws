@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(magmed_camera)
 
 set(OpenCV_DIR /usr/lib/x86_64-linux-gnu/cmake/opencv4/)
-set(Eigen3_DIR /usr/local/share/eigen3/cmake/)
+set(Eigen3_DIR /usr/lib/cmake/eigen3/)
 
 # SET(CMAKE_BUILD_TYPE "RelWithDebInfo")
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -130,6 +130,8 @@ include
 link_directories(
   /opt/MVS/lib/64
 )
+
+include_directories(${EIGEN3_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

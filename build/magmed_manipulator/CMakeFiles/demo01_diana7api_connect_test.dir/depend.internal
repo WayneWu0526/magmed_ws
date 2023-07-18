@@ -3,6 +3,10 @@
 
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.o
  /home/zhang/magmed_ws/src/magmed_manipulator/src/demo01_diana7api_connect_test.cpp
+ /opt/DianaApi/include/DianaAPI.h
+ /opt/DianaApi/include/DianaAPIDef.h
+ /opt/DianaApi/include/Environment.h
+ /opt/DianaApi/include/FunctionOptDef.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h
@@ -63,7 +67,3 @@ magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana
  /opt/ros/noetic/include/std_msgs/String.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
- /usr/local/DianaApi/include/DianaAPI.h
- /usr/local/DianaApi/include/DianaAPIDef.h
- /usr/local/DianaApi/include/Environment.h
- /usr/local/DianaApi/include/FunctionOptDef.h

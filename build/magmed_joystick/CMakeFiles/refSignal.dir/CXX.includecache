@@ -13,6 +13,8 @@ ros/ros.h
 -
 std_msgs/Float64MultiArray.h
 -
+vector
+-
 
 /opt/ros/noetic/include/ros/advertise_options.h
 ros/forwards.h

@@ -14,7 +14,7 @@
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 float g_fTipAngle = 0.0;
-bool g_bIsImageShow = false;
+bool g_bIsImageShow = true;
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -133,7 +133,7 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
 
     // whether to show the image
-    nh.param<bool>("isImageShow", g_bIsImageShow, false);
+    nh.param<bool>("isImageShow", g_bIsImageShow, true);
 
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);
     

@@ -5,16 +5,16 @@
         "databaseFilename": "${default}",
         "limitSymbolsToIncludedHeaders": false,
         "path": [
-          "/usr/local/DianaApi/lib/**",
+          "/opt/DianaApi/lib/**",
           "/opt/MVS/lib/64/**"
       ]
       },
       "includePath": [
         "/opt/ros/noetic/include/**",
         "/opt/ros/noetic/share/**",
-        "/usr/include/**",
-        "/usr/local/DianaApi/include/**",
+        "/opt/DianaApi/include/**",
         "/opt/MVS/include/**",
+        "/usr/include/**",
         "${workspaceFolder}/**"
       ],
       "name": "ROS",

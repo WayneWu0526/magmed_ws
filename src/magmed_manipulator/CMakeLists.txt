@@ -119,11 +119,11 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  /usr/local/DianaApi/include 
+  /opt/DianaApi/include 
 )
 
 link_directories(
-  /usr/local/DianaApi/lib
+  /opt/DianaApi/lib
 )
 
 ## Declare a C++ library
@@ -171,7 +171,7 @@ target_link_libraries(dianaManipulator_joystick
 )
 
 # # Set environment variable for DianaApi binaries (not necessary)
-# set(CMAKE_INSTALL_RPATH /usr/local/DianaApi/bin)
+# set(CMAKE_INSTALL_RPATH /opt/DianaApi/bin)
 # set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # install(TARGETS demo01_diana7api_connect_test

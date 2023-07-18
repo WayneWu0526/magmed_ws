@@ -3,6 +3,10 @@
 
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o
  /home/zhang/magmed_ws/src/magmed_manipulator/src/dianaManipulator_joystick.cpp
+ /opt/DianaApi/include/DianaAPI.h
+ /opt/DianaApi/include/DianaAPIDef.h
+ /opt/DianaApi/include/Environment.h
+ /opt/DianaApi/include/FunctionOptDef.h
  /opt/ros/noetic/include/geometry_msgs/Twist.h
  /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/ros/advertise_options.h
@@ -63,7 +67,3 @@ magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator
  /opt/ros/noetic/include/rosconsole/macros_generated.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
- /usr/local/DianaApi/include/DianaAPI.h
- /usr/local/DianaApi/include/DianaAPIDef.h
- /usr/local/DianaApi/include/Environment.h
- /usr/local/DianaApi/include/FunctionOptDef.h

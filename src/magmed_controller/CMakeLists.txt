@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(magmed_controller)
 
-set(Eigen3_DIR /usr/local/share/eigen3/cmake/)
+set(Eigen3_DIR /usr/lib/cmake/eigen3/)
+# set(Eigen3_DIR /usr/local/share/eigen3/cmake/)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
