@@ -78,6 +78,13 @@
 /home/zhang/magmed_ws/build/magmed_deeplearning/CMakeFiles/rebuild_cache.dir
 /home/zhang/magmed_ws/build/magmed_deeplearning/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_deeplearning/CMakeFiles/test.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/install/strip.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/install/local.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/install.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/list_install_components.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/rebuild_cache.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/edit_cache.dir
+/home/zhang/magmed_ws/build/magmed_description/CMakeFiles/test.dir
 /home/zhang/magmed_ws/build/magmed_feeder/CMakeFiles/install/strip.dir
 /home/zhang/magmed_ws/build/magmed_feeder/CMakeFiles/install/local.dir
 /home/zhang/magmed_ws/build/magmed_feeder/CMakeFiles/install.dir

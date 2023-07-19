@@ -8,6 +8,7 @@
 #define BAUDRATE 115200
 
 #define JOY1_MAX (float)500.0
+#define JOY1_DEADZONE (unsigned short int)30
 
 // 定义手柄数据包的结构
 class JoystickDataPacket
@@ -38,6 +39,23 @@ struct Joystick
 }joystick;
 
 typedef void (*CallbackFunction)(const std::vector<uint8_t>&);
+
+// deadzone
+void deadzone(signed int short &nJOY)
+{
+    if (nJOY > -JOY1_DEADZONE && nJOY < JOY1_DEADZONE)
+    {
+        nJOY = 0;
+    }
+    else if (nJOY >= JOY1_DEADZONE)
+    {
+        nJOY -= JOY1_DEADZONE;
+    }
+    else if (nJOY <= -JOY1_DEADZONE)
+    {
+        nJOY += JOY1_DEADZONE;
+    }
+}
 
 void dataPacketCallback(const std::vector<uint8_t> &packet)
 {
@@ -94,6 +112,10 @@ void dataPacketCallback(const std::vector<uint8_t> &packet)
         ROS_WARN("Invalid data packet. CRC check failed.");
         return;
     }
+    else
+    {
+        ROS_INFO("CRC check passed.");
+    }
 
     // 在这里根据功能码和数据进行相应的操作
     // 把数据转换成手柄结构体
@@ -103,6 +125,11 @@ void dataPacketCallback(const std::vector<uint8_t> &packet)
     joystick.nJOY1[0] = (data[1] << 8) | data[0];
     joystick.nJOY1[1] = (data[3] << 8) | data[2];
     joystick.nJOY1[2] = (data[5] << 8) | data[4];
+    // 为短整型添加死区
+    // 设置死区大小
+    deadzone(joystick.nJOY1[0]);
+    deadzone(joystick.nJOY1[1]);
+    deadzone(joystick.nJOY1[2]);
     // 将data第22个字节的第6位转换成bool值
     joystick.bJOYD = (data[21] & 0x40) >> 6;
 
@@ -170,18 +197,19 @@ int main(int argc, char *argv[])
 
         if(joystick.bJOYD) // linear
         {
-            msg.linear.x = joystick.nJOY1[0] / JOY1_MAX;
-            msg.linear.y = joystick.nJOY1[1] / JOY1_MAX;
-            msg.linear.z = joystick.nJOY1[1] / JOY1_MAX;
+
+            msg.linear.x = joystick.nJOY1[0] / (JOY1_MAX - JOY1_DEADZONE);
+            msg.linear.y = joystick.nJOY1[1] / (JOY1_MAX - JOY1_DEADZONE);
+            msg.linear.z = joystick.nJOY1[2] / (JOY1_MAX - JOY1_DEADZONE);
             msg.angular.x = 0.0;
             msg.angular.y = 0.0;
             msg.angular.z = 0.0;
         }
         else
         {
-            msg.angular.x = joystick.nJOY1[0] / JOY1_MAX;
-            msg.angular.y = joystick.nJOY1[1] / JOY1_MAX;
-            msg.angular.z = joystick.nJOY1[1] / JOY1_MAX;
+            msg.angular.x = joystick.nJOY1[0] / (JOY1_MAX - JOY1_DEADZONE);
+            msg.angular.y = joystick.nJOY1[1] / (JOY1_MAX - JOY1_DEADZONE);
+            msg.angular.z = joystick.nJOY1[2] / (JOY1_MAX - JOY1_DEADZONE);
             msg.linear.x = 0.0;
             msg.linear.y = 0.0;
             msg.linear.z = 0.0;

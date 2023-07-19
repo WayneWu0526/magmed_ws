@@ -57,6 +57,7 @@ all: gtest/all
 all: magmed_camera/all
 all: magmed_controller/all
 all: magmed_deeplearning/all
+all: magmed_description/all
 all: magmed_feeder/all
 all: magmed_joystick/all
 all: magmed_maglocator/all
@@ -70,6 +71,7 @@ preinstall: gtest/preinstall
 preinstall: magmed_camera/preinstall
 preinstall: magmed_controller/preinstall
 preinstall: magmed_deeplearning/preinstall
+preinstall: magmed_description/preinstall
 preinstall: magmed_feeder/preinstall
 preinstall: magmed_joystick/preinstall
 preinstall: magmed_maglocator/preinstall
@@ -88,6 +90,7 @@ clean: gtest/clean
 clean: magmed_camera/clean
 clean: magmed_controller/clean
 clean: magmed_deeplearning/clean
+clean: magmed_description/clean
 clean: magmed_feeder/clean
 clean: magmed_joystick/clean
 clean: magmed_maglocator/clean
@@ -231,6 +234,24 @@ magmed_deeplearning/preinstall:
 magmed_deeplearning/clean:
 
 .PHONY : magmed_deeplearning/clean
+
+#=============================================================================
+# Directory level rules for directory magmed_description
+
+# Recursive "all" directory target.
+magmed_description/all:
+
+.PHONY : magmed_description/all
+
+# Recursive "preinstall" directory target.
+magmed_description/preinstall:
+
+.PHONY : magmed_description/preinstall
+
+# Recursive "clean" directory target.
+magmed_description/clean:
+
+.PHONY : magmed_description/clean
 
 #=============================================================================
 # Directory level rules for directory magmed_feeder

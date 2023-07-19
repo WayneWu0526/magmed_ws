@@ -1,2 +1,2 @@
-magmed_camera:magmed_controller:magmed_deeplearning:magmed_feeder:magmed_joystick:magmed_maglocator:magmed_manipulator:magmed_virtualsurgery
+magmed_camera:magmed_controller:magmed_deeplearning:magmed_description:magmed_feeder:magmed_joystick:magmed_maglocator:magmed_manipulator:magmed_virtualsurgery
 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/zhang/magmed_ws/devel -DCMAKE_INSTALL_PREFIX=/home/zhang/magmed_ws/install -G Unix Makefiles

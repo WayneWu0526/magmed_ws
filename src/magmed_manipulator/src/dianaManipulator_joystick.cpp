@@ -12,26 +12,44 @@
 bool g_bExit = false;
 double g_speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
+void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
+{
+    float MAX_LINEAR_SPEED = 0.1;
+    float MAX_ANGULAR_SPEED = 0.1;
+    // if msg->linear.x < 0.1
+    g_speeds[0] = MAX_LINEAR_SPEED * (msg->linear.x);
+    g_speeds[1] = MAX_LINEAR_SPEED * (msg->linear.y);
+    g_speeds[2] = MAX_LINEAR_SPEED * (msg->linear.z);
+    g_speeds[3] = MAX_ANGULAR_SPEED * (msg->angular.x);
+    g_speeds[4] = MAX_ANGULAR_SPEED * (msg->angular.y);
+    g_speeds[5] =MAX_ANGULAR_SPEED * (msg->angular.z);
+    for(int i=0; i < 6; i++)
+    {
+        std::cout << g_speeds[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
 // work thread
 static void* WorkThread(void* pUser)
 {
     int nRet = 0;
     const char *strIpAddress = "192.168.10.75";
+    double active_tcp[6] = {0.0, 0.0, -0.810, 0.0, 0.0, - M_PI / 2.0};
+    double acc[2] = {0.10, 0.10}; // velocity/angular velocity
+    double speeds[JOINT_NUM] = {0.0};
+    // speeds[3] = 0.1;
+
     while(1)
     {
-        double acc[2] = {0.30, 0.50}; // 1.0; // acceleration
-        double speed[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-        nRet = speedL(g_speeds, acc, 0, nullptr, strIpAddress);
-        /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
-        值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
-        到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
+        int nRet = speedL(g_speeds, acc, 0, nullptr, strIpAddress);
         if(nRet < 0)
         {
-            printf("speedJ failed! Return value = %d\n", nRet);
+            printf("speedL failed! Return value = %d\n", nRet);
         }
         else
         {
-            // printf("Activate speedJ model\n");
+            // printf("Activate speedL model\n");
         }
 
         if(g_bExit)
@@ -78,34 +96,17 @@ void errorControl(int e, const char *strIpAddress)
     printf("error code (%d):%s\n", e, strError);
 }
 
-void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
-{
-    float MAX_LINEAR_SPEED = 3.0;
-    float MAX_ANGULAR_SPEED = 3.0;
-    // if msg->linear.x < 0.1
-    g_speeds[0] = MAX_LINEAR_SPEED * (msg->linear.x);
-    g_speeds[1] = MAX_LINEAR_SPEED * (msg->linear.y);
-    g_speeds[2] = MAX_LINEAR_SPEED * (msg->linear.z);
-    g_speeds[3] = MAX_ANGULAR_SPEED * (msg->angular.x);
-    g_speeds[4] = MAX_ANGULAR_SPEED * (msg->angular.y);
-    g_speeds[5] =MAX_ANGULAR_SPEED * (msg->angular.z);
-    for(int i=0; i < 6; i++)
-    {
-        std::cout << g_speeds[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
 int main(int argc, char *argv[])
 {
 
     // 初始化ros节点
-    ros::init(argc, argv, "dianaManipulator");
+    ros::init(argc, argv, "dianaManipulator_joystick");
     // 创建节点句柄
     ros::NodeHandle nh;
 
     // subscribe the rotation angular velocity of the magnet
     ros::Subscriber sub = nh.subscribe("/magmed_joystick/joystick_controller", 1000, twistCallback);
+    // ros::Subscriber sub = nh.subscribe("/spacenav/twist", 1000, twistCallback);
     // 发送频率
     ros::Rate rate(100);
 
@@ -156,6 +157,7 @@ int main(int argc, char *argv[])
         }
         g_bExit = true;
 
+        M_SLEEP(2000); // delay 2s 否则可能会报和socket有关的错误。初步猜测是因为线程还没退出，就调用了destroySrv，导致线程中的socket被关闭了。
         // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
         nRet = holdBrake(strIpAddress);
         if (nRet < 0)

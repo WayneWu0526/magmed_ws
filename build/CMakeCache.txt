@@ -477,6 +477,12 @@ magmed_deeplearning_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_deeplea
 magmed_deeplearning_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_deeplearning
 
 //Value Computed by CMake
+magmed_description_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_description
+
+//Value Computed by CMake
+magmed_description_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_description
+
+//Value Computed by CMake
 magmed_feeder_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_feeder
 
 //Value Computed by CMake
@@ -601,6 +607,8 @@ CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
+//Path to cache edit program executable.
+CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -687,7 +695,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

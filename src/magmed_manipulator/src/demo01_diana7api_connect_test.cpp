@@ -26,16 +26,21 @@ static void* WorkThread(void* pUser)
 {
     int nRet = 0;
     const char *strIpAddress = "192.168.10.75";
+    double active_tcp[6] = {0.0, 0.0, -0.810, 0.0, 0.0, - M_PI / 2.0};
+    double acc[2] = {0.10, 0.10}; // velocity/angular velocity
+    double speeds[JOINT_NUM] = {0.0};
+
     while(1)
     {
-        double speeds[JOINT_NUM] = {0.0};
-        speeds[6]=0.0;
-        double acc =0.0;
-        const char* strIpAddress = "192.168.10.75";
-        int ret = speedJ(speeds, acc, 0, strIpAddress);
-        if(ret < 0)
+        speeds[5] = 0.5;
+        int nRet = speedL(speeds, acc, 0, active_tcp, strIpAddress);
+        if(nRet < 0)
         {
-            printf("speedJ failed! Return value = %d\n", ret);
+            printf("speedL failed! Return value = %d\n", nRet);
+        }
+        else
+        {
+            // printf("Activate speedL model\n");
         }
 
 
@@ -122,30 +127,6 @@ int main(int argc, char *argv[])
             break;
         }
 
-        double dblMaxAcc[7]={0};
-        nRet = getMechanicalMaxJointsAcc(dblMaxAcc, strIpAddress);
-        printf("getMechanicalMaxJointsAcc ret = %d dblMaxAcc = {%f,%f,%f,%f,%f,%f,%f}\n"
-        , nRet
-        , dblMaxAcc[0]
-        , dblMaxAcc[1]
-        , dblMaxAcc[2]
-        , dblMaxAcc[3]
-        , dblMaxAcc[4]
-        , dblMaxAcc[5]
-        , dblMaxAcc[6]);
-
-        double dblMaxVel[7]={0};
-        nRet = getMechanicalMaxJointsVel(dblMaxVel, strIpAddress);
-        printf("getMechanicalMaxJointsVel ret = %d dblMaxVel = {%f,%f,%f,%f,%f,%f,%f}\n"
-        , nRet
-        , dblMaxVel[0]
-        , dblMaxVel[1]
-        , dblMaxVel[2]
-        , dblMaxVel[3]
-        , dblMaxVel[4]
-        , dblMaxVel[5]
-        , dblMaxVel[6]);
-
         while(ros::ok())
         {
             rate.sleep();
@@ -167,4 +148,6 @@ int main(int argc, char *argv[])
     // 结束调用 API，用于结束时释放指定 IP 地址机械臂的资源。
     // 如果该函数未被调用就退出系统（例如客户端程序在运行期间崩溃），服务端将因为检测不到心跳而认为客户端异常掉线，直至客户端再次运行，重新连接。除此之外不会引起严重后果。
     destroySrv(strIpAddress);
+
+    return 0;
 }

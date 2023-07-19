@@ -69,6 +69,8 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "bit": "cpp"
-    }
+        "bit": "cpp",
+        "dense": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/zhang/magmed_ws/src/magmed_camera"
 }
