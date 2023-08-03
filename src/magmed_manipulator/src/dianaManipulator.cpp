@@ -17,6 +17,7 @@ static void *WorkThread(void *pUser)
 {
     int nRet = 0;
     const char *strIpAddress = "192.168.10.75";
+    ros::Rate rate(100); // 推送周期是100Hz
     while (1)
     {
         double speeds[JOINT_NUM] = {0.0};
@@ -29,17 +30,19 @@ static void *WorkThread(void *pUser)
         到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
         if (nRet < 0)
         {
-            printf("speedJ failed! Return value = %d\n", nRet);
+            ROS_ERROR("speedJ failed! Return value = %d\n", nRet);
         }
         else
         {
-            printf("Activate speedJ model\n");
+            // printf("Activate speedJ model\n");
         }
 
         if (g_bExit)
         {
             break;
         }
+
+        rate.sleep(); // 若不设置延时可能导致线程占用过高，socket满了，导致报错
     }
     stop(strIpAddress);
     return 0;
@@ -95,7 +98,7 @@ void errorControl(int e, const char *strIpAddress)
 {
     strIpAddress = "192.168.10.75";
     const char *strError = formatError(e); // 该函数后面会介绍
-    printf("error code (%d):%s\n", e, strError);
+    ROS_ERROR("error code (%d):%s\n", e, strError);
 }
 
 void psiCallback(const std_msgs::Float64::ConstPtr &msg)
@@ -135,7 +138,7 @@ int main(int argc, char *argv[])
         nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
         if (nRet < 0)
         {
-            printf("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
             break;
         }
         if (pinfo)
@@ -147,7 +150,7 @@ int main(int argc, char *argv[])
         nRet = releaseBrake(strIpAddress);
         if (nRet < 0)
         {
-            printf("releaseBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("releaseBrake failed! nReturn value = %d\n", nRet);
             break;
         }
         M_SLEEP(2000); // delay 2s
@@ -156,14 +159,14 @@ int main(int argc, char *argv[])
         nRet = getJointPos(joints, strIpAddress);
         if (nRet < 0)
         {
-            printf("getJointPos failed! Return value = %d\n", nRet);
+            ROS_ERROR("getJointPos failed! Return value = %d\n", nRet);
             break;
         }
         joints[6] = 0.0;
         nRet = moveJToTarget(joints, 3, 3, strIpAddress);
         if (nRet < 0)
         {
-            printf("moveLToTarget failed! Return value = %d\n", nRet);
+            ROS_ERROR("moveLToTarget failed! Return value = %d\n", nRet);
             break;
         }
         wait_move(strIpAddress);
@@ -173,7 +176,7 @@ int main(int argc, char *argv[])
         nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
         if (nRet != 0)
         {
-            printf("thread create failed.ret = %d\n", nRet);
+            ROS_ERROR("thread create failed.ret = %d\n", nRet);
             break;
         }
 
@@ -182,7 +185,7 @@ int main(int argc, char *argv[])
             nRet = getJointPos(joints, strIpAddress);
             if (nRet < 0)
             {
-                printf("getJointPos failed! Return value = %d\n", nRet);
+                ROS_ERROR("getJointPos failed! Return value = %d\n", nRet);
                 break;
             }
             else
@@ -204,7 +207,7 @@ int main(int argc, char *argv[])
         nRet = holdBrake(strIpAddress);
         if (nRet < 0)
         {
-            printf("holdBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("holdBrake failed! nReturn value = %d\n", nRet);
             break;
         }
 

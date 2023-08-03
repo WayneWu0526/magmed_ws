@@ -30,24 +30,55 @@ static void* WorkThread(void* pUser)
     double acc[2] = {0.10, 0.10}; // velocity/angular velocity
     double speeds[JOINT_NUM] = {0.0};
 
+    // 发送频率
+    ros::Rate rate(100); // 推送周期是100Hz
+
     while(1)
     {
-        speeds[5] = 0.5;
-        int nRet = speedL(speeds, acc, 0, active_tcp, strIpAddress);
+        // speeds[5] = 0.5;
+        // int nRet = speedL(speeds, acc, 0, active_tcp, strIpAddress);
+        // if(nRet < 0)
+        // {
+        //     printf("speedL failed! Return value = %d\n", nRet);
+        // }
+        // else
+        // {
+        //     // printf("Activate speedL model\n");
+        // }
+
+        double default_tcp[16] = {0.0};
+        nRet = getDefaultActiveTcp(default_tcp, strIpAddress);
         if(nRet < 0)
         {
-            printf("speedL failed! Return value = %d\n", nRet);
+            ROS_ERROR("getDefaultActiveTcp failed! Return value = %d\n", nRet);
+        }
+        std::cout << "default_tcp: ";
+        for(int i = 0; i < 16; i++)
+        {
+            std::cout << default_tcp[i] << " ";
+        }
+        std::cout << std::endl;
+
+        double pose[6] = {0.0};
+        if (getDefaultActiveTcpPose (pose,strIpAddress) < 0)
+        {
+            ROS_INFO("Diana API getDefaultActiveTcpPose failed!\n");
         }
         else
         {
-            // printf("Activate speedL model\n");
+            printf("getDefaultActiveTcpPose: %f, %f, %f, %f, %f, %f\n", pose[0], pose[1], pose[2], 
+                pose[3], pose[4], pose[5]);
         }
+
+        // g_bExit = true;
 
 
         if(g_bExit)
         {
             break;
         }
+
+        rate.sleep(); // 若不设置延时可能导致线程占用过高，socket满了，导致报错        
     }
     stop(strIpAddress);
     return 0;

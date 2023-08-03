@@ -8,14 +8,23 @@
 #include <geometry_msgs/Twist.h>
 #include <cmath>
 #define JOINT_NUM 7
+#define MAX_LINEAR_SPEED 0.1
+#define MAX_ANGULAR_SPEED 0.1
 
 bool g_bExit = false;
 double g_speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
+// M_SLEEP 函数用于延时，单位为毫秒
+void M_SLEEP(int milliseconds)
+{
+    struct timespec ts;
+    ts.tv_sec = milliseconds / 1000;
+    ts.tv_nsec = (milliseconds % 1000) * 1000000;
+    nanosleep(&ts, NULL);
+}
+
 void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
-    float MAX_LINEAR_SPEED = 0.1;
-    float MAX_ANGULAR_SPEED = 0.1;
     // if msg->linear.x < 0.1
     g_speeds[0] = MAX_LINEAR_SPEED * (msg->linear.x);
     g_speeds[1] = MAX_LINEAR_SPEED * (msg->linear.y);
@@ -35,39 +44,33 @@ static void* WorkThread(void* pUser)
 {
     int nRet = 0;
     const char *strIpAddress = "192.168.10.75";
-    double active_tcp[6] = {0.0, 0.0, -0.810, 0.0, 0.0, - M_PI / 2.0};
+    // double active_tcp[6] = {0.0, 0.0, -0.810, 0.0, 0.0, - M_PI / 2.0};
     double acc[2] = {0.10, 0.10}; // velocity/angular velocity
-    double speeds[JOINT_NUM] = {0.0};
-    // speeds[3] = 0.1;
+    double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.1};
+    // 发送频率
+    ros::Rate rate(100); // 推送周期是100Hz
 
     while(1)
     {
-        int nRet = speedL(g_speeds, acc, 0, nullptr, strIpAddress);
+        int nRet = speedLOnTcp(g_speeds, acc, 0, nullptr, strIpAddress);
         if(nRet < 0)
         {
-            printf("speedL failed! Return value = %d\n", nRet);
+            ROS_ERROR("speedLOnTcp failed! Return value = %d\n", nRet);
         }
         else
         {
-            // printf("Activate speedL model\n");
+            // ROS_INFO("Activate speedL model\n");
         }
 
         if(g_bExit)
         {
             break;
         }
+
+        rate.sleep(); // 若不设置延时可能导致线程占用过高，socket满了，导致报错
     }
     stop(strIpAddress);
     return 0;
-}
-
-// M_SLEEP 函数用于延时，单位为毫秒
-void M_SLEEP(int milliseconds)
-{
-    struct timespec ts;
-    ts.tv_sec = milliseconds / 1000;
-    ts.tv_nsec = (milliseconds % 1000) * 1000000;
-    nanosleep(&ts, NULL);
 }
 
 void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
@@ -93,7 +96,7 @@ void errorControl(int e, const char *strIpAddress)
 {
     strIpAddress = "192.168.10.75";
     const char *strError = formatError(e); // 该函数后面会介绍
-    printf("error code (%d):%s\n", e, strError);
+    ROS_ERROR("error code (%d):%s\n", e, strError);
 }
 
 int main(int argc, char *argv[])
@@ -105,8 +108,8 @@ int main(int argc, char *argv[])
     ros::NodeHandle nh;
 
     // subscribe the rotation angular velocity of the magnet
-    ros::Subscriber sub = nh.subscribe("/magmed_joystick/joystick_controller", 1000, twistCallback);
-    // ros::Subscriber sub = nh.subscribe("/spacenav/twist", 1000, twistCallback);
+    // ros::Subscriber sub = nh.subscribe("/magmed_joystick/joystick_controller", 1000, twistCallback);
+    ros::Subscriber sub = nh.subscribe("/spacenav/twist", 1000, twistCallback);
     // 发送频率
     ros::Rate rate(100);
 
@@ -124,7 +127,7 @@ int main(int argc, char *argv[])
         nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
         if (nRet < 0)
         {
-            printf("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
             break;
         }
         if (pinfo)
@@ -136,16 +139,17 @@ int main(int argc, char *argv[])
         nRet = releaseBrake(strIpAddress);
         if (nRet < 0)
         {
-            printf("releaseBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("releaseBrake failed! nReturn value = %d\n", nRet);
             break;
         }
         M_SLEEP(2000); // delay 2s
 
+        ROS_INFO("-----Activate Thread-----\n");
         pthread_t nThreadID;
         nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
         if (nRet != 0)
         {
-            printf("thread create failed.ret = %d\n",nRet);
+            ROS_ERROR("thread create failed.ret = %d\n",nRet);
             break;
         }
 
@@ -162,7 +166,7 @@ int main(int argc, char *argv[])
         nRet = holdBrake(strIpAddress);
         if (nRet < 0)
         {
-            printf("holdBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("holdBrake failed! nReturn value = %d\n", nRet);
             break;
         }
 
