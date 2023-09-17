@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 
     // position of the magnet
     // Eigen::Vector3d pa = { mcr.pr.L, 0, 150.0e-3};
-    Eigen::Vector3d pa = { mcr.pr.L, 0.0, 180.0e-3};
+    Eigen::Vector3d pa = { mcr.pr.L, 0.0, 183.0e-3};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};
@@ -108,7 +108,8 @@ int main(int argc, char *argv[])
         // double phi = M_PI / 2.0;        
 
         // get jacobian of the robot
-        double jacobian = mcr.get_jacobian(g_fPsi, pa);
+        RowVector4d J = mcr.get_jacobian(g_fPsi, pa);
+        double jacobian = J(0);
         ROS_INFO("jacobian: %f", jacobian);
 
         // calculate the control input

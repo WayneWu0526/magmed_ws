@@ -545,6 +545,19 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named controlAllocation
+
+# Build rule for target.
+controlAllocation: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controlAllocation
+.PHONY : controlAllocation
+
+# fast build rule for target.
+controlAllocation/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/build
+.PHONY : controlAllocation/fast
+
+#=============================================================================
 # Target rules for targets named velocityController
 
 # Build rule for target.
@@ -742,6 +755,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... controlAllocation"
 	@echo "... velocityController"
 	@echo "... getJacobianOfMCR"
 	@echo "... refSignal"

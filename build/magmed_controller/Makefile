@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+magmed_controller/CMakeFiles/controlAllocation.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/controlAllocation.dir/rule
+.PHONY : magmed_controller/CMakeFiles/controlAllocation.dir/rule
+
+# Convenience name for target.
+controlAllocation: magmed_controller/CMakeFiles/controlAllocation.dir/rule
+
+.PHONY : controlAllocation
+
+# fast build rule for target.
+controlAllocation/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/build
+.PHONY : controlAllocation/fast
+
+# Convenience name for target.
 magmed_controller/CMakeFiles/velocityController.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velocityController.dir/rule
 .PHONY : magmed_controller/CMakeFiles/velocityController.dir/rule
@@ -196,6 +211,33 @@ getJacobianOfMCR: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
 getJacobianOfMCR/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
 .PHONY : getJacobianOfMCR/fast
+
+src/controlAllocation.o: src/controlAllocation.cpp.o
+
+.PHONY : src/controlAllocation.o
+
+# target to build an object file
+src/controlAllocation.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/src/controlAllocation.cpp.o
+.PHONY : src/controlAllocation.cpp.o
+
+src/controlAllocation.i: src/controlAllocation.cpp.i
+
+.PHONY : src/controlAllocation.i
+
+# target to preprocess a source file
+src/controlAllocation.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/src/controlAllocation.cpp.i
+.PHONY : src/controlAllocation.cpp.i
+
+src/controlAllocation.s: src/controlAllocation.cpp.s
+
+.PHONY : src/controlAllocation.s
+
+# target to generate assembly for a file
+src/controlAllocation.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/src/controlAllocation.cpp.s
+.PHONY : src/controlAllocation.cpp.s
 
 src/getJacobianOfMCR.o: src/getJacobianOfMCR.cpp.o
 
@@ -264,8 +306,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... controlAllocation"
 	@echo "... velocityController"
 	@echo "... getJacobianOfMCR"
+	@echo "... src/controlAllocation.o"
+	@echo "... src/controlAllocation.i"
+	@echo "... src/controlAllocation.s"
 	@echo "... src/getJacobianOfMCR.o"
 	@echo "... src/getJacobianOfMCR.i"
 	@echo "... src/getJacobianOfMCR.s"

@@ -265,6 +265,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/DependInfo.cmake"
   "magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake"
+  "magmed_controller/CMakeFiles/controlAllocation.dir/DependInfo.cmake"
   "magmed_controller/CMakeFiles/velocityController.dir/DependInfo.cmake"
   "magmed_controller/CMakeFiles/getJacobianOfMCR.dir/DependInfo.cmake"
   "magmed_joystick/CMakeFiles/refSignal.dir/DependInfo.cmake"

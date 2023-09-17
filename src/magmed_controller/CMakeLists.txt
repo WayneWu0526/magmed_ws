@@ -119,8 +119,9 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-include
+  include
   ${catkin_INCLUDE_DIRS}
+  /usr/local/include/QuadProg++
 )
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -140,6 +141,7 @@ add_dependencies(getJacobianOfMCR ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/magmed_controller_node.cpp)
 add_executable(velocityController src/velocityController.cpp)
+add_executable(controlAllocation src/controlAllocation.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -150,6 +152,7 @@ add_executable(velocityController src/velocityController.cpp)
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(velocityController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(controlAllocation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
@@ -161,7 +164,10 @@ target_link_libraries(velocityController
   ${catkin_LIBRARIES}
   getJacobianOfMCR
 )
-
+target_link_libraries(controlAllocation
+  ${catkin_LIBRARIES}
+  quadprog
+)
 #############
 ## Install ##
 #############

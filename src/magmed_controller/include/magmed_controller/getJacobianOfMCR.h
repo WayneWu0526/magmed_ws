@@ -33,7 +33,7 @@ namespace magmed_controller
     public:
         Properties pr; // properties of the robot
         double get_theta(double psi, const Vector3d& pa); // get the tip angle of the robot
-        double get_jacobian(double psi, const Vector3d& pa); // get the Jacobian of the robot
+        RowVector4d get_jacobian(double psi, const Vector3d& pa); // get the Jacobian of the robot
 
     private:
         MatrixXd x = MatrixXd::Zero(3, N); // the position of the robot
@@ -57,7 +57,21 @@ namespace magmed_controller
                 -cos(theta), 0.0, -sin(theta);
             return pRY;
         }
-        Vector2d g(const Vector3d& x, const Vector3d& dx, const Vector2d& theta, const Vector3d& hatma, const Vector3d& pa);
+        Matrix3d RotZ(double theta)
+        {
+            AngleAxisd vecZ(theta, Vector3d(0, 0, 1));
+            return vecZ.matrix();
+        }
+        Matrix3d pRotZ(double theta)
+        {
+            Matrix3d pRZ;
+            pRZ << -sin(theta), -cos(theta), 0.0,
+                cos(theta), -sin(theta), 0.0,
+                0.0, 0.0, 0.0;
+            return pRZ;
+        }
+        double g(const Vector3d& x, const Vector3d& dx, const Vector2d& theta, const Vector3d& hatma, const Vector3d& pa);
+        RowVector3d g_ex(const Vector3d& x, const Vector3d& dx, const Vector2d& theta, const Vector3d& hatma, const Vector3d& pa);
     };
 };
 

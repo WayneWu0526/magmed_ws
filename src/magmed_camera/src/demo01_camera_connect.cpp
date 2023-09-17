@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "/opt/MVS/include/MvCameraControl.h"
+#include <MvCameraControl.h>
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 // ch:等待按键输入 | en:Wait for key press

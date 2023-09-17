@@ -220,5 +220,8 @@ int main(int argc, char *argv[])
         ros::spinOnce();
         loop_rate.sleep();
     }
+
+    joystick_serial.close();
+
     return 0;
 }

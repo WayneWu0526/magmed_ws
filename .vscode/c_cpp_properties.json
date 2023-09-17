@@ -1,28 +1,29 @@
 {
     "configurations": [
         {
+            "name": "ROS",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "c++17",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/noetic/include",
+                "/opt/ros/noetic/share",
+                "/opt/DianaApi/include",
+                "/opt/MVS/include",
+                "/usr/local/include/QuadProg++",
+                "/usr/include/**"
+            ],
             "browse": {
                 "databaseFilename": "${default}",
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
-                    "/opt/DianaApi/lib/**",
-                    "/opt/MVS/lib/64/**"
+                    "/opt/DianaApi/lib",
+                    "/opt/MVS/lib/64"
                 ]
-            },
-            "includePath": [
-                "/opt/ros/noetic/include/**",
-                "/opt/ros/noetic/share/**",
-                "/opt/DianaApi/include/**",
-                "/opt/MVS/include/**",
-                "/usr/include/**",
-                "${workspaceFolder}/**"
-            ],
-            "name": "ROS",
-            "intelliSenseMode": "gcc-x64",
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu11",
-            "cppStandard": "c++14",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            }
         }
     ],
     "version": 4

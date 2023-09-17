@@ -201,6 +201,7 @@ magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py
 # Directory level rules for directory magmed_controller
 
 # Recursive "all" directory target.
+magmed_controller/all: magmed_controller/CMakeFiles/controlAllocation.dir/all
 magmed_controller/all: magmed_controller/CMakeFiles/velocityController.dir/all
 magmed_controller/all: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all
 
@@ -212,6 +213,7 @@ magmed_controller/preinstall:
 .PHONY : magmed_controller/preinstall
 
 # Recursive "clean" directory target.
+magmed_controller/clean: magmed_controller/CMakeFiles/controlAllocation.dir/clean
 magmed_controller/clean: magmed_controller/CMakeFiles/velocityController.dir/clean
 magmed_controller/clean: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/clean
 
@@ -497,7 +499,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmoc
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=17,18 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=19,20 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -524,7 +526,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=15,16 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=17,18 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -551,7 +553,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=21,22 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=23,24 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -578,7 +580,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=19,20 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=21,22 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -605,7 +607,7 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 magmed_camera/CMakeFiles/pubTipAngle.dir/all: magmed_camera/CMakeFiles/imageProcess.dir/all
 	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target pubTipAngle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=27,28 "Built target pubTipAngle"
 .PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/all
 
 # Build rule for subdir invocation for target.
@@ -632,7 +634,7 @@ magmed_camera/CMakeFiles/pubTipAngle.dir/clean:
 magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all:
 	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target demo03_grabimage_callback"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=9,10 "Built target demo03_grabimage_callback"
 .PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
 
 # Build rule for subdir invocation for target.
@@ -659,7 +661,7 @@ magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean:
 magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all:
 	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target demo02_grabimage_activestream"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target demo02_grabimage_activestream"
 .PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
 
 # Build rule for subdir invocation for target.
@@ -686,7 +688,7 @@ magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean:
 magmed_camera/CMakeFiles/demo01_camera_connect.dir/all:
 	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=1,2 "Built target demo01_camera_connect"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=3,4 "Built target demo01_camera_connect"
 .PHONY : magmed_camera/CMakeFiles/demo01_camera_connect.dir/all
 
 # Build rule for subdir invocation for target.
@@ -727,7 +729,7 @@ magmed_camera/CMakeFiles/imageProcess.dir/all: magmed_camera/CMakeFiles/roscpp_g
 magmed_camera/CMakeFiles/imageProcess.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 	$(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=23,24 "Built target imageProcess"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target imageProcess"
 .PHONY : magmed_camera/CMakeFiles/imageProcess.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1153,6 +1155,47 @@ magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
 .PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
+# Target rules for target magmed_controller/CMakeFiles/controlAllocation.dir
+
+# All Build rule for target.
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+magmed_controller/CMakeFiles/controlAllocation.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/depend
+	$(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=1,2 "Built target controlAllocation"
+.PHONY : magmed_controller/CMakeFiles/controlAllocation.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_controller/CMakeFiles/controlAllocation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/controlAllocation.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_controller/CMakeFiles/controlAllocation.dir/rule
+
+# Convenience name for target.
+controlAllocation: magmed_controller/CMakeFiles/controlAllocation.dir/rule
+
+.PHONY : controlAllocation
+
+# clean rule for target.
+magmed_controller/CMakeFiles/controlAllocation.dir/clean:
+	$(MAKE) -f magmed_controller/CMakeFiles/controlAllocation.dir/build.make magmed_controller/CMakeFiles/controlAllocation.dir/clean
+.PHONY : magmed_controller/CMakeFiles/controlAllocation.dir/clean
+
+#=============================================================================
 # Target rules for target magmed_controller/CMakeFiles/velocityController.dir
 
 # All Build rule for target.
@@ -1174,7 +1217,7 @@ magmed_controller/CMakeFiles/velocityController.dir/all: magmed_camera/CMakeFile
 magmed_controller/CMakeFiles/velocityController.dir/all: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=31,32 "Built target velocityController"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=33,34 "Built target velocityController"
 .PHONY : magmed_controller/CMakeFiles/velocityController.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1215,7 +1258,7 @@ magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all: magmed_camera/CMakeFiles/
 magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=13,14 "Built target getJacobianOfMCR"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=15,16 "Built target getJacobianOfMCR"
 .PHONY : magmed_controller/CMakeFiles/getJacobianOfMCR.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1242,7 +1285,7 @@ magmed_controller/CMakeFiles/getJacobianOfMCR.dir/clean:
 magmed_joystick/CMakeFiles/refSignal.dir/all:
 	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/depend
 	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=29,30 "Built target refSignal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=31,32 "Built target refSignal"
 .PHONY : magmed_joystick/CMakeFiles/refSignal.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1350,7 +1393,7 @@ magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean:
 magmed_joystick/CMakeFiles/readJoystick.dir/all:
 	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/depend
 	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=27,28 "Built target readJoystick"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=29,30 "Built target readJoystick"
 .PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1431,7 +1474,7 @@ magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean:
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all:
 	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/depend
 	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=11,12 "Built target dianaManipulator_joystick"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=13,14 "Built target dianaManipulator_joystick"
 .PHONY : magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1458,7 +1501,7 @@ magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/clean:
 magmed_manipulator/CMakeFiles/dianaManipulator.dir/all:
 	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/depend
 	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=9,10 "Built target dianaManipulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=11,12 "Built target dianaManipulator"
 .PHONY : magmed_manipulator/CMakeFiles/dianaManipulator.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1485,7 +1528,7 @@ magmed_manipulator/CMakeFiles/dianaManipulator.dir/clean:
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all:
 	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/depend
 	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=3,4 "Built target demo01_diana7api_connect_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target demo01_diana7api_connect_test"
 .PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all
 
 # Build rule for subdir invocation for target.

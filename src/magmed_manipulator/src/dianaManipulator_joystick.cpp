@@ -23,6 +23,7 @@ void M_SLEEP(int milliseconds)
     nanosleep(&ts, NULL);
 }
 
+
 void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
     // if msg->linear.x < 0.1
@@ -90,8 +91,7 @@ void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart 
             }
         }
     }
-}
-
+} 
 void errorControl(int e, const char *strIpAddress)
 {
     strIpAddress = "192.168.10.75";

@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "/opt/MVS/include/MvCameraControl.h"
+#include <MvCameraControl.h>
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
 #include <std_msgs/Float64.h>
