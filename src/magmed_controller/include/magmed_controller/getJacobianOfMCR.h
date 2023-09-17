@@ -18,7 +18,7 @@ namespace magmed_controller
         {
             double E = 3.0e6; //909.0e3; // the Young's modulus of the robot
             double r = (1.086e-03)/2.0;
-            double I = M_PI * pow(r, 4) / 4.0;
+            double I = M_PI * pow(r, 4.0) / 4.0;
             double A = M_PI * r * r;
             double L = 24.0e-3; // the length of the robot
 
@@ -27,7 +27,7 @@ namespace magmed_controller
             // double A = W*W;
             // double L = 10.0*W;
             Vector3d hatM = {1.0, 0.0, 0.0}; // the magnetization direction of the robot
-            double normM = 13.0e4; //144.0e3; // the norm of the magnetization of the robot
+            double normM = 10.0e4; //144.0e3; // the norm of the magnetization of the robot
         };
 
     public:

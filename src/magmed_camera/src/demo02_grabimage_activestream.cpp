@@ -3,10 +3,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "/opt/MVS/include/MvCameraControl.h"
+#include <MvCameraControl.h>
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
-#include "magmed_camera/imageProcess.h"
+#include <MvCameraControl.h>
 
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;

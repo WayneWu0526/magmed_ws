@@ -2,7 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "/opt/MVS/include/MvCameraControl.h"
+#include <MvCameraControl.h>
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
 // 等待用户输入enter键来结束取流或结束程序

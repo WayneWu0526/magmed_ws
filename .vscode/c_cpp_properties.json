@@ -2,8 +2,10 @@
     "configurations": [
         {
             "name": "ROS",
-            "intelliSenseMode": "linux-gcc-x64",
+            // "intelliSenseMode": "linux-gcc-x64",
+            "intelliSenseMode": "clang-x64",
             "compilerPath": "/usr/bin/gcc",
+            // "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "cStandard": "gnu17",
             "cppStandard": "c++17",
             "configurationProvider": "ms-vscode.cmake-tools",
