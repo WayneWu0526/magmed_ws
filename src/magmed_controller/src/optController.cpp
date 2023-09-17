@@ -47,19 +47,16 @@ void LESO(Vector4d controlInput, RowVector4d jacobian, std::vector<float> &hatx,
 
 double FF_controller(std::vector<float> &hatx, double thetaL)
 {
-    float fk = 1.0;
+    float fk = 200.0;
     hatx[1] = 0.0;
     std::cout << "virtual FF_controller:" << g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) << std::endl;
     return g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx[1];
 }
 
-Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jacobian, double L, double H)
+Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jacobian, double L, double H, int nf)
 {
-    Matrix4d B = jacobian;
     // diagonal
-    DiagonalMatrix<double, 4> W;
-    W.diagonal() << 0.001, 100.0, 100.0, 0.0;
-    float T = 0.01;
+    float T = 1.0 / nf;
     Vector4d Umin = {-M_PI / 2.0, L, H - 20.0e-3, 0.0};
     Vector4d Umax = {M_PI / 2.0, L, H + 20.0e-3, 0.0};
     Umin = (Umin - u) / T;
@@ -72,22 +69,27 @@ Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jac
 
     n = 5;
     G.resize(n, n);
+    G[0][0] = 0.001, G[0][1] = 0.0, G[0][2] = 0.0, G[0][3] = 0.0, G[0][4] = 0.0;
+    G[1][0] = 0.0, G[1][1] = 100.0, G[1][2] = 0.0, G[1][3] = 0.0, G[1][4] = 0.0;
+    G[2][0] = 0.0, G[2][1] = 0.0, G[2][2] = 100.0, G[2][3] = 0.0, G[2][4] = 0.0;
+    G[3][0] = 0.0, G[3][1] = 0.0, G[3][2] = 0.0, G[3][3] = 100.0, G[3][4] = 0.0;
+    G[4][0] = 0.0, G[4][1] = 0.0, G[4][2] = 0.0, G[4][3] = 0.0, G[4][4] = 100.0;
 
     g0.resize(n);
-    g0[0] = 0.0, g0[1] = 0.0, g0[2] = 0.0, g0[3] = 0.0, g0[4] = 0.0, g0[5] = 0.0;
+    g0[0] = 0.0, g0[1] = 0.0, g0[2] = 0.0, g0[3] = 0.0, g0[4] = 0.0;
 
     m = 2;
     CE.resize(n, m);
     CE[0][0] = 0.0;
-    CE[0][1] = 0.0;
-    CE[0][2] = 0.0;
-    CE[0][3] = 1.0;
-    CE[0][4] = 0.0;
-    CE[1][0] = jacobian[0];
+    CE[1][0] = 0.0;
+    CE[2][0] = 0.0;
+    CE[3][0] = 1.0;
+    CE[4][0] = 0.0;
+    CE[0][1] = jacobian[0];
     CE[1][1] = jacobian[1];
-    CE[1][2] = jacobian[2];
-    CE[1][3] = jacobian[3];
-    CE[1][4] = 1.0;
+    CE[2][1] = jacobian[2];
+    CE[3][1] = jacobian[3];
+    CE[4][1] = 1.0;
 
     ce0.resize(m);
     ce0[0] = 0.0, ce0[1] = virtualControlLaw;
@@ -95,12 +97,11 @@ Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jac
     p = 6;
     CI.resize(n, p);
     {
-        std::istringstream is("1.0, 0.0, 0.0, 0.0, 0.0, "
-                              "0.0, 1.0, 0.0, 0.0, 0.0, "
-                              "0.0, 0.0, 1.0, 0.0, 0.0, "
-                              "-1.0, 0.0, 0.0, 0.0, 0.0, "
-                              "0.0, -1.0, 0.0, 0.0, 0.0, "
-                              "0.0, 0.0, -1.0, 0.0, 0.0 ");
+        std::istringstream is("1.0, 0.0, 0.0, -1.0, 0.0, 0.0, "
+                              "0.0, 1.0, 0.0, 0.0, -1.0, 0.0, "
+                              "0.0, 0.0, 1.0, 0.0, 0.0, -1.0, "
+                              "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
+                              "0.0, 0.0, 0.0, 0.0, 0.0, 0.0");
 
         for (int i = 0; i < n; i++)
             for (int j = 0; j < p; j++)
@@ -108,11 +109,18 @@ Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jac
     }
 
     ci0.resize(p);
-    ci[0] = Umax[0];
-    ci[1] = Umax[1];
-    ci[2] = Umax[2];
-    ci[3] = Umin
+    ci0[0] = Umax[0];
+    ci0[1] = Umax[1];
+    ci0[2] = Umax[2];
+    ci0[3] = Umin[0];
+    ci0[4] = Umin[1];
+    ci0[5] = Umin[2];
 
+    x.resize(n);
+    solve_quadprog(G, g0, CE, ce0, CI, ci0, x);
+
+    Vector4d optController = {x[0], x[1], x[2], x[3]};
+    return optController;
 }
 
 int main(int argc, char *argv[])
@@ -145,7 +153,7 @@ int main(int argc, char *argv[])
     ros::Duration(3.0).sleep();
 
     // position of the magnet
-    Eigen::Vector3d pa = {mcr.pr.L, 0.0, H0};
+    Vector3d pa = {mcr.pr.L, 0.0, H0};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};
@@ -165,8 +173,13 @@ int main(int argc, char *argv[])
         // calculate the control input
         double virtualControlLaw = FF_controller(hatx, g_fThetaL);
 
+        Vector4d u;
+        u << pa, g_fPsi;
+
         // control allocation
-        Vector4d actualControlLaw = controlAllocation(u, virtualControlLaw, jacobian, mcr.pr.L, H0);
+        Vector4d actualControlLaw = controlAllocation(u, virtualControlLaw, jacobian, mcr.pr.L, H0, nf);
+
+        std::cout << actualControlLaw << std::endl;
 
         // update LESO
         LESO(actualControlLaw, jacobian, hatx, nf);

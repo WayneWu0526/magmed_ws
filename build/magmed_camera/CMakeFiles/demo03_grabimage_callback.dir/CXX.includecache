@@ -15,7 +15,7 @@ unistd.h
 -
 stdlib.h
 -
-/opt/MVS/include/MvCameraControl.h
+MvCameraControl.h
 -
 ros/ros.h
 -

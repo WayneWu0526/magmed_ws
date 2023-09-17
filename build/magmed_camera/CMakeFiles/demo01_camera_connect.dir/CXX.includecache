@@ -17,7 +17,7 @@ stdlib.h
 -
 pthread.h
 -
-/opt/MVS/include/MvCameraControl.h
+MvCameraControl.h
 -
 
 /opt/MVS/include/CameraParams.h

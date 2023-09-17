@@ -67,9 +67,9 @@
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/install.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/list_install_components.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/rebuild_cache.dir
+/home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/optController.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/test.dir
-/home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/controlAllocation.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/velocityController.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/getJacobianOfMCR.dir
 /home/zhang/magmed_ws/build/magmed_deeplearning/CMakeFiles/install/strip.dir

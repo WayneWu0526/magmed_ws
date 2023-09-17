@@ -19,7 +19,7 @@ stdlib.h
 -
 pthread.h
 -
-/opt/MVS/include/MvCameraControl.h
+MvCameraControl.h
 -
 ros/ros.h
 -

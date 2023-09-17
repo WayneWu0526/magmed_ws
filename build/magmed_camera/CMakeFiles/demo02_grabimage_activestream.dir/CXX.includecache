@@ -6,8 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.h
-
 /home/zhang/magmed_ws/src/magmed_camera/src/demo02_grabimage_activestream.cpp
 stdio.h
 -
@@ -19,14 +17,14 @@ stdlib.h
 -
 pthread.h
 -
-/opt/MVS/include/MvCameraControl.h
+MvCameraControl.h
 -
 ros/ros.h
 -
 opencv2/opencv.hpp
 -
-magmed_camera/imageProcess.h
-/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.h
+MvCameraControl.h
+-
 
 /opt/MVS/include/CameraParams.h
 PixelType.h
