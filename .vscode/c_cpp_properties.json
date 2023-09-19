@@ -15,7 +15,7 @@
                 "/opt/ros/noetic/share",
                 "/opt/DianaApi/include",
                 "/opt/MVS/include",
-                "/usr/local/include/QuadProg++",
+                "/usr/local/include/**",
                 "/usr/include/**"
             ],
             "browse": {

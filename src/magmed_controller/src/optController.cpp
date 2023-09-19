@@ -2,11 +2,9 @@
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
 #include <iostream>
-#include <sstream>
-#include <string>
-#include <QuadProg++.hh>
 #include <vector>
 #include <eigen3/Eigen/Dense>
+#include <qpOASES.hpp>
 #include "magmed_controller/getJacobianOfMCR.h"
 #define H0 183.0e-3
 
@@ -53,78 +51,46 @@ double FF_controller(std::vector<float> &hatx, double thetaL)
     return g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx[1];
 }
 
-Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jacobian, double L, double H, int nf)
+Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jacobian, double L, int nf)
 {
+    USING_NAMESPACE_QPOASES
+    double inf = qpOASES::INFTY;
+    Vector4d UMAX = {3.839724, 1.0, 1.0, 1.0};
+    
     // diagonal
     float T = 1.0 / nf;
-    Vector4d Umin = {-M_PI / 2.0, L, H - 20.0e-3, 0.0};
-    Vector4d Umax = {M_PI / 2.0, L, H + 20.0e-3, 0.0};
+    Vector4d Umin = {-M_PI / 2.0, L, H0 - 20.0e-3, 0.0};
+    Vector4d Umax = {M_PI / 2.0, L, H0 + 40.0e-3, 0.0};
     Umin = (Umin - u) / T;
     Umax = (Umax - u) / T;
+    Umin = Umin.cwiseMax(-UMAX);
+    Umax = Umax.cwiseMin(UMAX);
 
-    quadprogpp::Matrix<double> G, CE, CI;
-    quadprogpp::Vector<double> g0, ce0, ci0, x;
-    int n, m, p;
-    char ch;
+    real_t H[5 * 5] = {0.001, 0.0, 0.0, 0.0, 0.0,
+                       0.0, 100.0, 0.0, 0.0, 0.0,
+                       0.0, 0.0, 100.0, 0.0, 0.0,
+                       0.0, 0.0, 0.0, 100.0, 0.0,
+                       0.0, 0.0, 0.0, 0.0, 100.0};
+    real_t A[1 * 5] = {jacobian[0], jacobian[1], jacobian[2], jacobian[3], 1.0};
+    real_t lb[5] = {Umin[0], Umin[1], Umin[2], Umin[3], -inf};
+    real_t ub[5] = {Umax[0], Umax[1], Umax[2], Umax[3], inf};
+    real_t lbA[1] = {virtualControlLaw};
+    real_t ubA[1] = {virtualControlLaw};
 
-    n = 5;
-    G.resize(n, n);
-    G[0][0] = 0.001, G[0][1] = 0.0, G[0][2] = 0.0, G[0][3] = 0.0, G[0][4] = 0.0;
-    G[1][0] = 0.0, G[1][1] = 100.0, G[1][2] = 0.0, G[1][3] = 0.0, G[1][4] = 0.0;
-    G[2][0] = 0.0, G[2][1] = 0.0, G[2][2] = 100.0, G[2][3] = 0.0, G[2][4] = 0.0;
-    G[3][0] = 0.0, G[3][1] = 0.0, G[3][2] = 0.0, G[3][3] = 100.0, G[3][4] = 0.0;
-    G[4][0] = 0.0, G[4][1] = 0.0, G[4][2] = 0.0, G[4][3] = 0.0, G[4][4] = 100.0;
+    QProblem qpCA( 5,1 );
+    int_t nWSR = 10;
+    qpCA.init(H, NULL, A, lb, ub, lbA, ubA, nWSR);
+    real_t xOpt[5];
+    qpCA.getPrimalSolution( xOpt );
 
-    g0.resize(n);
-    g0[0] = 0.0, g0[1] = 0.0, g0[2] = 0.0, g0[3] = 0.0, g0[4] = 0.0;
-
-    m = 2;
-    CE.resize(n, m);
-    CE[0][0] = 0.0;
-    CE[1][0] = 0.0;
-    CE[2][0] = 0.0;
-    CE[3][0] = 1.0;
-    CE[4][0] = 0.0;
-    CE[0][1] = jacobian[0];
-    CE[1][1] = jacobian[1];
-    CE[2][1] = jacobian[2];
-    CE[3][1] = jacobian[3];
-    CE[4][1] = 1.0;
-
-    ce0.resize(m);
-    ce0[0] = 0.0, ce0[1] = virtualControlLaw;
-
-    p = 6;
-    CI.resize(n, p);
-    {
-        std::istringstream is("1.0, 0.0, 0.0, -1.0, 0.0, 0.0, "
-                              "0.0, 1.0, 0.0, 0.0, -1.0, 0.0, "
-                              "0.0, 0.0, 1.0, 0.0, 0.0, -1.0, "
-                              "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
-                              "0.0, 0.0, 0.0, 0.0, 0.0, 0.0");
-
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < p; j++)
-                is >> CI[i][j] >> ch;
-    }
-
-    ci0.resize(p);
-    ci0[0] = Umax[0];
-    ci0[1] = Umax[1];
-    ci0[2] = Umax[2];
-    ci0[3] = Umin[0];
-    ci0[4] = Umin[1];
-    ci0[5] = Umin[2];
-
-    x.resize(n);
-    solve_quadprog(G, g0, CE, ce0, CI, ci0, x);
-
-    Vector4d optController = {x[0], x[1], x[2], x[3]};
+    Vector4d optController;
+    optController << xOpt[0], xOpt[1], xOpt[2], xOpt[3];
+    std::cout << "optimal control input: " << optController << std::endl;
     return optController;
 }
 
 int main(int argc, char *argv[])
-{
+{   
     ros::init(argc, argv, "velocityController");
 
     ros::NodeHandle nh;
@@ -153,7 +119,7 @@ int main(int argc, char *argv[])
     ros::Duration(3.0).sleep();
 
     // position of the magnet
-    Vector3d pa = {mcr.pr.L, 0.0, H0};
+    Vector3d pa = {mcr.pr.L, H0, 0.0};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};
@@ -166,6 +132,7 @@ int main(int argc, char *argv[])
         // get jacobian of the robot
         RowVector4d jacobian = mcr.get_jacobian(g_fPsi, pa);
 
+        std::cout << "jacobian: " << jacobian << std::endl;
         // virtual control law
 
         // ROS_INFO("jacobian: %f", jacobian);
@@ -174,12 +141,10 @@ int main(int argc, char *argv[])
         double virtualControlLaw = FF_controller(hatx, g_fThetaL);
 
         Vector4d u;
-        u << pa, g_fPsi;
+        u << g_fPsi, pa;
 
         // control allocation
-        Vector4d actualControlLaw = controlAllocation(u, virtualControlLaw, jacobian, mcr.pr.L, H0, nf);
-
-        std::cout << actualControlLaw << std::endl;
+        Vector4d actualControlLaw = controlAllocation(u, virtualControlLaw, jacobian, mcr.pr.L, nf);
 
         // update LESO
         LESO(actualControlLaw, jacobian, hatx, nf);

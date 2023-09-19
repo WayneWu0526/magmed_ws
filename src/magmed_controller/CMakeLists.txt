@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(magmed_controller)
 
 set(Eigen3_DIR /usr/lib/cmake/eigen3/)
+set(qpOASES_DIR /usr/local/lib/cmake/qpOASES/)
 # set(Eigen3_DIR /usr/local/share/eigen3/cmake/)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -14,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   Eigen3 REQUIRED
+  qpOASES REQUIRED
 )
 
 ## System dependencies are found with CMake's conventions
@@ -121,7 +123,6 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  /usr/local/include/QuadProg++
 )
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -167,7 +168,7 @@ target_link_libraries(velocityController
 target_link_libraries(optController
   ${catkin_LIBRARIES}
   getJacobianOfMCR
-  quadprog
+  qpOASES
 )
 #############
 ## Install ##

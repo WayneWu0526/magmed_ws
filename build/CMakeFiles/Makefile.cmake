@@ -147,6 +147,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVModules-release.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVModules.cmake"
+  "/usr/local/lib/cmake/qpOASES/qpOASESConfig.cmake"
+  "/usr/local/lib/cmake/qpOASES/qpOASESConfigVersion.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"

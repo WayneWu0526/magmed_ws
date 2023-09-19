@@ -65,6 +65,4 @@ magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /opt/ros
 magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /opt/ros/noetic/include/std_msgs/MultiArrayLayout.h
 magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
 magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
-magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /usr/local/include/QuadProg++/Array.hh
-magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o: /usr/local/include/QuadProg++/QuadProg++.hh
 

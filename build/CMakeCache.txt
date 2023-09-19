@@ -515,6 +515,18 @@ magmed_virtualsurgery_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_virtual
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
+//The directory containing a CMake configuration file for qpOASES.
+qpOASES_DIR:PATH=qpOASES_DIR-NOTFOUND
+
+//Include path for qpOASES and its dependencies
+qpOASES_INCLUDE_DIR:STRING=/usr/local/include
+
+//Path to a library.
+qpOASES_LIBRARY:FILEPATH=/usr/local/lib/libqpOASES.a
+
+//Library path for qpOASES and its dependencies
+qpOASES_LIBRARY_DIR:STRING=/usr/local/lib
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
 
@@ -746,6 +758,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_PY_em:INTERNAL=[/usr/lib/python3/dist-packages/em.p
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python3][v3.8.10()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding qpOASES
+FIND_PACKAGE_MESSAGE_DETAILS_qpOASES:INTERNAL=[/usr/local/include][/usr/local/lib][/usr/local/lib/libqpOASES.a][3.2.2][v()]
 GMOCK_FROM_SOURCE_FOUND:INTERNAL=TRUE
 GMOCK_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/src/googletest/googlemock/include
 GMOCK_FROM_SOURCE_LIBRARIES:INTERNAL=gmock
