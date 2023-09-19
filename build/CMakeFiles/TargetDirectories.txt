@@ -119,6 +119,7 @@
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/test.dir
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir
+/home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/dianaManipulator.dir
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/install.dir
 /home/zhang/magmed_ws/build/magmed_manipulator/CMakeFiles/list_install_components.dir

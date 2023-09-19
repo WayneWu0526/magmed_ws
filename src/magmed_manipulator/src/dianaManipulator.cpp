@@ -1,7 +1,6 @@
 #include <DianaAPIDef.h>
 #include <DianaAPI.h>
 #include <ros/ros.h>
-#include "std_msgs/String.h"
 #include <cstring>
 #include <iostream>
 #include <unistd.h> // 类似于windows.h

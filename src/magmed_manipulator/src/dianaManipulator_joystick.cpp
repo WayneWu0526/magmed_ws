@@ -47,7 +47,7 @@ static void* WorkThread(void* pUser)
     const char *strIpAddress = "192.168.10.75";
     // double active_tcp[6] = {0.0, 0.0, -0.810, 0.0, 0.0, - M_PI / 2.0};
     double acc[2] = {0.10, 0.10}; // velocity/angular velocity
-    double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.1};
+    // double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.1};
     // 发送频率
     ros::Rate rate(100); // 推送周期是100Hz
 

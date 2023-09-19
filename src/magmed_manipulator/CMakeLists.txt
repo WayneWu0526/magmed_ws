@@ -121,7 +121,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   /opt/DianaApi/include 
 )
-
 link_directories(
   /opt/DianaApi/lib
 )
@@ -143,6 +142,7 @@ link_directories(
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
 add_executable(dianaManipulator src/dianaManipulator.cpp)
 add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
+add_executable(dianaManipulator_opt src/dianaManipulator_opt.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -152,6 +152,10 @@ add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(demo01_diana7api_connect_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(dianaManipulator ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(dianaManipulator_joystick ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(dianaManipulator_opt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -166,6 +170,10 @@ target_link_libraries(dianaManipulator
   DianaApi
 )
 target_link_libraries(dianaManipulator_joystick
+  ${catkin_LIBRARIES}
+  DianaApi
+)
+target_link_libraries(dianaManipulator_opt
   ${catkin_LIBRARIES}
   DianaApi
 )

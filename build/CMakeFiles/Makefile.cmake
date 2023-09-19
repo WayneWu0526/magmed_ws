@@ -278,6 +278,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/DependInfo.cmake"
+  "magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/DependInfo.cmake"
   "magmed_manipulator/CMakeFiles/dianaManipulator.dir/DependInfo.cmake"
   "magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/DependInfo.cmake"
   )

@@ -688,6 +688,19 @@ dianaManipulator_joystick/fast:
 .PHONY : dianaManipulator_joystick/fast
 
 #=============================================================================
+# Target rules for targets named dianaManipulator_opt
+
+# Build rule for target.
+dianaManipulator_opt: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator_opt
+.PHONY : dianaManipulator_opt
+
+# fast build rule for target.
+dianaManipulator_opt/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build
+.PHONY : dianaManipulator_opt/fast
+
+#=============================================================================
 # Target rules for targets named dianaManipulator
 
 # Build rule for target.
@@ -766,6 +779,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... dianaManipulator_joystick"
+	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
 	@echo "... demo01_diana7api_connect_test"
 .PHONY : help
