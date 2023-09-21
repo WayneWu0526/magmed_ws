@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
             ROS_ERROR("getJointPos failed! Return value = %d\n", nRet);
             break;
         }
-        joints[6] = 0.0;
+        joints[6] = 0.0; // 0.0;
         nRet = moveJToTarget(joints, 3, 3, strIpAddress);
         if (nRet < 0)
         {
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
             else
             {
                 std_msgs::Float64 msg;
-                msg.data = joints[6]; // pub the angle of end_effector
+                msg.data = joints[JOINT_NUM - 1]; // pub the angle of end_effector
                 pub.publish(msg);
 
                 // printf("getJointPos: %f, %f, %f, %f, %f, %f, %f\n", joints[0],

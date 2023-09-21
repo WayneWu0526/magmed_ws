@@ -13,30 +13,31 @@ namespace magmed_controller
     // create a class for magnetic continuum robot
     class MCR
     {
-        //physical properties of the robot
+        // physical properties of the robot
         struct Properties
         {
-            double E = 3.0e6; //909.0e3; // the Young's modulus of the robot
-            double r = (1.086e-03)/2.0;
+            double E = 3.0e6; // 909.0e3; // the Young's modulus of the robot
+            double r = (1.086e-03) / 2.0;
             double I = M_PI * pow(r, 4.0) / 4.0;
             double A = M_PI * r * r;
             double L = 24.0e-3; // the length of the robot
+            double H0 = 183.0e-3;
 
             // double W = 1.0e-3;
             // double I = pow(W, 4)/12.0;
             // double A = W*W;
             // double L = 10.0*W;
             Vector3d hatM = {1.0, 0.0, 0.0}; // the magnetization direction of the robot
-            double normM = 10.0e4; //144.0e3; // the norm of the magnetization of the robot
+            double normM = 10.0e4;           // 144.0e3; // the norm of the magnetization of the robot
         };
 
     public:
-        Properties pr; // properties of the robot
-        double get_theta(double psi, const Vector3d& pa); // get the tip angle of the robot
-        RowVector4d get_jacobian(double psi, const Vector3d& pa); // get the Jacobian of the robot
+        Properties pr;                                            // properties of the robot
+        double get_theta(double psi, const Vector3d &pa);         // get the tip angle of the robot
+        RowVector4d get_jacobian(double psi, const Vector3d &pa); // get the Jacobian of the robot
 
     private:
-        MatrixXd x = MatrixXd::Zero(3, N); // the position of the robot
+        MatrixXd x = MatrixXd::Zero(3, N);  // the position of the robot
         Vector3d vecM = pr.normM * pr.hatM; // the magnetization of the robot
         double ds = pr.L / N;
         Matrix3d RotY(double theta)
@@ -70,8 +71,21 @@ namespace magmed_controller
                 0.0, 0.0, 0.0;
             return pRZ;
         }
-        double g(const Vector3d& x, const Vector3d& dx, const Vector2d& theta, const Vector3d& hatma, const Vector3d& pa);
-        RowVector3d g_ex(const Vector3d& x, const Vector3d& dx, const Vector2d& theta, const Vector3d& hatma, const Vector3d& pa);
+        double g(const Vector3d &x, const Vector3d &dx, const Vector2d &theta, const Vector3d &hatma, const Vector3d &pa);
+        RowVector3d g_ex(const Vector3d &x, const Vector3d &dx, const Vector2d &theta, const Vector3d &hatma, const Vector3d &pa);
+    };
+
+    class Magnet
+    {
+    public:
+        // coefficients for a cylindrical magnet
+        double k = 3.4286e-05;
+        // position and orientation of a cylindrical magnet
+        Vector3d pa = {0.0, 0.0, 0.0};
+        Vector3d hatma{-1.0, 0.0, 0.0};
+        // get magnetic field and its gradient
+        Vector3d get_b(const Vector3d &ps);
+        Matrix3d get_gradb(const Vector3d &ps);
     };
 };
 

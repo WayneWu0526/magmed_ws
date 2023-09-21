@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/getJacobianOfMCR.h
+eigen3/Eigen/Dense
+-
+cmath
+-
+
 /home/zhang/magmed_ws/src/magmed_manipulator/src/dianaManipulator_opt.cpp
 DianaAPIDef.h
 -
@@ -25,6 +31,10 @@ std_msgs/Float64MultiArray.h
 /home/zhang/magmed_ws/src/magmed_manipulator/src/std_msgs/Float64MultiArray.h
 std_msgs/Float64.h
 /home/zhang/magmed_ws/src/magmed_manipulator/src/std_msgs/Float64.h
+eigen3/Eigen/Dense
+-
+getJacobianOfMCR.h
+/home/zhang/magmed_ws/src/magmed_manipulator/src/getJacobianOfMCR.h
 
 /opt/DianaApi/include/DianaAPI.h
 DianaAPIDef.h

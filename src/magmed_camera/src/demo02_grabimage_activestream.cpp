@@ -6,7 +6,7 @@
 #include <MvCameraControl.h>
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
-#include <MvCameraControl.h>
+#include "magmed_camera/imageProcess.h"
 
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
@@ -187,22 +187,22 @@ int main(int argc, char **argv)
         // set IInteger variable
         // 宽高设置时需考虑步进(16)，即设置宽高需16的倍数
         // Step (16) should be considered when setting width and height, that is the width and height should be a multiple of 16
-        nRet = MV_CC_SetIntValue(handle, "Height", 16*20);    
+        nRet = MV_CC_SetIntValue(handle, "Height", 16*25);    
         if (MV_OK != nRet)
         {
             printf("set height failed! nRet [%x]\n\n", nRet);
         }
-        nRet = MV_CC_SetIntValue(handle, "Width", 16*20);    
+        nRet = MV_CC_SetIntValue(handle, "Width", 16*25);    
         if (MV_OK != nRet)
         {
             printf("set width failed! nRet [%x]\n\n", nRet);
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetX", 500);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetX", 16*40);    
         if (MV_OK != nRet)
         {
             printf("set OffsetX failed! nRet [%x]\n\n", nRet);
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetY", 500);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*50);    
         if (MV_OK != nRet)
         {
             printf("set OffsetY failed! nRet [%x]\n\n", nRet);

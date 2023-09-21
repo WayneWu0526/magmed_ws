@@ -6,10 +6,12 @@
 #include <eigen3/Eigen/Dense>
 #include <qpOASES.hpp>
 #include "magmed_controller/getJacobianOfMCR.h"
-#define H0 183.0e-3
+
+magmed_controller::MCR mcr;
 
 float g_fThetaL = 0.0;
-float g_fPsi = 0.0;
+double g_dPsi = 0.0;
+Vector3d g_dPos = {mcr.pr.L, mcr.pr.H0, 0.0};
 double g_dThetaR[2] = {0.0, 0.0};
 
 void tipAngleCallback(const std_msgs::Float64::ConstPtr &msg)
@@ -18,10 +20,13 @@ void tipAngleCallback(const std_msgs::Float64::ConstPtr &msg)
     g_fThetaL = msg->data;
 }
 
-void psiCallback(const std_msgs::Float64::ConstPtr &msg)
+void magPosCallback(const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
     // ROS_INFO("psi received: [%f]", msg->data);
-    g_fPsi = msg->data;
+    g_dPsi = msg->data[0];
+    g_dPos[0] = msg->data[1];
+    g_dPos[1] = msg->data[2];
+    g_dPos[2] = msg->data[3];
 }
 
 void refSignalCallback(const std_msgs::Float64MultiArray::ConstPtr &msg)
@@ -51,26 +56,30 @@ double FF_controller(std::vector<float> &hatx, double thetaL)
     return g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx[1];
 }
 
-Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jacobian, double L, int nf)
+Vector4d controlAllocation(double virtualControlLaw, RowVector4d jacobian, int nf)
 {
     USING_NAMESPACE_QPOASES
     double inf = qpOASES::INFTY;
-    Vector4d UMAX = {3.839724, 1.0, 1.0, 1.0};
+    Vector4d UMAX = {3.839724, 0.5, 0.5, 0.5};
+    Vector4d u;
+    u << g_dPsi, g_dPos;
     
     // diagonal
     float T = 1.0 / nf;
-    Vector4d Umin = {-M_PI / 2.0, L, H0 - 20.0e-3, 0.0};
-    Vector4d Umax = {M_PI / 2.0, L, H0 + 40.0e-3, 0.0};
+    Vector4d Umin = {-M_PI / 2.0, mcr.pr.L, mcr.pr.H0 - 20.0e-3, 0.0};
+    Vector4d Umax = {M_PI / 2.0, mcr.pr.L, mcr.pr.H0 + 40.0e-3, 0.0};
     Umin = (Umin - u) / T;
     Umax = (Umax - u) / T;
     Umin = Umin.cwiseMax(-UMAX);
     Umax = Umax.cwiseMin(UMAX);
+
 
     real_t H[5 * 5] = {0.001, 0.0, 0.0, 0.0, 0.0,
                        0.0, 100.0, 0.0, 0.0, 0.0,
                        0.0, 0.0, 100.0, 0.0, 0.0,
                        0.0, 0.0, 0.0, 100.0, 0.0,
                        0.0, 0.0, 0.0, 0.0, 100.0};
+    real_t g[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
     real_t A[1 * 5] = {jacobian[0], jacobian[1], jacobian[2], jacobian[3], 1.0};
     real_t lb[5] = {Umin[0], Umin[1], Umin[2], Umin[3], -inf};
     real_t ub[5] = {Umax[0], Umax[1], Umax[2], Umax[3], inf};
@@ -79,7 +88,7 @@ Vector4d controlAllocation(Vector4d u, double virtualControlLaw, RowVector4d jac
 
     QProblem qpCA( 5,1 );
     int_t nWSR = 10;
-    qpCA.init(H, NULL, A, lb, ub, lbA, ubA, nWSR);
+    qpCA.init(H, g, A, lb, ub, lbA, ubA, nWSR);
     real_t xOpt[5];
     qpCA.getPrimalSolution( xOpt );
 
@@ -95,31 +104,26 @@ int main(int argc, char *argv[])
 
     ros::NodeHandle nh;
 
+// get reference theta
+    // ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/TDSignal", 1000, refSignalCallback);
+    ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/referenceSignal", 1000, refSignalCallback);
+    
     // get measured theta
     ros::Subscriber subTipAngle = nh.subscribe("/magmed_camera/tipAngle", 1000, tipAngleCallback);
 
-    // get rotation angle of the magnet
-    ros::Subscriber subPsi = nh.subscribe("/magmed_manipulator/magnetAngle", 1000, psiCallback);
-
-    // get reference theta
-    // ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/TDSignal", 1000, refSignalCallback);
-    ros::Subscriber subRefSignal = nh.subscribe("/magmed_joystick/referenceSignal", 1000, refSignalCallback);
+    // get angle and position of the magnet
+    ros::Subscriber subPos = nh.subscribe("/magmed_manipulator/magPos", 1000, magPosCallback);
 
     // publish the angular velocity of the magnet
-    ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_controller/angularVelocity", 1000);
+    ros::Publisher pub = nh.advertise<std_msgs::Float64MultiArray>("/magmed_controller/magVel", 1000);
 
     // frequency of the controller
     int nf = 100;
 
     ros::Rate rate(nf);
 
-    magmed_controller::MCR mcr;
-
     // wait for the camera to start
     ros::Duration(3.0).sleep();
-
-    // position of the magnet
-    Vector3d pa = {mcr.pr.L, H0, 0.0};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};
@@ -130,7 +134,7 @@ int main(int argc, char *argv[])
         // double phi = M_PI / 2.0;
 
         // get jacobian of the robot
-        RowVector4d jacobian = mcr.get_jacobian(g_fPsi, pa);
+        RowVector4d jacobian = mcr.get_jacobian(g_dPsi, g_dPos);
 
         std::cout << "jacobian: " << jacobian << std::endl;
         // virtual control law
@@ -140,11 +144,9 @@ int main(int argc, char *argv[])
         // calculate the control input
         double virtualControlLaw = FF_controller(hatx, g_fThetaL);
 
-        Vector4d u;
-        u << g_fPsi, pa;
-
         // control allocation
-        Vector4d actualControlLaw = controlAllocation(u, virtualControlLaw, jacobian, mcr.pr.L, nf);
+        // virtualControlLaw = 15.08; // temp define
+        Vector4d actualControlLaw = controlAllocation(virtualControlLaw, jacobian, nf);
 
         // update LESO
         LESO(actualControlLaw, jacobian, hatx, nf);
@@ -158,9 +160,14 @@ int main(int argc, char *argv[])
 
         // 控制器自带软限位
 
-        std_msgs::Float64 msg;
-        pub.publish(msg);
-        ROS_INFO("angular velocity: %f", msg.data);
+        std_msgs::Float64MultiArray array_msg;
+        array_msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
+        array_msg.layout.dim[0].size = 4;
+        array_msg.layout.dim[0].label = "columns";
+
+        array_msg.data = {actualControlLaw[0], actualControlLaw[1], actualControlLaw[2], actualControlLaw[3]};
+        pub.publish(array_msg);
+        ROS_INFO("velocity: [%f], [%f], [%f], [%f]", array_msg.data[0], array_msg.data[1], array_msg.data[2], array_msg.data[3]);
 
         ros::spinOnce();
         rate.sleep();

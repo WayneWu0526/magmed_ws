@@ -21,6 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/DianaApi/include"
+  "/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller"
   )
 
 # Targets to which this target links.

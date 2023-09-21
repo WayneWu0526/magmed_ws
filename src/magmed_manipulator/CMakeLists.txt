@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(magmed_manipulator)
 
+set(Eigen3_DIR /usr/lib/cmake/eigen3/)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -12,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
+  Eigen3 REQUIRED
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,7 +121,8 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  /opt/DianaApi/include 
+  /opt/DianaApi/include
+  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller
 )
 link_directories(
   /opt/DianaApi/lib

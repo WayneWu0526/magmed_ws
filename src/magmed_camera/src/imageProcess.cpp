@@ -24,7 +24,12 @@ namespace magmed_camera
         // turn BGR to gray
         cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         // threshold the image
-        cv::threshold(img, img, 170, 255, cv::THRESH_BINARY_INV);
+        cv::threshold(img, img, 80, 255, cv::THRESH_BINARY_INV); // 170
+
+        cv::imshow("img", img);
+        cv::waitKey(1);
+        return 0.0;
+
         
         // // dilate the image
         // cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));

@@ -18,7 +18,7 @@ void tipAngleCallback(const std_msgs::Float64::ConstPtr& msg)
 
 void psiCallback(const std_msgs::Float64::ConstPtr& msg)
 {
-    // ROS_INFO("psi received: [%f]", msg->data);
+    ROS_INFO("psi received: [%f]", msg->data);
     g_fPsi = msg->data;
 }
 
@@ -43,7 +43,7 @@ void LESO(double controlInput, double jacobian, std::vector<float>& hatx, int nf
 
 double PD_controller(std::vector<float>& hatx, double jacobian, double thetaL)
 {
-    float fk = 1.0;
+    float fk = 0.1;
     hatx[1] = 0.0;
     std::cout << "PD controller:" << g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) << std::endl;
     return (g_dThetaR[1] + fk * (g_dThetaR[0] - thetaL) - hatx[1]) / jacobian;
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 
     // position of the magnet
     // Eigen::Vector3d pa = { mcr.pr.L, 0, 150.0e-3};
-    Eigen::Vector3d pa = { mcr.pr.L, 0.0, 183.0e-3};
+    Eigen::Vector3d pa = { mcr.pr.L, mcr.pr.H0, 0.0};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
         // get jacobian of the robot
         RowVector4d J = mcr.get_jacobian(g_fPsi, pa);
-        double jacobian = J(0);
+        double jacobian = J[0];
         ROS_INFO("jacobian: %f", jacobian);
 
         // calculate the control input

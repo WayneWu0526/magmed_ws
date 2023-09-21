@@ -56,26 +56,27 @@ int main(int argc, char *argv[])
         double dt = (ros::Time::now() - t0).toSec();
 
         // step signal
-        if(dt < 5.0)
-        {
-            fstepK = M_PI / 8.0;
-        }
-        else if (5.0 <= dt && dt <= 10.0)
-        {
-            fstepK = M_PI / 4.0;
-        }
-        else if (10.0 <= dt && dt <= 20.0)
-        {
-            fstepK = - M_PI / 4.0;
-        }
-        else if (20.0 <= dt && dt <= 25.0)
-        {
-            fstepK = - M_PI / 8.0;
-        }
-        else
-        {
-            fstepK = 0.0;
-        }
+        fstepK = M_PI / 3.0;
+        // if(dt < 5.0)
+        // {
+        //     fstepK = M_PI / 8.0;
+        // }
+        // else if (5.0 <= dt && dt <= 10.0)
+        // {
+        //     fstepK = M_PI / 4.0;
+        // }
+        // else if (10.0 <= dt && dt <= 20.0)
+        // {
+        //     fstepK = - M_PI / 4.0;
+        // }
+        // else if (20.0 <= dt && dt <= 25.0)
+        // {
+        //     fstepK = - M_PI / 8.0;
+        // }
+        // else
+        // {
+        //     fstepK = 0.0;
+        // }
         // input reference theta in step wave
         dThetaR[1] = (fstepK - dThetaR[0]) / nfreq;
         dThetaR[0] = fstepK;

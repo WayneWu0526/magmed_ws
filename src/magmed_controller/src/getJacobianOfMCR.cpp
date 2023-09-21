@@ -6,19 +6,6 @@
 namespace magmed_controller
 {
     // create a class for a cylindrical magnet
-    class Magnet
-    {
-    public:
-        // coefficients for a cylindrical magnet
-        double k = 3.4286e-05;
-        // position and orientation of a cylindrical magnet
-        Vector3d pa = {0.0, 0.0, 0.0};
-        Vector3d hatma{1.0, 0.0, 0.0};
-        // get magnetic field and its gradient
-        Vector3d get_b(const Vector3d &ps);
-        Matrix3d get_gradb(const Vector3d &ps);
-    };
-
     Vector3d Magnet::get_b(const Vector3d &ps)
     {
         Vector3d p = ps - pa;
