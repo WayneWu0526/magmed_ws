@@ -14,7 +14,7 @@
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 float g_fTipAngle = 0.0;
-bool g_bIsImageShow = true;
+int g_nFlag = 0;
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -90,7 +90,7 @@ static  void* WorkThread(void* pUser) // 工作线程 | work thread
                 break;
             }
             magmed_camera::imageProcess imageProcess;
-            g_fTipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB, g_bIsImageShow);      
+            g_fTipAngle = imageProcess.getTipAngle(stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nWidth, pDataForRGB, g_nFlag);      
         }
         else
         {
@@ -133,7 +133,20 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
 
     // whether to show the image
-    nh.param<bool>("isImageShow", g_bIsImageShow, true);
+    switch(g_nFlag){
+        case 0:
+            ROS_INFO("Image test mode activated!\n");
+            break;
+        case 1:
+            ROS_INFO("Data feedback mode activated!\n");
+            break;
+        case 2:
+            ROS_INFO("Data feedback (image show) mode activated!n");
+            break;
+        default:
+            ROS_WARN("Invalid mode!\n");
+    }
+    nh.param<int>("nFlag", g_nFlag, 1);
 
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);
     

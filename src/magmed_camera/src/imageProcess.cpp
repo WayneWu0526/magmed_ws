@@ -1,36 +1,54 @@
 #include "magmed_camera/imageProcess.h"
-#include <opencv2/opencv.hpp>
+// #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <eigen3/Eigen/Dense>
-#include <opencv2/core/eigen.hpp>
+// #include <opencv2/core/eigen.hpp>
 #include <cmath>
-#include <csignal>
+#include <ros/ros.h>
 #define PI 3.1415926
-
-void signalHandler(int signal) {
-    std::cout << "Segmentation fault occurred." << std::endl;
-    // 可以添加适当的处理代码，或者什么都不做
-}
 
 namespace magmed_camera
 {
 
-    float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData, bool isImageShow)
+    float imageProcess::getTipAngle(unsigned short Height, unsigned short Width, unsigned char *pData, int nFlag)
     {
-        // 注册信号处理函数
-        std::signal(SIGSEGV, signalHandler);
         // load image
         cv::Mat img = cv::Mat(Height, Width, CV_8UC3, pData);
         // turn BGR to gray
         cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         // threshold the image
-        cv::threshold(img, img, 80, 255, cv::THRESH_BINARY_INV); // 170
+        cv::threshold(img, img, 180, 255, cv::THRESH_BINARY_INV); // 170
 
-        cv::imshow("img", img);
-        cv::waitKey(1);
-        return 0.0;
+        float tipAngle = 0.0;
+        switch (nFlag)
+        {
+        case 0:
+            cv::imshow("img", img);
+            cv::waitKey(1);
+            break;
+        case 1:
+            try{ // 这种写法貌似还是不能解决问题。为什么不显示错误信息？
+                tipAngle = ellipticaFunFit(Height, Width, img, 0);
+            }catch (const std::exception& e){
+                ROS_ERROR("Caught exception: %s", e.what());
+                // std::cout << "Caught exception: " << e.what() << std::endl;
+            }
+            break;
+        case 2:
+            try{
+                tipAngle = ellipticaFunFit(Height, Width, img, 0);
+            }catch (const std::exception& e){
+                ROS_ERROR("Caught exception: %s", e.what());
+            }
+            break;
+        default:
+            break;
+        }
+        return tipAngle;
+    }
 
-        
+    float imageProcess::ellipticaFunFit(unsigned short Height, unsigned short Width, cv::Mat img, bool isImageShow)
+    {
         // // dilate the image
         // cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
         // cv::dilate(img, img, element);
@@ -49,7 +67,7 @@ namespace magmed_camera
         // if there is no nonzero coordinates, print error
         if (nonzeroCoordinates.empty())
         {
-            std::cout << "No nonzero coordinates!" << std::endl;
+            ROS_INFO("No nonzero coordinates!");
             return 0.0;
         }
 
@@ -127,7 +145,7 @@ namespace magmed_camera
                 distalEnd(0) += 1.0;
             } while (sum);
             // calculate the derivative of two tipPoints
-            float derivariveOfProximalEnd = 2 * curve(0) * (proximalEnd(0)) + curve(1); // proximalEnd(0) + 1.0
+            float derivariveOfProximalEnd = 2 * curve(0) * (proximalEnd(0)) + curve(1);   // proximalEnd(0) + 1.0
             float derivativeOfDistalEnd = 2 * curve(0) * (distalEnd(0) + 1.0) + curve(1); // distalEnd(0) + 1.0
             // print the derivative
             // std::cout << "derivariveOfProximalEnd = " << derivariveOfProximalEnd << "derivativeOfDistalEnd = " << derivativeOfDistalEnd <<  std::endl;
@@ -183,10 +201,10 @@ namespace magmed_camera
 
             // create a 2x2 Eigen rotation matrix
             Eigen::Matrix2f Rot;
-            Rot << cos(ellipseAngle), sin(ellipseAngle), 
+            Rot << cos(ellipseAngle), sin(ellipseAngle),
                 -sin(ellipseAngle), cos(ellipseAngle);
             Eigen::Vector2f transformedbaryCenter = Rot * (baryCenter - ellipseCenter);
- 
+
             // calculate the angle of the baryCenter
             float baryCenterAngle0 = atan2(ellipseCoeff(1) * transformedbaryCenter(1), ellipseCoeff(0) * transformedbaryCenter(0));
             if (baryCenterAngle0 < 0)
@@ -221,13 +239,11 @@ namespace magmed_camera
             crossPoint = {ellipseCoeff(1) * cos(baryCenterAngle), ellipseCoeff(0) * sin(baryCenterAngle)};
             originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
             Eigen::Vector2f originalCrossPoint1 = originalCrossPoint;
-            
-            double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
-                (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
-            double B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
-                (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
+
+            double A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
+            double B = ellipseCoeff(1) * ellipseCoeff(1) * (-(originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
             float tipAngle1 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
-            
+
             baryCenterAngle = baryCenterAngle0;
             do
             {
@@ -253,10 +269,8 @@ namespace magmed_camera
             originalCrossPoint = Rot.transpose() * crossPoint + ellipseCenter;
             Eigen::Vector2f originalCrossPoint2 = originalCrossPoint;
 
-            A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + 
-                (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
-            B = ellipseCoeff(1) * ellipseCoeff(1) * ( - (originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + 
-                (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
+            A = ellipseCoeff(0) * ellipseCoeff(0) * ((originalCrossPoint(0) - ellipseCenter(0)) * cos(ellipseAngle) + (originalCrossPoint(1) - ellipseCenter(1)) * sin(ellipseAngle));
+            B = ellipseCoeff(1) * ellipseCoeff(1) * (-(originalCrossPoint(0) - ellipseCenter(0)) * sin(ellipseAngle) + (originalCrossPoint(1) - ellipseCenter(1)) * cos(ellipseAngle));
             float tipAngle2 = atan((B * sin(ellipseAngle) - A * cos(ellipseAngle)) / (A * sin(ellipseAngle) + B * cos(ellipseAngle)));
 
             // when abs(tipAngle1) >= abs(tipAngle2), distalEnd = originalCrossPoint1, else proximalEnd = originalCrossPoint2, and vice versa
@@ -274,11 +288,11 @@ namespace magmed_camera
                 else
                 {
                     tipAngle = PI - tipAngle;
-                }                
+                }
             }
             else // the rod is downward deflected
             {
-               // choose the larger to be tipAngle
+                // choose the larger to be tipAngle
                 tipAngle = abs(tipAngle1) >= abs(tipAngle2) ? tipAngle1 : tipAngle2;
                 if (tipAngle > 0)
                 {
@@ -287,7 +301,7 @@ namespace magmed_camera
                 else
                 {
                     tipAngle = -PI - tipAngle;
-                } 
+                }
             }
 
             // std::cout << "tipAngleEllipse = " << tipAngle << std::endl;
@@ -324,5 +338,4 @@ namespace magmed_camera
             return tipAngle;
         }
     }
-
 }

@@ -21,7 +21,7 @@ magmed_controller::MCR mcr;
 void magPosCallback(const std_msgs::Float64MultiArray::ConstPtr &msg)
 {
     ROS_INFO("Pos reseived: [%f], [%f], [%f], [%f]", msg->data[0], msg->data[1], msg->data[2], msg->data[3]);
-    // Note: receive msg is defined as [Vx, Vy, Vz, Wz];
+    // Note: receive msg order: [Vx, Vy, Vz, Wz];
     g_dTwist[0] = msg->data[0];
     g_dTwist[1] = msg->data[1];
     g_dTwist[2] = msg->data[2];
@@ -36,13 +36,13 @@ static void *WorkThread(void *pUser)
     ros::Rate rate(100); // 推送周期是100Hz
     while (1)
     {
-        double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // 3.0;
+        double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.1}; // 3.0;
         // the sign of the speed is the direction of the joint
         // std::cout << "g_dPsi: " << g_dPsi << std::endl;
         double acc[2] = {0.30, 0.50}; //acceleration
         // replace speeds with g_dTwist
-        nRet = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
         // nRet = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
+        nRet = speedLOnTcp(speeds, acc, 0, nullptr, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
         到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
@@ -189,9 +189,17 @@ int main(int argc, char *argv[])
             break;
         }
         M_SLEEP(2000); // delay 2s
+        ROS_INFO("------------------------\n");
         ROS_INFO("Moving to initial poses.\n");
+        ROS_INFO("------------------------\n");
 
-        // 开启前将机械臂移动到初始位置
+        // 开机前将机械臂移动到初始位置
+        nRet = moveJToTarget(joints, 2, 1, strIpAddress);
+        wait_move(strIpAddress);
+        ROS_INFO("------------------------\n");
+        ROS_INFO("Moving to target poses.\n");
+        ROS_INFO("------------------------\n");
+        // 再将机械臂移动到初始位置
         nRet = moveJToPose(pos0, 0.2, 0.2, nullptr, strIpAddress);
         if (nRet < 0)
         {

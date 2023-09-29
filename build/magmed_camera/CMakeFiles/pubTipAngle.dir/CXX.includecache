@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.h
+opencv2/opencv.hpp
+-
 
 /home/zhang/magmed_ws/src/magmed_camera/src/pubTipAngle.cpp
 stdio.h
