@@ -337,19 +337,6 @@ demo01_camera_connect/fast:
 .PHONY : demo01_camera_connect/fast
 
 #=============================================================================
-# Target rules for targets named imageProcess
-
-# Build rule for target.
-imageProcess: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 imageProcess
-.PHONY : imageProcess
-
-# fast build rule for target.
-imageProcess/fast:
-	$(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/build
-.PHONY : imageProcess/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -571,19 +558,6 @@ velocityController/fast:
 .PHONY : velocityController/fast
 
 #=============================================================================
-# Target rules for targets named getJacobianOfMCR
-
-# Build rule for target.
-getJacobianOfMCR: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 getJacobianOfMCR
-.PHONY : getJacobianOfMCR
-
-# fast build rule for target.
-getJacobianOfMCR/fast:
-	$(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
-.PHONY : getJacobianOfMCR/fast
-
-#=============================================================================
 # Target rules for targets named refSignal
 
 # Build rule for target.
@@ -714,6 +688,19 @@ dianaManipulator/fast:
 .PHONY : dianaManipulator/fast
 
 #=============================================================================
+# Target rules for targets named demo02_diana7api_jacobiTest
+
+# Build rule for target.
+demo02_diana7api_jacobiTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo02_diana7api_jacobiTest
+.PHONY : demo02_diana7api_jacobiTest
+
+# fast build rule for target.
+demo02_diana7api_jacobiTest/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build
+.PHONY : demo02_diana7api_jacobiTest/fast
+
+#=============================================================================
 # Target rules for targets named demo01_diana7api_connect_test
 
 # Build rule for target.
@@ -725,6 +712,162 @@ demo01_diana7api_connect_test: cmake_check_build_system
 demo01_diana7api_connect_test/fast:
 	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
 .PHONY : demo01_diana7api_connect_test/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages
+
+# Build rule for target.
+magmed_msgs_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages
+.PHONY : magmed_msgs_generate_messages
+
+# fast build rule for target.
+magmed_msgs_generate_messages/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
+.PHONY : magmed_msgs_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_gennodejs
+
+# Build rule for target.
+magmed_msgs_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_gennodejs
+.PHONY : magmed_msgs_gennodejs
+
+# fast build rule for target.
+magmed_msgs_gennodejs/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build
+.PHONY : magmed_msgs_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_CtrlTwist
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_CtrlTwist: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_CtrlTwist
+.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_CtrlTwist/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_cpp
+
+# Build rule for target.
+magmed_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_cpp
+.PHONY : magmed_msgs_generate_messages_cpp
+
+# fast build rule for target.
+magmed_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build
+.PHONY : magmed_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_genlisp
+
+# Build rule for target.
+magmed_msgs_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genlisp
+.PHONY : magmed_msgs_genlisp
+
+# fast build rule for target.
+magmed_msgs_genlisp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build
+.PHONY : magmed_msgs_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_gencpp
+
+# Build rule for target.
+magmed_msgs_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_gencpp
+.PHONY : magmed_msgs_gencpp
+
+# fast build rule for target.
+magmed_msgs_gencpp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build
+.PHONY : magmed_msgs_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_py
+
+# Build rule for target.
+magmed_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_py
+.PHONY : magmed_msgs_generate_messages_py
+
+# fast build rule for target.
+magmed_msgs_generate_messages_py/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
+.PHONY : magmed_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_eus
+
+# Build rule for target.
+magmed_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
+.PHONY : magmed_msgs_generate_messages_eus
+
+# fast build rule for target.
+magmed_msgs_generate_messages_eus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+.PHONY : magmed_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_geneus
+
+# Build rule for target.
+magmed_msgs_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_geneus
+.PHONY : magmed_msgs_geneus
+
+# fast build rule for target.
+magmed_msgs_geneus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build
+.PHONY : magmed_msgs_geneus/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_lisp
+
+# Build rule for target.
+magmed_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_lisp
+.PHONY : magmed_msgs_generate_messages_lisp
+
+# fast build rule for target.
+magmed_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
+.PHONY : magmed_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_nodejs
+
+# Build rule for target.
+magmed_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_nodejs
+.PHONY : magmed_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+magmed_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
+.PHONY : magmed_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_genpy
+
+# Build rule for target.
+magmed_msgs_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genpy
+.PHONY : magmed_msgs_genpy
+
+# fast build rule for target.
+magmed_msgs_genpy/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
+.PHONY : magmed_msgs_genpy/fast
 
 # Help Target
 help:
@@ -752,7 +895,6 @@ help:
 	@echo "... demo03_grabimage_callback"
 	@echo "... demo02_grabimage_activestream"
 	@echo "... demo01_camera_connect"
-	@echo "... imageProcess"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"
@@ -770,7 +912,6 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... optController"
 	@echo "... velocityController"
-	@echo "... getJacobianOfMCR"
 	@echo "... refSignal"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
@@ -781,7 +922,20 @@ help:
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
+	@echo "... demo02_diana7api_jacobiTest"
 	@echo "... demo01_diana7api_connect_test"
+	@echo "... magmed_msgs_generate_messages"
+	@echo "... magmed_msgs_gennodejs"
+	@echo "... _magmed_msgs_generate_messages_check_deps_CtrlTwist"
+	@echo "... magmed_msgs_generate_messages_cpp"
+	@echo "... magmed_msgs_genlisp"
+	@echo "... magmed_msgs_gencpp"
+	@echo "... magmed_msgs_generate_messages_py"
+	@echo "... magmed_msgs_generate_messages_eus"
+	@echo "... magmed_msgs_geneus"
+	@echo "... magmed_msgs_generate_messages_lisp"
+	@echo "... magmed_msgs_generate_messages_nodejs"
+	@echo "... magmed_msgs_genpy"
 .PHONY : help
 
 

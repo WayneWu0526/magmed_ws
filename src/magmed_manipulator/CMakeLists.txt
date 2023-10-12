@@ -122,7 +122,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   /opt/DianaApi/include
-  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller
+  ${CMAKE_SOURCE_DIR}/magmed_controller/include
 )
 link_directories(
   /opt/DianaApi/lib
@@ -143,9 +143,12 @@ link_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/demo01_diana7api_test_node.cpp)
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
+add_executable(demo02_diana7api_jacobiTest src/demo02_diana7api_jacobiTest.cpp)
 add_executable(dianaManipulator src/dianaManipulator.cpp)
 add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
-add_executable(dianaManipulator_opt src/dianaManipulator_opt.cpp)
+add_executable(dianaManipulator_opt 
+  src/dianaManipulator_opt.cpp)
+  # ${CMAKE_SOURCE_DIR}/magmed_controller/src/getJacobianOfMCR.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -159,6 +162,7 @@ add_dependencies(demo01_diana7api_connect_test ${${PROJECT_NAME}_EXPORTED_TARGET
 add_dependencies(dianaManipulator ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(dianaManipulator_joystick ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(dianaManipulator_opt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(demo02_diana7api_jacobiTest ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -177,6 +181,10 @@ target_link_libraries(dianaManipulator_joystick
   DianaApi
 )
 target_link_libraries(dianaManipulator_opt
+  ${catkin_LIBRARIES}
+  DianaApi
+)
+target_link_libraries(demo02_diana7api_jacobiTest
   ${catkin_LIBRARIES}
   DianaApi
 )

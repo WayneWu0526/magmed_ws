@@ -70,33 +70,30 @@ magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.s"
 	cd /home/zhang/magmed_ws/build/magmed_camera && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_camera/src/pubTipAngle.cpp -o CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.s
 
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o: magmed_camera/CMakeFiles/pubTipAngle.dir/flags.make
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o: /home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o"
+	cd /home/zhang/magmed_ws/build/magmed_camera && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o -c /home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp
+
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.i"
+	cd /home/zhang/magmed_ws/build/magmed_camera && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp > CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.i
+
+magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.s"
+	cd /home/zhang/magmed_ws/build/magmed_camera && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp -o CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.s
+
 # Object files for target pubTipAngle
 pubTipAngle_OBJECTS = \
-"CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o"
+"CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o" \
+"CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o"
 
 # External object files for target pubTipAngle
 pubTipAngle_EXTERNAL_OBJECTS =
 
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/build.make
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/libroscpp.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/librosconsole.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/librosconsole_log4cxx.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/librosconsole_backend_interface.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/libxmlrpcpp.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/libroscpp_serialization.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/librostime.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/libcpp_common.so
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /home/zhang/magmed_ws/devel/lib/libimageProcess.so
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /opt/ros/noetic/lib/libroscpp.so
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
@@ -122,7 +119,6 @@ pubTipAngle_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0
@@ -137,33 +133,34 @@ pubTipAngle_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
+/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0
-/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0
 /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle"
 	cd /home/zhang/magmed_ws/build/magmed_camera && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pubTipAngle.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

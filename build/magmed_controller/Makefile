@@ -197,20 +197,32 @@ velocityController/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
 .PHONY : velocityController/fast
 
-# Convenience name for target.
-magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
-.PHONY : magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
+src/diffKine.o: src/diffKine.cpp.o
 
-# Convenience name for target.
-getJacobianOfMCR: magmed_controller/CMakeFiles/getJacobianOfMCR.dir/rule
+.PHONY : src/diffKine.o
 
-.PHONY : getJacobianOfMCR
+# target to build an object file
+src/diffKine.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o
+.PHONY : src/diffKine.cpp.o
 
-# fast build rule for target.
-getJacobianOfMCR/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build
-.PHONY : getJacobianOfMCR/fast
+src/diffKine.i: src/diffKine.cpp.i
+
+.PHONY : src/diffKine.i
+
+# target to preprocess a source file
+src/diffKine.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.i
+.PHONY : src/diffKine.cpp.i
+
+src/diffKine.s: src/diffKine.cpp.s
+
+.PHONY : src/diffKine.s
+
+# target to generate assembly for a file
+src/diffKine.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.s
+.PHONY : src/diffKine.cpp.s
 
 src/getJacobianOfMCR.o: src/getJacobianOfMCR.cpp.o
 
@@ -218,7 +230,8 @@ src/getJacobianOfMCR.o: src/getJacobianOfMCR.cpp.o
 
 # target to build an object file
 src/getJacobianOfMCR.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.o
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o
 .PHONY : src/getJacobianOfMCR.cpp.o
 
 src/getJacobianOfMCR.i: src/getJacobianOfMCR.cpp.i
@@ -227,7 +240,8 @@ src/getJacobianOfMCR.i: src/getJacobianOfMCR.cpp.i
 
 # target to preprocess a source file
 src/getJacobianOfMCR.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.i
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.i
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.i
 .PHONY : src/getJacobianOfMCR.cpp.i
 
 src/getJacobianOfMCR.s: src/getJacobianOfMCR.cpp.s
@@ -236,7 +250,8 @@ src/getJacobianOfMCR.s: src/getJacobianOfMCR.cpp.s
 
 # target to generate assembly for a file
 src/getJacobianOfMCR.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/getJacobianOfMCR.dir/build.make magmed_controller/CMakeFiles/getJacobianOfMCR.dir/src/getJacobianOfMCR.cpp.s
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.s
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.s
 .PHONY : src/getJacobianOfMCR.cpp.s
 
 src/optController.o: src/optController.cpp.o
@@ -308,7 +323,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... velocityController"
-	@echo "... getJacobianOfMCR"
+	@echo "... src/diffKine.o"
+	@echo "... src/diffKine.i"
+	@echo "... src/diffKine.s"
 	@echo "... src/getJacobianOfMCR.o"
 	@echo "... src/getJacobianOfMCR.i"
 	@echo "... src/getJacobianOfMCR.s"

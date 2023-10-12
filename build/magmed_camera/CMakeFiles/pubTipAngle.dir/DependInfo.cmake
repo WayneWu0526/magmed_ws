@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp" "/home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o"
   "/home/zhang/magmed_ws/src/magmed_camera/src/pubTipAngle.cpp" "/home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
@@ -21,13 +22,13 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/MVS/include"
+  "/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera"
   "/usr/include/eigen3"
   "/usr/include/opencv4"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/zhang/magmed_ws/build/magmed_camera/CMakeFiles/imageProcess.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

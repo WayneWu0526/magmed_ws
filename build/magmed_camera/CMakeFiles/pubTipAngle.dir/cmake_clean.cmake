@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle"
   "/home/zhang/magmed_ws/devel/lib/magmed_camera/pubTipAngle.pdb"
+  "CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o"
   "CMakeFiles/pubTipAngle.dir/src/pubTipAngle.cpp.o"
 )
 

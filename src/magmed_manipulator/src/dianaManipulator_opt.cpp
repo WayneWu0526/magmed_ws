@@ -13,6 +13,7 @@
 
 bool g_bExit = false;
 double g_dTwist[6] = {0.0}; // Note: twist is defined as [Vx, Vy, Vz, Wx, Wy, Wz];
+double g_dJoints[JOINT_NUM] = {0.0};
 magmed_controller::MCR mcr;
 
 // receive the rotation angular velocity of the magnet
@@ -26,6 +27,7 @@ void magPosCallback(const std_msgs::Float64MultiArray::ConstPtr &msg)
     g_dTwist[1] = msg->data[1];
     g_dTwist[2] = msg->data[2];
     g_dTwist[5] = msg->data[3];
+    // g_dJoints[JOINT_NUM - 1] = msg->data[3];
 }
 
 // work thread
@@ -36,31 +38,39 @@ static void *WorkThread(void *pUser)
     ros::Rate rate(100); // 推送周期是100Hz
     while (1)
     {
-        double speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.1}; // 3.0;
+        double speeds[6] = {0.05, 0.0, 0.0, 0.0, 0.0, 0.3}; // 3.0;
         // the sign of the speed is the direction of the joint
         // std::cout << "g_dPsi: " << g_dPsi << std::endl;
-        double acc[2] = {0.30, 0.50}; //acceleration
+        double acc[2] = {0.005, 0.50}; //acceleration
         // replace speeds with g_dTwist
-        // nRet = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
-        nRet = speedLOnTcp(speeds, acc, 0, nullptr, strIpAddress);
+        nRet = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
+        // nRet = speedLOnTcp(speeds, acc, 0, nullptr, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
         到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
         if (nRet < 0)
         {
-            ROS_ERROR("speedJ failed! Return value = %d\n", nRet);
+            ROS_ERROR("speedLOnTcp failed! Return value = %d\n", nRet);
         }
         else
         {
             // printf("Activate speedJ model\n");
         }
+        // nRet = speedJ(g_dJoints, 0.3, 0, strIpAddress);
+        // if (nRet < 0)
+        // {
+        //     ROS_ERROR("speedJ failed! Return value = %d\n", nRet);
+        // }
+        // else
+        // {
+        //     // printf("Activate speedJ model\n");
+        // }
+        rate.sleep(); // 若不设置延时可能导致线程占用过高，socket满了，导致报错
 
         if (g_bExit)
         {
             break;
-        }
-
-        rate.sleep(); // 若不设置延时可能导致线程占用过高，socket满了，导致报错
+        }   
     }
     stop(strIpAddress);
     return 0;
@@ -181,6 +191,13 @@ int main(int argc, char *argv[])
             delete pinfo;
             pinfo = nullptr;
         }
+        // 清除指定 IP 地址机械臂的错误信息。
+        nRet = cleanErrorInfo(strIpAddress);
+        if(nRet < 0)
+        {
+            ROS_ERROR("cleanErrorInfo failed!\n");
+            break;
+        }
         // 打开指定 IP 地址机械臂的抱闸，启动机械臂。调用该接口后，需要调用者延时 2s后再做其他操作。
         nRet = releaseBrake(strIpAddress);
         if (nRet < 0)
@@ -194,7 +211,7 @@ int main(int argc, char *argv[])
         ROS_INFO("------------------------\n");
 
         // 开机前将机械臂移动到初始位置
-        nRet = moveJToTarget(joints, 2, 1, strIpAddress);
+        nRet = moveJToTarget(joints, 0.5, 0.5, strIpAddress);
         wait_move(strIpAddress);
         ROS_INFO("------------------------\n");
         ROS_INFO("Moving to target poses.\n");
@@ -250,7 +267,7 @@ int main(int argc, char *argv[])
             // send msg is defined as [Wz, Vx, Vy, Vz]
             array_msg.data = {joints[6], Tgb_eigen(0, 3), Tgb_eigen(1, 3), Tgb_eigen(2, 3)};
 
-            // diana的TCP后三个坐标以rpy表示，旋转方法为Z-Y-X
+            // diana的TCP后三个坐标以轴角表示。
             // std::cout << "Tgb_eigen:" << Tgb_eigen << std::endl;
             // printf("initPos: %f, %f, %f, %f, %f, %f\n", pos0[0], pos0[1],pos0[2],pos0[3],pos0[4],pos0[5]);
             // printf("getTcpPos: %f, %f, %f, %f, %f, %f\n", poses[0], poses[1],poses[2],poses[3],poses[4],poses[5]);

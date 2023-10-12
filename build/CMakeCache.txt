@@ -306,9 +306,6 @@ EMPY_EXECUTABLE:FILEPATH=EMPY_EXECUTABLE-NOTFOUND
 //Empy script
 EMPY_SCRIPT:STRING=/usr/lib/python3/dist-packages/em.py
 
-//The directory containing a CMake configuration file for Eigen3.
-Eigen3_DIR:PATH=Eigen3_DIR-NOTFOUND
-
 //Path to a library.
 GMOCK_LIBRARY:FILEPATH=GMOCK_LIBRARY-NOTFOUND
 
@@ -403,14 +400,26 @@ catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
+//The directory containing a CMake configuration file for gencpp.
+gencpp_DIR:PATH=/opt/ros/noetic/share/gencpp/cmake
+
+//The directory containing a CMake configuration file for geneus.
+geneus_DIR:PATH=/opt/ros/noetic/share/geneus/cmake
+
+//The directory containing a CMake configuration file for genlisp.
+genlisp_DIR:PATH=/opt/ros/noetic/share/genlisp/cmake
+
+//The directory containing a CMake configuration file for genmsg.
+genmsg_DIR:PATH=/opt/ros/noetic/share/genmsg/cmake
+
+//The directory containing a CMake configuration file for gennodejs.
+gennodejs_DIR:PATH=/opt/ros/noetic/share/gennodejs/cmake
+
+//The directory containing a CMake configuration file for genpy.
+genpy_DIR:PATH=/opt/ros/noetic/share/genpy/cmake
+
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
-
-//The directory containing a CMake configuration file for getJacobianOfMCR.
-getJacobianOfMCR_DIR:PATH=getJacobianOfMCR_DIR-NOTFOUND
-
-//Dependencies for the target
-getJacobianOfMCR_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/gtest/googlemock
@@ -458,9 +467,6 @@ gtest_hide_internal_symbols:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
-//Dependencies for the target
-imageProcess_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;opencv_calib3d;general;opencv_core;general;opencv_dnn;general;opencv_features2d;general;opencv_flann;general;opencv_highgui;general;opencv_imgcodecs;general;opencv_imgproc;general;opencv_ml;general;opencv_objdetect;general;opencv_photo;general;opencv_stitching;general;opencv_video;general;opencv_videoio;general;opencv_aruco;general;opencv_bgsegm;general;opencv_bioinspired;general;opencv_ccalib;general;opencv_datasets;general;opencv_dnn_objdetect;general;opencv_dnn_superres;general;opencv_dpm;general;opencv_face;general;opencv_freetype;general;opencv_fuzzy;general;opencv_hdf;general;opencv_hfs;general;opencv_img_hash;general;opencv_line_descriptor;general;opencv_optflow;general;opencv_phase_unwrapping;general;opencv_plot;general;opencv_quality;general;opencv_reg;general;opencv_rgbd;general;opencv_saliency;general;opencv_shape;general;opencv_stereo;general;opencv_structured_light;general;opencv_superres;general;opencv_surface_matching;general;opencv_text;general;opencv_tracking;general;opencv_videostab;general;opencv_viz;general;opencv_ximgproc;general;opencv_xobjdetect;general;opencv_xphoto;
-
 //Path to a library.
 lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 
@@ -473,8 +479,6 @@ magmed_camera_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_camera
 //Value Computed by CMake
 magmed_controller_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_controller
 
-magmed_controller_DIR:PATH=
-
 //Value Computed by CMake
 magmed_controller_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_controller
 
@@ -483,12 +487,6 @@ magmed_deeplearning_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_deeplea
 
 //Value Computed by CMake
 magmed_deeplearning_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_deeplearning
-
-//Value Computed by CMake
-magmed_description_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_description
-
-//Value Computed by CMake
-magmed_description_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_description
 
 //Value Computed by CMake
 magmed_feeder_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_feeder
@@ -515,16 +513,22 @@ magmed_manipulator_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_manipula
 magmed_manipulator_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_manipulator
 
 //Value Computed by CMake
+magmed_msgs_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_msgs
+
+//Value Computed by CMake
+magmed_msgs_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_msgs
+
+//Value Computed by CMake
 magmed_virtualsurgery_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_virtualsurgery
 
 //Value Computed by CMake
 magmed_virtualsurgery_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_virtualsurgery
 
+//The directory containing a CMake configuration file for message_generation.
+message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
+
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
-
-//The directory containing a CMake configuration file for qpOASES.
-qpOASES_DIR:PATH=qpOASES_DIR-NOTFOUND
 
 //Include path for qpOASES and its dependencies
 qpOASES_INCLUDE_DIR:STRING=/usr/local/include

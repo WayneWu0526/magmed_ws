@@ -228,21 +228,6 @@ demo01_camera_connect/fast:
 .PHONY : demo01_camera_connect/fast
 
 # Convenience name for target.
-magmed_camera/CMakeFiles/imageProcess.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/imageProcess.dir/rule
-.PHONY : magmed_camera/CMakeFiles/imageProcess.dir/rule
-
-# Convenience name for target.
-imageProcess: magmed_camera/CMakeFiles/imageProcess.dir/rule
-
-.PHONY : imageProcess
-
-# fast build rule for target.
-imageProcess/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/build
-.PHONY : imageProcess/fast
-
-# Convenience name for target.
 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
@@ -554,7 +539,7 @@ src/imageProcess.o: src/imageProcess.cpp.o
 
 # target to build an object file
 src/imageProcess.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.o
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.o
 .PHONY : src/imageProcess.cpp.o
 
 src/imageProcess.i: src/imageProcess.cpp.i
@@ -563,7 +548,7 @@ src/imageProcess.i: src/imageProcess.cpp.i
 
 # target to preprocess a source file
 src/imageProcess.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.i
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.i
 .PHONY : src/imageProcess.cpp.i
 
 src/imageProcess.s: src/imageProcess.cpp.s
@@ -572,7 +557,7 @@ src/imageProcess.s: src/imageProcess.cpp.s
 
 # target to generate assembly for a file
 src/imageProcess.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/imageProcess.dir/build.make magmed_camera/CMakeFiles/imageProcess.dir/src/imageProcess.cpp.s
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/src/imageProcess.cpp.s
 .PHONY : src/imageProcess.cpp.s
 
 src/pubTipAngle.o: src/pubTipAngle.cpp.o
@@ -616,7 +601,6 @@ help:
 	@echo "... demo03_grabimage_callback"
 	@echo "... demo02_grabimage_activestream"
 	@echo "... demo01_camera_connect"
-	@echo "... imageProcess"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"

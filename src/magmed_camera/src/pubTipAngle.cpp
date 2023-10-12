@@ -132,6 +132,7 @@ int main(int argc, char **argv)
 
     ros::NodeHandle nh;
 
+    nh.param<int>("nFlag", g_nFlag, 0);
     // whether to show the image
     switch(g_nFlag){
         case 0:
@@ -146,7 +147,6 @@ int main(int argc, char **argv)
         default:
             ROS_WARN("Invalid mode!\n");
     }
-    nh.param<int>("nFlag", g_nFlag, 1);
 
     ros::Publisher pub = nh.advertise<std_msgs::Float64>("/magmed_camera/tipAngle", 1000);
     

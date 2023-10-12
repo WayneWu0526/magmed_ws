@@ -32,7 +32,7 @@ void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
     g_speeds[2] = MAX_LINEAR_SPEED * (msg->linear.z);
     g_speeds[3] = MAX_ANGULAR_SPEED * (msg->angular.x);
     g_speeds[4] = MAX_ANGULAR_SPEED * (msg->angular.y);
-    g_speeds[5] =MAX_ANGULAR_SPEED * (msg->angular.z);
+    g_speeds[5] = MAX_ANGULAR_SPEED * (msg->angular.z);
     for(int i=0; i < 6; i++)
     {
         std::cout << g_speeds[i] << " ";

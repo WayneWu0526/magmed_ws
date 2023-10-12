@@ -70,14 +70,44 @@ magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.s: cmake_fo
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optController.dir/src/optController.cpp.s"
 	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/optController.cpp -o CMakeFiles/optController.dir/src/optController.cpp.s
 
+magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o: magmed_controller/CMakeFiles/optController.dir/flags.make
+magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o -c /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp
+
+magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.i"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp > CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.i
+
+magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.s"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp -o CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.s
+
+magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o: magmed_controller/CMakeFiles/optController.dir/flags.make
+magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/optController.dir/src/diffKine.cpp.o -c /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
+
+magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optController.dir/src/diffKine.cpp.i"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp > CMakeFiles/optController.dir/src/diffKine.cpp.i
+
+magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optController.dir/src/diffKine.cpp.s"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp -o CMakeFiles/optController.dir/src/diffKine.cpp.s
+
 # Object files for target optController
 optController_OBJECTS = \
-"CMakeFiles/optController.dir/src/optController.cpp.o"
+"CMakeFiles/optController.dir/src/optController.cpp.o" \
+"CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o" \
+"CMakeFiles/optController.dir/src/diffKine.cpp.o"
 
 # External object files for target optController
 optController_EXTERNAL_OBJECTS =
 
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o
+/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o
+/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: magmed_controller/CMakeFiles/optController.dir/build.make
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/libroscpp.so
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libpthread.so
@@ -96,26 +126,8 @@ optController_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /home/zhang/magmed_ws/devel/lib/libgetJacobianOfMCR.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/libroscpp.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/librosconsole.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/librosconsole_log4cxx.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/librosconsole_backend_interface.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/libxmlrpcpp.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/libroscpp_serialization.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/librostime.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /opt/ros/noetic/lib/libcpp_common.so
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
-/home/zhang/magmed_ws/devel/lib/magmed_controller/optController: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/zhang/magmed_ws/devel/lib/magmed_controller/optController: magmed_controller/CMakeFiles/optController.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/zhang/magmed_ws/devel/lib/magmed_controller/optController"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable /home/zhang/magmed_ws/devel/lib/magmed_controller/optController"
 	cd /home/zhang/magmed_ws/build/magmed_controller && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/optController.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

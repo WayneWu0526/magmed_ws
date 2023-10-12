@@ -10,6 +10,18 @@
 opencv2/opencv.hpp
 -
 
+/home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp
+magmed_camera/imageProcess.h
+/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.h
+iostream
+-
+eigen3/Eigen/Dense
+-
+cmath
+-
+ros/ros.h
+-
+
 /home/zhang/magmed_ws/src/magmed_camera/src/pubTipAngle.cpp
 stdio.h
 -

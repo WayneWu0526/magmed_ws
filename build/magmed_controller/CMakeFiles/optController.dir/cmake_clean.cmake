@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/lib/magmed_controller/optController"
   "/home/zhang/magmed_ws/devel/lib/magmed_controller/optController.pdb"
+  "CMakeFiles/optController.dir/src/diffKine.cpp.o"
+  "CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o"
   "CMakeFiles/optController.dir/src/optController.cpp.o"
 )
 

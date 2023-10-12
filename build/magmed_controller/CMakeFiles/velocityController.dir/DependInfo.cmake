@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp" "/home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o"
   "/home/zhang/magmed_ws/src/magmed_controller/src/velocityController.cpp" "/home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
@@ -18,13 +19,13 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/zhang/magmed_ws/src/magmed_controller/include"
+  "/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/getJacobianOfMCR.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

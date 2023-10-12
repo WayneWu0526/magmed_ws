@@ -213,6 +213,21 @@ dianaManipulator/fast:
 .PHONY : dianaManipulator/fast
 
 # Convenience name for target.
+magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/rule
+.PHONY : magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/rule
+
+# Convenience name for target.
+demo02_diana7api_jacobiTest: magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/rule
+
+.PHONY : demo02_diana7api_jacobiTest
+
+# fast build rule for target.
+demo02_diana7api_jacobiTest/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build
+.PHONY : demo02_diana7api_jacobiTest/fast
+
+# Convenience name for target.
 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
 .PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
@@ -253,6 +268,33 @@ src/demo01_diana7api_connect_test.s: src/demo01_diana7api_connect_test.cpp.s
 src/demo01_diana7api_connect_test.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/src/demo01_diana7api_connect_test.cpp.s
 .PHONY : src/demo01_diana7api_connect_test.cpp.s
+
+src/demo02_diana7api_jacobiTest.o: src/demo02_diana7api_jacobiTest.cpp.o
+
+.PHONY : src/demo02_diana7api_jacobiTest.o
+
+# target to build an object file
+src/demo02_diana7api_jacobiTest.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/src/demo02_diana7api_jacobiTest.cpp.o
+.PHONY : src/demo02_diana7api_jacobiTest.cpp.o
+
+src/demo02_diana7api_jacobiTest.i: src/demo02_diana7api_jacobiTest.cpp.i
+
+.PHONY : src/demo02_diana7api_jacobiTest.i
+
+# target to preprocess a source file
+src/demo02_diana7api_jacobiTest.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/src/demo02_diana7api_jacobiTest.cpp.i
+.PHONY : src/demo02_diana7api_jacobiTest.cpp.i
+
+src/demo02_diana7api_jacobiTest.s: src/demo02_diana7api_jacobiTest.cpp.s
+
+.PHONY : src/demo02_diana7api_jacobiTest.s
+
+# target to generate assembly for a file
+src/demo02_diana7api_jacobiTest.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/src/demo02_diana7api_jacobiTest.cpp.s
+.PHONY : src/demo02_diana7api_jacobiTest.cpp.s
 
 src/dianaManipulator.o: src/dianaManipulator.cpp.o
 
@@ -348,6 +390,7 @@ help:
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
+	@echo "... demo02_diana7api_jacobiTest"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -355,6 +398,9 @@ help:
 	@echo "... src/demo01_diana7api_connect_test.o"
 	@echo "... src/demo01_diana7api_connect_test.i"
 	@echo "... src/demo01_diana7api_connect_test.s"
+	@echo "... src/demo02_diana7api_jacobiTest.o"
+	@echo "... src/demo02_diana7api_jacobiTest.i"
+	@echo "... src/demo02_diana7api_jacobiTest.s"
 	@echo "... src/dianaManipulator.o"
 	@echo "... src/dianaManipulator.i"
 	@echo "... src/dianaManipulator.s"

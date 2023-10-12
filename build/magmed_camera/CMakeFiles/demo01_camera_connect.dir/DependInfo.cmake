@@ -21,6 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/MVS/include"
+  "/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera"
   "/usr/include/eigen3"
   "/usr/include/opencv4"
   )

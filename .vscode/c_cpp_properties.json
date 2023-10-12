@@ -2,21 +2,19 @@
     "configurations": [
         {
             "name": "ROS",
-            // "intelliSenseMode": "linux-gcc-x64",
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
-            // "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "cStandard": "gnu17",
             "cppStandard": "c++17",
             "configurationProvider": "ms-vscode.cmake-tools",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/devel/include",
                 "/opt/ros/noetic/include",
                 "/opt/ros/noetic/share",
                 "/opt/DianaApi/include",
                 "/opt/MVS/include",
-                "/usr/local/include/**",
-                "/usr/include/**"
+                "/usr/local/include/**"
             ],
             "browse": {
                 "databaseFilename": "${default}",

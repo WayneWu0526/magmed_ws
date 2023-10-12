@@ -5,7 +5,8 @@
 #include <vector>
 #include <eigen3/Eigen/Dense>
 #include <qpOASES.hpp>
-#include "magmed_controller/getJacobianOfMCR.h"
+#include "getJacobianOfMCR.h"
+#include "diffKine.h"
 
 magmed_controller::MCR mcr;
 
@@ -45,7 +46,7 @@ void LESO(Vector4d controlInput, RowVector4d jacobian, std::vector<float> &hatx,
     double error = g_dThetaR[0] - hatx[0];
     hatx[0] += (hatx[0] + beta1 / epsilon * error + jacobian * controlInput) / nf;
     hatx[1] += (beta2 / (epsilon * epsilon) * error) / nf;
-    std::cout << "estimate perturbation: " << hatx[1] << std::endl;
+    // std::cout << "estimate perturbation: " << hatx[1] << std::endl;
 }
 
 double FF_controller(std::vector<float> &hatx, double thetaL)
@@ -60,10 +61,10 @@ Vector4d controlAllocation(double virtualControlLaw, RowVector4d jacobian, int n
 {
     USING_NAMESPACE_QPOASES
     double inf = qpOASES::INFTY;
-    Vector4d UMAX = {0.2, 0.001, 0.001, 0.001};
-    Vector4d u;
-    u << g_dPsi, g_dPos;
-    std::cout << "u: " << u << std::endl;
+    Vector4d UMAX = {0.2, 0.05, 0.01, 0.05};
+    Vector4d twist;
+    twist << g_dPsi, g_dPos;
+    std::cout << "twist: " << twist << std::endl;
     
     // diagonal
     float T = 1.0 / nf;
@@ -71,8 +72,9 @@ Vector4d controlAllocation(double virtualControlLaw, RowVector4d jacobian, int n
     Vector4d Umax = {M_PI / 2.0, mcr.pr.L, mcr.pr.H0 + 40.0e-3, 0.0};
     // std::cout << "Umin:" << Umin << std::endl;
     // std::cout << "Umax:" << Umax << std::endl;
-    Umin = (Umin - u) / T;
-    Umax = (Umax - u) / T;
+    Umin = (Umin - twist) / (2 * T);
+    std::cout << Umin(2) << std::endl;
+    Umax = (Umax - twist) / (2 * T);
     // std::cout << "Umin:" << Umin << std::endl;
     // std::cout << "Umax:" << Umax << std::endl;
     Umin = Umin.cwiseMax(-UMAX);
@@ -88,14 +90,25 @@ Vector4d controlAllocation(double virtualControlLaw, RowVector4d jacobian, int n
     real_t A[1 * 5] = {jacobian[0], jacobian[1], jacobian[2], jacobian[3], 1.0};
     // real_t lb[5] = {Umin[0], Umin[1], Umin[2], Umin[3], -inf};
     // real_t ub[5] = {Umax[0], Umax[1], Umax[2], Umax[3], inf};
+    // if(Umin(2) >= Umax(2)){
+    //     Umax(2) = Umin(2);
+    // }
+    // if(Umax(2) <= Umin(2))
+    // {
+    //     Umin(2) = Umax(2);
+    // }
     real_t lb[5] = {Umin[0], 0.0, Umin[2], 0.0, -inf};
     real_t ub[5] = {Umax[0], 0.0, Umax[2], 0.0, inf};
+
     std::cout << "Umin" << Umin << std::endl;
     std::cout << "Umax" << Umax << std::endl;
     real_t lbA[1] = {virtualControlLaw};
     real_t ubA[1] = {virtualControlLaw};
 
-    QProblem qpCA( 5,1 );
+    Options options;
+    options.printLevel = PL_LOW;
+    QProblem qpCA( 5,1);
+    qpCA.setOptions( options );
     int_t nWSR = 10;
     qpCA.init(H, g, A, lb, ub, lbA, ubA, nWSR);
     real_t xOpt[5];
@@ -105,6 +118,15 @@ Vector4d controlAllocation(double virtualControlLaw, RowVector4d jacobian, int n
     optController << xOpt[0], xOpt[1], xOpt[2], xOpt[3]; // optController order: psi, x, y, z
     std::cout << "optimal control input: " << optController << std::endl;
     return optController;
+}
+
+Vector3d velFrmTrns(Vector3d vel, double psi)
+{
+    Matrix3d RotZ = mcr.RotZ(-psi);
+    Eigen::DiagonalMatrix<double, 3> Rgb0;
+    Rgb0.diagonal() << -1, 1, -1;
+    Vector3d velTrans = RotZ * Rgb0 * vel;
+    return velTrans;
 }
 
 int main(int argc, char *argv[])
@@ -159,6 +181,9 @@ int main(int argc, char *argv[])
 
         // update LESO
         LESO(actualControlLaw, jacobian, hatx, nf);
+
+        // trans velocity frame from robot to end-effector
+        actualControlLaw.segment(1, 3) = velFrmTrns(actualControlLaw.segment(1, 3), g_dPsi);
 
         // // set coefficient of the controller (positive)
         // float k = 3.0;

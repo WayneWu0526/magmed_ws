@@ -130,22 +130,27 @@ link_directories(
   /opt/MVS/lib/64
 )
 
-include_directories(${EIGEN3_INCLUDE_DIRS})
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  include
+  include/${PROJECT_NAME}
+  ${EIGEN3_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/demo02_camera_test.cpp
 # )
-add_library(imageProcess
-  include/magmed_camera/imageProcess.h
-  src/imageProcess.cpp
-)
+# add_library(imageProcess
+#   include/magmed_camera/imageProcess.h
+#   src/imageProcess.cpp
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(imageProcess ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+# add_dependencies(imageProcess ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
@@ -154,7 +159,9 @@ add_dependencies(imageProcess ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPOR
 add_executable(demo01_camera_connect src/demo01_camera_connect.cpp)
 add_executable(demo02_grabimage_activestream src/demo02_grabimage_activestream.cpp)
 add_executable(demo03_grabimage_callback src/demo03_grabimage_callback.cpp)
-add_executable(pubTipAngle src/pubTipAngle.cpp)
+add_executable(pubTipAngle 
+  src/pubTipAngle.cpp
+  src/imageProcess.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -182,12 +189,9 @@ target_link_libraries(demo03_grabimage_callback
   ${catkin_LIBRARIES}
   MvCameraControl
 )
-target_link_libraries(imageProcess
-  ${catkin_LIBRARIES}
-)
 target_link_libraries(pubTipAngle
   ${catkin_LIBRARIES}
-  imageProcess
+  # imageProcess
   MvCameraControl
 )
 

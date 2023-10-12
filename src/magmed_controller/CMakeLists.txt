@@ -122,27 +122,38 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   include
+  include/${PROJECT_NAME}
   ${catkin_INCLUDE_DIRS}
 )
+# link_directories(
+#   /home/zhang/ModernRoboticsCpp/_install/lib
+# )
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/magmed_controller.cpp
 # )
-add_library(getJacobianOfMCR
-  include/magmed_controller/getJacobianOfMCR.h
-  src/getJacobianOfMCR.cpp
-)
+# add_library(getJacobianOfMCR
+#   include/magmed_controller/getJacobianOfMCR.h
+#   src/getJacobianOfMCR.cpp
+# )
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(getJacobianOfMCR ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+# add_dependencies(getJacobianOfMCR ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/magmed_controller_node.cpp)
-add_executable(velocityController src/velocityController.cpp)
-add_executable(optController src/optController.cpp)
+add_executable(velocityController 
+  src/velocityController.cpp
+  src/getJacobianOfMCR.cpp)
+add_executable(optController 
+  src/optController.cpp
+  src/getJacobianOfMCR.cpp
+  src/diffKine.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -158,16 +169,16 @@ add_dependencies(optController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(getJacobianOfMCR
-  ${catkin_LIBRARIES}
-)
+# target_link_libraries(getJacobianOfMCR
+#   ${catkin_LIBRARIES}
+# )
 target_link_libraries(velocityController
   ${catkin_LIBRARIES}
-  getJacobianOfMCR
+  # getJacobianOfMCR
 )
 target_link_libraries(optController
   ${catkin_LIBRARIES}
-  getJacobianOfMCR
+  # getJacobianOfMCR
   qpOASES
 )
 #############
