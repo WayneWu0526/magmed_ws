@@ -532,32 +532,6 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named optController
-
-# Build rule for target.
-optController: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 optController
-.PHONY : optController
-
-# fast build rule for target.
-optController/fast:
-	$(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/build
-.PHONY : optController/fast
-
-#=============================================================================
-# Target rules for targets named velocityController
-
-# Build rule for target.
-velocityController: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 velocityController
-.PHONY : velocityController
-
-# fast build rule for target.
-velocityController/fast:
-	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
-.PHONY : velocityController/fast
-
-#=============================================================================
 # Target rules for targets named refSignal
 
 # Build rule for target.
@@ -649,71 +623,6 @@ geometry_msgs_generate_messages_eus/fast:
 .PHONY : geometry_msgs_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named dianaManipulator_joystick
-
-# Build rule for target.
-dianaManipulator_joystick: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator_joystick
-.PHONY : dianaManipulator_joystick
-
-# fast build rule for target.
-dianaManipulator_joystick/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build
-.PHONY : dianaManipulator_joystick/fast
-
-#=============================================================================
-# Target rules for targets named dianaManipulator_opt
-
-# Build rule for target.
-dianaManipulator_opt: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator_opt
-.PHONY : dianaManipulator_opt
-
-# fast build rule for target.
-dianaManipulator_opt/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build
-.PHONY : dianaManipulator_opt/fast
-
-#=============================================================================
-# Target rules for targets named dianaManipulator
-
-# Build rule for target.
-dianaManipulator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator
-.PHONY : dianaManipulator
-
-# fast build rule for target.
-dianaManipulator/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
-.PHONY : dianaManipulator/fast
-
-#=============================================================================
-# Target rules for targets named demo02_diana7api_jacobiTest
-
-# Build rule for target.
-demo02_diana7api_jacobiTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo02_diana7api_jacobiTest
-.PHONY : demo02_diana7api_jacobiTest
-
-# fast build rule for target.
-demo02_diana7api_jacobiTest/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build
-.PHONY : demo02_diana7api_jacobiTest/fast
-
-#=============================================================================
-# Target rules for targets named demo01_diana7api_connect_test
-
-# Build rule for target.
-demo01_diana7api_connect_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo01_diana7api_connect_test
-.PHONY : demo01_diana7api_connect_test
-
-# fast build rule for target.
-demo01_diana7api_connect_test/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
-.PHONY : demo01_diana7api_connect_test/fast
-
-#=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages
 
 # Build rule for target.
@@ -740,17 +649,43 @@ magmed_msgs_gennodejs/fast:
 .PHONY : magmed_msgs_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_CtrlTwist
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_MagPose
 
 # Build rule for target.
-_magmed_msgs_generate_messages_check_deps_CtrlTwist: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_CtrlTwist
-.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist
+_magmed_msgs_generate_messages_check_deps_MagPose: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_MagPose
+.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose
 
 # fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_CtrlTwist/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist/fast
+_magmed_msgs_generate_messages_check_deps_MagPose/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboStates
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboStates
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_nodejs
+
+# Build rule for target.
+magmed_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_nodejs
+.PHONY : magmed_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+magmed_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
+.PHONY : magmed_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages_cpp
@@ -844,19 +779,6 @@ magmed_msgs_generate_messages_lisp/fast:
 .PHONY : magmed_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_nodejs
-
-# Build rule for target.
-magmed_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_nodejs
-.PHONY : magmed_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-magmed_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
-.PHONY : magmed_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
 # Target rules for targets named magmed_msgs_genpy
 
 # Build rule for target.
@@ -868,6 +790,110 @@ magmed_msgs_genpy: cmake_check_build_system
 magmed_msgs_genpy/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
 .PHONY : magmed_msgs_genpy/fast
+
+#=============================================================================
+# Target rules for targets named velCtrlNode
+
+# Build rule for target.
+velCtrlNode: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 velCtrlNode
+.PHONY : velCtrlNode
+
+# fast build rule for target.
+velCtrlNode/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/build
+.PHONY : velCtrlNode/fast
+
+#=============================================================================
+# Target rules for targets named velocityController
+
+# Build rule for target.
+velocityController: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 velocityController
+.PHONY : velocityController
+
+# fast build rule for target.
+velocityController/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
+.PHONY : velocityController/fast
+
+#=============================================================================
+# Target rules for targets named velCtrlLib
+
+# Build rule for target.
+velCtrlLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 velCtrlLib
+.PHONY : velCtrlLib
+
+# fast build rule for target.
+velCtrlLib/fast:
+	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
+.PHONY : velCtrlLib/fast
+
+#=============================================================================
+# Target rules for targets named dianaManipulator_joystick
+
+# Build rule for target.
+dianaManipulator_joystick: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator_joystick
+.PHONY : dianaManipulator_joystick
+
+# fast build rule for target.
+dianaManipulator_joystick/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build
+.PHONY : dianaManipulator_joystick/fast
+
+#=============================================================================
+# Target rules for targets named dianaManipulator_opt
+
+# Build rule for target.
+dianaManipulator_opt: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator_opt
+.PHONY : dianaManipulator_opt
+
+# fast build rule for target.
+dianaManipulator_opt/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build
+.PHONY : dianaManipulator_opt/fast
+
+#=============================================================================
+# Target rules for targets named dianaManipulator
+
+# Build rule for target.
+dianaManipulator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dianaManipulator
+.PHONY : dianaManipulator
+
+# fast build rule for target.
+dianaManipulator/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
+.PHONY : dianaManipulator/fast
+
+#=============================================================================
+# Target rules for targets named demo02_diana7api_jacobiTest
+
+# Build rule for target.
+demo02_diana7api_jacobiTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo02_diana7api_jacobiTest
+.PHONY : demo02_diana7api_jacobiTest
+
+# fast build rule for target.
+demo02_diana7api_jacobiTest/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build
+.PHONY : demo02_diana7api_jacobiTest/fast
+
+#=============================================================================
+# Target rules for targets named demo01_diana7api_connect_test
+
+# Build rule for target.
+demo01_diana7api_connect_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo01_diana7api_connect_test
+.PHONY : demo01_diana7api_connect_test
+
+# fast build rule for target.
+demo01_diana7api_connect_test/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
+.PHONY : demo01_diana7api_connect_test/fast
 
 # Help Target
 help:
@@ -910,8 +936,6 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... optController"
-	@echo "... velocityController"
 	@echo "... refSignal"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
@@ -919,14 +943,11 @@ help:
 	@echo "... readJoystick"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... dianaManipulator_joystick"
-	@echo "... dianaManipulator_opt"
-	@echo "... dianaManipulator"
-	@echo "... demo02_diana7api_jacobiTest"
-	@echo "... demo01_diana7api_connect_test"
 	@echo "... magmed_msgs_generate_messages"
 	@echo "... magmed_msgs_gennodejs"
-	@echo "... _magmed_msgs_generate_messages_check_deps_CtrlTwist"
+	@echo "... _magmed_msgs_generate_messages_check_deps_MagPose"
+	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
+	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... magmed_msgs_generate_messages_cpp"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_gencpp"
@@ -934,8 +955,15 @@ help:
 	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... magmed_msgs_geneus"
 	@echo "... magmed_msgs_generate_messages_lisp"
-	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... magmed_msgs_genpy"
+	@echo "... velCtrlNode"
+	@echo "... velocityController"
+	@echo "... velCtrlLib"
+	@echo "... dianaManipulator_joystick"
+	@echo "... dianaManipulator_opt"
+	@echo "... dianaManipulator"
+	@echo "... demo02_diana7api_jacobiTest"
+	@echo "... demo01_diana7api_connect_test"
 .PHONY : help
 
 

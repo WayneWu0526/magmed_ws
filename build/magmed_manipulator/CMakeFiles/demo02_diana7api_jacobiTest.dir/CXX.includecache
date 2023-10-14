@@ -6,3 +6,37 @@
 
 #IncludeRegexTransform: 
 
+/home/zhang/magmed_ws/src/magmed_manipulator/src/demo02_diana7api_jacobiTest.cpp
+DianaAPIDef.h
+-
+DianaAPI.h
+-
+cstring
+-
+iostream
+-
+cmath
+-
+eigen3/Eigen/Dense
+-
+
+/opt/DianaApi/include/DianaAPI.h
+DianaAPIDef.h
+/opt/DianaApi/include/DianaAPIDef.h
+FunctionOptDef.h
+/opt/DianaApi/include/FunctionOptDef.h
+Environment.h
+/opt/DianaApi/include/Environment.h
+
+/opt/DianaApi/include/DianaAPIDef.h
+stdint.h
+-
+sys/types.h
+-
+
+/opt/DianaApi/include/Environment.h
+string
+-
+
+/opt/DianaApi/include/FunctionOptDef.h
+

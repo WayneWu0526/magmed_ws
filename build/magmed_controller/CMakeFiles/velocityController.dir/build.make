@@ -70,29 +70,29 @@ magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.s
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/velocityController.dir/src/velocityController.cpp.s"
 	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/velocityController.cpp -o CMakeFiles/velocityController.dir/src/velocityController.cpp.s
 
-magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o: magmed_controller/CMakeFiles/velocityController.dir/flags.make
-magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o"
-	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o -c /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: magmed_controller/CMakeFiles/velocityController.dir/flags.make
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o -c /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
 
-magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.i"
-	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp > CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.i
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.i"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp > CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.i
 
-magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.s"
-	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/getJacobianOfMCR.cpp -o CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.s
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.s"
+	cd /home/zhang/magmed_ws/build/magmed_controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp -o CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.s
 
 # Object files for target velocityController
 velocityController_OBJECTS = \
 "CMakeFiles/velocityController.dir/src/velocityController.cpp.o" \
-"CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o"
+"CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o"
 
 # External object files for target velocityController
 velocityController_EXTERNAL_OBJECTS =
 
 /home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
-/home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o
+/home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o
 /home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: magmed_controller/CMakeFiles/velocityController.dir/build.make
 /home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: /opt/ros/noetic/lib/libroscpp.so
 /home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController: /usr/lib/x86_64-linux-gnu/libpthread.so

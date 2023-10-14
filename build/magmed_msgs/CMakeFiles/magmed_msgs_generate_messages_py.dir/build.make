@@ -53,22 +53,31 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 # Include the progress variables for this target.
 include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/progress.make
 
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_CtrlTwist.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagPose.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
 
 
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_CtrlTwist.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_CtrlTwist.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/CtrlTwist.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG magmed_msgs/CtrlTwist"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/CtrlTwist.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagPose.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagPose.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG magmed_msgs/MagPose"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
+
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG magmed_msgs/RoboStates"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_CtrlTwist.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for magmed_msgs"
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagPose.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg --initpy
 
 magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py
-magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_CtrlTwist.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagPose.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
 magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make
 

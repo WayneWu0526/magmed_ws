@@ -123,18 +123,14 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 include
+include/${PROJECT_NAME}
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
   /opt/MVS/include
 )
 link_directories(
   /opt/MVS/lib/64
 )
-
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-  include
-  include/${PROJECT_NAME}
-  ${EIGEN3_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

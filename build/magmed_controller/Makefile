@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -112,6 +100,18 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-magmed_controller/CMakeFiles/optController.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/optController.dir/rule
-.PHONY : magmed_controller/CMakeFiles/optController.dir/rule
+magmed_controller/CMakeFiles/velCtrlNode.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velCtrlNode.dir/rule
+.PHONY : magmed_controller/CMakeFiles/velCtrlNode.dir/rule
 
 # Convenience name for target.
-optController: magmed_controller/CMakeFiles/optController.dir/rule
+velCtrlNode: magmed_controller/CMakeFiles/velCtrlNode.dir/rule
 
-.PHONY : optController
+.PHONY : velCtrlNode
 
 # fast build rule for target.
-optController/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/build
-.PHONY : optController/fast
+velCtrlNode/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/build
+.PHONY : velCtrlNode/fast
 
 # Convenience name for target.
 magmed_controller/CMakeFiles/velocityController.dir/rule:
@@ -197,13 +197,58 @@ velocityController/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
 .PHONY : velocityController/fast
 
+# Convenience name for target.
+magmed_controller/CMakeFiles/velCtrlLib.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velCtrlLib.dir/rule
+.PHONY : magmed_controller/CMakeFiles/velCtrlLib.dir/rule
+
+# Convenience name for target.
+velCtrlLib: magmed_controller/CMakeFiles/velCtrlLib.dir/rule
+
+.PHONY : velCtrlLib
+
+# fast build rule for target.
+velCtrlLib/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
+.PHONY : velCtrlLib/fast
+
+src/MSCRJacobi.o: src/MSCRJacobi.cpp.o
+
+.PHONY : src/MSCRJacobi.o
+
+# target to build an object file
+src/MSCRJacobi.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o
+.PHONY : src/MSCRJacobi.cpp.o
+
+src/MSCRJacobi.i: src/MSCRJacobi.cpp.i
+
+.PHONY : src/MSCRJacobi.i
+
+# target to preprocess a source file
+src/MSCRJacobi.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.i
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.i
+.PHONY : src/MSCRJacobi.cpp.i
+
+src/MSCRJacobi.s: src/MSCRJacobi.cpp.s
+
+.PHONY : src/MSCRJacobi.s
+
+# target to generate assembly for a file
+src/MSCRJacobi.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.s
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.s
+.PHONY : src/MSCRJacobi.cpp.s
+
 src/diffKine.o: src/diffKine.cpp.o
 
 .PHONY : src/diffKine.o
 
 # target to build an object file
 src/diffKine.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.o
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o
 .PHONY : src/diffKine.cpp.o
 
 src/diffKine.i: src/diffKine.cpp.i
@@ -212,7 +257,7 @@ src/diffKine.i: src/diffKine.cpp.i
 
 # target to preprocess a source file
 src/diffKine.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.i
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.i
 .PHONY : src/diffKine.cpp.i
 
 src/diffKine.s: src/diffKine.cpp.s
@@ -221,65 +266,62 @@ src/diffKine.s: src/diffKine.cpp.s
 
 # target to generate assembly for a file
 src/diffKine.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/diffKine.cpp.s
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.s
 .PHONY : src/diffKine.cpp.s
 
-src/getJacobianOfMCR.o: src/getJacobianOfMCR.cpp.o
+src/optCtrl.o: src/optCtrl.cpp.o
 
-.PHONY : src/getJacobianOfMCR.o
-
-# target to build an object file
-src/getJacobianOfMCR.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.o
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o
-.PHONY : src/getJacobianOfMCR.cpp.o
-
-src/getJacobianOfMCR.i: src/getJacobianOfMCR.cpp.i
-
-.PHONY : src/getJacobianOfMCR.i
-
-# target to preprocess a source file
-src/getJacobianOfMCR.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.i
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.i
-.PHONY : src/getJacobianOfMCR.cpp.i
-
-src/getJacobianOfMCR.s: src/getJacobianOfMCR.cpp.s
-
-.PHONY : src/getJacobianOfMCR.s
-
-# target to generate assembly for a file
-src/getJacobianOfMCR.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/getJacobianOfMCR.cpp.s
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.s
-.PHONY : src/getJacobianOfMCR.cpp.s
-
-src/optController.o: src/optController.cpp.o
-
-.PHONY : src/optController.o
+.PHONY : src/optCtrl.o
 
 # target to build an object file
-src/optController.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.o
-.PHONY : src/optController.cpp.o
+src/optCtrl.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o
+.PHONY : src/optCtrl.cpp.o
 
-src/optController.i: src/optController.cpp.i
+src/optCtrl.i: src/optCtrl.cpp.i
 
-.PHONY : src/optController.i
+.PHONY : src/optCtrl.i
 
 # target to preprocess a source file
-src/optController.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.i
-.PHONY : src/optController.cpp.i
+src/optCtrl.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.i
+.PHONY : src/optCtrl.cpp.i
 
-src/optController.s: src/optController.cpp.s
+src/optCtrl.s: src/optCtrl.cpp.s
 
-.PHONY : src/optController.s
+.PHONY : src/optCtrl.s
 
 # target to generate assembly for a file
-src/optController.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/optController.dir/build.make magmed_controller/CMakeFiles/optController.dir/src/optController.cpp.s
-.PHONY : src/optController.cpp.s
+src/optCtrl.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.s
+.PHONY : src/optCtrl.cpp.s
+
+src/velCtrlNode.o: src/velCtrlNode.cpp.o
+
+.PHONY : src/velCtrlNode.o
+
+# target to build an object file
+src/velCtrlNode.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o
+.PHONY : src/velCtrlNode.cpp.o
+
+src/velCtrlNode.i: src/velCtrlNode.cpp.i
+
+.PHONY : src/velCtrlNode.i
+
+# target to preprocess a source file
+src/velCtrlNode.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.i
+.PHONY : src/velCtrlNode.cpp.i
+
+src/velCtrlNode.s: src/velCtrlNode.cpp.s
+
+.PHONY : src/velCtrlNode.s
+
+# target to generate assembly for a file
+src/velCtrlNode.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.s
+.PHONY : src/velCtrlNode.cpp.s
 
 src/velocityController.o: src/velocityController.cpp.o
 
@@ -315,23 +357,27 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... optController"
+	@echo "... install/local"
+	@echo "... velCtrlNode"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... velocityController"
+	@echo "... velCtrlLib"
+	@echo "... src/MSCRJacobi.o"
+	@echo "... src/MSCRJacobi.i"
+	@echo "... src/MSCRJacobi.s"
 	@echo "... src/diffKine.o"
 	@echo "... src/diffKine.i"
 	@echo "... src/diffKine.s"
-	@echo "... src/getJacobianOfMCR.o"
-	@echo "... src/getJacobianOfMCR.i"
-	@echo "... src/getJacobianOfMCR.s"
-	@echo "... src/optController.o"
-	@echo "... src/optController.i"
-	@echo "... src/optController.s"
+	@echo "... src/optCtrl.o"
+	@echo "... src/optCtrl.i"
+	@echo "... src/optCtrl.s"
+	@echo "... src/velCtrlNode.o"
+	@echo "... src/velCtrlNode.i"
+	@echo "... src/velCtrlNode.s"
 	@echo "... src/velocityController.o"
 	@echo "... src/velocityController.i"
 	@echo "... src/velocityController.s"

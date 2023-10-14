@@ -19,11 +19,11 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/zhang/magmed_ws/src/magmed_camera/include"
+  "/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
-  "/opt/MVS/include"
-  "/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera"
   "/usr/include/eigen3"
+  "/opt/MVS/include"
   "/usr/include/opencv4"
   )
 

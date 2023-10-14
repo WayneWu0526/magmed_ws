@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController"
   "/home/zhang/magmed_ws/devel/lib/magmed_controller/velocityController.pdb"
-  "CMakeFiles/velocityController.dir/src/getJacobianOfMCR.cpp.o"
+  "CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o"
   "CMakeFiles/velocityController.dir/src/velocityController.cpp.o"
 )
 

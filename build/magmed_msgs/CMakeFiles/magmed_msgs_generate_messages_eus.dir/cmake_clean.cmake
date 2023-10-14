@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l"
-  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/CtrlTwist.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagPose.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l"
   "CMakeFiles/magmed_msgs_generate_messages_eus"
 )
 

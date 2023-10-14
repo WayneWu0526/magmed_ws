@@ -1,8 +1,12 @@
 
 "use strict";
 
-let CtrlTwist = require('./CtrlTwist.js');
+let MagPose = require('./MagPose.js');
+let JoyRef = require('./JoyRef.js');
+let RoboStates = require('./RoboStates.js');
 
 module.exports = {
-  CtrlTwist: CtrlTwist,
+  MagPose: MagPose,
+  JoyRef: JoyRef,
+  RoboStates: RoboStates,
 };

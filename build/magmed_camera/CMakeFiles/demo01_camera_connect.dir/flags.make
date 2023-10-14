@@ -6,5 +6,5 @@ CXX_FLAGS = -O2 -g -DNDEBUG
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"magmed_camera\"
 
-CXX_INCLUDES = -I/home/zhang/magmed_ws/src/magmed_camera/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/opt/MVS/include -I/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera -I/usr/include/eigen3 -isystem /usr/include/opencv4 
+CXX_INCLUDES = -I/home/zhang/magmed_ws/src/magmed_camera/include -I/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 -I/opt/MVS/include -isystem /usr/include/opencv4 
 

@@ -1,7 +1,11 @@
 (cl:defpackage magmed_msgs-msg
   (:use )
   (:export
-   "<CTRLTWIST>"
-   "CTRLTWIST"
+   "<JOYREF>"
+   "JOYREF"
+   "<MAGPOSE>"
+   "MAGPOSE"
+   "<ROBOSTATES>"
+   "ROBOSTATES"
   ))
 

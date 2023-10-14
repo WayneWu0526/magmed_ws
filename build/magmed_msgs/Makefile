@@ -88,6 +88,18 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -111,18 +123,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
 
 # Special rule for the target test
 test:
@@ -198,19 +198,49 @@ magmed_msgs_gennodejs/fast:
 .PHONY : magmed_msgs_gennodejs/fast
 
 # Convenience name for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/rule
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/rule
+magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/rule
+.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/rule
 
 # Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_CtrlTwist: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/rule
+_magmed_msgs_generate_messages_check_deps_MagPose: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/rule
 
-.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist
+.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose
 
 # fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_CtrlTwist/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_CtrlTwist.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_CtrlTwist/fast
+_magmed_msgs_generate_messages_check_deps_MagPose/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose/fast
+
+# Convenience name for target.
+magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule
+.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule
+
+# Convenience name for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule
+
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates/fast
+
+# Convenience name for target.
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : magmed_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+magmed_msgs_generate_messages_nodejs/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
+.PHONY : magmed_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule:
@@ -318,21 +348,6 @@ magmed_msgs_generate_messages_lisp/fast:
 .PHONY : magmed_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-magmed_msgs_generate_messages_nodejs/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
-.PHONY : magmed_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
 magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule
@@ -358,7 +373,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... magmed_msgs_generate_messages"
 	@echo "... magmed_msgs_gennodejs"
-	@echo "... _magmed_msgs_generate_messages_check_deps_CtrlTwist"
+	@echo "... _magmed_msgs_generate_messages_check_deps_MagPose"
+	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
+	@echo "... install/local"
+	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... magmed_msgs_generate_messages_cpp"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_gencpp"
@@ -368,10 +386,8 @@ help:
 	@echo "... install"
 	@echo "... magmed_msgs_geneus"
 	@echo "... magmed_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... magmed_msgs_generate_messages_nodejs"
-	@echo "... magmed_msgs_genpy"
 	@echo "... test"
+	@echo "... magmed_msgs_genpy"
 .PHONY : help
 
 

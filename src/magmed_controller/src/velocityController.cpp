@@ -1,11 +1,10 @@
 #include <ros/ros.h>
 #include <eigen3/Eigen/Dense>
-// #include "magmed_controller/getJacobianOfMCR.h"
-#include "getJacobianOfMCR.h"
+#include "magmed_controller/MSCRJacobi.h"
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
+#include "magmed_msgs/MagPose.h"
 #include <iostream>
-#include <vector>
 
 float g_fThetaL = 0.0;
 float g_fPsi = 0.0;
@@ -17,10 +16,10 @@ void tipAngleCallback(const std_msgs::Float64::ConstPtr& msg)
     g_fThetaL = msg->data;
 }
 
-void psiCallback(const std_msgs::Float64::ConstPtr& msg)
+void psiCallback(const magmed_msgs::MagPose::ConstPtr& msg)
 {
-    ROS_INFO("psi received: [%f]", msg->data);
-    g_fPsi = msg->data;
+    ROS_INFO("psi received: [%f]", msg->psi);
+    g_fPsi = msg->psi;
 }
 
 void refSignalCallback(const std_msgs::Float64MultiArray::ConstPtr& msg)
@@ -91,14 +90,16 @@ int main(int argc, char *argv[])
 
     ros::Rate rate(nf);
 
-    magmed_controller::MCR mcr;
+    JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();
+
+    MSCRJacobi mcr;
 
     // wait for the camera to start
     ros::Duration(3.0).sleep();
 
     // position of the magnet
     // Eigen::Vector3d pa = { mcr.pr.L, 0, 150.0e-3};
-    Eigen::Vector3d pa = { mcr.pr.L, mcr.pr.H0, 0.0};
+    Eigen::Vector3d pa = { pr.L, pr.H0, 0.0};
 
     // initialize LESO
     std::vector<float> hatx = {0.0, 0.0};

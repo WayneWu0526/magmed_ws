@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/CtrlTwist.js"
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/MagPose.js"
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js"
   "CMakeFiles/magmed_msgs_generate_messages_nodejs"
 )
 

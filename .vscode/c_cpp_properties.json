@@ -9,12 +9,13 @@
             "configurationProvider": "ms-vscode.cmake-tools",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/devel/include",
                 "/opt/ros/noetic/include",
                 "/opt/ros/noetic/share",
                 "/opt/DianaApi/include",
                 "/opt/MVS/include",
-                "/usr/local/include/**"
+                "/usr/local/include",
+                "${workspaceFolder}/devel/include",
+                "${workspaceFolder}/src/magmed_controller/include"
             ],
             "browse": {
                 "databaseFilename": "${default}",

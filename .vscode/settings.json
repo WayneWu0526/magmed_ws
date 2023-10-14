@@ -80,7 +80,8 @@
         "hash_set": "cpp",
         "shared_mutex": "cpp",
         "dense": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "optctrlcpp": "cpp"
     },
 }
 // {

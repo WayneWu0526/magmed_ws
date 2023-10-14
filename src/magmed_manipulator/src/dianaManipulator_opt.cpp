@@ -6,15 +6,15 @@
 #include <unistd.h> // 类似于windows.h
 #include <time.h>   // 常用标准库
 #include "std_msgs/Float64MultiArray.h"
-#include "std_msgs/Float64.h"
+#include "magmed_msgs/MagPose.h"
+#include "magmed_controller/MSCRJacobi.h"
 #include <eigen3/Eigen/Dense>
-#include "getJacobianOfMCR.h"
 #define JOINT_NUM 7
 
 bool g_bExit = false;
 double g_dTwist[6] = {0.0}; // Note: twist is defined as [Vx, Vy, Vz, Wx, Wy, Wz];
 double g_dJoints[JOINT_NUM] = {0.0};
-magmed_controller::MCR mcr;
+JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();
 
 // receive the rotation angular velocity of the magnet
 // Note: receive msg is defined as [Vx, Vy, Vz, Wz];
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
     // 创建节点句柄
     ros::NodeHandle nh;
     // 创建发布对象
-    ros::Publisher pub = nh.advertise<std_msgs::Float64MultiArray>("/magmed_manipulator/magPos", 1000);
+    ros::Publisher pub = nh.advertise<magmed_msgs::MagPose>("/magmed_manipulator/magPos", 1000);
 
     // subscribe the rotation angular velocity of the magnet
     ros::Subscriber sub = nh.subscribe("/magmed_controller/magVel", 1000, magPosCallback);
@@ -166,8 +166,8 @@ int main(int argc, char *argv[])
         0.0, 0.0, 0.0, 1.0;
     // 初始位置矩阵
     Eigen::Matrix4d Tgd0_eigen;            // 考虑上参数空间获取机器人长度，后期改为加装外部摄像头获得穿刺位置
-    Tgd0_eigen << -1.0, 0.0, 0.0, mcr.pr.L, // 机器人长度
-        0.0, 1.0, 0.0, mcr.pr.H0,             // 默认高度
+    Tgd0_eigen << -1.0, 0.0, 0.0, pr.L, // 机器人长度
+        0.0, 1.0, 0.0, pr.H0,             // 默认高度
         0.0, 0.0, -1.0, 0.0,               // z轴垂直且不允许移动
         0.0, 0.0, 0.0, 1.0;
     Eigen::Matrix4d Tsd0_eigen = Tsg_eigen * Tgd0_eigen;
@@ -236,10 +236,7 @@ int main(int argc, char *argv[])
         }
 
         // ros main codes: publish magnet poses
-        std_msgs::Float64MultiArray array_msg;
-        array_msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
-        array_msg.layout.dim[0].size = 4;
-        array_msg.layout.dim[0].label = "columns";
+        magmed_msgs::MagPose magPose;
         while (ros::ok())
         {
 
@@ -264,8 +261,8 @@ int main(int argc, char *argv[])
             Eigen::Matrix<double, 4, 4> Tgb_eigen;
             Tgb_eigen = Tsg_eigen.inverse() * Tsb_eigen;
 
-            // send msg is defined as [Wz, Vx, Vy, Vz]
-            array_msg.data = {joints[6], Tgb_eigen(0, 3), Tgb_eigen(1, 3), Tgb_eigen(2, 3)};
+            magPose.psi = joints[JOINT_NUM - 1];
+            magPose.pos = {Tgb_eigen(0, 3), Tgb_eigen(1, 3), Tgb_eigen(2, 3)};
 
             // diana的TCP后三个坐标以轴角表示。
             // std::cout << "Tgb_eigen:" << Tgb_eigen << std::endl;
@@ -273,7 +270,7 @@ int main(int argc, char *argv[])
             // printf("getTcpPos: %f, %f, %f, %f, %f, %f\n", poses[0], poses[1],poses[2],poses[3],poses[4],poses[5]);
             // array_msg.data.push_back(joints[6]); // angle of the magnet
 
-            pub.publish(array_msg);
+            pub.publish(magPose);
 
             ros::spinOnce();
             rate.sleep();

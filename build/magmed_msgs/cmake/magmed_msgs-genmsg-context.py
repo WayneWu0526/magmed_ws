@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/zhang/magmed_ws/src/magmed_msgs/msg/CtrlTwist.msg"
+messages_str = "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
 services_str = ""
 pkg_name = "magmed_msgs"
 dependencies_str = "std_msgs"

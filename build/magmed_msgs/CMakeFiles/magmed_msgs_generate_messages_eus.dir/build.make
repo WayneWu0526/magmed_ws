@@ -53,21 +53,29 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 # Include the progress variables for this target.
 include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/progress.make
 
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/CtrlTwist.l
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagPose.l
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l
 
 
-/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/CtrlTwist.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/CtrlTwist.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/CtrlTwist.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from magmed_msgs/CtrlTwist.msg"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/msg/CtrlTwist.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagPose.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagPose.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from magmed_msgs/MagPose.msg"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg
+
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from magmed_msgs/RoboStates.msg"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for magmed_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs magmed_msgs std_msgs
 
 magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus
-magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/CtrlTwist.l
+magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagPose.l
+magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l
 magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l
 magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make
 

@@ -16,6 +16,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   Eigen3 REQUIRED
   qpOASES REQUIRED
+  message_generation
+  magmed_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -121,25 +123,29 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
-  include/${PROJECT_NAME}
+include
   ${catkin_INCLUDE_DIRS}
+  # include/${PROJECT_NAME}
+)
+link_directories(
+  /home/zhang/qpOASES/build/libs
 )
 # link_directories(
 #   /home/zhang/ModernRoboticsCpp/_install/lib
 # )
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/magmed_controller.cpp
-# )
-# add_library(getJacobianOfMCR
-#   include/magmed_controller/getJacobianOfMCR.h
-#   src/getJacobianOfMCR.cpp
-# )
+add_library(velCtrlLib
+  include/${PROJECT_NAME}/diffKine.h
+  include/${PROJECT_NAME}/MSCRJacobi.h
+  include/${PROJECT_NAME}/optCtrl.h
+  src/diffKine.cpp
+  src/MSCRJacobi.cpp
+  src/optCtrl.cpp
+)
+# set_property(TARGET velCtrlLib PROPERTY POSITION_INDEPENDENT_CODE ON)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 # add_dependencies(getJacobianOfMCR ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
@@ -149,11 +155,8 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/magmed_controller_node.cpp)
 add_executable(velocityController 
   src/velocityController.cpp
-  src/getJacobianOfMCR.cpp)
-add_executable(optController 
-  src/optController.cpp
-  src/getJacobianOfMCR.cpp
-  src/diffKine.cpp)
+  src/MSCRJacobi.cpp)
+add_executable(velCtrlNode src/velCtrlNode.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -163,8 +166,14 @@ add_executable(optController
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(velocityController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(optController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(velocityController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add magmed_msgs/MagPose.msg as a dependency of the executable
+add_dependencies(velCtrlLib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_dependencies(velCtrlNode magmed_msgs_generate_messages_cpp)
+add_dependencies(velCtrlNode ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_dependencies(velocityController  magmed_msgs_generate_messages_cpp)
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
@@ -172,15 +181,18 @@ add_dependencies(optController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 # target_link_libraries(getJacobianOfMCR
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(velocityController
+target_link_libraries(velCtrlLib
   ${catkin_LIBRARIES}
-  # getJacobianOfMCR
-)
-target_link_libraries(optController
-  ${catkin_LIBRARIES}
-  # getJacobianOfMCR
   qpOASES
 )
+target_link_libraries(velocityController
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(velCtrlNode
+  ${catkin_LIBRARIES} 
+  velCtrlLib
+)
+
 #############
 ## Install ##
 #############
