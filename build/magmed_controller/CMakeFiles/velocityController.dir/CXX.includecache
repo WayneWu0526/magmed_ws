@@ -21,6 +21,8 @@ ros/builtin_message_traits.h
 -
 ros/message_operations.h
 -
+std_msgs/Header.h
+-
 
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 eigen3/Eigen/Dense
@@ -732,6 +734,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/MultiArrayLayout.h
+-
+
+/opt/ros/noetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 
 /opt/ros/noetic/include/std_msgs/MultiArrayDimension.h

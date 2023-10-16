@@ -15,7 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <std_msgs/Header.h>
 
 namespace magmed_msgs
 {
@@ -25,17 +24,14 @@ struct RoboStates_
   typedef RoboStates_<ContainerAllocator> Type;
 
   RoboStates_()
-    : header()  {
+    {
     }
   RoboStates_(const ContainerAllocator& _alloc)
-    : header(_alloc)  {
+    {
   (void)_alloc;
     }
 
 
-
-   typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
-  _header_type header;
 
 
 
@@ -53,7 +49,7 @@ struct RoboStates_
   enum {
     INIT = 0,
     CTRL = 1,
-    TERM = 2,
+    TERM = -1,
   };
 
 
@@ -85,19 +81,6 @@ return s;
 }
 
 
-template<typename ContainerAllocator1, typename ContainerAllocator2>
-bool operator==(const ::magmed_msgs::RoboStates_<ContainerAllocator1> & lhs, const ::magmed_msgs::RoboStates_<ContainerAllocator2> & rhs)
-{
-  return lhs.header == rhs.header;
-}
-
-template<typename ContainerAllocator1, typename ContainerAllocator2>
-bool operator!=(const ::magmed_msgs::RoboStates_<ContainerAllocator1> & lhs, const ::magmed_msgs::RoboStates_<ContainerAllocator2> & rhs)
-{
-  return !(lhs == rhs);
-}
-
-
 } // namespace magmed_msgs
 
 namespace ros
@@ -121,22 +104,22 @@ struct IsMessage< ::magmed_msgs::RoboStates_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::magmed_msgs::RoboStates_<ContainerAllocator> >
-  : FalseType
+  : TrueType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::magmed_msgs::RoboStates_<ContainerAllocator> const>
-  : FalseType
+  : TrueType
   { };
 
 template <class ContainerAllocator>
 struct HasHeader< ::magmed_msgs::RoboStates_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct HasHeader< ::magmed_msgs::RoboStates_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 
@@ -145,12 +128,12 @@ struct MD5Sum< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "4437f8da4929f4c392a982caafd44e62";
+    return "9f9deeb86e59ce718cd341cb3f03488c";
   }
 
   static const char* value(const ::magmed_msgs::RoboStates_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x4437f8da4929f4c3ULL;
-  static const uint64_t static_value2 = 0x92a982caafd44e62ULL;
+  static const uint64_t static_value1 = 0x9f9deeb86e59ce71ULL;
+  static const uint64_t static_value2 = 0x8cd341cb3f03488cULL;
 };
 
 template<class ContainerAllocator>
@@ -169,25 +152,9 @@ struct Definition< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "Header header\n"
-"int8  INIT = 0    # 初始化状态\n"
+    return "int8  INIT = 0    # 初始化状态\n"
 "int8  CTRL = 1    # 控制状态\n"
-"int8  TERM = 2    # 终止状态\n"
-"================================================================================\n"
-"MSG: std_msgs/Header\n"
-"# Standard metadata for higher-level stamped data types.\n"
-"# This is generally used to communicate timestamped data \n"
-"# in a particular coordinate frame.\n"
-"# \n"
-"# sequence ID: consecutively increasing ID \n"
-"uint32 seq\n"
-"#Two-integer timestamp that is expressed as:\n"
-"# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n"
-"# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n"
-"# time-handling sugar is provided by the client library\n"
-"time stamp\n"
-"#Frame this data is associated with\n"
-"string frame_id\n"
+"int8  TERM = -1    # 终止状态\n"
 ;
   }
 
@@ -204,10 +171,8 @@ namespace serialization
 
   template<class ContainerAllocator> struct Serializer< ::magmed_msgs::RoboStates_<ContainerAllocator> >
   {
-    template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
-    {
-      stream.next(m.header);
-    }
+    template<typename Stream, typename T> inline static void allInOne(Stream&, T)
+    {}
 
     ROS_DECLARE_ALLINONE_SERIALIZER
   }; // struct RoboStates_
@@ -223,12 +188,8 @@ namespace message_operations
 template<class ContainerAllocator>
 struct Printer< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
-  template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::magmed_msgs::RoboStates_<ContainerAllocator>& v)
-  {
-    s << indent << "header: ";
-    s << std::endl;
-    Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-  }
+  template<typename Stream> static void stream(Stream&, const std::string&, const ::magmed_msgs::RoboStates_<ContainerAllocator>&)
+  {}
 };
 
 } // namespace message_operations

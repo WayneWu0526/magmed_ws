@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(magmed_manipulator)
 
 set(Eigen3_DIR /usr/lib/cmake/eigen3/)
+set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 -Wall ${CMAKE_CXX_FLAGS}")
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -145,7 +146,6 @@ link_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/demo01_diana7api_test_node.cpp)
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
-add_executable(demo02_diana7api_jacobiTest src/demo02_diana7api_jacobiTest.cpp)
 add_executable(dianaManipulator src/dianaManipulator.cpp)
 add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
 add_executable(dianaManipulator_opt 
@@ -183,10 +183,6 @@ target_link_libraries(dianaManipulator_joystick
   DianaApi
 )
 target_link_libraries(dianaManipulator_opt
-  ${catkin_LIBRARIES}
-  DianaApi
-)
-target_link_libraries(demo02_diana7api_jacobiTest
   ${catkin_LIBRARIES}
   DianaApi
 )

@@ -5,6 +5,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/ma
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
 
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/MagPose.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
@@ -22,6 +23,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/types.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/std_msgs/Header.h
 
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/MagPose.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
@@ -42,4 +44,5 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/i
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/types.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/std_msgs/Header.h
 

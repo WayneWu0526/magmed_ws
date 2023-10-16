@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 include magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/progress.make
 
 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose:
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg 
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg std_msgs/Header
 
 _magmed_msgs_generate_messages_check_deps_MagPose: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose
 _magmed_msgs_generate_messages_check_deps_MagPose: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build.make

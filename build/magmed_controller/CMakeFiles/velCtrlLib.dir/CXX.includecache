@@ -21,6 +21,8 @@ ros/builtin_message_traits.h
 -
 ros/message_operations.h
 -
+std_msgs/Header.h
+-
 
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 eigen3/Eigen/Dense
@@ -39,30 +41,12 @@ eigen3/Eigen/QR
 -
 magmed_msgs/MagPose.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/MagPose.h
-
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/optCtrl.h
-eigen3/Eigen/Dense
--
-qpOASES.hpp
--
 magmed_controller/MSCRJacobi.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/MSCRJacobi.h
-magmed_msgs/MagPose.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/MagPose.h
-iostream
--
-
-/home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
-magmed_controller/MSCRJacobi.h
-/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/MSCRJacobi.h
 
 /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
 magmed_controller/diffKine.h
 /home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/diffKine.h
-
-/home/zhang/magmed_ws/src/magmed_controller/src/optCtrl.cpp
-magmed_controller/optCtrl.h
-/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/optCtrl.h
 
 /opt/ros/noetic/include/ros/builtin_message_traits.h
 message_traits.h
@@ -210,5 +194,21 @@ sys/time.h
 
 /opt/ros/noetic/include/ros/types.h
 stdint.h
+-
+
+/opt/ros/noetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 

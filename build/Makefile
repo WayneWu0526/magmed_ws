@@ -623,17 +623,30 @@ geometry_msgs_generate_messages_eus/fast:
 .PHONY : geometry_msgs_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages
+# Target rules for targets named magmed_msgs_genpy
 
 # Build rule for target.
-magmed_msgs_generate_messages: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages
-.PHONY : magmed_msgs_generate_messages
+magmed_msgs_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genpy
+.PHONY : magmed_msgs_genpy
 
 # fast build rule for target.
-magmed_msgs_generate_messages/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
-.PHONY : magmed_msgs_generate_messages/fast
+magmed_msgs_genpy/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
+.PHONY : magmed_msgs_genpy/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_py
+
+# Build rule for target.
+magmed_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_py
+.PHONY : magmed_msgs_generate_messages_py
+
+# fast build rule for target.
+magmed_msgs_generate_messages_py/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
+.PHONY : magmed_msgs_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named magmed_msgs_gennodejs
@@ -647,6 +660,58 @@ magmed_msgs_gennodejs: cmake_check_build_system
 magmed_msgs_gennodejs/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build
 .PHONY : magmed_msgs_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_eus
+
+# Build rule for target.
+magmed_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
+.PHONY : magmed_msgs_generate_messages_eus
+
+# fast build rule for target.
+magmed_msgs_generate_messages_eus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+.PHONY : magmed_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages
+
+# Build rule for target.
+magmed_msgs_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages
+.PHONY : magmed_msgs_generate_messages
+
+# fast build rule for target.
+magmed_msgs_generate_messages/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
+.PHONY : magmed_msgs_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_JointsVel
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_JointsVel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_JointsVel
+.PHONY : _magmed_msgs_generate_messages_check_deps_JointsVel
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_JointsVel/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JointsVel.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JointsVel.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_JointsVel/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_JoyRef
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_JoyRef: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_JoyRef
+.PHONY : _magmed_msgs_generate_messages_check_deps_JoyRef
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_JoyRef/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_JoyRef/fast
 
 #=============================================================================
 # Target rules for targets named _magmed_msgs_generate_messages_check_deps_MagPose
@@ -727,32 +792,6 @@ magmed_msgs_gencpp/fast:
 .PHONY : magmed_msgs_gencpp/fast
 
 #=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_py
-
-# Build rule for target.
-magmed_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_py
-.PHONY : magmed_msgs_generate_messages_py
-
-# fast build rule for target.
-magmed_msgs_generate_messages_py/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
-.PHONY : magmed_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_eus
-
-# Build rule for target.
-magmed_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
-.PHONY : magmed_msgs_generate_messages_eus
-
-# fast build rule for target.
-magmed_msgs_generate_messages_eus/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-.PHONY : magmed_msgs_generate_messages_eus/fast
-
-#=============================================================================
 # Target rules for targets named magmed_msgs_geneus
 
 # Build rule for target.
@@ -777,19 +816,6 @@ magmed_msgs_generate_messages_lisp: cmake_check_build_system
 magmed_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
 .PHONY : magmed_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_genpy
-
-# Build rule for target.
-magmed_msgs_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genpy
-.PHONY : magmed_msgs_genpy
-
-# fast build rule for target.
-magmed_msgs_genpy/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
-.PHONY : magmed_msgs_genpy/fast
 
 #=============================================================================
 # Target rules for targets named velCtrlNode
@@ -870,19 +896,6 @@ dianaManipulator/fast:
 .PHONY : dianaManipulator/fast
 
 #=============================================================================
-# Target rules for targets named demo02_diana7api_jacobiTest
-
-# Build rule for target.
-demo02_diana7api_jacobiTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo02_diana7api_jacobiTest
-.PHONY : demo02_diana7api_jacobiTest
-
-# fast build rule for target.
-demo02_diana7api_jacobiTest/fast:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build.make magmed_manipulator/CMakeFiles/demo02_diana7api_jacobiTest.dir/build
-.PHONY : demo02_diana7api_jacobiTest/fast
-
-#=============================================================================
 # Target rules for targets named demo01_diana7api_connect_test
 
 # Build rule for target.
@@ -894,6 +907,19 @@ demo01_diana7api_connect_test: cmake_check_build_system
 demo01_diana7api_connect_test/fast:
 	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
 .PHONY : demo01_diana7api_connect_test/fast
+
+#=============================================================================
+# Target rules for targets named test_diffKine
+
+# Build rule for target.
+test_diffKine: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_diffKine
+.PHONY : test_diffKine
+
+# fast build rule for target.
+test_diffKine/fast:
+	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/build
+.PHONY : test_diffKine/fast
 
 # Help Target
 help:
@@ -943,27 +969,29 @@ help:
 	@echo "... readJoystick"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... magmed_msgs_generate_messages"
+	@echo "... magmed_msgs_genpy"
+	@echo "... magmed_msgs_generate_messages_py"
 	@echo "... magmed_msgs_gennodejs"
+	@echo "... magmed_msgs_generate_messages_eus"
+	@echo "... magmed_msgs_generate_messages"
+	@echo "... _magmed_msgs_generate_messages_check_deps_JointsVel"
+	@echo "... _magmed_msgs_generate_messages_check_deps_JoyRef"
 	@echo "... _magmed_msgs_generate_messages_check_deps_MagPose"
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
 	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... magmed_msgs_generate_messages_cpp"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_gencpp"
-	@echo "... magmed_msgs_generate_messages_py"
-	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... magmed_msgs_geneus"
 	@echo "... magmed_msgs_generate_messages_lisp"
-	@echo "... magmed_msgs_genpy"
 	@echo "... velCtrlNode"
 	@echo "... velocityController"
 	@echo "... velCtrlLib"
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
-	@echo "... demo02_diana7api_jacobiTest"
 	@echo "... demo01_diana7api_connect_test"
+	@echo "... test_diffKine"
 .PHONY : help
 
 

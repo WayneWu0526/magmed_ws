@@ -15,6 +15,7 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
+#include <std_msgs/Header.h>
 
 namespace magmed_msgs
 {
@@ -24,18 +25,23 @@ struct MagPose_
   typedef MagPose_<ContainerAllocator> Type;
 
   MagPose_()
-    : psi(0.0)
+    : header()
+    , psi(0.0)
     , pos()  {
       pos.assign(0.0);
   }
   MagPose_(const ContainerAllocator& _alloc)
-    : psi(0.0)
+    : header(_alloc)
+    , psi(0.0)
     , pos()  {
   (void)_alloc;
       pos.assign(0.0);
   }
 
 
+
+   typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
+  _header_type header;
 
    typedef double _psi_type;
   _psi_type psi;
@@ -72,7 +78,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::magmed_msgs::MagPose_<ContainerAllocator1> & lhs, const ::magmed_msgs::MagPose_<ContainerAllocator2> & rhs)
 {
-  return lhs.psi == rhs.psi &&
+  return lhs.header == rhs.header &&
+    lhs.psi == rhs.psi &&
     lhs.pos == rhs.pos;
 }
 
@@ -106,22 +113,22 @@ struct IsMessage< ::magmed_msgs::MagPose_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::magmed_msgs::MagPose_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::magmed_msgs::MagPose_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct HasHeader< ::magmed_msgs::MagPose_<ContainerAllocator> >
-  : FalseType
+  : TrueType
   { };
 
 template <class ContainerAllocator>
 struct HasHeader< ::magmed_msgs::MagPose_<ContainerAllocator> const>
-  : FalseType
+  : TrueType
   { };
 
 
@@ -130,12 +137,12 @@ struct MD5Sum< ::magmed_msgs::MagPose_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ad8b136153ecd61f300fa21020162f97";
+    return "8a3b15d1fb390ff3d6d18f2e1b4aa606";
   }
 
   static const char* value(const ::magmed_msgs::MagPose_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xad8b136153ecd61fULL;
-  static const uint64_t static_value2 = 0x300fa21020162f97ULL;
+  static const uint64_t static_value1 = 0x8a3b15d1fb390ff3ULL;
+  static const uint64_t static_value2 = 0xd6d18f2e1b4aa606ULL;
 };
 
 template<class ContainerAllocator>
@@ -154,8 +161,24 @@ struct Definition< ::magmed_msgs::MagPose_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float64 psi\n"
+    return "Header header\n"
+"float64 psi\n"
 "float64[3] pos\n"
+"================================================================================\n"
+"MSG: std_msgs/Header\n"
+"# Standard metadata for higher-level stamped data types.\n"
+"# This is generally used to communicate timestamped data \n"
+"# in a particular coordinate frame.\n"
+"# \n"
+"# sequence ID: consecutively increasing ID \n"
+"uint32 seq\n"
+"#Two-integer timestamp that is expressed as:\n"
+"# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')\n"
+"# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')\n"
+"# time-handling sugar is provided by the client library\n"
+"time stamp\n"
+"#Frame this data is associated with\n"
+"string frame_id\n"
 ;
   }
 
@@ -174,6 +197,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.header);
       stream.next(m.psi);
       stream.next(m.pos);
     }
@@ -194,6 +218,9 @@ struct Printer< ::magmed_msgs::MagPose_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::magmed_msgs::MagPose_<ContainerAllocator>& v)
   {
+    s << indent << "header: ";
+    s << std::endl;
+    Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
     s << indent << "psi: ";
     Printer<double>::stream(s, indent + "  ", v.psi);
     s << indent << "pos[]" << std::endl;

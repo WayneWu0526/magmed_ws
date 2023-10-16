@@ -14,10 +14,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  Eigen3 REQUIRED
-  qpOASES REQUIRED
-  message_generation
   magmed_msgs
+  Eigen3 REQUIRED
+  qpOASES
 )
 
 ## System dependencies are found with CMake's conventions
@@ -127,9 +126,9 @@ include
   ${catkin_INCLUDE_DIRS}
   # include/${PROJECT_NAME}
 )
-link_directories(
-  /home/zhang/qpOASES/build/libs
-)
+# link_directories(
+#   /home/zhang/qpOASES/build/libs
+# )
 # link_directories(
 #   /home/zhang/ModernRoboticsCpp/_install/lib
 # )
@@ -156,7 +155,8 @@ add_library(velCtrlLib
 add_executable(velocityController 
   src/velocityController.cpp
   src/MSCRJacobi.cpp)
-add_executable(velCtrlNode src/velCtrlNode.cpp)
+add_executable(velCtrlNode
+  src/velCtrlNode.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -184,6 +184,7 @@ add_dependencies(velocityController  magmed_msgs_generate_messages_cpp)
 target_link_libraries(velCtrlLib
   ${catkin_LIBRARIES}
   qpOASES
+  ModernRoboticsCpp
 )
 target_link_libraries(velocityController
   ${catkin_LIBRARIES}

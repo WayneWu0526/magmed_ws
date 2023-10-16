@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 include magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/progress.make
 
 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates:
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg std_msgs/Header
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg 
 
 _magmed_msgs_generate_messages_check_deps_RoboStates: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates
 _magmed_msgs_generate_messages_check_deps_RoboStates: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make

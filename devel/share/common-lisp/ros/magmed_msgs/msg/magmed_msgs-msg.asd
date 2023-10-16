@@ -5,6 +5,8 @@
   :depends-on (:roslisp-msg-protocol :roslisp-utils :std_msgs-msg
 )
   :components ((:file "_package")
+    (:file "JointsVel" :depends-on ("_package_JointsVel"))
+    (:file "_package_JointsVel" :depends-on ("_package"))
     (:file "JoyRef" :depends-on ("_package_JoyRef"))
     (:file "_package_JoyRef" :depends-on ("_package"))
     (:file "MagPose" :depends-on ("_package_MagPose"))

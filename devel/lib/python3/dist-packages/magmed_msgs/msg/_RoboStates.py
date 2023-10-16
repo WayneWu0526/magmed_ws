@@ -6,39 +6,21 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
-import std_msgs.msg
 
 class RoboStates(genpy.Message):
-  _md5sum = "4437f8da4929f4c392a982caafd44e62"
+  _md5sum = "9f9deeb86e59ce718cd341cb3f03488c"
   _type = "magmed_msgs/RoboStates"
-  _has_header = True  # flag to mark the presence of a Header object
-  _full_text = """Header header
-int8  INIT = 0    # 初始化状态
+  _has_header = False  # flag to mark the presence of a Header object
+  _full_text = """int8  INIT = 0    # 初始化状态
 int8  CTRL = 1    # 控制状态
-int8  TERM = 2    # 终止状态
-================================================================================
-MSG: std_msgs/Header
-# Standard metadata for higher-level stamped data types.
-# This is generally used to communicate timestamped data 
-# in a particular coordinate frame.
-# 
-# sequence ID: consecutively increasing ID 
-uint32 seq
-#Two-integer timestamp that is expressed as:
-# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')
-# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')
-# time-handling sugar is provided by the client library
-time stamp
-#Frame this data is associated with
-string frame_id
-"""
+int8  TERM = -1    # 终止状态"""
   # Pseudo-constants
   INIT = 0
   CTRL = 1
-  TERM = 2
+  TERM = -1
 
-  __slots__ = ['header']
-  _slot_types = ['std_msgs/Header']
+  __slots__ = []
+  _slot_types = []
 
   def __init__(self, *args, **kwds):
     """
@@ -48,7 +30,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header
+       
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -56,11 +38,6 @@ string frame_id
     """
     if args or kwds:
       super(RoboStates, self).__init__(*args, **kwds)
-      # message fields cannot be None, assign default values for those that are
-      if self.header is None:
-        self.header = std_msgs.msg.Header()
-    else:
-      self.header = std_msgs.msg.Header()
 
   def _get_types(self):
     """
@@ -74,14 +51,7 @@ string frame_id
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self
-      buff.write(_get_struct_3I().pack(_x.header.seq, _x.header.stamp.secs, _x.header.stamp.nsecs))
-      _x = self.header.frame_id
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      pass
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -93,22 +63,7 @@ string frame_id
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.header is None:
-        self.header = std_msgs.msg.Header()
       end = 0
-      _x = self
-      start = end
-      end += 12
-      (_x.header.seq, _x.header.stamp.secs, _x.header.stamp.nsecs,) = _get_struct_3I().unpack(str[start:end])
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.header.frame_id = str[start:end].decode('utf-8', 'rosmsg')
-      else:
-        self.header.frame_id = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -121,14 +76,7 @@ string frame_id
     :param numpy: numpy python module
     """
     try:
-      _x = self
-      buff.write(_get_struct_3I().pack(_x.header.seq, _x.header.stamp.secs, _x.header.stamp.nsecs))
-      _x = self.header.frame_id
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      pass
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -141,22 +89,7 @@ string frame_id
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.header is None:
-        self.header = std_msgs.msg.Header()
       end = 0
-      _x = self
-      start = end
-      end += 12
-      (_x.header.seq, _x.header.stamp.secs, _x.header.stamp.nsecs,) = _get_struct_3I().unpack(str[start:end])
-      start = end
-      end += 4
-      (length,) = _struct_I.unpack(str[start:end])
-      start = end
-      end += length
-      if python3:
-        self.header.frame_id = str[start:end].decode('utf-8', 'rosmsg')
-      else:
-        self.header.frame_id = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -165,9 +98,3 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3I = None
-def _get_struct_3I():
-    global _struct_3I
-    if _struct_3I is None:
-        _struct_3I = struct.Struct("<3I")
-    return _struct_3I

@@ -15,6 +15,6 @@
                 "reveal": "always"
             },
             "problemMatcher": "$msCompile"
-        },
+        }
     ]
 }

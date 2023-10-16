@@ -51,6 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
   FILES
+  JointsVel.msg
+  JoyRef.msg
   MagPose.msg
   RoboStates.msg
 )
@@ -72,7 +74,7 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  # geometry_msgs
+  geometry_msgs
   std_msgs
 )
 

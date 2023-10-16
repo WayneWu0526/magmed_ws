@@ -5,6 +5,7 @@
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/QR>
 #include "magmed_msgs/MagPose.h"
+#include "magmed_controller/MSCRJacobi.h"
 #define JOINTNUM 7
 
 using namespace mr;
@@ -26,23 +27,31 @@ struct diana7KineSpaceParam
     double dsum = d1 + d3 + d5 + d7 + de;
 
     Matrix4d M;
-    MatrixXd Slist;
+    Eigen::Matrix<double, 6, JOINTNUM> Slist;
     Matrix3d R0;
     Matrix4d Tsg;
+    Matrix4d Tgd0;
 
     diana7KineSpaceParam() // 构造函数。当直接执行时，会按照下面的参数初始化
     {
+        JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();
+
         Tsg << 0.0, 0.0, 1.0, 0.51, // x轴延伸0.3+0.32=0.92m, 0.19+0.32=0.51m
             1.0, 0.0, 0.0, 0.0,     // 机械臂坐标系的x轴与工作空间坐标系的y轴重合
             0.0, 1.0, 0.0, 0.06,    // 底盘高度：0.06m
-            0.0, 0.0, 0.0, 1.0;     // 初始状态
+            0.0, 0.0, 0.0, 1.0;
+
+        Tgd0 << -1.0, 0.0, 0.0, pr.L,
+            0.0, 1.0, 0.0, pr.H0,
+            0.0, 0.0, -1.0, 0.0,
+            0.0, 0.0, 0.0, 1.0;
 
         R0.diagonal() << -1.0, 1.0, -1.0;
 
-        M << 0.0, -1.0, 0.0, 0.0,
+        M << 0.0, -1.0, 0.0, -a7,
             -1.0, 0.0, 0.0, 0.0,
-            0.0, 0.0, -1.0, 0.0,
-            -a7, 0.0, dsum, 1.0;
+            0.0, 0.0, -1.0, dsum,
+            0.0, 0.0, 0.0, 1.0;
 
         Slist << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
             0.0, 1.0, 0.0, 1.0, 0.0, -1.0, 0.0,
@@ -53,7 +62,7 @@ struct diana7KineSpaceParam
     };
 
     // 构造函数，执行时会按照输入的函数进行初始化
-    diana7KineSpaceParam(Eigen::Matrix4d M, Eigen::MatrixXd Slist) : M(M), Slist(Slist){};
+    diana7KineSpaceParam(Matrix4d M, Eigen::Matrix<double, 6, JOINTNUM> Slist) : M(M), Slist(Slist){};
 };
 
 class diffKineParam
@@ -69,8 +78,8 @@ public:
     diana7KineSpaceParam params_;  // 结构体
 
     diffKineParam() { params_ = diana7KineSpaceParam();
-        pictrlparam_.kp_ = 2.0;
-        pictrlparam_.ki_ = 0.01;
+        pictrlparam_.kp_ = 10.0;
+        pictrlparam_.ki_ = 0.05;
         pictrlparam_.nf_ = 100; }; // 构造函数
 
     diffKineParam(diana7KineSpaceParam params, PICtrlParam pictrlparam) : params_(params), pictrlparam_(pictrlparam){};
@@ -80,7 +89,7 @@ class diffKine
 {
 public:
     // JacobiMap function: MagPos -> DsrTwist
-    VectorXd jacobiMap(const double (&phi)[2], MagPose magPos, MagPose magTwist, VectorXd thetalist,
+    VectorXd jacobiMap(const double (&phi)[2], MagPose magPos, MagPose magTwist, const double (&thetaList)[JOINTNUM],
                        const diffKineParam &diffkineparam);
 private:
     Matrix3d Rphi(double phi);

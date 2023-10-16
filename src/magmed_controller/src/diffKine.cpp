@@ -19,11 +19,12 @@ Matrix3d diffKine::Rpsi(double psi)
     return R;
 };
 
-VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose magTwist, VectorXd thetalist,
+VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose magTwist, const double (&thetaList)[JOINTNUM],
                    const diffKineParam &diffkineparam)
 {
     diana7KineSpaceParam params = diffkineparam.params_;
     diffKineParam::PICtrlParam piparams = diffkineparam.pictrlparam_;
+    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
 
     // compute the forward kinematics
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
@@ -35,19 +36,14 @@ VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose mag
     MatrixXd Jb = Adjoint(TransInv(Tsb)) * Js;
 
     // desired configuration
-    Matrix4d T1 = Matrix4d::Identity();
-    T1.block(0, 0, 3, 3) = Rpsi(magPos.psi);
-
-    Matrix4d T2 = Matrix4d::Identity();
-    T2.block(0, 0, 3, 3) = params.R0 * Rphi(phi[0]);
-    T2.block(0, 3, 3, 1) = Vector3d(magPos.pos[0], magPos.pos[1], magPos.pos[2]);
-
+    Matrix4d T1 = RpToTrans(Rpsi(magPos.psi), Vector3d(0.0, 0.0, 0.0));
+    Matrix4d T2 = RpToTrans(params.R0 * Rphi(phi[0]), Vector3d(magPos.pos[0], magPos.pos[1], magPos.pos[2]));
     Matrix4d Tgd = T1 * T2;
     Matrix4d Tsd = params.Tsg * Tgd;
 
     // compute JacobiMatrix
     MatrixXd J = MatrixXd::Zero(6, 5);
-    VectorXd E1;
+    VectorXd E1(6);
     E1 << 1.0, 0.0, 0.0, 0.0, 0.0, 0.0;
     J.block(0, 0, 6, 1) = Adjoint(TransInv(T2)) * E1;
     J(2, 1) = 1.0;
@@ -65,7 +61,15 @@ VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose mag
     VectorXd Vb = Adjoint(TransInv(Tsb) * Tsd) * Vd + piparams.kp_ * Taue + piparams.ki_ * TaueInt;
 
     // Inverse velocity kinematics
-    VectorXd dthetalist = Jb.completeOrthogonalDecomposition().pseudoInverse() * Vb;
+    MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
+    VectorXd dthetalist = Jbpinv * Vb;
+
+    // convert dthetalist from type VectorXd to type double[]
+    // double dthetalist[JOINTNUM] = {0.0};
+    // for (int i = 0; i < JOINTNUM; i++)
+    // {
+    //     dthetalist[i] = dthetalist_eigen[i];
+    // }
 
     return dthetalist;
 };
