@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/zhang/magmed_ws/src/magmed_msgs/msg/JointsVel.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
-services_str = ""
+messages_str = "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
+services_str = "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
 pkg_name = "magmed_msgs"
 dependencies_str = "geometry_msgs;std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

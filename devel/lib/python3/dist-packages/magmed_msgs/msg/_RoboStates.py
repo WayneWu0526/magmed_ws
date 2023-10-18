@@ -8,15 +8,15 @@ import struct
 
 
 class RoboStates(genpy.Message):
-  _md5sum = "9f9deeb86e59ce718cd341cb3f03488c"
+  _md5sum = "f0c86d6612d2dc3f3483b4c4ba196520"
   _type = "magmed_msgs/RoboStates"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """int8  INIT = 0    # 初始化状态
-int8  CTRL = 1    # 控制状态
-int8  TERM = -1    # 终止状态"""
+  _full_text = """int32  INIT = 0    # 初始化状态
+int32  RUN = 1  # 运行状态
+int32  TERM = -1    # 终止状态"""
   # Pseudo-constants
   INIT = 0
-  CTRL = 1
+  RUN = 1
   TERM = -1
 
   __slots__ = []

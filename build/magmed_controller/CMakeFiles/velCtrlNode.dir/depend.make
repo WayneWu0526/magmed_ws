@@ -5,6 +5,8 @@ magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/optCtrl.h
+magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
+magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlNode.h
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/velCtrlNode.cpp
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h

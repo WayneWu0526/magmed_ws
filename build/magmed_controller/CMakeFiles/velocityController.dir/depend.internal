@@ -3,10 +3,12 @@
 
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
+ /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
  /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
  /home/zhang/magmed_ws/devel/include/magmed_msgs/MagPose.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
+ /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
  /home/zhang/magmed_ws/src/magmed_controller/src/velocityController.cpp
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h

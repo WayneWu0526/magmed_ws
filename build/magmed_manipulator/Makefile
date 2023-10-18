@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+magmed_manipulator/CMakeFiles/diana_run.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/diana_run.dir/rule
+.PHONY : magmed_manipulator/CMakeFiles/diana_run.dir/rule
+
+# Convenience name for target.
+diana_run: magmed_manipulator/CMakeFiles/diana_run.dir/rule
+
+.PHONY : diana_run
+
+# fast build rule for target.
+diana_run/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/build
+.PHONY : diana_run/fast
+
+# Convenience name for target.
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule
 .PHONY : magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule
@@ -335,6 +350,33 @@ src/dianaManipulator_opt.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.s
 .PHONY : src/dianaManipulator_opt.cpp.s
 
+src/diana_run.o: src/diana_run.cpp.o
+
+.PHONY : src/diana_run.o
+
+# target to build an object file
+src/diana_run.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/src/diana_run.cpp.o
+.PHONY : src/diana_run.cpp.o
+
+src/diana_run.i: src/diana_run.cpp.i
+
+.PHONY : src/diana_run.i
+
+# target to preprocess a source file
+src/diana_run.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/src/diana_run.cpp.i
+.PHONY : src/diana_run.cpp.i
+
+src/diana_run.s: src/diana_run.cpp.s
+
+.PHONY : src/diana_run.s
+
+# target to generate assembly for a file
+src/diana_run.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/src/diana_run.cpp.s
+.PHONY : src/diana_run.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -345,6 +387,7 @@ help:
 	@echo "... install/local"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... diana_run"
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
@@ -364,6 +407,9 @@ help:
 	@echo "... src/dianaManipulator_opt.o"
 	@echo "... src/dianaManipulator_opt.i"
 	@echo "... src/dianaManipulator_opt.s"
+	@echo "... src/diana_run.o"
+	@echo "... src/diana_run.i"
+	@echo "... src/diana_run.s"
 .PHONY : help
 
 

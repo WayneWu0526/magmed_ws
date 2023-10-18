@@ -24,9 +24,10 @@ MagPose optCtrl::controlAllocation(MagPose magPose, double virtualControlLaw, Ro
 {
     USING_NAMESPACE_QPOASES
     double inf = qpOASES::INFTY;
+    // extend magPose to magTwist
     Vector4d twist;
-    twist << magPose.psi, magPose.pos;
-    std::cout << "twist: " << twist << std::endl;
+    twist << magPose.psi, magPose.pos[0], magPose.pos[1], magPose.pos[2];
+    // std::cout << "twist: " << twist << std::endl;
 
     // diagonal
     // std::cout << "Umin:" << Umin << std::endl;
@@ -95,10 +96,8 @@ void optCtrl::velFrmTrns(MagPose &magTwist)
 
 RowVector4d optCtrl::getJacobi(MagPose magPose)
 {
-    double psi = magPose.psi;
-    Vector3d pa = {magPose.pos[0], magPose.pos[1], magPose.pos[2]};
     MSCRJacobi mscrjacobi;
-    RowVector4d jacobi = mscrjacobi.get_jacobian(psi, pa);
+    RowVector4d jacobi = mscrjacobi.get_jacobian(magPose.psi, magPose.pos);
     return jacobi;
 }
 

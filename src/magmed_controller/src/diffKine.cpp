@@ -19,8 +19,23 @@ Matrix3d diffKine::Rpsi(double psi)
     return R;
 };
 
-VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose magTwist, const double (&thetaList)[JOINTNUM],
-                   const diffKineParam &diffkineparam)
+// getMagPose: Matrix3d Rgb = getMagPose(magPose)
+// return the rotation matrix of the TCP if needed
+Matrix3d diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM],
+                          const diffKineParam &diffkineparam)
+{
+    diana7KineSpaceParam params = diffkineparam.params_;
+    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
+    MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
+
+    magPose.psi = thetalist(JOINTNUM - 1);
+    std::vector<Eigen::MatrixXd> Rp = TransToRp(TransInv(params.Tsg) * Tsb);
+    magPose.pos = Rp[1];
+    return Rp[0];
+};
+
+VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPose, MagPose magTwist, const double (&thetaList)[JOINTNUM],
+                             const diffKineParam &diffkineparam)
 {
     diana7KineSpaceParam params = diffkineparam.params_;
     diffKineParam::PICtrlParam piparams = diffkineparam.pictrlparam_;
@@ -36,21 +51,21 @@ VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose mag
     MatrixXd Jb = Adjoint(TransInv(Tsb)) * Js;
 
     // desired configuration
-    Matrix4d T1 = RpToTrans(Rpsi(magPos.psi), Vector3d(0.0, 0.0, 0.0));
-    Matrix4d T2 = RpToTrans(params.R0 * Rphi(phi[0]), Vector3d(magPos.pos[0], magPos.pos[1], magPos.pos[2]));
+    Matrix4d T1 = RpToTrans(Rphi(phi[0]), Vector3d(0.0, 0.0, 0.0));
+    Matrix4d T2 = RpToTrans(params.Rgb0 * Rpsi(magPose.psi), Rphi(phi[0]).transpose() * magPose.pos);
     Matrix4d Tgd = T1 * T2;
     Matrix4d Tsd = params.Tsg * Tgd;
 
     // compute JacobiMatrix
-    MatrixXd J = MatrixXd::Zero(6, 5);
-    VectorXd E1(6);
+    MatrixXd J = MatrixXd::Zero(TCPNUM, INPUTNUM);
+    VectorXd E1(TCPNUM);
     E1 << 1.0, 0.0, 0.0, 0.0, 0.0, 0.0;
-    J.block(0, 0, 6, 1) = Adjoint(TransInv(T2)) * E1;
+    J.block(0, 0, TCPNUM, 1) = Adjoint(TransInv(T2)) * E1;
     J(2, 1) = 1.0;
-    J.block(3, 2, 3, 3) = Rpsi(magPos.psi).transpose();
+    J.block(3, 2, 3, 3) = Rpsi(magPose.psi).transpose();
 
     // desired twist Vd
-    VectorXd dPos(5);
+    VectorXd dPos(INPUTNUM);
     dPos << phi[1], magTwist.psi, magTwist.pos[0], magTwist.pos[1], magTwist.pos[2];
     VectorXd Vd = J * dPos;
 
@@ -63,13 +78,6 @@ VectorXd diffKine::jacobiMap(const double (&phi)[2], MagPose magPos, MagPose mag
     // Inverse velocity kinematics
     MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
     VectorXd dthetalist = Jbpinv * Vb;
-
-    // convert dthetalist from type VectorXd to type double[]
-    // double dthetalist[JOINTNUM] = {0.0};
-    // for (int i = 0; i < JOINTNUM; i++)
-    // {
-    //     dthetalist[i] = dthetalist_eigen[i];
-    // }
 
     return dthetalist;
 };

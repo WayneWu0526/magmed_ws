@@ -46,15 +46,15 @@ class RoboStates {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '9f9deeb86e59ce718cd341cb3f03488c';
+    return 'f0c86d6612d2dc3f3483b4c4ba196520';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int8  INIT = 0    # 初始化状态
-    int8  CTRL = 1    # 控制状态
-    int8  TERM = -1    # 终止状态
+    int32  INIT = 0    # 初始化状态
+    int32  RUN = 1  # 运行状态
+    int32  TERM = -1    # 终止状态
     `;
   }
 
@@ -71,7 +71,7 @@ class RoboStates {
 // Constants for message
 RoboStates.Constants = {
   INIT: 0,
-  CTRL: 1,
+  RUN: 1,
   TERM: -1,
 }
 

@@ -137,6 +137,7 @@ add_library(velCtrlLib
   include/${PROJECT_NAME}/diffKine.h
   include/${PROJECT_NAME}/MSCRJacobi.h
   include/${PROJECT_NAME}/optCtrl.h
+  include/${PROJECT_NAME}/velCtrlDef.h
   src/diffKine.cpp
   src/MSCRJacobi.cpp
   src/optCtrl.cpp

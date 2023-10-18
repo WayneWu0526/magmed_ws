@@ -20,13 +20,13 @@
 (cl:defmethod roslisp-msg-protocol:symbol-codes ((msg-type (cl:eql '<RoboStates>)))
     "Constants for message type '<RoboStates>"
   '((:INIT . 0)
-    (:CTRL . 1)
+    (:RUN . 1)
     (:TERM . -1))
 )
 (cl:defmethod roslisp-msg-protocol:symbol-codes ((msg-type (cl:eql 'RoboStates)))
     "Constants for message type 'RoboStates"
   '((:INIT . 0)
-    (:CTRL . 1)
+    (:RUN . 1)
     (:TERM . -1))
 )
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <RoboStates>) ostream)
@@ -44,16 +44,16 @@
   "magmed_msgs/RoboStates")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<RoboStates>)))
   "Returns md5sum for a message object of type '<RoboStates>"
-  "9f9deeb86e59ce718cd341cb3f03488c")
+  "f0c86d6612d2dc3f3483b4c4ba196520")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'RoboStates)))
   "Returns md5sum for a message object of type 'RoboStates"
-  "9f9deeb86e59ce718cd341cb3f03488c")
+  "f0c86d6612d2dc3f3483b4c4ba196520")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<RoboStates>)))
   "Returns full string definition for message of type '<RoboStates>"
-  (cl:format cl:nil "int8  INIT = 0    # 初始化状态~%int8  CTRL = 1    # 控制状态~%int8  TERM = -1    # 终止状态~%~%"))
+  (cl:format cl:nil "int32  INIT = 0    # 初始化状态~%int32  RUN = 1  # 运行状态~%int32  TERM = -1    # 终止状态~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'RoboStates)))
   "Returns full string definition for message of type 'RoboStates"
-  (cl:format cl:nil "int8  INIT = 0    # 初始化状态~%int8  CTRL = 1    # 控制状态~%int8  TERM = -1    # 终止状态~%~%"))
+  (cl:format cl:nil "int32  INIT = 0    # 初始化状态~%int32  RUN = 1  # 运行状态~%int32  TERM = -1    # 终止状态~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <RoboStates>))
   (cl:+ 0
 ))

@@ -39,8 +39,8 @@ struct RoboStates_
 #if defined(_WIN32) && defined(INIT)
   #undef INIT
 #endif
-#if defined(_WIN32) && defined(CTRL)
-  #undef CTRL
+#if defined(_WIN32) && defined(RUN)
+  #undef RUN
 #endif
 #if defined(_WIN32) && defined(TERM)
   #undef TERM
@@ -48,7 +48,7 @@ struct RoboStates_
 
   enum {
     INIT = 0,
-    CTRL = 1,
+    RUN = 1,
     TERM = -1,
   };
 
@@ -128,12 +128,12 @@ struct MD5Sum< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "9f9deeb86e59ce718cd341cb3f03488c";
+    return "f0c86d6612d2dc3f3483b4c4ba196520";
   }
 
   static const char* value(const ::magmed_msgs::RoboStates_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x9f9deeb86e59ce71ULL;
-  static const uint64_t static_value2 = 0x8cd341cb3f03488cULL;
+  static const uint64_t static_value1 = 0xf0c86d6612d2dc3fULL;
+  static const uint64_t static_value2 = 0x3483b4c4ba196520ULL;
 };
 
 template<class ContainerAllocator>
@@ -152,9 +152,9 @@ struct Definition< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int8  INIT = 0    # 初始化状态\n"
-"int8  CTRL = 1    # 控制状态\n"
-"int8  TERM = -1    # 终止状态\n"
+    return "int32  INIT = 0    # 初始化状态\n"
+"int32  RUN = 1  # 运行状态\n"
+"int32  TERM = -1    # 终止状态\n"
 ;
   }
 

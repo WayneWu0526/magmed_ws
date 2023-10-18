@@ -3,6 +3,7 @@
 
 magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/MagPose.h
 magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
+magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /home/zhang/magmed_ws/src/magmed_manipulator/src/dianaManipulator_opt.cpp
 magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /opt/DianaApi/include/DianaAPI.h
 magmed_manipulator/CMakeFiles/dianaManipulator_opt.dir/src/dianaManipulator_opt.cpp.o: /opt/DianaApi/include/DianaAPIDef.h

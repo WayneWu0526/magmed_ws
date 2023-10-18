@@ -25,11 +25,21 @@ std_msgs/Header.h
 -
 
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
+magmed_controller/velCtrlDef.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
+
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 eigen3/Eigen/Dense
 -
-iostream
+eigen3/Eigen/QR
+-
+modern_robotics.h
+-
+qpOASES.hpp
 -
 cmath
+-
+iostream
 -
 
 /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp

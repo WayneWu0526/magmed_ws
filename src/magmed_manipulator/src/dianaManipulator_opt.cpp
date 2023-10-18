@@ -33,7 +33,7 @@ void magPosCallback(const std_msgs::Float64MultiArray::ConstPtr &msg)
 // work thread
 static void *WorkThread(void *pUser)
 {
-    int nRet = 0;
+    int ret = 0;
     const char *strIpAddress = "192.168.10.75";
     ros::Rate rate(100); // 推送周期是100Hz
     while (1)
@@ -43,23 +43,23 @@ static void *WorkThread(void *pUser)
         // std::cout << "g_dPsi: " << g_dPsi << std::endl;
         double acc[2] = {0.005, 0.50}; //acceleration
         // replace speeds with g_dTwist
-        nRet = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
-        // nRet = speedLOnTcp(speeds, acc, 0, nullptr, strIpAddress);
+        ret = speedLOnTcp(g_dTwist, acc, 0, nullptr, strIpAddress);
+        // ret = speedLOnTcp(speeds, acc, 0, nullptr, strIpAddress);
         /* 控制指定 IP 地址的机械臂进入速度模式，关节空间运动。时间 t 为可选项，如果提供了 t
         值，控制指定 IP 地址的机械臂将在 t 时间后减速。如果没有提供时间 t 值，机械臂将在达
         到目标速度时减速。该函数调用后立即返回。停止运动需要调用 stop 函数。*/
-        if (nRet < 0)
+        if (ret < 0)
         {
-            ROS_ERROR("speedLOnTcp failed! Return value = %d\n", nRet);
+            ROS_ERROR("speedLOnTcp failed! Return value = %d\n", ret);
         }
         else
         {
             // printf("Activate speedJ model\n");
         }
-        // nRet = speedJ(g_dJoints, 0.3, 0, strIpAddress);
-        // if (nRet < 0)
+        // ret = speedJ(g_dJoints, 0.3, 0, strIpAddress);
+        // if (ret < 0)
         // {
-        //     ROS_ERROR("speedJ failed! Return value = %d\n", nRet);
+        //     ROS_ERROR("speedJ failed! Return value = %d\n", ret);
         // }
         // else
         // {
@@ -112,13 +112,13 @@ void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart 
         for (int i = 0; i < JOINT_NUM; ++i)
         {
             // Heartbeat serve
-            // printf("jointPos[%d] = %f \n", i, pinfo->jointPos[i]);
-            // printf("jointCurrent [%d] = %f \n", i, pinfo->jointCurrent[i]);
-            // printf("jointTorque [%d] = %f \n", i, pinfo->jointTorque[i]);
-            // if (i < 6)
-            // {
-            //     printf("tcpPos [%d] = %f \n", i, pinfo->tcpPos[i]); // Tool Center Point;
-            // }
+            printf("jointPos[%d] = %f \n", i, pinfo->jointPos[i]);
+            printf("jointCurrent [%d] = %f \n", i, pinfo->jointCurrent[i]);
+            printf("jointTorque [%d] = %f \n", i, pinfo->jointTorque[i]);
+            if (i < 6)
+            {
+                printf("tcpPos [%d] = %f \n", i, pinfo->tcpPos[i]); // Tool Center Point;
+            }
         }
     }
 }
@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
     pinfo->LocSrvPort = 0;
     double joints[JOINT_NUM] = {0.0};
     double poses[6] = {0.0};
-    int nRet = 0;
+    int ret = 0;
 
     // 机械臂坐标系到工作空间坐标系的转换矩阵
     // 需要提供机器人坐标与机械臂的相对位置
@@ -176,14 +176,14 @@ int main(int argc, char *argv[])
 
     // 初始pos矩阵
     double pos0[6] = {0.0};
-    nRet = homogeneous2Pose(Tsd0, pos0);
+    ret = homogeneous2Pose(Tsd0, pos0);
 
     do
     {
-        nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
-        if (nRet < 0)
+        ret = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
+        if (ret < 0)
         {
-            ROS_ERROR("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("192.168.10.75 initSrv failed! return value = %d\n", ret);
             break;
         }
         if (pinfo)
@@ -192,17 +192,17 @@ int main(int argc, char *argv[])
             pinfo = nullptr;
         }
         // 清除指定 IP 地址机械臂的错误信息。
-        nRet = cleanErrorInfo(strIpAddress);
-        if(nRet < 0)
+        ret = cleanErrorInfo(strIpAddress);
+        if(ret < 0)
         {
             ROS_ERROR("cleanErrorInfo failed!\n");
             break;
         }
         // 打开指定 IP 地址机械臂的抱闸，启动机械臂。调用该接口后，需要调用者延时 2s后再做其他操作。
-        nRet = releaseBrake(strIpAddress);
-        if (nRet < 0)
+        ret = releaseBrake(strIpAddress);
+        if (ret < 0)
         {
-            ROS_ERROR("releaseBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("releaseBrake failed! return value = %d\n", ret);
             break;
         }
         M_SLEEP(2000); // delay 2s
@@ -211,16 +211,16 @@ int main(int argc, char *argv[])
         ROS_INFO("------------------------\n");
 
         // 开机前将机械臂移动到初始位置
-        nRet = moveJToTarget(joints, 0.5, 0.5, strIpAddress);
+        ret = moveJToTarget(joints, 0.5, 0.5, strIpAddress);
         wait_move(strIpAddress);
         ROS_INFO("------------------------\n");
         ROS_INFO("Moving to target poses.\n");
         ROS_INFO("------------------------\n");
         // 再将机械臂移动到初始位置
-        nRet = moveJToPose(pos0, 0.2, 0.2, nullptr, strIpAddress);
-        if (nRet < 0)
+        ret = moveJToPose(pos0, 0.2, 0.2, nullptr, strIpAddress);
+        if (ret < 0)
         {
-            ROS_ERROR("moveLToTarget failed! Return value = %d\n", nRet);
+            ROS_ERROR("moveLToTarget failed! Return value = %d\n", ret);
             break;
         }
         wait_move(strIpAddress);
@@ -228,10 +228,10 @@ int main(int argc, char *argv[])
 
         // 启动机械臂的速度控制模式，该模式下，机械臂的运动由用户控制。
         pthread_t nThreadID;
-        nRet = pthread_create(&nThreadID, NULL, WorkThread, NULL);
-        if (nRet != 0)
+        ret = pthread_create(&nThreadID, NULL, WorkThread, NULL);
+        if (ret != 0)
         {
-            ROS_ERROR("thread create failed.ret = %d\n", nRet);
+            ROS_ERROR("thread create failed.ret = %d\n", ret);
             break;
         }
 
@@ -240,21 +240,21 @@ int main(int argc, char *argv[])
         while (ros::ok())
         {
 
-            nRet = getJointPos(joints, strIpAddress);
-            if (nRet < 0)
+            ret = getJointPos(joints, strIpAddress);
+            if (ret < 0)
             {
-                ROS_ERROR("getJointPos failed! Return value = %d\n", nRet);
+                ROS_ERROR("getJointPos failed! Return value = %d\n", ret);
                 break;
             }
-            nRet = getTcpPos(poses, strIpAddress);
-            if (nRet < 0)
+            ret = getTcpPos(poses, strIpAddress);
+            if (ret < 0)
             {
-                ROS_ERROR("getTcpPos failed! Return value = %d\n", nRet);
+                ROS_ERROR("getTcpPos failed! Return value = %d\n", ret);
                 break;
             }
             // transform poses from Tsb to Tgb (Tgb = Tsb * Tbg)
             double Tsb[16] = {0.0};
-            nRet = pose2Homogeneous(poses, Tsb);
+            ret = pose2Homogeneous(poses, Tsb);
             // use Eigen::Map to map 1x16 array to 4x4 matrix
             Eigen::Map<Eigen::Matrix<double, 4, 4>, Eigen::RowMajor> Tsb_eigen(Tsb);
             // std::cout << "Tsb_eigen:" << Tsb_eigen << std::endl;
@@ -279,10 +279,10 @@ int main(int argc, char *argv[])
         g_bExit = true;
 
         // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
-        nRet = holdBrake(strIpAddress);
-        if (nRet < 0)
+        ret = holdBrake(strIpAddress);
+        if (ret < 0)
         {
-            ROS_ERROR("holdBrake failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("holdBrake failed! return value = %d\n", ret);
             break;
         }
 

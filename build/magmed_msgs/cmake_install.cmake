@@ -39,11 +39,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_msgs/msg" TYPE FILE FILES
-    "/home/zhang/magmed_ws/src/magmed_msgs/msg/JointsVel.msg"
+    "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
-    "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagPose.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
     )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_msgs/srv" TYPE FILE FILES "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

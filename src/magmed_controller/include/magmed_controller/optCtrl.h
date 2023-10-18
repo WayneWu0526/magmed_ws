@@ -1,15 +1,16 @@
 #ifndef OPTCTRL_H
 #define OPTCTRL_H
 
-#include <eigen3/Eigen/Dense>
-#include <qpOASES.hpp>
+// #include <eigen3/Eigen/Dense>
+// #include <qpOASES.hpp>
+// #include "magmed_msgs/MagPose.h"
+// #include <iostream>
 #include "magmed_controller/MSCRJacobi.h"
-#include "magmed_msgs/MagPose.h"
-#include <iostream>
+#include "magmed_controller/velCtrlDef.h"
 
-using namespace Eigen;
-using namespace qpOASES;    
-using namespace magmed_msgs;
+// using namespace Eigen;
+// using namespace qpOASES;    
+// using namespace magmed_msgs;
 
 #define FREQ 100
 

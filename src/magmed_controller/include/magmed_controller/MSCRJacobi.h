@@ -1,11 +1,12 @@
 #ifndef MSCRJACOBI_H
 #define MSCRJACOBI_H
 
-#include <eigen3/Eigen/Dense>
-#include <iostream>
-#include <cmath>
+// #include <eigen3/Eigen/Dense>
+// #include <iostream>
+// #include <cmath>
+#include "magmed_controller/velCtrlDef.h"
 
-using namespace Eigen;
+// using namespace Eigen;
 
 // JacobiParams
 class JacobiParams

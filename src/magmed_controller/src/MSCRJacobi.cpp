@@ -80,7 +80,7 @@ RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
 {
     Vector2d theta = Vector2d::Zero(2, 1);
     Vector2d J_psi = Vector2d::Zero(2, 1);
-    Matrix<double, 2, 3> J_p;
+    Eigen::Matrix<double, 2, 3> J_p;
     J_p << 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0;
     Vector3d dx = {0.0, 0.0, 0.0};
@@ -119,7 +119,7 @@ RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
 
         Vector2d dJpsi = Vector2d(J_psi(1), g(x.col(i), dx, theta, phatma, pa));
         J_psi += ds * dJpsi;
-        Matrix<double, 2, 3> dJp;
+        Eigen::Matrix<double, 2, 3> dJp;
         dJp.row(0) = J_p.row(1);
         dJp.row(1) = g_ex(x.col(i), dx, theta, hatma, pa);
         J_p += ds * dJp;

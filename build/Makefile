@@ -662,19 +662,6 @@ magmed_msgs_gennodejs/fast:
 .PHONY : magmed_msgs_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_eus
-
-# Build rule for target.
-magmed_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
-.PHONY : magmed_msgs_generate_messages_eus
-
-# fast build rule for target.
-magmed_msgs_generate_messages_eus/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-.PHONY : magmed_msgs_generate_messages_eus/fast
-
-#=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages
 
 # Build rule for target.
@@ -688,17 +675,17 @@ magmed_msgs_generate_messages/fast:
 .PHONY : magmed_msgs_generate_messages/fast
 
 #=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_JointsVel
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboJoints
 
 # Build rule for target.
-_magmed_msgs_generate_messages_check_deps_JointsVel: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_JointsVel
-.PHONY : _magmed_msgs_generate_messages_check_deps_JointsVel
+_magmed_msgs_generate_messages_check_deps_RoboJoints: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboJoints
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints
 
 # fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_JointsVel/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JointsVel.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JointsVel.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_JointsVel/fast
+_magmed_msgs_generate_messages_check_deps_RoboJoints/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints/fast
 
 #=============================================================================
 # Target rules for targets named _magmed_msgs_generate_messages_check_deps_JoyRef
@@ -712,19 +699,6 @@ _magmed_msgs_generate_messages_check_deps_JoyRef: cmake_check_build_system
 _magmed_msgs_generate_messages_check_deps_JoyRef/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build
 .PHONY : _magmed_msgs_generate_messages_check_deps_JoyRef/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_MagPose
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_MagPose: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_MagPose
-.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_MagPose/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_MagPose.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_MagPose/fast
 
 #=============================================================================
 # Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboStates
@@ -792,6 +766,32 @@ magmed_msgs_gencpp/fast:
 .PHONY : magmed_msgs_gencpp/fast
 
 #=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_eus
+
+# Build rule for target.
+magmed_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
+.PHONY : magmed_msgs_generate_messages_eus
+
+# fast build rule for target.
+magmed_msgs_generate_messages_eus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+.PHONY : magmed_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_GetRobotState
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_GetRobotState: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_GetRobotState
+.PHONY : _magmed_msgs_generate_messages_check_deps_GetRobotState
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_GetRobotState/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_GetRobotState.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_GetRobotState.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_GetRobotState/fast
+
+#=============================================================================
 # Target rules for targets named magmed_msgs_geneus
 
 # Build rule for target.
@@ -855,6 +855,19 @@ velCtrlLib: cmake_check_build_system
 velCtrlLib/fast:
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
 .PHONY : velCtrlLib/fast
+
+#=============================================================================
+# Target rules for targets named diana_run
+
+# Build rule for target.
+diana_run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 diana_run
+.PHONY : diana_run
+
+# fast build rule for target.
+diana_run/fast:
+	$(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/build
+.PHONY : diana_run/fast
 
 #=============================================================================
 # Target rules for targets named dianaManipulator_joystick
@@ -972,21 +985,22 @@ help:
 	@echo "... magmed_msgs_genpy"
 	@echo "... magmed_msgs_generate_messages_py"
 	@echo "... magmed_msgs_gennodejs"
-	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... magmed_msgs_generate_messages"
-	@echo "... _magmed_msgs_generate_messages_check_deps_JointsVel"
+	@echo "... _magmed_msgs_generate_messages_check_deps_RoboJoints"
 	@echo "... _magmed_msgs_generate_messages_check_deps_JoyRef"
-	@echo "... _magmed_msgs_generate_messages_check_deps_MagPose"
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
 	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... magmed_msgs_generate_messages_cpp"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_gencpp"
+	@echo "... magmed_msgs_generate_messages_eus"
+	@echo "... _magmed_msgs_generate_messages_check_deps_GetRobotState"
 	@echo "... magmed_msgs_geneus"
 	@echo "... magmed_msgs_generate_messages_lisp"
 	@echo "... velCtrlNode"
 	@echo "... velocityController"
 	@echo "... velCtrlLib"
+	@echo "... diana_run"
 	@echo "... dianaManipulator_joystick"
 	@echo "... dianaManipulator_opt"
 	@echo "... dianaManipulator"
