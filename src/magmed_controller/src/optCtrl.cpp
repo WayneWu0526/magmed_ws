@@ -1,8 +1,8 @@
 #include "magmed_controller/optCtrl.h"
 
-void optCtrl::LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrlLaw,
-          const OptCtrlParam::LESOParam &param)
+void optCtrl::LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrlLaw)
 {
+    OptCtrlParam::LESOParam param = optCtrlParam.lesoparam;
     double error = thetaR[0] - hatx[0];
     hatx[0] += (hatx[0] + param.beta1 / param.epsilon * error + vrtlCtrlLaw) / param.nf;
     hatx[1] += (param.beta2 / (param.epsilon * param.epsilon) * error) / param.nf;
@@ -10,18 +10,18 @@ void optCtrl::LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrl
 }
 
 // feedforward_feedback controller:input thetaR, hatx, output virtual control law
-double optCtrl::FF_controller(const double (&thetaR)[2], double (&hatx)[2], double thetaL,
-                     const OptCtrlParam::FFParam &param)
+double optCtrl::FF_controller(const double (&thetaR)[2], double (&hatx)[2], double thetaL)
 {
+    OptCtrlParam::FFParam param = optCtrlParam.ffparam;
     double hatx1 = 0.0; 
     // double hatx1 = hatx[1];
     std::cout << "virtual FF_controller:" << thetaR[1] + param.fk * (thetaR[0] - thetaL) << std::endl;
     return thetaR[1] + param.fk * (thetaR[0] - thetaL) - hatx1;
 }
 
-MagPose optCtrl::controlAllocation(MagPose magPose, double virtualControlLaw, RowVector4d jacobian,
-                          const OptCtrlParam::CAParam &param)
+MagPose optCtrl::controlAllocation(double virtualControlLaw, RowVector4d jacobian)
 {
+    OptCtrlParam::CAParam param = optCtrlParam.caparam;
     USING_NAMESPACE_QPOASES
     double inf = qpOASES::INFTY;
     // extend magPose to magTwist
@@ -80,20 +80,6 @@ MagPose optCtrl::controlAllocation(MagPose magPose, double virtualControlLaw, Ro
     return magTwist;
 }
 
-void optCtrl::velFrmTrns(MagPose &magTwist)
-{
-    AngleAxisd vecZ(magTwist.psi, Vector3d(0, 0, 1));
-    Matrix3d RotZ = vecZ.matrix();
-    Vector3d vel;
-    vel << magTwist.pos[0], magTwist.pos[1], magTwist.pos[2];
-    Eigen::DiagonalMatrix<double, 3> Rgb0;
-    Rgb0.diagonal() << -1, 1, -1;
-    Vector3d velTrans = RotZ * Rgb0 * vel;
-    magTwist.pos[0] = vel[0];
-    magTwist.pos[1] = vel[1];
-    magTwist.pos[2] = vel[2];
-}
-
 RowVector4d optCtrl::getJacobi(MagPose magPose)
 {
     MSCRJacobi mscrjacobi;
@@ -101,29 +87,30 @@ RowVector4d optCtrl::getJacobi(MagPose magPose)
     return jacobi;
 }
 
-MagPose optCtrl::generateMagTwist(const double (&thetaR)[2], MagPose magPose, const double thetaL,
-                         const OptCtrlParam &optCtrlParam)
+MagPose optCtrl::generateMagTwist(magmed_msgs::RefTheta const refTheta, magmed_msgs::TipAngle const tipAngle)
 {
     // calculate jacobi
     RowVector4d jacobi = getJacobi(magPose);
-    std::cout << "jacobian: " << jacobi << std::endl;
+    // std::cout << "jacobian: " << jacobi << std::endl;
+
+    double thetaR[2] = {refTheta.theta, refTheta.dtheta};
+    double thetaL = tipAngle.tipAngle;
 
     // initialize hatx
     static double hatx[2] = {0.0, 0.0}; // 不会被销毁，只会在第一次调用时初始化
-    std::cout << "hatx: " << hatx[0] << " " << hatx[1] << std::endl;
+    // std::cout << "hatx: " << hatx[0] << " " << hatx[1] << std::endl;
 
     // calculate virtualControlLaw
-    double virtualControlLaw = FF_controller(thetaR, hatx, thetaL, optCtrlParam.ffparam);
+    double virtualControlLaw = FF_controller(thetaR, hatx, thetaL);
 
     // calculate control allocation
-    MagPose magTwist = controlAllocation(magPose, virtualControlLaw, jacobi, optCtrlParam.caparam);
+    MagPose magTwist = controlAllocation(virtualControlLaw, jacobi);
 
     // update hatx
-    LESO(thetaR, hatx, virtualControlLaw, optCtrlParam.lesoparam);
+    LESO(thetaR, hatx, virtualControlLaw);
 
     // trans velocity frame from robot to end-effector
     // WARNING: 平面偏转时使用，否则禁用
-    velFrmTrns(magTwist);
 
     return magTwist;
 }

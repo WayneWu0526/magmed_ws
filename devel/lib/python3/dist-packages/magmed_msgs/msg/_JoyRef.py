@@ -6,17 +6,16 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
+import magmed_msgs.msg
 import std_msgs.msg
 
 class JoyRef(genpy.Message):
-  _md5sum = "aa9cd8cd2e3cd0a81e9dae62d67c6a55"
+  _md5sum = "ea53e564f4388a7ea7a788d618611b29"
   _type = "magmed_msgs/JoyRef"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-float64 theta
-float64 thetadot
-float64 phi
-float64 phidot
+RefPhi refPhi 
+RefTheta refTheta
 ================================================================================
 MSG: std_msgs/Header
 # Standard metadata for higher-level stamped data types.
@@ -32,9 +31,17 @@ uint32 seq
 time stamp
 #Frame this data is associated with
 string frame_id
-"""
-  __slots__ = ['header','theta','thetadot','phi','phidot']
-  _slot_types = ['std_msgs/Header','float64','float64','float64','float64']
+
+================================================================================
+MSG: magmed_msgs/RefPhi
+float64 phi
+float64 dphi
+================================================================================
+MSG: magmed_msgs/RefTheta
+float64 theta
+float64 dtheta"""
+  __slots__ = ['header','refPhi','refTheta']
+  _slot_types = ['std_msgs/Header','magmed_msgs/RefPhi','magmed_msgs/RefTheta']
 
   def __init__(self, *args, **kwds):
     """
@@ -44,7 +51,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,theta,thetadot,phi,phidot
+       header,refPhi,refTheta
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -55,20 +62,14 @@ string frame_id
       # message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.theta is None:
-        self.theta = 0.
-      if self.thetadot is None:
-        self.thetadot = 0.
-      if self.phi is None:
-        self.phi = 0.
-      if self.phidot is None:
-        self.phidot = 0.
+      if self.refPhi is None:
+        self.refPhi = magmed_msgs.msg.RefPhi()
+      if self.refTheta is None:
+        self.refTheta = magmed_msgs.msg.RefTheta()
     else:
       self.header = std_msgs.msg.Header()
-      self.theta = 0.
-      self.thetadot = 0.
-      self.phi = 0.
-      self.phidot = 0.
+      self.refPhi = magmed_msgs.msg.RefPhi()
+      self.refTheta = magmed_msgs.msg.RefTheta()
 
   def _get_types(self):
     """
@@ -91,7 +92,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_4d().pack(_x.theta, _x.thetadot, _x.phi, _x.phidot))
+      buff.write(_get_struct_4d().pack(_x.refPhi.phi, _x.refPhi.dphi, _x.refTheta.theta, _x.refTheta.dtheta))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -105,6 +106,10 @@ string frame_id
     try:
       if self.header is None:
         self.header = std_msgs.msg.Header()
+      if self.refPhi is None:
+        self.refPhi = magmed_msgs.msg.RefPhi()
+      if self.refTheta is None:
+        self.refTheta = magmed_msgs.msg.RefTheta()
       end = 0
       _x = self
       start = end
@@ -122,7 +127,7 @@ string frame_id
       _x = self
       start = end
       end += 32
-      (_x.theta, _x.thetadot, _x.phi, _x.phidot,) = _get_struct_4d().unpack(str[start:end])
+      (_x.refPhi.phi, _x.refPhi.dphi, _x.refTheta.theta, _x.refTheta.dtheta,) = _get_struct_4d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -144,7 +149,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_4d().pack(_x.theta, _x.thetadot, _x.phi, _x.phidot))
+      buff.write(_get_struct_4d().pack(_x.refPhi.phi, _x.refPhi.dphi, _x.refTheta.theta, _x.refTheta.dtheta))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -159,6 +164,10 @@ string frame_id
     try:
       if self.header is None:
         self.header = std_msgs.msg.Header()
+      if self.refPhi is None:
+        self.refPhi = magmed_msgs.msg.RefPhi()
+      if self.refTheta is None:
+        self.refTheta = magmed_msgs.msg.RefTheta()
       end = 0
       _x = self
       start = end
@@ -176,7 +185,7 @@ string frame_id
       _x = self
       start = end
       end += 32
-      (_x.theta, _x.thetadot, _x.phi, _x.phidot,) = _get_struct_4d().unpack(str[start:end])
+      (_x.refPhi.phi, _x.refPhi.dphi, _x.refTheta.theta, _x.refTheta.dtheta,) = _get_struct_4d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

@@ -9,10 +9,8 @@
 #include "magmed_controller/velCtrlDef.h"
 
 // using namespace Eigen;
-// using namespace qpOASES;    
+// using namespace qpOASES;
 // using namespace magmed_msgs;
-
-#define FREQ 100
 
 class OptCtrlParam
 {
@@ -22,41 +20,49 @@ public:
         float beta1 = 1.0;
         float beta2 = 0.01;
         float epsilon = 0.01;
-        int nf = FREQ;
+        int nf = CTRLFREQ;
     } lesoparam;
 
     struct FFParam
     {
         float fk = 200.0;
     } ffparam;
-
     struct CAParam
     {
-        // float T = 1.0 / 100.0;
         JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();
-        int nf = FREQ;
+        // float T = 1.0 / 100.0;
+        int nf = CTRLFREQ;
         Vector4d UMAX = {0.2, 0.05, 0.01, 0.05};
         Vector4d Umin = {-M_PI / 2.0, pr.L, pr.H0 - 20.0e-3, 0.0};
         Vector4d Umax = {M_PI / 2.0, pr.L, pr.H0 + 40.0e-3, 0.0};
     } caparam;
 
-    OptCtrlParam() {};
+    OptCtrlParam(){};
 
-    OptCtrlParam(int nf) {lesoparam.nf = nf; caparam.nf = nf;};
+    OptCtrlParam(int nf)
+    {
+        lesoparam.nf = nf;
+        caparam.nf = nf;
+    };
 };
 
 class optCtrl
 {
 public:
-    void LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrlLaw,
-              const OptCtrlParam::LESOParam &param);
-    double FF_controller(const double (&thetaR)[2], double (&hatx)[2], double thetaL,
-                         const OptCtrlParam::FFParam &param);
-    MagPose controlAllocation(MagPose magPose, double virtualControlLaw, RowVector4d jacobian,
-                              const OptCtrlParam::CAParam &param);
-    void velFrmTrns(MagPose &magTwist);
-    MagPose generateMagTwist(const double (&thetaR)[2], MagPose magPose, const double thetaL,
-                             const OptCtrlParam &optCtrlParam);
+    MagPose generateMagTwist(magmed_msgs::RefTheta const refTheta, magmed_msgs::TipAngle const tipAngle);
+    MagPose magPose;
+    optCtrl()
+    {
+        magPose.psi = 0.0;
+        magPose.pos << optCtrlParam.caparam.pr.L,
+            optCtrlParam.caparam.pr.H0, 0.0;
+    };
+
+private:
+    OptCtrlParam optCtrlParam;
+    void LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrlLaw);
+    double FF_controller(const double (&thetaR)[2], double (&hatx)[2], double thetaL);
+    MagPose controlAllocation(double virtualControlLaw, RowVector4d jacobian);
     RowVector4d getJacobi(MagPose magPose);
 };
 

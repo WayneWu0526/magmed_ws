@@ -8,19 +8,20 @@ import struct
 
 
 class RoboStates(genpy.Message):
-  _md5sum = "f0c86d6612d2dc3f3483b4c4ba196520"
+  _md5sum = "3f7db48bba6b67d991a886a8d887cb31"
   _type = "magmed_msgs/RoboStates"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """int32  INIT = 0    # 初始化状态
 int32  RUN = 1  # 运行状态
-int32  TERM = -1    # 终止状态"""
+int32  TERM = -1    # 终止状态
+int32 VAL"""
   # Pseudo-constants
   INIT = 0
   RUN = 1
   TERM = -1
 
-  __slots__ = []
-  _slot_types = []
+  __slots__ = ['VAL']
+  _slot_types = ['int32']
 
   def __init__(self, *args, **kwds):
     """
@@ -30,7 +31,7 @@ int32  TERM = -1    # 终止状态"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       
+       VAL
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -38,6 +39,11 @@ int32  TERM = -1    # 终止状态"""
     """
     if args or kwds:
       super(RoboStates, self).__init__(*args, **kwds)
+      # message fields cannot be None, assign default values for those that are
+      if self.VAL is None:
+        self.VAL = 0
+    else:
+      self.VAL = 0
 
   def _get_types(self):
     """
@@ -51,7 +57,8 @@ int32  TERM = -1    # 终止状态"""
     :param buff: buffer, ``StringIO``
     """
     try:
-      pass
+      _x = self.VAL
+      buff.write(_get_struct_i().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -64,6 +71,9 @@ int32  TERM = -1    # 终止状态"""
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
       end = 0
+      start = end
+      end += 4
+      (self.VAL,) = _get_struct_i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -76,7 +86,8 @@ int32  TERM = -1    # 终止状态"""
     :param numpy: numpy python module
     """
     try:
-      pass
+      _x = self.VAL
+      buff.write(_get_struct_i().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -90,6 +101,9 @@ int32  TERM = -1    # 终止状态"""
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
       end = 0
+      start = end
+      end += 4
+      (self.VAL,) = _get_struct_i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -98,3 +112,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_i = None
+def _get_struct_i():
+    global _struct_i
+    if _struct_i is None:
+        _struct_i = struct.Struct("<i")
+    return _struct_i

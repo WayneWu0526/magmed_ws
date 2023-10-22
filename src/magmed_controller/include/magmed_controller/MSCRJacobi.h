@@ -78,6 +78,7 @@ public:
             0.0, 0.0, 0.0;
         return pRZ;
     }
+    MSCRJacobi() {};
 
 private:
     MatrixXd x = MatrixXd::Zero(3, pr.N);  // the position of the robot
@@ -116,6 +117,7 @@ class Magnet
         // get magnetic field and its gradient
         Vector3d get_b(const Vector3d ps);
         Matrix3d get_gradb(const Vector3d ps);
+        Magnet(){};
 };
 
 #endif

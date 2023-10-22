@@ -18,13 +18,22 @@ class RoboStates {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
+      this.VAL = null;
     }
     else {
+      if (initObj.hasOwnProperty('VAL')) {
+        this.VAL = initObj.VAL
+      }
+      else {
+        this.VAL = 0;
+      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type RoboStates
+    // Serialize message field [VAL]
+    bufferOffset = _serializer.int32(obj.VAL, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -32,11 +41,13 @@ class RoboStates {
     //deserializes a message object of type RoboStates
     let len;
     let data = new RoboStates(null);
+    // Deserialize message field [VAL]
+    data.VAL = _deserializer.int32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 0;
+    return 4;
   }
 
   static datatype() {
@@ -46,7 +57,7 @@ class RoboStates {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'f0c86d6612d2dc3f3483b4c4ba196520';
+    return '3f7db48bba6b67d991a886a8d887cb31';
   }
 
   static messageDefinition() {
@@ -55,6 +66,7 @@ class RoboStates {
     int32  INIT = 0    # 初始化状态
     int32  RUN = 1  # 运行状态
     int32  TERM = -1    # 终止状态
+    int32 VAL
     `;
   }
 
@@ -64,6 +76,13 @@ class RoboStates {
       msg = {};
     }
     const resolved = new RoboStates(null);
+    if (msg.VAL !== undefined) {
+      resolved.VAL = msg.VAL;
+    }
+    else {
+      resolved.VAL = 0
+    }
+
     return resolved;
     }
 };

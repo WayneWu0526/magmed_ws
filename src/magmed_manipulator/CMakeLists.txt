@@ -148,8 +148,6 @@ link_directories(
 add_executable(demo01_diana7api_connect_test src/demo01_diana7api_connect_test.cpp)
 add_executable(dianaManipulator src/dianaManipulator.cpp)
 add_executable(dianaManipulator_joystick src/dianaManipulator_joystick.cpp)
-add_executable(dianaManipulator_opt 
-  src/dianaManipulator_opt.cpp)
 add_executable(diana_run src/diana_run.cpp)
   # ${CMAKE_SOURCE_DIR}/magmed_controller/src/getJacobianOfMCR.cpp)
 ## Rename C++ executable without prefix
@@ -164,7 +162,6 @@ add_executable(diana_run src/diana_run.cpp)
 # add_dependencies(demo01_diana7api_connect_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 # add_dependencies(dianaManipulator ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(diana_run ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(dianaManipulator_opt magmed_msgs_generate_messages_cpp)
 add_dependencies(diana_run magmed_msgs_generate_messages_cpp)
 # add_dependencies(demo02_diana7api_jacobiTest ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
@@ -181,10 +178,6 @@ target_link_libraries(dianaManipulator
   DianaApi
 )
 target_link_libraries(dianaManipulator_joystick
-  ${catkin_LIBRARIES}
-  DianaApi
-)
-target_link_libraries(dianaManipulator_opt
   ${catkin_LIBRARIES}
   DianaApi
 )

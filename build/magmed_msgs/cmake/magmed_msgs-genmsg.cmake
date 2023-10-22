@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "magmed_msgs: 3 messages, 1 services")
+message(STATUS "magmed_msgs: 6 messages, 0 services")
 
 set(MSG_I_FLAGS "-Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -24,7 +24,17 @@ add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" "std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" "magmed_msgs/RefPhi:std_msgs/Header:magmed_msgs/RefTheta"
+)
+
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" ""
+)
+
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" ""
 )
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
@@ -32,9 +42,9 @@ add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" ""
 )
 
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" "std_msgs/Header"
 )
 
 #
@@ -52,7 +62,19 @@ _generate_msg_cpp(magmed_msgs
 _generate_msg_cpp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_cpp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_cpp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_cpp(magmed_msgs
@@ -61,14 +83,14 @@ _generate_msg_cpp(magmed_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
-
-### Generating Services
-_generate_srv_cpp(magmed_msgs
-  "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
+_generate_msg_cpp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
+
+### Generating Services
 
 ### Generating Module File
 _generate_module_cpp(magmed_msgs
@@ -86,9 +108,13 @@ get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/Robo
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -109,7 +135,19 @@ _generate_msg_eus(magmed_msgs
 _generate_msg_eus(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_eus(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_eus(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_eus(magmed_msgs
@@ -118,14 +156,14 @@ _generate_msg_eus(magmed_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
-
-### Generating Services
-_generate_srv_eus(magmed_msgs
-  "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
+_generate_msg_eus(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
+
+### Generating Services
 
 ### Generating Module File
 _generate_module_eus(magmed_msgs
@@ -143,9 +181,13 @@ get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/Robo
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -166,7 +208,19 @@ _generate_msg_lisp(magmed_msgs
 _generate_msg_lisp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_lisp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_lisp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_lisp(magmed_msgs
@@ -175,14 +229,14 @@ _generate_msg_lisp(magmed_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
-
-### Generating Services
-_generate_srv_lisp(magmed_msgs
-  "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
+_generate_msg_lisp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
+
+### Generating Services
 
 ### Generating Module File
 _generate_module_lisp(magmed_msgs
@@ -200,9 +254,13 @@ get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/Robo
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -223,7 +281,19 @@ _generate_msg_nodejs(magmed_msgs
 _generate_msg_nodejs(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_nodejs(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_nodejs(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_nodejs(magmed_msgs
@@ -232,14 +302,14 @@ _generate_msg_nodejs(magmed_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
-
-### Generating Services
-_generate_srv_nodejs(magmed_msgs
-  "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
+_generate_msg_nodejs(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
+
+### Generating Services
 
 ### Generating Module File
 _generate_module_nodejs(magmed_msgs
@@ -257,9 +327,13 @@ get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/Robo
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -280,7 +354,19 @@ _generate_msg_py(magmed_msgs
 _generate_msg_py(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_py(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
+)
+_generate_msg_py(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
+  "${MSG_I_FLAGS}"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_py(magmed_msgs
@@ -289,14 +375,14 @@ _generate_msg_py(magmed_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
-
-### Generating Services
-_generate_srv_py(magmed_msgs
-  "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv"
+_generate_msg_py(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
+
+### Generating Services
 
 ### Generating Module File
 _generate_module_py(magmed_msgs
@@ -314,9 +400,13 @@ get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/Robo
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv" NAME_WE)
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

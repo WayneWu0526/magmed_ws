@@ -55,10 +55,11 @@ include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/progress.mak
 
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py
 
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -69,43 +70,51 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/d
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG magmed_msgs/JoyRef"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
 
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG magmed_msgs/RefPhi"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
+
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG magmed_msgs/RefTheta"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
+
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG magmed_msgs/RoboStates"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG magmed_msgs/RoboStates"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
 
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py: /home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python code from SRV magmed_msgs/GetRobotState"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python from MSG magmed_msgs/TipAngle"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python msg __init__.py for magmed_msgs"
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python msg __init__.py for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg --initpy
-
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python srv __init__.py for magmed_msgs"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv --initpy
 
 magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
-magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_GetRobotState.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
-magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py
 magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make
 
 .PHONY : magmed_msgs_generate_messages_py

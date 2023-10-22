@@ -4,8 +4,8 @@
 #include <ros/ros.h>
 #include <DianaAPIDef.h>
 #include <DianaAPI.h>
+#include <thread>
 #include "magmed_msgs/RoboStates.h"
-#include "magmed_msgs/GetRobotState.h"
 #include "magmed_msgs/RoboJoints.h"
 
 #define JOINTNUM 7
@@ -19,7 +19,7 @@ public:
         double acc = {0.5};
         double t = 0.0;
         bool realiable = true;
-        DianaJointSets() {};
+        DianaJointSets(){};
         DianaJointSets(double acc)
         {
             this->acc = acc;
@@ -30,7 +30,7 @@ public:
     {
         double speeds[TCPNUM] = {0.0};
         double acc[2] = {0.0};
-        DianaTcpSets() {};
+        DianaTcpSets(){};
         DianaTcpSets(double speeds[TCPNUM], double acc[2])
         {
             for (int i = 0; i < TCPNUM; ++i)
@@ -44,7 +44,7 @@ public:
         }
     } diana_tcpsets;
 
-    DianaSpeedSets() {};
+    DianaSpeedSets(){};
     DianaSpeedSets(DianaTcpSets diana_tcpsets, DianaJointSets diana_jointsets)
     {
         this->diana_tcpsets = diana_tcpsets;
@@ -57,7 +57,7 @@ class JointVels
 public:
     magmed_msgs::RoboJoints joint_vel;
     double joint_vel_array[JOINTNUM] = {0.0};
-    JointVels();
+    JointVels(){};
     void feed(magmed_msgs::RoboJointsConstPtr pMsg);
 };
 
@@ -69,22 +69,18 @@ public:
 
     DianaStateManage(ros::NodeHandle &nh) : nh(nh)
     {
-        state = magmed_msgs::RoboStates::INIT; // 初始化状态为INIT
         dianajoints_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_manipulator/dianajoints", 10);
-        get_state_server = nh.advertiseService("/magmed_manipulator/get_state", &DianaStateManage::getState, this);
-        // 使用boost::bind()函数可以将类成员函数作为回调函数，将得到的joint_vel赋值给类成员变量joint_vel
+
+        dianastate_pub = nh.advertise<magmed_msgs::RoboStates>("/magmed_manipulator/dianastate", 10);
+
         joint_vel_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_controller/joint_vels",
                                                               10,
                                                               boost::bind(&JointVels::feed, &dsr_joint_vels, _1));
     }
-    bool getState(magmed_msgs::GetRobotState::Request &req, magmed_msgs::GetRobotState::Response &res)
-    {
-        res.response = state;
-        return true;
-    }
     int srvJointVels();
     int pubJoints();
     void run();
+    void serviceLoop();
 
     static void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
     {
@@ -116,16 +112,17 @@ public:
     // M_SLEEP 函数用于延时，单位为毫秒
 
 private:
-    int state;
+    magmed_msgs::RoboStates state;
+    magmed_msgs::RoboJoints robojoints;
     int ret = 0;
     double joint_vels[JOINTNUM] = {0.0};
-    magmed_msgs::RoboJoints robojoints;
+    double joints[JOINTNUM] = {0.0};
     const char *strIpAddress = "192.168.10.75";
     void M_SLEEP(int milliseconds);
     void wait_move(const char *strIpAddress);
     ros::NodeHandle nh;
     ros::Publisher dianajoints_pub;
-    ros::ServiceServer get_state_server;
+    ros::Publisher dianastate_pub;
     ros::Subscriber joint_vel_sub;
 };
 
@@ -136,7 +133,7 @@ int DianaStateManage::srvJointVels()
     if (ret < 0)
     {
         ROS_ERROR("speedJ_ex failed! Return value = %d\n", ret);
-        state = magmed_msgs::RoboStates::TERM;
+        state.VAL = magmed_msgs::RoboStates::TERM;
         return -1;
     }
     return 0;
@@ -146,28 +143,47 @@ int DianaStateManage::pubJoints()
 {
     // 获取joint角度
     // 发布joints
-    double joints[JOINTNUM] = {0.0};
     ret = getJointPos(joints, strIpAddress);
     if (ret < 0)
     {
         ROS_ERROR("getJointPos failed! Return value = %d\n", ret);
-        state = magmed_msgs::RoboStates::TERM;
+        state.VAL = magmed_msgs::RoboStates::TERM;
         return -1;
     }
+
     for (int i = 0; i < JOINTNUM; ++i)
     {
-        robojoints.joints.push_back(joints[i]);
+        robojoints.joints[i] = joints[i];
     }
     dianajoints_pub.publish(robojoints);
 
     return 0;
 };
 
+void DianaStateManage::serviceLoop()
+{
+    // pub dianastate
+    ros::Rate rate(1);
+    while(ros::ok())
+    {
+        dianastate_pub.publish(state);
+        ros::spinOnce();
+        rate.sleep();
+    }
+};
+
 void DianaStateManage::run()
 {
     // set state to INIT
-    state = magmed_msgs::RoboStates::INIT;
-
+    state.VAL = magmed_msgs::RoboStates::INIT;
+    std::thread serviceThread(&DianaStateManage::serviceLoop, this);
+    // 如果线程创建失败，那么就退出系统。
+    if (!serviceThread.joinable())
+    {
+        ROS_ERROR("serviceThread create failed!\n");
+        state.VAL = magmed_msgs::RoboStates::TERM;
+        return;
+    }
     // init diana7
     // 初始化 API，完成其他功能函数使用前的初始化准备工作。
     srv_net_st *pinfo = new srv_net_st();
@@ -183,7 +199,7 @@ void DianaStateManage::run()
         if (ret < 0)
         {
             ROS_ERROR("192.168.10.75 initSrv failed! nReturn value = %d\n", ret);
-            state = magmed_msgs::RoboStates::TERM;
+            state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
         // 清除指定 IP 地址机械臂的错误信息。
@@ -191,7 +207,7 @@ void DianaStateManage::run()
         if (ret < 0)
         {
             ROS_ERROR("cleanErrorInfo failed!\n");
-            state = magmed_msgs::RoboStates::TERM;
+            state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
         // 打开指定 IP 地址机械臂的抱闸，启动机械臂。调用该接口后，需要调用者延时 2s后再做其他操作。
@@ -199,7 +215,7 @@ void DianaStateManage::run()
         if (ret < 0)
         {
             ROS_ERROR("releaseBrake failed! return value = %d\n", ret);
-            state = magmed_msgs::RoboStates::TERM;
+            state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
         M_SLEEP(2000); // delay 2s
@@ -209,7 +225,7 @@ void DianaStateManage::run()
         if (ret < 0)
         {
             ROS_ERROR("moveJToTarget failed! Return value = %d\n", ret);
-            state = magmed_msgs::RoboStates::TERM;
+            state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
         wait_move(strIpAddress);
@@ -219,40 +235,50 @@ void DianaStateManage::run()
         if (ret < 0)
         {
             ROS_ERROR("moveLToTarget failed! Return value = %d\n", ret);
-            state = magmed_msgs::RoboStates::TERM;
+            state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
         wait_move(strIpAddress);
         ROS_INFO("Initial pos arrived! Starting velocity control. \n");
 
         // set state to RUN
-        state = magmed_msgs::RoboStates::RUN;
-
         ros::Rate rate(100);
-        double joints[JOINTNUM] = {0.0};
-        double poses[6] = {0.0};
+        state.VAL = magmed_msgs::RoboStates::RUN;
         while (ros::ok())
         {
+            // check state
+            const char dianastate = getRobotState(strIpAddress);
+            if (dianastate == 6)
+            {
+                ROS_ERROR("Robot state error! Return value = %d\n", dianastate);
+                state.VAL = magmed_msgs::RoboStates::TERM;
+                break;
+            }
+            else if (dianastate == 7)
+            {
+                ROS_ERROR("Joint out of range! Return value = %d\n", dianastate);
+                state.VAL = magmed_msgs::RoboStates::TERM;
+                break;
+            }
             // 发布磁体位置和角度
             ret = pubJoints();
             if (ret < 0)
             {
                 ROS_ERROR("pubJoints failed! Return value = %d\n", ret);
-                state = magmed_msgs::RoboStates::TERM;
+                state.VAL = magmed_msgs::RoboStates::TERM;
                 break;
             }
             ret = srvJointVels();
             if (ret < 0)
             {
                 ROS_ERROR("srvJointVels failed! Return value = %d\n", ret);
-                state = magmed_msgs::RoboStates::TERM;
+                state.VAL = magmed_msgs::RoboStates::TERM;
                 break;
             }
 
             ros::spinOnce();
             rate.sleep();
         }
-
         // 关闭指定 IP 地址机械臂的抱闸，停止机械臂。
         ret = holdBrake(strIpAddress);
         if (ret < 0)
@@ -262,6 +288,10 @@ void DianaStateManage::run()
         }
 
     } while (0);
+    // set state to TERM
+    state.VAL = magmed_msgs::RoboStates::TERM;
+    // 等待线程结束
+    serviceThread.join();
 
     // 如果该函数未被调用就退出系统（例如客户端程序在运行期间崩溃），服务端将因为检测不到心跳而认为客户端异常掉线，直至客户端再次运行，重新连接。除此之外不会引起严重后果。
     destroySrv(strIpAddress);
@@ -286,8 +316,8 @@ void DianaStateManage::wait_move(const char *strIpAddress)
     M_SLEEP(20);
     while (true)
     {
-        const char state = getRobotState(strIpAddress);
-        if (state != 0)
+        const char dianastate = getRobotState(strIpAddress);
+        if (dianastate != 0)
         {
             break;
         }
@@ -299,15 +329,10 @@ void DianaStateManage::wait_move(const char *strIpAddress)
     stop(strIpAddress);
 };
 
-JointVels::JointVels()
-{
-};
-
 void JointVels::feed(magmed_msgs::RoboJointsConstPtr pMsg)
 {
     joint_vel = *pMsg;
     // 将RoboJoints类型变量的*pMsg赋值给joint_vel_arra
-
 
     // convert to array
     for (int i = 0; i < JOINTNUM; ++i)
@@ -315,6 +340,5 @@ void JointVels::feed(magmed_msgs::RoboJointsConstPtr pMsg)
         joint_vel_array[i] = joint_vel.joints[i];
     }
 };
-
 
 #endif

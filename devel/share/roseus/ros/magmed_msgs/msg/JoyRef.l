@@ -16,23 +16,19 @@
 
 (defclass magmed_msgs::JoyRef
   :super ros::object
-  :slots (_header _theta _thetadot _phi _phidot ))
+  :slots (_header _refPhi _refTheta ))
 
 (defmethod magmed_msgs::JoyRef
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:theta __theta) 0.0)
-    ((:thetadot __thetadot) 0.0)
-    ((:phi __phi) 0.0)
-    ((:phidot __phidot) 0.0)
+    ((:refPhi __refPhi) (instance magmed_msgs::RefPhi :init))
+    ((:refTheta __refTheta) (instance magmed_msgs::RefTheta :init))
     )
    (send-super :init)
    (setq _header __header)
-   (setq _theta (float __theta))
-   (setq _thetadot (float __thetadot))
-   (setq _phi (float __phi))
-   (setq _phidot (float __phidot))
+   (setq _refPhi __refPhi)
+   (setq _refTheta __refTheta)
    self)
   (:header
    (&rest __header)
@@ -41,31 +37,29 @@
      (progn
        (if __header (setq _header (car __header)))
        _header)))
-  (:theta
-   (&optional __theta)
-   (if __theta (setq _theta __theta)) _theta)
-  (:thetadot
-   (&optional __thetadot)
-   (if __thetadot (setq _thetadot __thetadot)) _thetadot)
-  (:phi
-   (&optional __phi)
-   (if __phi (setq _phi __phi)) _phi)
-  (:phidot
-   (&optional __phidot)
-   (if __phidot (setq _phidot __phidot)) _phidot)
+  (:refPhi
+   (&rest __refPhi)
+   (if (keywordp (car __refPhi))
+       (send* _refPhi __refPhi)
+     (progn
+       (if __refPhi (setq _refPhi (car __refPhi)))
+       _refPhi)))
+  (:refTheta
+   (&rest __refTheta)
+   (if (keywordp (car __refTheta))
+       (send* _refTheta __refTheta)
+     (progn
+       (if __refTheta (setq _refTheta (car __refTheta)))
+       _refTheta)))
   (:serialization-length
    ()
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; float64 _theta
-    8
-    ;; float64 _thetadot
-    8
-    ;; float64 _phi
-    8
-    ;; float64 _phidot
-    8
+    ;; magmed_msgs/RefPhi _refPhi
+    (send _refPhi :serialization-length)
+    ;; magmed_msgs/RefTheta _refTheta
+    (send _refTheta :serialization-length)
     ))
   (:serialize
    (&optional strm)
@@ -73,40 +67,30 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; float64 _theta
-       (sys::poke _theta (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _thetadot
-       (sys::poke _thetadot (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _phi
-       (sys::poke _phi (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _phidot
-       (sys::poke _phidot (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; magmed_msgs/RefPhi _refPhi
+       (send _refPhi :serialize s)
+     ;; magmed_msgs/RefTheta _refTheta
+       (send _refTheta :serialize s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; float64 _theta
-     (setq _theta (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _thetadot
-     (setq _thetadot (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _phi
-     (setq _phi (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _phidot
-     (setq _phidot (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; magmed_msgs/RefPhi _refPhi
+     (send _refPhi :deserialize buf ptr-) (incf ptr- (send _refPhi :serialization-length))
+   ;; magmed_msgs/RefTheta _refTheta
+     (send _refTheta :deserialize buf ptr-) (incf ptr- (send _refTheta :serialization-length))
    ;;
    self)
   )
 
-(setf (get magmed_msgs::JoyRef :md5sum-) "aa9cd8cd2e3cd0a81e9dae62d67c6a55")
+(setf (get magmed_msgs::JoyRef :md5sum-) "ea53e564f4388a7ea7a788d618611b29")
 (setf (get magmed_msgs::JoyRef :datatype-) "magmed_msgs/JoyRef")
 (setf (get magmed_msgs::JoyRef :definition-)
       "Header header
-float64 theta
-float64 thetadot
-float64 phi
-float64 phidot
+RefPhi refPhi 
+RefTheta refTheta
 ================================================================================
 MSG: std_msgs/Header
 # Standard metadata for higher-level stamped data types.
@@ -123,10 +107,18 @@ time stamp
 #Frame this data is associated with
 string frame_id
 
+================================================================================
+MSG: magmed_msgs/RefPhi
+float64 phi
+float64 dphi
+================================================================================
+MSG: magmed_msgs/RefTheta
+float64 theta
+float64 dtheta
 ")
 
 
 
-(provide :magmed_msgs/JoyRef "aa9cd8cd2e3cd0a81e9dae62d67c6a55")
+(provide :magmed_msgs/JoyRef "ea53e564f4388a7ea7a788d618611b29")
 
 

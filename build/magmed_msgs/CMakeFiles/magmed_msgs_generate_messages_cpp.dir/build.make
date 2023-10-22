@@ -55,8 +55,10 @@ include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/progress.ma
 
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -68,29 +70,45 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from magmed_msgs/JoyRef.msg"
 	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from magmed_msgs/RefPhi.msg"
+	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
+
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating C++ code from magmed_msgs/RefTheta.msg"
+	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
+
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h: /opt/ros/noetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from magmed_msgs/RoboStates.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating C++ code from magmed_msgs/RoboStates.msg"
 	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
-/home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
-/home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h: /home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv
-/home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h: /opt/ros/noetic/share/gencpp/msg.h.template
-/home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h: /opt/ros/noetic/share/gencpp/srv.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating C++ code from magmed_msgs/GetRobotState.srv"
-	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/srv/GetRobotState.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
+/home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating C++ code from magmed_msgs/TipAngle.msg"
+	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
 magmed_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
+magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h
+magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
-magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/GetRobotState.h
+magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 magmed_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make
 
 .PHONY : magmed_msgs_generate_messages_cpp

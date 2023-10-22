@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp"
+  "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp"
+  "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp"
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp"
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp"
-  "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/GetRobotState.lisp"
+  "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp"
   "CMakeFiles/magmed_msgs_generate_messages_lisp"
 )
 

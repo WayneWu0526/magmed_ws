@@ -11,6 +11,8 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
+let RefPhi = require('./RefPhi.js');
+let RefTheta = require('./RefTheta.js');
 let std_msgs = _finder('std_msgs');
 
 //-----------------------------------------------------------
@@ -20,10 +22,8 @@ class JoyRef {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.header = null;
-      this.theta = null;
-      this.thetadot = null;
-      this.phi = null;
-      this.phidot = null;
+      this.refPhi = null;
+      this.refTheta = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -32,29 +32,17 @@ class JoyRef {
       else {
         this.header = new std_msgs.msg.Header();
       }
-      if (initObj.hasOwnProperty('theta')) {
-        this.theta = initObj.theta
+      if (initObj.hasOwnProperty('refPhi')) {
+        this.refPhi = initObj.refPhi
       }
       else {
-        this.theta = 0.0;
+        this.refPhi = new RefPhi();
       }
-      if (initObj.hasOwnProperty('thetadot')) {
-        this.thetadot = initObj.thetadot
-      }
-      else {
-        this.thetadot = 0.0;
-      }
-      if (initObj.hasOwnProperty('phi')) {
-        this.phi = initObj.phi
+      if (initObj.hasOwnProperty('refTheta')) {
+        this.refTheta = initObj.refTheta
       }
       else {
-        this.phi = 0.0;
-      }
-      if (initObj.hasOwnProperty('phidot')) {
-        this.phidot = initObj.phidot
-      }
-      else {
-        this.phidot = 0.0;
+        this.refTheta = new RefTheta();
       }
     }
   }
@@ -63,14 +51,10 @@ class JoyRef {
     // Serializes a message object of type JoyRef
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
-    // Serialize message field [theta]
-    bufferOffset = _serializer.float64(obj.theta, buffer, bufferOffset);
-    // Serialize message field [thetadot]
-    bufferOffset = _serializer.float64(obj.thetadot, buffer, bufferOffset);
-    // Serialize message field [phi]
-    bufferOffset = _serializer.float64(obj.phi, buffer, bufferOffset);
-    // Serialize message field [phidot]
-    bufferOffset = _serializer.float64(obj.phidot, buffer, bufferOffset);
+    // Serialize message field [refPhi]
+    bufferOffset = RefPhi.serialize(obj.refPhi, buffer, bufferOffset);
+    // Serialize message field [refTheta]
+    bufferOffset = RefTheta.serialize(obj.refTheta, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -80,14 +64,10 @@ class JoyRef {
     let data = new JoyRef(null);
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
-    // Deserialize message field [theta]
-    data.theta = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [thetadot]
-    data.thetadot = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [phi]
-    data.phi = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [phidot]
-    data.phidot = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [refPhi]
+    data.refPhi = RefPhi.deserialize(buffer, bufferOffset);
+    // Deserialize message field [refTheta]
+    data.refTheta = RefTheta.deserialize(buffer, bufferOffset);
     return data;
   }
 
@@ -104,17 +84,15 @@ class JoyRef {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'aa9cd8cd2e3cd0a81e9dae62d67c6a55';
+    return 'ea53e564f4388a7ea7a788d618611b29';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    float64 theta
-    float64 thetadot
-    float64 phi
-    float64 phidot
+    RefPhi refPhi 
+    RefTheta refTheta
     ================================================================================
     MSG: std_msgs/Header
     # Standard metadata for higher-level stamped data types.
@@ -131,6 +109,14 @@ class JoyRef {
     #Frame this data is associated with
     string frame_id
     
+    ================================================================================
+    MSG: magmed_msgs/RefPhi
+    float64 phi
+    float64 dphi
+    ================================================================================
+    MSG: magmed_msgs/RefTheta
+    float64 theta
+    float64 dtheta
     `;
   }
 
@@ -147,32 +133,18 @@ class JoyRef {
       resolved.header = new std_msgs.msg.Header()
     }
 
-    if (msg.theta !== undefined) {
-      resolved.theta = msg.theta;
+    if (msg.refPhi !== undefined) {
+      resolved.refPhi = RefPhi.Resolve(msg.refPhi)
     }
     else {
-      resolved.theta = 0.0
+      resolved.refPhi = new RefPhi()
     }
 
-    if (msg.thetadot !== undefined) {
-      resolved.thetadot = msg.thetadot;
+    if (msg.refTheta !== undefined) {
+      resolved.refTheta = RefTheta.Resolve(msg.refTheta)
     }
     else {
-      resolved.thetadot = 0.0
-    }
-
-    if (msg.phi !== undefined) {
-      resolved.phi = msg.phi;
-    }
-    else {
-      resolved.phi = 0.0
-    }
-
-    if (msg.phidot !== undefined) {
-      resolved.phidot = msg.phidot;
-    }
-    else {
-      resolved.phidot = 0.0
+      resolved.refTheta = new RefTheta()
     }
 
     return resolved;

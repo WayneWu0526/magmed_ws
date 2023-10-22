@@ -1,9 +1,11 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RefPhi.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RefTheta.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l"
-  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/GetRobotState.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/TipAngle.l"
   "CMakeFiles/magmed_msgs_generate_messages_eus"
 )
 

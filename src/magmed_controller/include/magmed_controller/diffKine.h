@@ -19,10 +19,10 @@ struct diana7KineSpaceParam
     double d3 = 458.6e-3;
     double d5 = 455.4e-3;
     double d7 = 116.9e-3;
-    double de = 81e-3;
-    double a4 = 65e-3;
+    double de = 81.0e-3;
+    double a4 = 65.0e-3;
     double a6 = -12.2e-3;
-    double a7 = 87e-3;
+    double a7 = 87.0e-3;
 
     double dsum = d1 + d3 + d5 + d7 + de;
 
@@ -77,9 +77,9 @@ public:
     diffKineParam()
     {
         params_ = diana7KineSpaceParam();
-        pictrlparam_.kp_ = 10.0;
-        pictrlparam_.ki_ = 0.5;
-        pictrlparam_.nf_ = 100;
+        pictrlparam_.kp_ = 30.0;
+        pictrlparam_.ki_ = 10.0;
+        pictrlparam_.nf_ = CTRLFREQ;
     }; // 构造函数
 
     diffKineParam(diana7KineSpaceParam params, PICtrlParam pictrlparam) : params_(params), pictrlparam_(pictrlparam){};
@@ -88,13 +88,25 @@ public:
 class diffKine
 {
 public:
-    // JacobiMap function: MagPos -> DsrTwist
-    VectorXd jacobiMap(const double (&phi)[2], MagPose magPose, MagPose magTwist, const double (&thetaList)[JOINTNUM],
-                       const diffKineParam &diffkineparam);
-    Matrix3d getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM],
-                    const diffKineParam &diffkineparam);
+    void initConfig(const double (&thetaList)[JOINTNUM]);
+    void getRealMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
+    VectorXd jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
+    MagPose magTwist;
+    Matrix4d Tgd0 = Matrix4d::Identity();
+    diffKine(){magTwist.psi=0.0; 
+        magTwist.pos << 0.0, 0.0, 0.0;
+        Tgd0 = RpToTrans(diffkineparam.params_.Rgb0, diffkineparam.params_.Pgb0);};
 
 private:
+    Matrix3d Rinit = Matrix3d::Identity();
+    Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
+    // 构建static TR, 初始时为单位矩阵
+    Matrix4d TR = Matrix4d::Identity();
+    diffKineParam diffkineparam;
+    diana7KineSpaceParam params = diffkineparam.params_;
+    diffKineParam::PICtrlParam piparams = diffkineparam.pictrlparam_;
+    // JacobiMap function: MagPos -> DsrTwist
+    Eigen::MatrixXd calcJacobi();
     Matrix3d Rphi(double phi);
     Matrix3d Rpsi(double psi);
 };

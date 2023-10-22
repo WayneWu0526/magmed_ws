@@ -16,6 +16,8 @@
 #include <ros/message_operations.h>
 
 #include <std_msgs/Header.h>
+#include <magmed_msgs/RefPhi.h>
+#include <magmed_msgs/RefTheta.h>
 
 namespace magmed_msgs
 {
@@ -26,17 +28,13 @@ struct JoyRef_
 
   JoyRef_()
     : header()
-    , theta(0.0)
-    , thetadot(0.0)
-    , phi(0.0)
-    , phidot(0.0)  {
+    , refPhi()
+    , refTheta()  {
     }
   JoyRef_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , theta(0.0)
-    , thetadot(0.0)
-    , phi(0.0)
-    , phidot(0.0)  {
+    , refPhi(_alloc)
+    , refTheta(_alloc)  {
   (void)_alloc;
     }
 
@@ -45,17 +43,11 @@ struct JoyRef_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef double _theta_type;
-  _theta_type theta;
+   typedef  ::magmed_msgs::RefPhi_<ContainerAllocator>  _refPhi_type;
+  _refPhi_type refPhi;
 
-   typedef double _thetadot_type;
-  _thetadot_type thetadot;
-
-   typedef double _phi_type;
-  _phi_type phi;
-
-   typedef double _phidot_type;
-  _phidot_type phidot;
+   typedef  ::magmed_msgs::RefTheta_<ContainerAllocator>  _refTheta_type;
+  _refTheta_type refTheta;
 
 
 
@@ -87,10 +79,8 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::magmed_msgs::JoyRef_<ContainerAllocator1> & lhs, const ::magmed_msgs::JoyRef_<ContainerAllocator2> & rhs)
 {
   return lhs.header == rhs.header &&
-    lhs.theta == rhs.theta &&
-    lhs.thetadot == rhs.thetadot &&
-    lhs.phi == rhs.phi &&
-    lhs.phidot == rhs.phidot;
+    lhs.refPhi == rhs.refPhi &&
+    lhs.refTheta == rhs.refTheta;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -147,12 +137,12 @@ struct MD5Sum< ::magmed_msgs::JoyRef_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "aa9cd8cd2e3cd0a81e9dae62d67c6a55";
+    return "ea53e564f4388a7ea7a788d618611b29";
   }
 
   static const char* value(const ::magmed_msgs::JoyRef_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xaa9cd8cd2e3cd0a8ULL;
-  static const uint64_t static_value2 = 0x1e9dae62d67c6a55ULL;
+  static const uint64_t static_value1 = 0xea53e564f4388a7eULL;
+  static const uint64_t static_value2 = 0xa7a788d618611b29ULL;
 };
 
 template<class ContainerAllocator>
@@ -172,10 +162,8 @@ struct Definition< ::magmed_msgs::JoyRef_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"float64 theta\n"
-"float64 thetadot\n"
-"float64 phi\n"
-"float64 phidot\n"
+"RefPhi refPhi \n"
+"RefTheta refTheta\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
 "# Standard metadata for higher-level stamped data types.\n"
@@ -191,6 +179,15 @@ struct Definition< ::magmed_msgs::JoyRef_<ContainerAllocator> >
 "time stamp\n"
 "#Frame this data is associated with\n"
 "string frame_id\n"
+"\n"
+"================================================================================\n"
+"MSG: magmed_msgs/RefPhi\n"
+"float64 phi\n"
+"float64 dphi\n"
+"================================================================================\n"
+"MSG: magmed_msgs/RefTheta\n"
+"float64 theta\n"
+"float64 dtheta\n"
 ;
   }
 
@@ -210,10 +207,8 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.header);
-      stream.next(m.theta);
-      stream.next(m.thetadot);
-      stream.next(m.phi);
-      stream.next(m.phidot);
+      stream.next(m.refPhi);
+      stream.next(m.refTheta);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -235,14 +230,12 @@ struct Printer< ::magmed_msgs::JoyRef_<ContainerAllocator> >
     s << indent << "header: ";
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "theta: ";
-    Printer<double>::stream(s, indent + "  ", v.theta);
-    s << indent << "thetadot: ";
-    Printer<double>::stream(s, indent + "  ", v.thetadot);
-    s << indent << "phi: ";
-    Printer<double>::stream(s, indent + "  ", v.phi);
-    s << indent << "phidot: ";
-    Printer<double>::stream(s, indent + "  ", v.phidot);
+    s << indent << "refPhi: ";
+    s << std::endl;
+    Printer< ::magmed_msgs::RefPhi_<ContainerAllocator> >::stream(s, indent + "  ", v.refPhi);
+    s << indent << "refTheta: ";
+    s << std::endl;
+    Printer< ::magmed_msgs::RefTheta_<ContainerAllocator> >::stream(s, indent + "  ", v.refTheta);
   }
 };
 

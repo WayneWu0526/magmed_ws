@@ -3,11 +3,15 @@
   (:export
    "<JOYREF>"
    "JOYREF"
-   "<MAGPOSE>"
-   "MAGPOSE"
+   "<REFPHI>"
+   "REFPHI"
+   "<REFTHETA>"
+   "REFTHETA"
    "<ROBOJOINTS>"
    "ROBOJOINTS"
    "<ROBOSTATES>"
    "ROBOSTATES"
+   "<TIPANGLE>"
+   "TIPANGLE"
   ))
 

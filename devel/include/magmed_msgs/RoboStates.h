@@ -24,14 +24,17 @@ struct RoboStates_
   typedef RoboStates_<ContainerAllocator> Type;
 
   RoboStates_()
-    {
+    : VAL(0)  {
     }
   RoboStates_(const ContainerAllocator& _alloc)
-    {
+    : VAL(0)  {
   (void)_alloc;
     }
 
 
+
+   typedef int32_t _VAL_type;
+  _VAL_type VAL;
 
 
 
@@ -78,6 +81,19 @@ std::ostream& operator<<(std::ostream& s, const ::magmed_msgs::RoboStates_<Conta
 {
 ros::message_operations::Printer< ::magmed_msgs::RoboStates_<ContainerAllocator> >::stream(s, "", v);
 return s;
+}
+
+
+template<typename ContainerAllocator1, typename ContainerAllocator2>
+bool operator==(const ::magmed_msgs::RoboStates_<ContainerAllocator1> & lhs, const ::magmed_msgs::RoboStates_<ContainerAllocator2> & rhs)
+{
+  return lhs.VAL == rhs.VAL;
+}
+
+template<typename ContainerAllocator1, typename ContainerAllocator2>
+bool operator!=(const ::magmed_msgs::RoboStates_<ContainerAllocator1> & lhs, const ::magmed_msgs::RoboStates_<ContainerAllocator2> & rhs)
+{
+  return !(lhs == rhs);
 }
 
 
@@ -128,12 +144,12 @@ struct MD5Sum< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "f0c86d6612d2dc3f3483b4c4ba196520";
+    return "3f7db48bba6b67d991a886a8d887cb31";
   }
 
   static const char* value(const ::magmed_msgs::RoboStates_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xf0c86d6612d2dc3fULL;
-  static const uint64_t static_value2 = 0x3483b4c4ba196520ULL;
+  static const uint64_t static_value1 = 0x3f7db48bba6b67d9ULL;
+  static const uint64_t static_value2 = 0x91a886a8d887cb31ULL;
 };
 
 template<class ContainerAllocator>
@@ -155,6 +171,7 @@ struct Definition< ::magmed_msgs::RoboStates_<ContainerAllocator> >
     return "int32  INIT = 0    # 初始化状态\n"
 "int32  RUN = 1  # 运行状态\n"
 "int32  TERM = -1    # 终止状态\n"
+"int32 VAL\n"
 ;
   }
 
@@ -171,8 +188,10 @@ namespace serialization
 
   template<class ContainerAllocator> struct Serializer< ::magmed_msgs::RoboStates_<ContainerAllocator> >
   {
-    template<typename Stream, typename T> inline static void allInOne(Stream&, T)
-    {}
+    template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
+    {
+      stream.next(m.VAL);
+    }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
   }; // struct RoboStates_
@@ -188,8 +207,11 @@ namespace message_operations
 template<class ContainerAllocator>
 struct Printer< ::magmed_msgs::RoboStates_<ContainerAllocator> >
 {
-  template<typename Stream> static void stream(Stream&, const std::string&, const ::magmed_msgs::RoboStates_<ContainerAllocator>&)
-  {}
+  template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::magmed_msgs::RoboStates_<ContainerAllocator>& v)
+  {
+    s << indent << "VAL: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.VAL);
+  }
 };
 
 } // namespace message_operations

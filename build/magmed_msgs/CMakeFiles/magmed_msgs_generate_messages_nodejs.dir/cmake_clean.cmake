@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js"
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js"
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefTheta.js"
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js"
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js"
-  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/GetRobotState.js"
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js"
   "CMakeFiles/magmed_msgs_generate_messages_nodejs"
 )
 

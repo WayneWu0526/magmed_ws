@@ -3,7 +3,6 @@
 #include "magmed_controller/MSCRJacobi.h"
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
-#include "magmed_msgs/MagPose.h"
 #include <iostream>
 
 float g_fThetaL = 0.0;
@@ -16,10 +15,10 @@ void tipAngleCallback(const std_msgs::Float64::ConstPtr& msg)
     g_fThetaL = msg->data;
 }
 
-void psiCallback(const magmed_msgs::MagPose::ConstPtr& msg)
+void psiCallback(const std_msgs::Float64::ConstPtr& msg)
 {
-    ROS_INFO("psi received: [%f]", msg->psi);
-    g_fPsi = msg->psi;
+    ROS_INFO("psi received: [%f]", msg->data);
+    g_fPsi = msg->data;
 }
 
 void refSignalCallback(const std_msgs::Float64MultiArray::ConstPtr& msg)
