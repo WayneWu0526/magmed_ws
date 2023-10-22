@@ -131,8 +131,6 @@ magmed_controller/velCtrlDef.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 eigen3/Eigen/Dense
 -
-eigen3/Eigen/Geometry
--
 modern_robotics.h
 -
 qpOASES.hpp

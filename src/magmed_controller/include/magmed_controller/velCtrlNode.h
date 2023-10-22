@@ -89,11 +89,47 @@ private:
     ros::Subscriber roboState_sub;
     ros::Publisher jointVels_pub;
 
-    RoboJoints joint_vels;
     optCtrl optctrl;
     diffKine diffkine;
     int pubJointVels();
     int loadInitPose();
+};
+
+void VelCtrlNode::run()
+{
+    int initFlag = 0;
+    ros::Rate loop_rate(CTRLFREQ);
+    while (ros::ok())
+    {
+        switch (roboState.robo_state.VAL)
+        {
+        case 0: // robot init
+            if (initFlag == 0)
+            {
+                loadInitPose();
+                initFlag = 1;
+            }
+            break;
+        case 1: // robot run
+            if (initFlag == 1)
+            {
+                diffkine.initConfig(jointStates.joint_states_array);
+                initFlag = -1;
+                ROS_INFO("Ctrl init finished\n");
+            }
+            pubJointVels();
+            break;
+        case -1: // robot term
+            ROS_WARN("Robot term, shutting down ros\n");
+            ros::shutdown();
+            break;
+        default:
+            break;
+        }
+        ros::spinOnce();
+        // pubJoints();
+        loop_rate.sleep();
+    }
 };
 
 int VelCtrlNode::loadInitPose()
@@ -114,64 +150,30 @@ int VelCtrlNode::loadInitPose()
     std_msgs::Float64MultiArray msg;
     msg.data = pose;
     ros::param::set("/magmed_controller/initPose", msg.data);
+    ROS_INFO("Init pose loaded\n");
     return 0;
 }
 
 int VelCtrlNode::pubJointVels()
 {
-    double phi[2] = {0.0};
     magmed_msgs::RoboJoints joint_vels;
     // get real mag pose
     diffkine.getRealMagPose(optctrl.magPose, jointStates.joint_states_array);
     // get mag twist
     diffkine.magTwist = optctrl.generateMagTwist(refSignal.ref_theta, tipAngle.tip_angle);
     // get joint vels
+    refSignal.ref_phi.dphi = 0.01;
     VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
     // print jointVels
-    std::cout << "jointVels: " << jointVels << std::endl;
+    // std::cout << "jointVels: " << jointVels << std::endl;
     for (int i = 0; i < JOINTNUM; ++i)
     {
-        joint_vels.joints[i] = jointVels(i);
+        // push_back joint_vels
+        joint_vels.joints.push_back(jointVels(i));
     }
     jointVels_pub.publish(joint_vels);
     return 0;
 }
-
-void VelCtrlNode::run()
-{
-    int initFlag = 0;
-    ros::Rate loop_rate(CTRLFREQ);
-    while (ros::ok())
-    {
-        switch (roboState.robo_state.VAL)
-        {
-        case 0: // robot init
-            if (initFlag == 0)
-            {
-                
-                initFlag = 1;
-            }
-            break;
-        case 1: // robot run
-            if (initFlag == 1)
-            {
-                diffkine.initConfig(jointStates.joint_states_array);
-                initFlag = -1;
-                ROS_INFO("Ctrl init finished\n");
-            }
-            pubJointVels();
-        case -1: // robot term
-            ROS_WARN("Robot term, shutting down ros\n");
-            ros::shutdown();
-            break;
-        default:
-            break;
-        }
-        ros::spinOnce();
-        // pubJoints();
-        loop_rate.sleep();
-    }
-};
 
 void TipAngle::feed(magmed_msgs::TipAngleConstPtr pMsg)
 {

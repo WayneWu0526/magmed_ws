@@ -15,7 +15,7 @@ double optCtrl::FF_controller(const double (&thetaR)[2], double (&hatx)[2], doub
     OptCtrlParam::FFParam param = optCtrlParam.ffparam;
     double hatx1 = 0.0; 
     // double hatx1 = hatx[1];
-    std::cout << "virtual FF_controller:" << thetaR[1] + param.fk * (thetaR[0] - thetaL) << std::endl;
+    // std::cout << "virtual FF_controller:" << thetaR[1] + param.fk * (thetaR[0] - thetaL) << std::endl;
     return thetaR[1] + param.fk * (thetaR[0] - thetaL) - hatx1;
 }
 
@@ -33,7 +33,7 @@ MagPose optCtrl::controlAllocation(double virtualControlLaw, RowVector4d jacobia
     // std::cout << "Umin:" << Umin << std::endl;
     // std::cout << "Umax:" << Umax << std::endl;
     Vector4d Umin = (param.Umin - twist) * param.nf;
-    std::cout << Umin(2) << std::endl;
+    // std::cout << Umin(2) << std::endl;
     Vector4d Umax = (param.Umax - twist) * param.nf;
     // std::cout << "Umin:" << Umin << std::endl;
     // std::cout << "Umax:" << Umax << std::endl;
@@ -59,8 +59,8 @@ MagPose optCtrl::controlAllocation(double virtualControlLaw, RowVector4d jacobia
     real_t lb[5] = {Umin[0], 0.0, Umin[2], 0.0, -inf};
     real_t ub[5] = {Umax[0], 0.0, Umax[2], 0.0, inf};
 
-    std::cout << "Umin" << Umin << std::endl;
-    std::cout << "Umax" << Umax << std::endl;
+    // std::cout << "Umin" << Umin << std::endl;
+    // std::cout << "Umax" << Umax << std::endl;
     real_t lbA[1] = {virtualControlLaw};
     real_t ubA[1] = {virtualControlLaw};
 

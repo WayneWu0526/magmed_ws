@@ -64,9 +64,6 @@ public:
 class DianaStateManage
 {
 public:
-    JointVels dsr_joint_vels;
-    DianaSpeedSets pred_sets;
-
     DianaStateManage(ros::NodeHandle &nh) : nh(nh)
     {
         dianajoints_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_manipulator/dianajoints", 10);
@@ -77,10 +74,7 @@ public:
                                                               10,
                                                               boost::bind(&JointVels::feed, &dsr_joint_vels, _1));
     }
-    int srvJointVels();
-    int pubJoints();
     void run();
-    void serviceLoop();
 
     static void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
     {
@@ -91,13 +85,13 @@ public:
             for (int i = 0; i < JOINTNUM; ++i)
             {
                 // Heartbeat serve
-                printf("jointPos[%d] = %f \n", i, pinfo->jointPos[i]);
-                printf("jointCurrent [%d] = %f \n", i, pinfo->jointCurrent[i]);
-                printf("jointTorque [%d] = %f \n", i, pinfo->jointTorque[i]);
-                if (i < 6)
-                {
-                    printf("tcpPos [%d] = %f \n", i, pinfo->tcpPos[i]); // Tool Center Point;
-                }
+                // printf("jointPos[%d] = %f \n", i, pinfo->jointPos[i]);
+                // printf("jointCurrent [%d] = %f \n", i, pinfo->jointCurrent[i]);
+                // printf("jointTorque [%d] = %f \n", i, pinfo->jointTorque[i]);
+                // if (i < 6)
+                // {
+                //     printf("tcpPos [%d] = %f \n", i, pinfo->tcpPos[i]); // Tool Center Point;
+                // }
             }
         }
     }
@@ -112,9 +106,12 @@ public:
     // M_SLEEP 函数用于延时，单位为毫秒
 
 private:
+    JointVels dsr_joint_vels;
+    DianaSpeedSets pred_sets;
+
     magmed_msgs::RoboStates state;
-    magmed_msgs::RoboJoints robojoints;
     int ret = 0;
+
     double joint_vels[JOINTNUM] = {0.0};
     double joints[JOINTNUM] = {0.0};
     const char *strIpAddress = "192.168.10.75";
@@ -124,6 +121,64 @@ private:
     ros::Publisher dianajoints_pub;
     ros::Publisher dianastate_pub;
     ros::Subscriber joint_vel_sub;
+
+    int srvJointVels();
+    int pubJoints();
+    int mvJointZeros();
+    int srvJointInit();
+    void serviceLoop();
+};
+
+int DianaStateManage::srvJointInit()
+{
+    // 从参数服务器中获取机械臂的初始位置
+    std::vector<double> initPose;
+    if (nh.getParam("/magmed_controller/initPose", initPose))
+    {
+        // 检查获取的初始位置数据是否包含 TCPNUM 个值
+        if (initPose.size() != TCPNUM)
+        {
+            ROS_ERROR("Parameter '/magmed_controller/initPose' should contain exactly %d values.", TCPNUM);
+            return -1;
+        }
+    }
+    else
+    {
+        // 参数获取失败
+        ROS_ERROR("Failed to retrieve initPose parameter. Make sure it's set.");
+        return -1;
+    }
+
+    ret = moveJToPose(initPose.data(), 0.2, 0.2, nullptr, strIpAddress);
+    if (ret < 0)
+    {
+        ROS_ERROR("moveJToPose failed! Return value = %d\n", ret);
+        state.VAL = magmed_msgs::RoboStates::TERM;
+        return ret;
+    }
+    else{
+        wait_move(strIpAddress);
+        ROS_INFO("Initial pos arrived! Starting velocity control. \n");
+    }
+    return 0;
+};
+
+int DianaStateManage::mvJointZeros()
+{
+    // 将机械臂移动到关节角度为 0 的位置
+    double jointzero[JOINTNUM] = {0.0};
+    ret = moveJToTarget(jointzero, 0.5, 0.5, strIpAddress);
+    if (ret < 0)
+    {
+        ROS_ERROR("moveJToTarget failed! Return value = %d\n", ret);
+        state.VAL = magmed_msgs::RoboStates::TERM;
+        return ret;
+    }
+    else
+    {
+        wait_move(strIpAddress);
+    }
+    return 0;
 };
 
 int DianaStateManage::srvJointVels()
@@ -150,10 +205,11 @@ int DianaStateManage::pubJoints()
         state.VAL = magmed_msgs::RoboStates::TERM;
         return -1;
     }
-
+    magmed_msgs::RoboJoints robojoints;
     for (int i = 0; i < JOINTNUM; ++i)
     {
-        robojoints.joints[i] = joints[i];
+        // push_back()函数用于在vector的尾部添加一个数据
+        robojoints.joints.push_back(joints[i]);
     }
     dianajoints_pub.publish(robojoints);
 
@@ -164,7 +220,7 @@ void DianaStateManage::serviceLoop()
 {
     // pub dianastate
     ros::Rate rate(1);
-    while(ros::ok())
+    while (ros::ok())
     {
         dianastate_pub.publish(state);
         ros::spinOnce();
@@ -219,27 +275,22 @@ void DianaStateManage::run()
             break;
         }
         M_SLEEP(2000); // delay 2s
+
         // 将机械臂移动到关节角度为 0 的位置
-        double jointzero[JOINTNUM] = {0.0};
-        ret = moveJToTarget(jointzero, 0.5, 0.5, strIpAddress);
-        if (ret < 0)
+        if (mvJointZeros() < 0)
         {
-            ROS_ERROR("moveJToTarget failed! Return value = %d\n", ret);
+            ROS_ERROR("move joints to zeros failed, return value = %d\n", ret);
             state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
-        wait_move(strIpAddress);
-        // 从参数服务器中获取机械臂的初始位置
-        double init_pos[TCPNUM] = {0.0};
-        ret = moveJToPose(init_pos, 0.2, 0.2, nullptr, strIpAddress);
-        if (ret < 0)
+
+        // 将机械臂移动到TCP为 init 的位置
+        if (srvJointInit() < 0)
         {
-            ROS_ERROR("moveLToTarget failed! Return value = %d\n", ret);
+            ROS_ERROR("srv joint to initstates failed, return value = %d\n", ret);
             state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
-        wait_move(strIpAddress);
-        ROS_INFO("Initial pos arrived! Starting velocity control. \n");
 
         // set state to RUN
         ros::Rate rate(100);
@@ -259,6 +310,10 @@ void DianaStateManage::run()
                 ROS_ERROR("Joint out of range! Return value = %d\n", dianastate);
                 state.VAL = magmed_msgs::RoboStates::TERM;
                 break;
+            }
+            else
+            {
+                // ROS_INFO("Robot state: %d\n", dianastate);
             }
             // 发布磁体位置和角度
             ret = pubJoints();

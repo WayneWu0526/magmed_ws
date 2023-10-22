@@ -28,7 +28,7 @@ struct diana7KineSpaceParam
 
     Matrix4d M;
     Eigen::Matrix<double, 6, JOINTNUM> Slist;
-    Matrix3d Rgb0;
+    Matrix3d Rgb0 = Matrix3d::Identity();
     Vector3d Pgb0;
     Matrix4d Tsg;
 
@@ -69,8 +69,8 @@ struct PICtrlParam
     int nf_;    //
     PICtrlParam()
     {
-        kp_ = 30.0;
-        ki_ = 10.0;
+        kp_ = 0.0;
+        ki_ = 0.0;
         nf_ = CTRLFREQ;
     }; // 构造函数
 
@@ -85,7 +85,7 @@ struct PICtrlParam
 class diffKine
 {
 public:
-    diana7KineSpaceParam params;
+    diana7KineSpaceParam params = diana7KineSpaceParam();
     void initConfig(const double (&thetaList)[JOINTNUM]);
     void getRealMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
     VectorXd jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
@@ -101,7 +101,7 @@ private:
     Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
     // 构建static TR, 初始时为单位矩阵
     Matrix4d TR = Matrix4d::Identity();
-    PICtrlParam piparams;
+    PICtrlParam piparams = PICtrlParam();
     // JacobiMap function: MagPos -> DsrTwist
     Eigen::MatrixXd calcJacobi();
     Matrix3d Rphi(double phi);
