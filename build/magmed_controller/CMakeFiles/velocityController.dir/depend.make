@@ -25,7 +25,10 @@ magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/r
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/types.h
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/std_msgs/Header.h
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/std_msgs/MultiArrayDimension.h
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/std_msgs/MultiArrayLayout.h
 
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h

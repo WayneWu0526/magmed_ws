@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     diffKine dk;
 
-    dk.initConfig(dk.Rinit, dk.T0, thetalist);
+    dk.initConfig(thetalist);
 
     // 接收来自控制台的输入以继续
 

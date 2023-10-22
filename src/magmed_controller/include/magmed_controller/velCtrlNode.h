@@ -51,10 +51,7 @@ public:
 class VelCtrlNode
 {
 public:
-    JoyRef refSignal;
-    TipAngle tipAngle;
-    RoboJoints jointStates;
-    RoboStates roboState;
+    void run();
 
     VelCtrlNode(){};
     VelCtrlNode(ros::NodeHandle &nh) : nh(nh)
@@ -78,20 +75,47 @@ public:
         jointVels_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_controller/joint_vels", 10);
         // ros::service::waitForService("/magmed_manipulator/roboStates", -1);
     };
-    int pubJointVels();
-    void run();
 
 private:
+    JoyRef refSignal;
+    TipAngle tipAngle;
+    RoboJoints jointStates;
+    RoboStates roboState;
+
     ros::NodeHandle nh;
     ros::Subscriber refSignal_sub;
     ros::Subscriber tipAngle_sub;
     ros::Subscriber jointStates_sub;
     ros::Subscriber roboState_sub;
     ros::Publisher jointVels_pub;
+
     RoboJoints joint_vels;
     optCtrl optctrl;
     diffKine diffkine;
+    int pubJointVels();
+    int loadInitPose();
 };
+
+int VelCtrlNode::loadInitPose()
+{
+    // count init config
+    std::vector<double> pose(6, 0.0);
+    std::vector<Eigen::MatrixXd> Rp = TransToRp(diffkine.params.Tsg);
+    Vector3d P0 =  Rp[0] * diffkine.params.Pgb0 + Rp[1];
+    pose[0] = P0(0);
+    pose[1] = P0(1);
+    pose[2] = P0(2);
+    Matrix3d R0 = Rp[0] * diffkine.params.Rgb0;
+    Eigen::AngleAxisd axis_angle(R0);
+    pose[3] = axis_angle.angle() * axis_angle.axis()(0);
+    pose[4] = axis_angle.angle() * axis_angle.axis()(1);
+    pose[5] = axis_angle.angle() * axis_angle.axis()(2);
+    // load init config
+    std_msgs::Float64MultiArray msg;
+    msg.data = pose;
+    ros::param::set("/magmed_controller/initPose", msg.data);
+    return 0;
+}
 
 int VelCtrlNode::pubJointVels()
 {
@@ -124,7 +148,7 @@ void VelCtrlNode::run()
         case 0: // robot init
             if (initFlag == 0)
             {
-                // upload init flag
+                
                 initFlag = 1;
             }
             break;

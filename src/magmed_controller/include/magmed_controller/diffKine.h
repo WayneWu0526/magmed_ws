@@ -62,49 +62,46 @@ struct diana7KineSpaceParam
     diana7KineSpaceParam(Matrix4d M, Eigen::Matrix<double, 6, JOINTNUM> Slist) : M(M), Slist(Slist){};
 };
 
-class diffKineParam
+struct PICtrlParam
 {
-public:
-    struct PICtrlParam
+    double kp_; // 比例系数
+    double ki_; // 积分系数
+    int nf_;    //
+    PICtrlParam()
     {
-        double kp_; // 比例系数
-        double ki_; // 积分系数
-        int nf_;    //
-    } pictrlparam_; // 结构体
-
-    diana7KineSpaceParam params_; // 结构体
-
-    diffKineParam()
-    {
-        params_ = diana7KineSpaceParam();
-        pictrlparam_.kp_ = 30.0;
-        pictrlparam_.ki_ = 10.0;
-        pictrlparam_.nf_ = CTRLFREQ;
+        kp_ = 30.0;
+        ki_ = 10.0;
+        nf_ = CTRLFREQ;
     }; // 构造函数
 
-    diffKineParam(diana7KineSpaceParam params, PICtrlParam pictrlparam) : params_(params), pictrlparam_(pictrlparam){};
+    PICtrlParam(double kp, double ki, int nf) // 构造函数
+    {
+        kp_ = kp;
+        ki_ = ki;
+        nf_ = nf;
+    };
 };
 
 class diffKine
 {
 public:
+    diana7KineSpaceParam params;
     void initConfig(const double (&thetaList)[JOINTNUM]);
     void getRealMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
     VectorXd jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
     MagPose magTwist;
-    Matrix4d Tgd0 = Matrix4d::Identity();
-    diffKine(){magTwist.psi=0.0; 
+    diffKine()
+    {
+        magTwist.psi = 0.0;
         magTwist.pos << 0.0, 0.0, 0.0;
-        Tgd0 = RpToTrans(diffkineparam.params_.Rgb0, diffkineparam.params_.Pgb0);};
+    };
 
 private:
     Matrix3d Rinit = Matrix3d::Identity();
     Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
     // 构建static TR, 初始时为单位矩阵
     Matrix4d TR = Matrix4d::Identity();
-    diffKineParam diffkineparam;
-    diana7KineSpaceParam params = diffkineparam.params_;
-    diffKineParam::PICtrlParam piparams = diffkineparam.pictrlparam_;
+    PICtrlParam piparams;
     // JacobiMap function: MagPos -> DsrTwist
     Eigen::MatrixXd calcJacobi();
     Matrix3d Rphi(double phi);

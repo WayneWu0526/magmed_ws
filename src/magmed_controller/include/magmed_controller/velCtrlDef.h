@@ -1,7 +1,7 @@
 #pragma once
 
 #include <eigen3/Eigen/Dense>
-#include <eigen3/Eigen/QR>
+// #include <eigen3/Eigen/Geometry>
 #include <modern_robotics.h>
 #include <qpOASES.hpp>
 #include <cmath>
@@ -12,6 +12,7 @@
 #include "magmed_msgs/RoboStates.h"
 #include "magmed_msgs/RoboJoints.h"
 #include "magmed_msgs/TipAngle.h"
+#include "std_msgs/Float64MultiArray.h"
 
 using namespace Eigen;
 using namespace qpOASES;

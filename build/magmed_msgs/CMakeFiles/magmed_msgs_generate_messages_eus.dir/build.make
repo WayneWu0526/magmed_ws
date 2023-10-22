@@ -70,9 +70,9 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/
 
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from magmed_msgs/JoyRef.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg
 
