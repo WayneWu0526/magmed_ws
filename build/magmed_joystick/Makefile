@@ -68,27 +68,27 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
-.PHONY : test/fast
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -101,27 +101,27 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+magmed_joystick/CMakeFiles/polarRef.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/polarRef.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/polarRef.dir/rule
+
+# Convenience name for target.
+polarRef: magmed_joystick/CMakeFiles/polarRef.dir/rule
+
+.PHONY : polarRef
+
+# fast build rule for target.
+polarRef/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/build
+.PHONY : polarRef/fast
+
+# Convenience name for target.
 magmed_joystick/CMakeFiles/refSignal.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/refSignal.dir/rule
 .PHONY : magmed_joystick/CMakeFiles/refSignal.dir/rule
@@ -181,51 +196,6 @@ refSignal: magmed_joystick/CMakeFiles/refSignal.dir/rule
 refSignal/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
 .PHONY : refSignal/fast
-
-# Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_cpp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 magmed_joystick/CMakeFiles/readJoystick.dir/rule:
@@ -243,34 +213,73 @@ readJoystick/fast:
 .PHONY : readJoystick/fast
 
 # Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+magmed_joystick/CMakeFiles/PathFinderlib.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_lisp: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+PathFinderlib: magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_lisp
+.PHONY : PathFinderlib
 
 # fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
+PathFinderlib/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/build
+.PHONY : PathFinderlib/fast
 
-# Convenience name for target.
-magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+src/PathFinder.o: src/PathFinder.cpp.o
 
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : src/PathFinder.o
 
-.PHONY : geometry_msgs_generate_messages_eus
+# target to build an object file
+src/PathFinder.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/src/PathFinder.cpp.o
+.PHONY : src/PathFinder.cpp.o
 
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_joystick/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
+src/PathFinder.i: src/PathFinder.cpp.i
+
+.PHONY : src/PathFinder.i
+
+# target to preprocess a source file
+src/PathFinder.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/src/PathFinder.cpp.i
+.PHONY : src/PathFinder.cpp.i
+
+src/PathFinder.s: src/PathFinder.cpp.s
+
+.PHONY : src/PathFinder.s
+
+# target to generate assembly for a file
+src/PathFinder.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/src/PathFinder.cpp.s
+.PHONY : src/PathFinder.cpp.s
+
+src/polarRef.o: src/polarRef.cpp.o
+
+.PHONY : src/polarRef.o
+
+# target to build an object file
+src/polarRef.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.o
+.PHONY : src/polarRef.cpp.o
+
+src/polarRef.i: src/polarRef.cpp.i
+
+.PHONY : src/polarRef.i
+
+# target to preprocess a source file
+src/polarRef.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.i
+.PHONY : src/polarRef.cpp.i
+
+src/polarRef.s: src/polarRef.cpp.s
+
+.PHONY : src/polarRef.s
+
+# target to generate assembly for a file
+src/polarRef.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.s
+.PHONY : src/polarRef.cpp.s
 
 src/readJoystick.o: src/readJoystick.cpp.o
 
@@ -333,19 +342,22 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... refSignal"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... readJoystick"
-	@echo "... test"
-	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... install"
-	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... polarRef"
+	@echo "... refSignal"
+	@echo "... readJoystick"
 	@echo "... install/local"
+	@echo "... PathFinderlib"
+	@echo "... src/PathFinder.o"
+	@echo "... src/PathFinder.i"
+	@echo "... src/PathFinder.s"
+	@echo "... src/polarRef.o"
+	@echo "... src/polarRef.i"
+	@echo "... src/polarRef.s"
 	@echo "... src/readJoystick.o"
 	@echo "... src/readJoystick.i"
 	@echo "... src/readJoystick.s"

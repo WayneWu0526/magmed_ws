@@ -79,6 +79,7 @@ refSignal_EXTERNAL_OBJECTS =
 
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.o
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: magmed_joystick/CMakeFiles/refSignal.dir/build.make
+/home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/libserial.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/libroscpp.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
@@ -89,7 +90,6 @@ refSignal_EXTERNAL_OBJECTS =
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/libxmlrpcpp.so
-/home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/libserial.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/libroscpp_serialization.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /opt/ros/noetic/lib/librostime.so
 /home/zhang/magmed_ws/devel/lib/magmed_joystick/refSignal: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0

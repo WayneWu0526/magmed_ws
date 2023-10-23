@@ -6,15 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/src/magmed_joystick/src/readJoystick.cpp
+/home/zhang/magmed_ws/src/magmed_joystick/include/magmed_joystick/PathFinder.h
 serial/serial.h
--
-iostream
 -
 ros/ros.h
 -
 vector
 -
+
+/home/zhang/magmed_ws/src/magmed_joystick/src/readJoystick.cpp
+magmed_joystick/PathFinder.h
+/home/zhang/magmed_ws/src/magmed_joystick/src/magmed_joystick/PathFinder.h
 geometry_msgs/Twist.h
 -
 

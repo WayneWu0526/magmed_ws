@@ -1,76 +1,25 @@
-#include <serial/serial.h>
-#include <iostream>
-#include <ros/ros.h>
-#include <vector>
-#include <geometry_msgs/Twist.h>
-#define BUFFER_SIZE 31 
-#define TIMEOUT 10 // ms, wait for 10ms to read data from the serial port
-#define BAUDRATE 115200
+#include "magmed_joystick/PathFinder.h"
 
-#define JOY1_MAX (float)500.0
-#define JOY1_DEADZONE (unsigned short int)30
-
-// 定义手柄数据包的结构
-class JoystickDataPacket
+int JoystickReader::run()
 {
-public:
-    uint8_t startCharacter = 0xAA; // 开始字符，固定为0xAA
-    uint8_t functionCode = 0x2F; // 功能码，固定为0x01
-    uint8_t dataLength = 0x17; // 数据长度，固定为0x1C
-    int dataStartIndex = 5; // 数据开始的索引，固定为0x05
-    uint8_t endCharacter = 0x0D; // 结束字符，固定为0x0D
-    JoystickDataPacket() {};
-};
-
-// 定义手柄
-struct Joystick
-{
-    signed short int nJOY1[3] = {0, 0, 0};    // 大摇杆三轴
-    signed short int nJOY2[2] = {0, 0};       // 1号（左）小摇杆
-    signed short int nJOY3[2] = {0, 0};       // 2号（右）小摇杆
-    bool bJOYD = false;                        // 大摇杆按钮
-    unsigned short int POTA = 0;               // 电位器A
-    unsigned short int POTB = 0;               // 电位器B
-    int BANA = 0;                              // 旋转开关A
-    int BANB = 0;                              // 旋转开关B
-    signed short int ENCA = 0;                 // 编码器A
-    signed short int ENCB = 0;                 // 编码器B
-    bool TOG[5] = {false, false, false, false, false};   // 钮子开关，共5个
-    bool BUT[6] = {false, false, false, false, false, false};   // 按键开关，共6个
-
-    Joystick() {};
-}joystick;
-
-typedef void (*CallbackFunction)(const std::vector<uint8_t>&);
-
-class JoystickReader
-{
-public:
-    void run();
-private:
-    JoystickDataPacket joystickDataPacket;
-    void deadzone(signed int short &nJOY);
-    void dataPacketCallback(const std::vector<uint8_t> &packet);
-};
-
-// deadzone
-void JoystickReader::deadzone(signed int short &nJOY)
-{
-    if (nJOY > -JOY1_DEADZONE && nJOY < JOY1_DEADZONE)
+    // read data from the serial port
+    size_t bytes_read = joystick_serial.available();
+    if (bytes_read)
     {
-        nJOY = 0;
+        uint8_t buffer[1024]; // buffer to store the data
+        size_t bytes_read = joystick_serial.read(buffer, BUFFER_SIZE);
+        std::vector<uint8_t> packet(buffer, buffer + bytes_read);
+
+        // 调用回调函数解析数据包
+        HandlePacket(packet);
+        return 0;
     }
-    else if (nJOY >= JOY1_DEADZONE)
-    {
-        nJOY -= JOY1_DEADZONE;
-    }
-    else if (nJOY <= -JOY1_DEADZONE)
-    {
-        nJOY += JOY1_DEADZONE;
+    else{
+        return -1;
     }
 };
 
-void JoystickReader::dataPacketCallback(const std::vector<uint8_t> &packet)
+void JoystickReader::HandlePacket(const std::vector<uint8_t> &packet)
 {
 
     // 检查数据包长度是否满足最小要求
@@ -116,7 +65,7 @@ void JoystickReader::dataPacketCallback(const std::vector<uint8_t> &packet)
     // 提取数据长度和数据区
     uint8_t dataLength = packet[4];
     std::vector<uint8_t> data(packet.begin() + joystickDataPacket.dataStartIndex, packet.begin() + joystickDataPacket.dataStartIndex + dataLength);
-    
+
     // 检查CRC校验值
     uint16_t receivedCrc = (packet[packet.size() - 3] << 8) | packet[packet.size() - 2];
     if (crc != receivedCrc)
@@ -147,6 +96,51 @@ void JoystickReader::dataPacketCallback(const std::vector<uint8_t> &packet)
 
     if (joystick.bJOYD)
     {
-
     }
-}
+};
+
+int JoystickReader::openSerialPort()
+{
+    serial::Timeout timeout = serial::Timeout::simpleTimeout(TIMEOUT);
+    joystick_serial.setPort("/dev/pathfinder_joystick");
+    joystick_serial.setBaudrate(BAUDRATE);
+    joystick_serial.setTimeout(timeout);
+
+    try
+    {
+        joystick_serial.open();
+    }
+    catch (serial::IOException &e)
+    {
+        ROS_ERROR_STREAM("Unable to open port.");
+        return -1;
+    }
+
+    // check if the port is open
+    if (joystick_serial.isOpen())
+    {
+        ROS_INFO_STREAM("Serial Port initialized.");
+    }
+    else
+    {
+        return -1;
+    }
+    return 0;
+};
+
+// deadzone
+void JoystickReader::deadzone(signed int short &nJOY)
+{
+    if (nJOY > -JOY1_DEADZONE && nJOY < JOY1_DEADZONE)
+    {
+        nJOY = 0;
+    }
+    else if (nJOY >= JOY1_DEADZONE)
+    {
+        nJOY -= JOY1_DEADZONE;
+    }
+    else if (nJOY <= -JOY1_DEADZONE)
+    {
+        nJOY += JOY1_DEADZONE;
+    }
+};
