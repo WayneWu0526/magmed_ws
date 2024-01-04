@@ -70,8 +70,8 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
-/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from magmed_msgs/JoyRef.msg"

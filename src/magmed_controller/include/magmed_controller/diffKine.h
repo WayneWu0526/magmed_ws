@@ -36,6 +36,7 @@ struct diana7KineSpaceParam
     {
         JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();
 
+        // 机械臂内部参数，请勿修改
         M << 0.0, -1.0, 0.0, -a7,
             -1.0, 0.0, 0.0, 0.0,
             0.0, 0.0, -1.0, dsum,
@@ -47,7 +48,7 @@ struct diana7KineSpaceParam
             0.0, -d1, 0.0, -d1 - d3, 0.0, d1 + d3 + d5, 0.0,
             0.0, 0.0, 0.0, 0.0, a6, 0.0, -a7,
             0.0, 0.0, 0.0, a4, 0.0, 0.0, 0.0;
-
+        
         Tsg << 0.0, 0.0, 1.0, 0.51, // x轴延伸0.3+0.32=0.92m, 0.19+0.32=0.51m
             1.0, 0.0, 0.0, 0.0,     // 机械臂坐标系的x轴与工作空间坐标系的y轴重合
             0.0, 1.0, 0.0, 0.06,    // 底盘高度：0.06m
@@ -69,8 +70,8 @@ struct PICtrlParam
     int nf_;    //
     PICtrlParam()
     {
-        kp_ = 0.0;
-        ki_ = 0.0;
+        kp_ = 1.0;
+        ki_ = 0.01;
         nf_ = CTRLFREQ;
     }; // 构造函数
 
@@ -87,8 +88,9 @@ class diffKine
 public:
     diana7KineSpaceParam params = diana7KineSpaceParam();
     void initConfig(const double (&thetaList)[JOINTNUM]);
-    void getRealMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
+    void getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
     VectorXd jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
+    VectorXd jacobiMap_dlt(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
     MagPose magTwist;
     diffKine()
     {
@@ -97,6 +99,7 @@ public:
     };
 
 private:
+    Matrix3d Rotphi = Matrix3d::Identity();
     Matrix3d Rinit = Matrix3d::Identity();
     Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
     // 构建static TR, 初始时为单位矩阵

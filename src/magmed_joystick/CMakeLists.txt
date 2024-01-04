@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(magmed_joystick)
 
+set(Eigen3_DIR /usr/lib/cmake/eigen3/)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -14,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   serial
   magmed_msgs
   geometry_msgs
+  Eigen3 REQUIRED
 )
 
 ## System dependencies are found with CMake's conventions

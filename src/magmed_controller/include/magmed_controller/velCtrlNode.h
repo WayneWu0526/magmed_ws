@@ -56,7 +56,7 @@ public:
     VelCtrlNode(){};
     VelCtrlNode(ros::NodeHandle &nh) : nh(nh)
     {
-        refSignal_sub = nh.subscribe<magmed_msgs::JoyRef>("/magmed_joystick/referenceSignal",
+        refSignal_sub = nh.subscribe<magmed_msgs::JoyRef>("/magmed_joystick/joyRef",
                                                           10,
                                                           boost::bind(&JoyRef::feed, &refSignal, _1));
 
@@ -158,12 +158,14 @@ int VelCtrlNode::pubJointVels()
 {
     magmed_msgs::RoboJoints joint_vels;
     // get real mag pose
-    diffkine.getRealMagPose(optctrl.magPose, jointStates.joint_states_array);
+    diffkine.getMagPose(optctrl.magPose, jointStates.joint_states_array);
     // get mag twist
-    diffkine.magTwist = optctrl.generateMagTwist(refSignal.ref_theta, tipAngle.tip_angle);
+    // diffkine.magTwist = optctrl.generateMagTwist(refSignal.ref_theta, tipAngle.tip_angle);
+    diffkine.magTwist.psi = refSignal.ref_theta.dtheta;
     // get joint vels
-    refSignal.ref_phi.dphi = 0.01;
-    VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
+    // refSignal.ref_phi.dphi = 0.01;
+    // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
+    VectorXd jointVels = diffkine.jacobiMap_dlt(refSignal.ref_phi, jointStates.joint_states_array);
     // print jointVels
     // std::cout << "jointVels: " << jointVels << std::endl;
     for (int i = 0; i < JOINTNUM; ++i)
@@ -175,6 +177,7 @@ int VelCtrlNode::pubJointVels()
     return 0;
 }
 
+
 void TipAngle::feed(magmed_msgs::TipAngleConstPtr pMsg)
 {
     tip_angle = *pMsg;
@@ -185,6 +188,7 @@ void JoyRef::feed(magmed_msgs::JoyRefConstPtr pMsg)
     joy_ref = *pMsg;
     ref_theta = joy_ref.refTheta;
     ref_phi = joy_ref.refPhi;
+    ROS_INFO("ref_phi: %f, ref_dphi: %f\n", ref_phi.phi, ref_phi.dphi);
 };
 
 void RoboJoints::feed(magmed_msgs::RoboJointsConstPtr pMsg)

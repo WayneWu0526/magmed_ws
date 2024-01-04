@@ -24,7 +24,7 @@ add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" "magmed_msgs/RefTheta:magmed_msgs/RefPhi:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg" "magmed_msgs/RefPhi:magmed_msgs/RefTheta:std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg" NAME_WE)
@@ -62,7 +62,7 @@ _generate_msg_cpp(magmed_msgs
 _generate_msg_cpp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_cpp(magmed_msgs
@@ -135,7 +135,7 @@ _generate_msg_eus(magmed_msgs
 _generate_msg_eus(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_eus(magmed_msgs
@@ -208,7 +208,7 @@ _generate_msg_lisp(magmed_msgs
 _generate_msg_lisp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_lisp(magmed_msgs
@@ -281,7 +281,7 @@ _generate_msg_nodejs(magmed_msgs
 _generate_msg_nodejs(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_nodejs(magmed_msgs
@@ -354,7 +354,7 @@ _generate_msg_py(magmed_msgs
 _generate_msg_py(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_py(magmed_msgs

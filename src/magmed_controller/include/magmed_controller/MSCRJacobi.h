@@ -78,6 +78,14 @@ public:
             0.0, 0.0, 0.0;
         return pRZ;
     }
+    Matrix3d ppRotZ(double theta)
+    {
+        Matrix3d ppRZ;
+        ppRZ << -cos(theta), sin(theta), 0.0,
+            -sin(theta), -cos(theta), 0.0,
+            0.0, 0.0, 0.0;
+        return ppRZ;
+    }
     MSCRJacobi() {};
 
 private:
@@ -102,6 +110,22 @@ private:
             -cos(theta), 0.0, -sin(theta);
         return pRY;
     }
+    struct MSCRState 
+    {
+        double gamma;
+        double beta;
+        MatrixXd theta;
+        MatrixXd x;
+        MatrixXd dx;
+    }mscrstate;
+
+    struct MSCRResult
+    {
+        double thetaL;
+        double jacobian;
+    }mscrresult;
+
+    void fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma, MSCRState& state);
     double g(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa);
     RowVector3d g_ex(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa);
 };

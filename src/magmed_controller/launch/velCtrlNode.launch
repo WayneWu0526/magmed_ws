@@ -1,4 +1,5 @@
 <launch>
+    <node pkg="magmed_joystick" type="polarRef" name="polarRef"/>
     <node pkg="magmed_controller" type="velCtrlNode" name="velocityController" output="screen"/>
     <node pkg="magmed_manipulator" type="diana_run" name="dianamanipulator" output="screen"/>
 </launch>

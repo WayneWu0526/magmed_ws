@@ -19,6 +19,8 @@ Matrix3d Magnet::get_gradb(const Vector3d ps)
     return (3.0 * magpr.k / pow(p.norm(), 4.0)) * (hatp * hatma.transpose() + hatp.dot(hatma) * I3 + Zhatma * hatp.transpose());
 }
 
+// return two double values: theta and J
+
 double MSCRJacobi::g(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa)
 {
     Magnet magnet;
@@ -28,7 +30,11 @@ double MSCRJacobi::g(const Vector3d x, const Vector3d dx, const Vector2d theta, 
     Matrix3d gradb = magnet.get_gradb(x);
     Matrix3d Rz = RotZ(theta(0));
     Vector3d pRzM = pRotZ(theta(0)) * vecM;
-    return pr.A / (pr.E * pr.I) * (pRzM.dot(b) + dx.dot(gradb.transpose() * Rz * vecM));
+    Vector3d ppRzM = ppRotZ(theta(0)) * vecM;
+    double fval = -pr.A / (pr.E * pr.I) * (pRzM.dot(b) + dx.dot(gradb.transpose() * Rz * vecM));
+    double As = -pr.A / (pr.E * pr.I) * (ppRzM.dot(b) + 2.0 * (pRzM.dot(gradb * dx)));
+    // return std::make_pair(fval, As);
+    // return 0.0;
 };
 
 RowVector3d MSCRJacobi::g_ex(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa)
@@ -51,6 +57,25 @@ RowVector3d MSCRJacobi::g_ex(const Vector3d x, const Vector3d dx, const Vector2d
     Matrix3d Db2 = 3.0 * k / (pow(p.norm(), 4.0)) * (D - 5.0 * hatp.dot(v) * (hatma.transpose() * hatp * I3 + hatp * hatma.transpose())) * dhatp;
     return pr.A / (pr.E * pr.I) * ((pRz * vecM).transpose() * gradb + dx.transpose() * (Db1 + Db2));
 };
+
+// void MSCRJacobi::fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma, MSCRState& state) {
+//     double ds = pr.L / pr.N;
+
+//     state.theta(0) = gamma;
+//     MatrixXd x = MatrixXd::Zero(3, pr.N);
+//     MatrixXd dx = MatrixXd::Zero(3, pr.N);
+
+//     for (int i = 0; i < pr.N - 1; ++i) {
+        
+//         g(state.x.col(i), state.dx.col(i), state.theta, xa, hatma)
+//         state.dtheta(i + 1) = state.dtheta(i) + ds ;
+//         state.theta(i + 1) = state.theta(i) + ds * state.dtheta(i);
+//         state.x.col(i + 1) = state.x.col(i) + ds * Vector3d(cos(state.theta(i)), sin(state.theta(i)), 0.0);
+//         state.dx.col(i + 1) = state.dx.col(i) + ds * Vector3d(-sin(state.theta(i)), cos(state.theta(i)), 0.0);
+//     }
+
+//     state.beta = state.dtheta(pr.N - 1);
+// }
 
 double MSCRJacobi::get_theta(double psi, const Vector3d pa)
 {

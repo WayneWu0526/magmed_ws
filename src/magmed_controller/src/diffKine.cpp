@@ -29,14 +29,14 @@ void diffKine::initConfig(const double (&thetaList)[JOINTNUM])
 };
 
 // getRealMagPose: Matrix3d Rgb = getRealMagPose(magPose)
-void diffKine::getRealMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM])
+void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM])
 {
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
+    // calculate [Rgb, Pgb] = Tgb, Rgb = Rp[0], Pgb = Rp[1];
     std::vector<Eigen::MatrixXd> Rp = TransToRp(TransInv(params.Tsg) * Tsb);
-
     magPose.psi = thetalist(JOINTNUM - 1);
-    magPose.pos = Rinit * Rpsi(magPose.psi) * Rp[0].transpose() * Rp[1];
+    magPose.pos = Rp[0] * Rp[1];
 };
 
 Eigen::MatrixXd diffKine::calcJacobi()
@@ -57,7 +57,7 @@ Eigen::MatrixXd diffKine::calcJacobi()
 VectorXd diffKine::jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM])
 {
 
-/* compute desired twist Vd */
+    /* compute desired twist Vd */
     // desired configuration
     Matrix4d TL = RpToTrans(Rphi(refPhi.phi), Vector3d(0.0, 0.0, 0.0));
 
@@ -69,7 +69,7 @@ VectorXd diffKine::jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&th
     dPos << refPhi.dphi, magTwist.psi, magTwist.pos;
     VectorXd Vd = J * dPos;
 
-/* compute Vb */
+    /* compute Vb */
     // compute the forward kinematics
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
@@ -83,7 +83,7 @@ VectorXd diffKine::jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&th
 
     // compute the body twist
     VectorXd Vb = Adjoint(TransInv(Tsb) * Tsd) * Vd + piparams.kp_ * Taue + piparams.ki_ * TaueInt;
-/* Inverse velocity kinematics */ 
+    /* Inverse velocity kinematics */
 
     // compute the spatial Jacobian
     MatrixXd Js = JacobianSpace(params.Slist, thetalist);
@@ -92,12 +92,56 @@ VectorXd diffKine::jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&th
     MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
     VectorXd dthetalist = Jbpinv * Vb;
 
-/* Update TR */
+    /* Update TR */
     // discrete manifold integration
     VectorXd Nu_u(TCPNUM);
     Nu_u << 0.0, 0.0, magTwist.psi,
         TR.block(0, 0, 3, 3).transpose() * params.Rgb0.transpose() * magTwist.pos;
     TR = TR * MatrixExp6(VecTose3(Nu_u / piparams.nf_));
+
+    return dthetalist;
+};
+
+VectorXd diffKine::jacobiMap_dlt(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM])
+{
+
+    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
+    MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
+    // compute the spatial Jacobian
+    MatrixXd Js = JacobianSpace(params.Slist, thetalist);
+    // compute the body Jacobian
+    MatrixXd Jb = Adjoint(TransInv(Tsb)) * Js;
+
+    // calculate [Rgb, Pgb] = Tgb, Rgb = Rp[0], Pgb = Rp[1];
+    std::vector<Eigen::MatrixXd> Rp = TransToRp(TransInv(params.Tsg) * Tsb);
+    Matrix3d Rgb = Rp[0];
+    Vector3d Pgb = Rp[1];
+
+    // calculate Rotphi
+    Vector3d xghat = Vector3d::UnitX();
+    Vector3d zghat = Vector3d::UnitZ();
+    // compute cross product of xghat and Pgb
+    Vector3d t = VecToso3(xghat) * Pgb;
+    Vector3d v = VecToso3(zghat) * t / t.norm();
+    Matrix3d Rotphi = Matrix3d::Identity() + VecToso3(v) +
+                      VecToso3(v) * VecToso3(v) / (1.0 + zghat.dot(t) / t.norm());
+
+    Eigen::Matrix<double, TCPNUM, INPUTNUM> J;
+    // 初始化J，赋0元素
+    J.setZero();
+    J.block(0, 0, 3, 1) = Rgb.transpose() * xghat;
+    J.block(0, 1, 3, 1) = zghat;
+    J.block(3, 0, 3, 1) = Rgb.transpose() * VecToso3(xghat) * Pgb;
+    J.block(3, 2, 3, 3) = Rgb.transpose() * Rotphi;
+
+    // desired twist Vd
+    VectorXd dPos(INPUTNUM);
+    dPos << refPhi.dphi, magTwist.psi, magTwist.pos; // For closed-loop control
+
+    // compute dthetalist
+    VectorXd dthetalist(JOINTNUM);
+    MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
+    dthetalist = Jbpinv * J * dPos;
 
     return dthetalist;
 };

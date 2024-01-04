@@ -73,6 +73,8 @@ magmed_joystick/PathFinder.h
 /home/zhang/magmed_ws/src/magmed_joystick/src/magmed_joystick/PathFinder.h
 magmed_msgs/JoyRef.h
 /home/zhang/magmed_ws/src/magmed_joystick/src/magmed_msgs/JoyRef.h
+eigen3/Eigen/Dense
+-
 
 /opt/ros/noetic/include/ros/advertise_options.h
 ros/forwards.h

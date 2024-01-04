@@ -14,7 +14,7 @@
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;
 float g_fTipAngle = 0.0;
-int g_nFlag = 0;
+int g_nFlag = 0; // 0: image test mode; 1: data feedback mode; 2: data feedback (image show) mode
 
 bool PrintDeviceInfo(MV_CC_DEVICE_INFO* pstMVDevInfo)
 {
@@ -132,7 +132,7 @@ int main(int argc, char **argv)
 
     ros::NodeHandle nh;
 
-    nh.param<int>("nFlag", g_nFlag, 0);
+    nh.param<int>("nFlag", g_nFlag, 1); // 这里修改模式 | change the mode here
     // whether to show the image
     switch(g_nFlag){
         case 0:
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
             printf("set width failed! nRet [%x]\n\n", nRet);
             break;
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetX", 16*40);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetX", 16*60);    
         if (MV_OK != nRet)
         {
             printf("set OffsetX failed! nRet [%x]\n\n", nRet);
@@ -237,7 +237,7 @@ int main(int argc, char **argv)
             printf("set height failed! nRet [%x]\n\n", nRet);
             break;
         }
-        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*50);    
+        nRet = MV_CC_SetIntValue(handle, "OffsetY", 16*80);    
         if (MV_OK != nRet)
         {
             printf("set OffsetY failed! nRet [%x]\n\n", nRet);

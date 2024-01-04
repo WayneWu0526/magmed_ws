@@ -17,7 +17,7 @@ namespace magmed_camera
         // turn BGR to gray
         cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         // threshold the image
-        cv::threshold(img, img, 180, 255, cv::THRESH_BINARY_INV); // 170
+        cv::threshold(img, img, 150, 255, cv::THRESH_BINARY_INV); // 170
 
         float tipAngle = 0.0;
         switch (nFlag)

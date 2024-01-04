@@ -108,8 +108,8 @@ int main(int argc, char *argv[])
     ros::NodeHandle nh;
 
     // subscribe the rotation angular velocity of the magnet
-    // ros::Subscriber sub = nh.subscribe("/magmed_joystick/joystick_controller", 1000, twistCallback);
-    ros::Subscriber sub = nh.subscribe("/spacenav/twist", 1000, twistCallback);
+    ros::Subscriber sub = nh.subscribe("/magmed_joystick/joystick_controller", 1000, twistCallback);
+    // ros::Subscriber sub = nh.subscribe("/spacenav/twist", 1000, twistCallback);
     // 发送频率
     ros::Rate rate(100);
 
