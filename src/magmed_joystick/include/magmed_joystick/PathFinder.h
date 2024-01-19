@@ -4,12 +4,12 @@
 #include <serial/serial.h>
 #include <ros/ros.h>
 #include <vector>
-#define BUFFER_SIZE 31
-#define TIMEOUT 10 // ms, wait for 10ms to read data from the serial port
-#define BAUDRATE 115200
+const int BUFFER_SIZE = 31;
+const int TIMEOUT = 10; // ms, wait for 10ms to read data from the serial port
+const int BAUDRATE = 115200;
 
-#define JOY1_MAX (float)500.0
-#define JOY1_DEADZONE (unsigned short int)30
+const float JOY1_MAX = 500.0;
+const unsigned short int JOY1_DEADZONE = 30;
 
 // 定义手柄数据包的结构
 class JoystickDataPacket

@@ -7,9 +7,10 @@
 #include <time.h> // 常用标准库
 #include <geometry_msgs/Twist.h>
 #include <cmath>
-#define JOINT_NUM 7
-#define MAX_LINEAR_SPEED 0.1
-#define MAX_ANGULAR_SPEED 0.1
+#include "magmed_controller/diffKine.h"
+const int JOINT_NUM = 7;
+const float MAX_LINEAR_SPEED = 0.05;
+const float MAX_ANGULAR_SPEED = 0.05;
 
 bool g_bExit = false;
 double g_speeds[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -32,7 +33,7 @@ void twistCallback(const geometry_msgs::Twist::ConstPtr& msg)
     g_speeds[2] = MAX_LINEAR_SPEED * (msg->linear.z);
     g_speeds[3] = MAX_ANGULAR_SPEED * (msg->angular.x);
     g_speeds[4] = MAX_ANGULAR_SPEED * (msg->angular.y);
-    g_speeds[5] = MAX_ANGULAR_SPEED * (msg->angular.z);
+    g_speeds[5] = 2.0 * MAX_ANGULAR_SPEED * (msg->angular.z);
     for(int i=0; i < 6; i++)
     {
         std::cout << g_speeds[i] << " ";

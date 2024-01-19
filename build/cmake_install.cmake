@@ -141,6 +141,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/zhang/magmed_ws/build/magmed_manipulator/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_virtualsurgery/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/test/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/hikrobot_camera/cmake_install.cmake")
 
 endif()
 

@@ -8,8 +8,8 @@
 #include "magmed_msgs/RoboStates.h"
 #include "magmed_msgs/RoboJoints.h"
 
-#define JOINTNUM 7
-#define TCPNUM 6
+const int JOINTNUM = 7;
+const int TCPNUM = 6;
 
 class DianaSpeedSets
 {

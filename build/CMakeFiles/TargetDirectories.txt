@@ -158,3 +158,16 @@
 /home/zhang/magmed_ws/build/test/CMakeFiles/test.dir
 /home/zhang/magmed_ws/build/test/CMakeFiles/install/strip.dir
 /home/zhang/magmed_ws/build/test/CMakeFiles/test_diffKine.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/install/strip.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/install/local.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/install.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/list_install_components.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/rebuild_cache.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/edit_cache.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/test.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/hikrobot_camera.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir
+/home/zhang/magmed_ws/build/hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir

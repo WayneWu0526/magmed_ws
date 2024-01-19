@@ -64,6 +64,7 @@ all: magmed_joystick/all
 all: magmed_manipulator/all
 all: magmed_virtualsurgery/all
 all: test/all
+all: hikrobot_camera/all
 
 .PHONY : all
 
@@ -79,6 +80,7 @@ preinstall: magmed_joystick/preinstall
 preinstall: magmed_manipulator/preinstall
 preinstall: magmed_virtualsurgery/preinstall
 preinstall: test/preinstall
+preinstall: hikrobot_camera/preinstall
 
 .PHONY : preinstall
 
@@ -99,6 +101,7 @@ clean: magmed_joystick/clean
 clean: magmed_manipulator/clean
 clean: magmed_virtualsurgery/clean
 clean: test/clean
+clean: hikrobot_camera/clean
 
 .PHONY : clean
 
@@ -158,6 +161,29 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest_main.dir/clean
 gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 
 .PHONY : gtest/googletest/clean
+
+#=============================================================================
+# Directory level rules for directory hikrobot_camera
+
+# Recursive "all" directory target.
+hikrobot_camera/all: hikrobot_camera/CMakeFiles/hikrobot_camera.dir/all
+
+.PHONY : hikrobot_camera/all
+
+# Recursive "preinstall" directory target.
+hikrobot_camera/preinstall:
+
+.PHONY : hikrobot_camera/preinstall
+
+# Recursive "clean" directory target.
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/hikrobot_camera.dir/clean
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+hikrobot_camera/clean: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+
+.PHONY : hikrobot_camera/clean
 
 #=============================================================================
 # Directory level rules for directory magmed_camera
@@ -648,7 +674,7 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 magmed_camera/CMakeFiles/pubTipAngle.dir/all:
 	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/depend
 	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=59,60,61 "Built target pubTipAngle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=61,62,63 "Built target pubTipAngle"
 .PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1195,7 +1221,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMa
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/all
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=50,51,52,53,54,55,56 "Built target magmed_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=52,53,54,55,56,57,58 "Built target magmed_msgs_generate_messages_py"
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1283,7 +1309,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/C
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/all
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=38,39,40,41,42,43 "Built target magmed_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=40,41,42,43,44,45 "Built target magmed_msgs_generate_messages_lisp"
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1317,7 +1343,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CM
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/all
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/depend
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=31,32,33,34,35,36,37 "Built target magmed_msgs_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=33,34,35,36,37,38,39 "Built target magmed_msgs_generate_messages_eus"
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1378,7 +1404,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/all
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=44,45,46,47,48,49 "Built target magmed_msgs_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=46,47,48,49,50,51 "Built target magmed_msgs_generate_messages_nodejs"
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1493,7 +1519,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CM
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/all
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26,27,28,29,30 "Built target magmed_msgs_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=27,28,29,30,31,32 "Built target magmed_msgs_generate_messages_cpp"
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1819,7 +1845,7 @@ magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometr
 magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=72,73 "Built target velCtrlNode"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=74,75 "Built target velCtrlNode"
 .PHONY : magmed_controller/CMakeFiles/velCtrlNode.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1846,7 +1872,7 @@ magmed_controller/CMakeFiles/velCtrlNode.dir/clean:
 magmed_controller/CMakeFiles/velocityController.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=74,75,76 "Built target velocityController"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=76,77,78 "Built target velocityController"
 .PHONY : magmed_controller/CMakeFiles/velocityController.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1897,7 +1923,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry
 magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/depend
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=68,69,70,71 "Built target velCtrlLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=70,71,72,73 "Built target velCtrlLib"
 .PHONY : magmed_controller/CMakeFiles/velCtrlLib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1949,7 +1975,7 @@ magmed_joystick/CMakeFiles/polarRef.dir/all: magmed_msgs/CMakeFiles/geometry_msg
 magmed_joystick/CMakeFiles/polarRef.dir/all: magmed_joystick/CMakeFiles/PathFinderlib.dir/all
 	$(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/depend
 	$(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=57,58 "Built target polarRef"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=59,60 "Built target polarRef"
 .PHONY : magmed_joystick/CMakeFiles/polarRef.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1976,7 +2002,7 @@ magmed_joystick/CMakeFiles/polarRef.dir/clean:
 magmed_joystick/CMakeFiles/refSignal.dir/all:
 	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/depend
 	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=64,65 "Built target refSignal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=66,67 "Built target refSignal"
 .PHONY : magmed_joystick/CMakeFiles/refSignal.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2028,7 +2054,7 @@ magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry
 magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_joystick/CMakeFiles/PathFinderlib.dir/all
 	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/depend
 	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=62,63 "Built target readJoystick"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=64,65 "Built target readJoystick"
 .PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2263,7 +2289,7 @@ test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_gene
 test/CMakeFiles/test_diffKine.dir/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
 	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/depend
 	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=66,67 "Built target test_diffKine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=68,69 "Built target test_diffKine"
 .PHONY : test/CMakeFiles/test_diffKine.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2282,6 +2308,168 @@ test_diffKine: test/CMakeFiles/test_diffKine.dir/rule
 test/CMakeFiles/test_diffKine.dir/clean:
 	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/clean
 .PHONY : test/CMakeFiles/test_diffKine.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/hikrobot_camera.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/hikrobot_camera.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build.make hikrobot_camera/CMakeFiles/hikrobot_camera.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build.make hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target hikrobot_camera"
+.PHONY : hikrobot_camera/CMakeFiles/hikrobot_camera.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/hikrobot_camera.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/hikrobot_camera.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/hikrobot_camera.dir/rule
+
+# Convenience name for target.
+hikrobot_camera: hikrobot_camera/CMakeFiles/hikrobot_camera.dir/rule
+
+.PHONY : hikrobot_camera
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/hikrobot_camera.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build.make hikrobot_camera/CMakeFiles/hikrobot_camera.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/hikrobot_camera.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_py"
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_nodejs"
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_lisp"
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_eus"
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+
+#=============================================================================
+# Target rules for target hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_cpp"
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# clean rule for target.
+hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+.PHONY : hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -140,7 +140,16 @@ VectorXd diffKine::jacobiMap_dlt(magmed_msgs::RefPhi const refPhi, const double 
 
     // compute dthetalist
     VectorXd dthetalist(JOINTNUM);
-    MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
+
+    /***************regular persudo-inverse jacobian***************/
+    // MatrixXd Jbpinv = Jb.completeOrthogonalDecomposition().pseudoInverse();
+
+    /***************weighted persudo-inverse jacobian*************/
+    // define diag matrix W = [10,10,10,10,10,10,1];
+    DiagonalMatrix<double, JOINTNUM> W;
+    W.diagonal() << 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 1.0;
+    MatrixXd Jbpinv = W.inverse() * Jb.transpose() * (Jb * W.inverse() * Jb.transpose()).inverse();
+
     dthetalist = Jbpinv * J * dPos;
 
     return dthetalist;

@@ -973,6 +973,84 @@ test_diffKine/fast:
 	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/build
 .PHONY : test_diffKine/fast
 
+#=============================================================================
+# Target rules for targets named hikrobot_camera
+
+# Build rule for target.
+hikrobot_camera: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hikrobot_camera
+.PHONY : hikrobot_camera
+
+# fast build rule for target.
+hikrobot_camera/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build.make hikrobot_camera/CMakeFiles/hikrobot_camera.dir/build
+.PHONY : hikrobot_camera/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_py
+
+# Build rule for target.
+sensor_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_nodejs
+
+# Build rule for target.
+sensor_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_nodejs
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_lisp
+
+# Build rule for target.
+sensor_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_lisp
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_eus
+
+# Build rule for target.
+sensor_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_eus
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_cpp
+
+# Build rule for target.
+sensor_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_cpp
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make hikrobot_camera/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1048,6 +1126,12 @@ help:
 	@echo "... dianaManipulator"
 	@echo "... demo01_diana7api_connect_test"
 	@echo "... test_diffKine"
+	@echo "... hikrobot_camera"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_cpp"
 .PHONY : help
 
 
