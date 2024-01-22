@@ -6,7 +6,7 @@
 #include <MvCameraControl.h>
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
-#include "magmed_camera/imageProcess.h"
+#include "magmed_camera/imageProcess.hpp"
 
 bool g_bExit = false;
 unsigned int g_nPayloadSize = 0;

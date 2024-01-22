@@ -1,4 +1,4 @@
-#include "magmed_camera/imageProcess.h"
+#include "magmed_camera/imageProcess.hpp"
 // #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <eigen3/Eigen/Dense>

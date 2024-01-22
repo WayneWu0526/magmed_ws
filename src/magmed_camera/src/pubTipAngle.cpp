@@ -7,7 +7,7 @@
 #include <ros/ros.h>
 #include <opencv2/opencv.hpp>
 #include <std_msgs/Float64.h>
-#include "magmed_camera/imageProcess.h"
+#include "magmed_camera/imageProcess.hpp"
 
 // #include <time.h>
 
