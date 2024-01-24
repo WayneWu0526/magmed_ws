@@ -70,8 +70,8 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
-/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from magmed_msgs/JoyRef.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.h
+/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.hpp
 opencv2/opencv.hpp
 -
 
@@ -27,8 +27,8 @@ ros/ros.h
 -
 opencv2/opencv.hpp
 -
-magmed_camera/imageProcess.h
-/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.h
+magmed_camera/imageProcess.hpp
+/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.hpp
 
 /opt/MVS/include/CameraParams.h
 PixelType.h

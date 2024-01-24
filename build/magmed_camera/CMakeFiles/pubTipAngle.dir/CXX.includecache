@@ -6,8 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.h
+/home/zhang/magmed_ws/src/magmed_camera/include/magmed_camera/imageProcess.hpp
 opencv2/opencv.hpp
+-
+
+/home/zhang/magmed_ws/src/magmed_camera/src/imageProcess.cpp
+magmed_camera/imageProcess.hpp
+/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.hpp
+iostream
+-
+eigen3/Eigen/Dense
+-
+cmath
+-
+ros/ros.h
 -
 
 /home/zhang/magmed_ws/src/magmed_camera/src/pubTipAngle.cpp
@@ -29,8 +41,8 @@ opencv2/opencv.hpp
 -
 std_msgs/Float64.h
 -
-magmed_camera/imageProcess.h
-/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.h
+magmed_camera/imageProcess.hpp
+/home/zhang/magmed_ws/src/magmed_camera/src/magmed_camera/imageProcess.hpp
 
 /opt/MVS/include/CameraParams.h
 PixelType.h

@@ -14,9 +14,12 @@
                 "/opt/DianaApi/include",
                 "/opt/MVS/include",
                 "/usr/local/include",
+                "/usr/include/opencv4",
                 "${workspaceFolder}/devel/include",
                 "${workspaceFolder}/src/magmed_controller/include",
-                "${workspaceFolder}/src/magmed_manipulator/include"
+                "${workspaceFolder}/src/magmed_manipulator/include",
+                "${workspaceFolder}/src/hikrobot_camera/include"
+                
             ],
             "browse": {
                 "databaseFilename": "${default}",

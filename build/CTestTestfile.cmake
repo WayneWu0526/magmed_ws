@@ -5,6 +5,7 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("diana7_description")
 subdirs("magmed_camera")
 subdirs("magmed_deeplearning")
 subdirs("magmed_feeder")

@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/zhang/magmed_ws/build/gtest/cmake_install.cmake")
+  include("/home/zhang/magmed_ws/build/diana7_description/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_camera/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_deeplearning/cmake_install.cmake")
   include("/home/zhang/magmed_ws/build/magmed_feeder/cmake_install.cmake")

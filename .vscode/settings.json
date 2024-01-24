@@ -81,7 +81,9 @@
         "shared_mutex": "cpp",
         "dense": "cpp",
         "core": "cpp",
-        "optctrlcpp": "cpp"
+        "optctrlcpp": "cpp",
+        "*.ipp": "cpp",
+        "*.txx": "cpp"
     },
 }
 // {
