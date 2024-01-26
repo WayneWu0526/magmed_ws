@@ -73,30 +73,51 @@ void JoystickReader::HandlePacket(const std::vector<uint8_t> &packet)
         ROS_WARN("Invalid data packet. CRC check failed.");
         return;
     }
-    else
-    {
-        ROS_INFO("CRC check passed.");
-    }
 
     // 在这里根据功能码和数据进行相应的操作
     // 把数据转换成手柄结构体
     // 数据格式：大摇杆三轴，1号（左）小摇杆，2号（右）小摇杆，电位器A，电位器B，旋转开关A，旋转开关B，编码器A，编码器B，无，大摇杆按钮，钮子开关，按键开关
     // print data
-    // 将2个字节的数据转换成有符号的短整型
+    // 大摇杆三轴
     joystick.nJOY1[0] = (data[1] << 8) | data[0];
     joystick.nJOY1[1] = (data[3] << 8) | data[2];
     joystick.nJOY1[2] = (data[5] << 8) | data[4];
-    // 为短整型添加死区
-    // 设置死区大小
-    deadzone(joystick.nJOY1[0]);
-    deadzone(joystick.nJOY1[1]);
-    deadzone(joystick.nJOY1[2]);
-    // 将data第22个字节的第6位转换成bool值
+    // set deadzone
+    deadzone(joystick.nJOY1[0], JOY1_DEADZONE);
+    deadzone(joystick.nJOY1[1], JOY1_DEADZONE);
+    deadzone(joystick.nJOY1[2], JOY1_DEADZONE);
+    // 1号（左）小摇杆
+    joystick.nJOY2[0] = (data[7] << 8) | data[6];
+    joystick.nJOY2[1] = (data[9] << 8) | data[8];
+    deadzone(joystick.nJOY2[0], JOY2_DEADZONE);
+    deadzone(joystick.nJOY2[1], JOY2_DEADZONE);
+    // 2号（右）小摇杆
+    joystick.nJOY3[0] = (data[11] << 8) | data[10];
+    joystick.nJOY3[1] = (data[13] << 8) | data[12];
+    deadzone(joystick.nJOY3[0], JOY2_DEADZONE);
+    deadzone(joystick.nJOY3[1], JOY2_DEADZONE);
+    // 电位器A, 电位器B
+    joystick.POTA = (data[15] << 8) | data[14];
+    joystick.POTB = (data[17] << 8) | data[16];
+    // 旋转开关A、B
+    // 获取高四位并转换为1到8的整数
+    joystick.BANB = (data[18] >> 4) & 0x0F;
+    // 获取低四位并转换为1到8的整数
+    joystick.BANA = (data[18]) & 0x0F; // 转换为1到8的整数
+    // 编码器A
+    joystick.ENCA = static_cast<int8_t>(data[19]);
+    joystick.ENCB = static_cast<int8_t>(data[20]);
+    //大摇杆按钮
     joystick.bJOYD = (data[21] & 0x40) >> 6;
-
-    if (joystick.bJOYD)
-    {
+    // 扭子开关
+    for (int i = 0; i < 5; ++i) {
+        joystick.TOG[i] = (data[21] & (1 << i)) >> i;
     }
+    // 按键开关
+    for (int i = 0; i < 6; ++i) {
+        joystick.BUT[i] = (data[22] & (1 << i)) >> i;
+    }
+
 };
 
 int JoystickReader::openSerialPort()
@@ -129,18 +150,18 @@ int JoystickReader::openSerialPort()
 };
 
 // deadzone
-void JoystickReader::deadzone(signed int short &nJOY)
+void JoystickReader::deadzone(signed int short &nJOY, unsigned short int DEADZONE)
 {
-    if (nJOY > -JOY1_DEADZONE && nJOY < JOY1_DEADZONE)
+    if (nJOY > -DEADZONE && nJOY < DEADZONE)
     {
         nJOY = 0;
     }
-    else if (nJOY >= JOY1_DEADZONE)
+    else if (nJOY >= DEADZONE)
     {
-        nJOY -= JOY1_DEADZONE;
+        nJOY -= DEADZONE;
     }
-    else if (nJOY <= -JOY1_DEADZONE)
+    else if (nJOY <= -DEADZONE)
     {
-        nJOY += JOY1_DEADZONE;
+        nJOY += DEADZONE;
     }
 };

@@ -7,6 +7,8 @@
   :components ((:file "_package")
     (:file "JoyRef" :depends-on ("_package_JoyRef"))
     (:file "_package_JoyRef" :depends-on ("_package"))
+    (:file "PFjoystick" :depends-on ("_package_PFjoystick"))
+    (:file "_package_PFjoystick" :depends-on ("_package"))
     (:file "RefPhi" :depends-on ("_package_RefPhi"))
     (:file "_package_RefPhi" :depends-on ("_package"))
     (:file "RefTheta" :depends-on ("_package_RefTheta"))

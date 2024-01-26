@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py"
+  "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PFjoystick.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py"

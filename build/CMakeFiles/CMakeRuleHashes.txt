@@ -1,11 +1,13 @@
 # Hashes of file build rules.
 75b22870154d13ced76146591c1b4996 /home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
+78463e995375aa2144f5a34ddbbfafb7 /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 93c4a8d1a34ec944013663abc38be890 /home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h
 61f45f55a8301ba86c586936152c86b1 /home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h
 ca1ada2c328be798ddc803a39a09f6ad /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 fe7a42b0551a01d220fa30ee12ed7bb6 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
 122cf2643a5b4f63ece0c7e05b9e5a93 /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 4e3801c68aa9151234d6a68a24c7e123 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_JoyRef.py
+e2fa5ccc40514ef473006d0dae7cc477 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PFjoystick.py
 e6c38bb9ca0186bcac9707db6d805f4b /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefPhi.py
 12df61d82450865c675e453b70416913 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RefTheta.py
 9e3dc6ac49a28eb7cf04c53d39e15739 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py
@@ -13,12 +15,14 @@ a3e66911c1ebd6462e2dadddf3ac1262 /home/zhang/magmed_ws/devel/lib/python3/dist-pa
 a0924a923f97905aa28cbf13bafb0575 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 102996b4bd1285a03f244bafc243e232 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
 19f3b93c14ea61f2007d99cd71e0ab28 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp
+8fef04320d090ea4a9a761e79ada7b71 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp
 e4969fda0213fba8566d18e35fdcfda0 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp
 c89c2c60418cbd078d68b9d523d13e76 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp
 ebeb46c3d6c6b580220691572361b41e /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp
 8a8e770270720b75a41c61674b3a8300 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp
 3408ff9b2aacfaf507703fbfad238abe /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp
 4b3fb774ccf93c085ea7204ff87cb366 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js
+f70eb46385e44cbdd3f567290923242e /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js
 b3bc137d13ce28b7d33fbcd4ccbe1048 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js
 752ef27b215823ae7328e624adba9731 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefTheta.js
 e327e73420753ae69f2a8fa9c7caa5a9 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js
@@ -26,13 +30,15 @@ e327e73420753ae69f2a8fa9c7caa5a9 /home/zhang/magmed_ws/devel/share/gennodejs/ros
 22571f5ddd825e44c1f48b3213f63709 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js
 960983783f079847b5090c8e4cdda214 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l
 a6ed1b2b07920bab7b35d4cd8c805cfd /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/JoyRef.l
+81f876b759e2ea83536c8a94a6dbfea5 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/PFjoystick.l
 6a679c3b486e541473dd32fc02625e76 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RefPhi.l
 079520400993969bfa420ee91934ab6f /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RefTheta.l
 076cdbda54604ecaaae8f985493ddcb1 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l
 6b9b73d5e5eff9d8e2a88ce2dbe321ad /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l
 48eb61de8119c4988166b86063f61b0a /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/TipAngle.l
 8392cdefde2521cc6e4fdd36b4ed9ea6 CMakeFiles/clean_test_results
-62a055c7da3b089c1c861412e37dfd42 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef
+2b9c29728c7175d04aa331e085b06400 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef
+c4ef4e362e4ddae50fdd41b2358791ac magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick
 5ae62c00c5c6c92ecc91e045604c5dbe magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefPhi
 8d7d96cf950bfba01e803cdd6e326bbb magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta
 32a7a80cf0b9e8a1abb7556aae3fa27f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints

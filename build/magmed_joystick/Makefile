@@ -213,6 +213,21 @@ readJoystick/fast:
 .PHONY : readJoystick/fast
 
 # Convenience name for target.
+magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule
+.PHONY : magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule
+
+# Convenience name for target.
+readJoystickTwist: magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule
+
+.PHONY : readJoystickTwist
+
+# fast build rule for target.
+readJoystickTwist/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/build
+.PHONY : readJoystickTwist/fast
+
+# Convenience name for target.
 magmed_joystick/CMakeFiles/PathFinderlib.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
 .PHONY : magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
@@ -308,6 +323,33 @@ src/readJoystick.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/src/readJoystick.cpp.s
 .PHONY : src/readJoystick.cpp.s
 
+src/readJoystickTwist.o: src/readJoystickTwist.cpp.o
+
+.PHONY : src/readJoystickTwist.o
+
+# target to build an object file
+src/readJoystickTwist.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/src/readJoystickTwist.cpp.o
+.PHONY : src/readJoystickTwist.cpp.o
+
+src/readJoystickTwist.i: src/readJoystickTwist.cpp.i
+
+.PHONY : src/readJoystickTwist.i
+
+# target to preprocess a source file
+src/readJoystickTwist.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/src/readJoystickTwist.cpp.i
+.PHONY : src/readJoystickTwist.cpp.i
+
+src/readJoystickTwist.s: src/readJoystickTwist.cpp.s
+
+.PHONY : src/readJoystickTwist.s
+
+# target to generate assembly for a file
+src/readJoystickTwist.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/src/readJoystickTwist.cpp.s
+.PHONY : src/readJoystickTwist.cpp.s
+
 src/refSignal.o: src/refSignal.cpp.o
 
 .PHONY : src/refSignal.o
@@ -345,11 +387,12 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... polarRef"
 	@echo "... refSignal"
 	@echo "... readJoystick"
+	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... readJoystickTwist"
 	@echo "... install/local"
 	@echo "... PathFinderlib"
 	@echo "... src/PathFinder.o"
@@ -361,6 +404,9 @@ help:
 	@echo "... src/readJoystick.o"
 	@echo "... src/readJoystick.i"
 	@echo "... src/readJoystick.s"
+	@echo "... src/readJoystickTwist.o"
+	@echo "... src/readJoystickTwist.i"
+	@echo "... src/readJoystickTwist.s"
 	@echo "... src/refSignal.o"
 	@echo "... src/refSignal.i"
 	@echo "... src/refSignal.s"

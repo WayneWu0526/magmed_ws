@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 # Include the progress variables for this target.
 include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/progress.make
 
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js
@@ -61,42 +62,49 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js
 
 
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/PFjoystick.msg
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from magmed_msgs/PFjoystick.msg"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/PFjoystick.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
+
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from magmed_msgs/RoboJoints.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from magmed_msgs/RoboJoints.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
-/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
-/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from magmed_msgs/JoyRef.msg"
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from magmed_msgs/JoyRef.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from magmed_msgs/RefPhi.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from magmed_msgs/RefPhi.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefTheta.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefTheta.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from magmed_msgs/RefTheta.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from magmed_msgs/RefTheta.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from magmed_msgs/RoboStates.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Javascript code from magmed_msgs/RoboStates.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Javascript code from magmed_msgs/TipAngle.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Javascript code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
 magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs
+magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/JoyRef.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RefPhi.js

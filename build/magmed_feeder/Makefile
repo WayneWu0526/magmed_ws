@@ -167,6 +167,48 @@ depend:
 	cd /home/zhang/magmed_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule
+.PHONY : magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule
+
+# Convenience name for target.
+magrobo_feeder: magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule
+
+.PHONY : magrobo_feeder
+
+# fast build rule for target.
+magrobo_feeder/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/build
+.PHONY : magrobo_feeder/fast
+
+src/magrobo_feeder.o: src/magrobo_feeder.cpp.o
+
+.PHONY : src/magrobo_feeder.o
+
+# target to build an object file
+src/magrobo_feeder.cpp.o:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/src/magrobo_feeder.cpp.o
+.PHONY : src/magrobo_feeder.cpp.o
+
+src/magrobo_feeder.i: src/magrobo_feeder.cpp.i
+
+.PHONY : src/magrobo_feeder.i
+
+# target to preprocess a source file
+src/magrobo_feeder.cpp.i:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/src/magrobo_feeder.cpp.i
+.PHONY : src/magrobo_feeder.cpp.i
+
+src/magrobo_feeder.s: src/magrobo_feeder.cpp.s
+
+.PHONY : src/magrobo_feeder.s
+
+# target to generate assembly for a file
+src/magrobo_feeder.cpp.s:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/src/magrobo_feeder.cpp.s
+.PHONY : src/magrobo_feeder.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -180,6 +222,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... magrobo_feeder"
+	@echo "... src/magrobo_feeder.o"
+	@echo "... src/magrobo_feeder.i"
+	@echo "... src/magrobo_feeder.s"
 .PHONY : help
 
 

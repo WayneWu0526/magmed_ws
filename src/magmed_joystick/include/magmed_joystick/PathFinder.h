@@ -1,5 +1,4 @@
-#ifndef PATHFINDERLIB_H
-#define PATHFINDERLIB_H
+#pragma once
 
 #include <serial/serial.h>
 #include <ros/ros.h>
@@ -9,7 +8,11 @@ const int TIMEOUT = 10; // ms, wait for 10ms to read data from the serial port
 const int BAUDRATE = 115200;
 
 const float JOY1_MAX = 500.0;
+const float JOY2_MAX = 300.0;
+const float JOY3_MAX = 300.0;
 const unsigned short int JOY1_DEADZONE = 30;
+const unsigned short int JOY2_DEADZONE = 15;
+const unsigned short int JOY3_DEADZONE = 15;
 
 // 定义手柄数据包的结构
 class JoystickDataPacket
@@ -54,6 +57,5 @@ public:
 
 private:
     JoystickDataPacket joystickDataPacket;
-    void deadzone(signed int short &nJOY);
+    void deadzone(signed int short &nJOY, unsigned short int DEADZONE);
 };
-#endif 

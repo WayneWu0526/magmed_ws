@@ -7,6 +7,7 @@ let RefPhi = require('./RefPhi.js');
 let TipAngle = require('./TipAngle.js');
 let JoyRef = require('./JoyRef.js');
 let RoboStates = require('./RoboStates.js');
+let PFjoystick = require('./PFjoystick.js');
 
 module.exports = {
   RefTheta: RefTheta,
@@ -15,4 +16,5 @@ module.exports = {
   TipAngle: TipAngle,
   JoyRef: JoyRef,
   RoboStates: RoboStates,
+  PFjoystick: PFjoystick,
 };

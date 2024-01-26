@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h"
+  "/home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h"
   "/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h"
   "/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h"
   "/home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h"

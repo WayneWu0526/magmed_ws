@@ -3,6 +3,8 @@
   (:export
    "<JOYREF>"
    "JOYREF"
+   "<PFJOYSTICK>"
+   "PFJOYSTICK"
    "<REFPHI>"
    "REFPHI"
    "<REFTHETA>"

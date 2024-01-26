@@ -138,7 +138,10 @@ add_library(PathFinderlib
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/magmed_joystick_node.cpp)
-add_executable(readJoystick 
+add_executable(readJoystickTwist
+  src/readJoystickTwist.cpp)
+
+add_executable(readJoystick
   src/readJoystick.cpp)
 
 add_executable(refSignal src/refSignal.cpp)
@@ -146,9 +149,10 @@ add_executable(refSignal src/refSignal.cpp)
 add_executable(polarRef
   src/polarRef.cpp) 
 
-
-add_dependencies(polarRef ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(readJoystick ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(readJoystick magmed_msgs_generate_messages_cpp)
+add_dependencies(polarRef ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(readJoystickTwist ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(polarRef magmed_msgs_generate_messages_cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -164,7 +168,13 @@ add_dependencies(PathFinderlib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
 target_link_libraries(readJoystick
+  ${catkin_LIBRARIES}
+  PathFinderlib
+)
+
+target_link_libraries(readJoystickTwist
   ${catkin_LIBRARIES}
   PathFinderlib
 )
