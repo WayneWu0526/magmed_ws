@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
+/home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 string
 -
 vector
@@ -22,42 +22,6 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/Header.h
--
-magmed_msgs/RefPhi.h
--
-magmed_msgs/RefTheta.h
--
-
-/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
-/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
 -
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
@@ -139,12 +103,8 @@ cmath
 -
 iostream
 -
-magmed_msgs/JoyRef.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/JoyRef.h
-magmed_msgs/RefTheta.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RefTheta.h
-magmed_msgs/RefPhi.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RefPhi.h
+magmed_msgs/PFjoystick.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/PFjoystick.h
 magmed_msgs/RoboStates.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RoboStates.h
 magmed_msgs/RoboJoints.h
@@ -152,7 +112,9 @@ magmed_msgs/RoboJoints.h
 magmed_msgs/TipAngle.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/TipAngle.h
 std_msgs/Float64MultiArray.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/std_msgs/Float64MultiArray.h
+-
+std_msgs/UInt32.h
+-
 
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlNode.h
 ros/ros.h
@@ -886,6 +848,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/MultiArrayDimension.h
+-
+
+/opt/ros/noetic/include/std_msgs/UInt32.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 
 /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h

@@ -55,9 +55,6 @@ include magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/progress.m
 
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp
 
@@ -74,41 +71,20 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from magmed_msgs/RoboJoints.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
 
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from magmed_msgs/JoyRef.msg"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
-
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from magmed_msgs/RefPhi.msg"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
-
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
-/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Lisp code from magmed_msgs/RefTheta.msg"
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
-
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Lisp code from magmed_msgs/RoboStates.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from magmed_msgs/RoboStates.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
 
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Lisp code from magmed_msgs/TipAngle.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
 
 magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp
-magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/JoyRef.lisp
-magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefPhi.lisp
-magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RefTheta.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp
 magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make

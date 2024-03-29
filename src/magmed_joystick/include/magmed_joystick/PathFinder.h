@@ -5,7 +5,7 @@
 #include <vector>
 const int BUFFER_SIZE = 31;
 const int TIMEOUT = 10; // ms, wait for 10ms to read data from the serial port
-const int BAUDRATE = 115200;
+const int BAUDRATE = 57600;
 
 const float JOY1_MAX = 500.0;
 const float JOY2_MAX = 300.0;
@@ -52,7 +52,10 @@ public:
     serial::Serial joystick_serial;
     void HandlePacket(const std::vector<uint8_t>& packet);
     int run();
+    void flush();
+    int findStartPort();
     int openSerialPort();
+    int closeSerialPort();
     JoystickReader() {};
 
 private:

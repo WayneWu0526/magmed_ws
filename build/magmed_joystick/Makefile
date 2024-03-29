@@ -168,36 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-magmed_joystick/CMakeFiles/polarRef.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/polarRef.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/polarRef.dir/rule
-
-# Convenience name for target.
-polarRef: magmed_joystick/CMakeFiles/polarRef.dir/rule
-
-.PHONY : polarRef
-
-# fast build rule for target.
-polarRef/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/build
-.PHONY : polarRef/fast
-
-# Convenience name for target.
-magmed_joystick/CMakeFiles/refSignal.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/refSignal.dir/rule
-.PHONY : magmed_joystick/CMakeFiles/refSignal.dir/rule
-
-# Convenience name for target.
-refSignal: magmed_joystick/CMakeFiles/refSignal.dir/rule
-
-.PHONY : refSignal
-
-# fast build rule for target.
-refSignal/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
-.PHONY : refSignal/fast
-
-# Convenience name for target.
 magmed_joystick/CMakeFiles/readJoystick.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/rule
 .PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
@@ -269,33 +239,6 @@ src/PathFinder.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/src/PathFinder.cpp.s
 .PHONY : src/PathFinder.cpp.s
 
-src/polarRef.o: src/polarRef.cpp.o
-
-.PHONY : src/polarRef.o
-
-# target to build an object file
-src/polarRef.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.o
-.PHONY : src/polarRef.cpp.o
-
-src/polarRef.i: src/polarRef.cpp.i
-
-.PHONY : src/polarRef.i
-
-# target to preprocess a source file
-src/polarRef.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.i
-.PHONY : src/polarRef.cpp.i
-
-src/polarRef.s: src/polarRef.cpp.s
-
-.PHONY : src/polarRef.s
-
-# target to generate assembly for a file
-src/polarRef.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/src/polarRef.cpp.s
-.PHONY : src/polarRef.cpp.s
-
 src/readJoystick.o: src/readJoystick.cpp.o
 
 .PHONY : src/readJoystick.o
@@ -350,33 +293,6 @@ src/readJoystickTwist.cpp.s:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/src/readJoystickTwist.cpp.s
 .PHONY : src/readJoystickTwist.cpp.s
 
-src/refSignal.o: src/refSignal.cpp.o
-
-.PHONY : src/refSignal.o
-
-# target to build an object file
-src/refSignal.cpp.o:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.o
-.PHONY : src/refSignal.cpp.o
-
-src/refSignal.i: src/refSignal.cpp.i
-
-.PHONY : src/refSignal.i
-
-# target to preprocess a source file
-src/refSignal.cpp.i:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.i
-.PHONY : src/refSignal.cpp.i
-
-src/refSignal.s: src/refSignal.cpp.s
-
-.PHONY : src/refSignal.s
-
-# target to generate assembly for a file
-src/refSignal.cpp.s:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/src/refSignal.cpp.s
-.PHONY : src/refSignal.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -387,8 +303,6 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... polarRef"
-	@echo "... refSignal"
 	@echo "... readJoystick"
 	@echo "... edit_cache"
 	@echo "... test"
@@ -398,18 +312,12 @@ help:
 	@echo "... src/PathFinder.o"
 	@echo "... src/PathFinder.i"
 	@echo "... src/PathFinder.s"
-	@echo "... src/polarRef.o"
-	@echo "... src/polarRef.i"
-	@echo "... src/polarRef.s"
 	@echo "... src/readJoystick.o"
 	@echo "... src/readJoystick.i"
 	@echo "... src/readJoystick.s"
 	@echo "... src/readJoystickTwist.o"
 	@echo "... src/readJoystickTwist.i"
 	@echo "... src/readJoystickTwist.s"
-	@echo "... src/refSignal.o"
-	@echo "... src/refSignal.i"
-	@echo "... src/refSignal.s"
 .PHONY : help
 
 

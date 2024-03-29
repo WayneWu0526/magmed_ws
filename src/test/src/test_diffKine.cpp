@@ -14,22 +14,22 @@ int main(int argc, char *argv[])
 
     diffKine dk;
 
-    dk.initConfig(thetalist);
+    // dk.initConfig(thetalist);
 
     // 接收来自控制台的输入以继续
 
     float h = 1e-2;
     float tolSimTime = 10.0;
     float t = 0.0;
-    magmed_msgs::RefPhi refPhi;
+    double refPhi[2] = {0.0};
     // refPhi.phi = 0.0;
-    refPhi.dphi = M_PI / (2.0 * tolSimTime);
+    refPhi[1] = M_PI / (2.0 * tolSimTime);
     VectorXd JointsVels(JOINTNUM);
     while (t < tolSimTime)
     {
         dk.magTwist.psi = 0.03;
         dk.magTwist.pos = {0.0, 0.03, 0.0};
-        JointsVels = dk.jacobiMap_dlt(refPhi, thetalist);
+        JointsVels = dk.jacobiMap(refPhi, thetalist);
         
         // refPhi.phi += refPhi.dphi * h;
         // update thetalist

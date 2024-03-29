@@ -22,9 +22,7 @@ int main(int argc, char *argv[])
     ros::Publisher pub = nh.advertise<magmed_msgs::PFjoystick>("/magmed_joystick/joystick_controller", 1000);
 
     magmed_msgs::PFjoystick msg;
- 
     ros::Rate loop_rate(100);
-    int count = 0;
     while(ros::ok())
     {
         int ret = reader.run();
@@ -74,7 +72,11 @@ int main(int argc, char *argv[])
         loop_rate.sleep();
     }
 
-    reader.joystick_serial.close();
+    if(reader.closeSerialPort()<0)
+    {
+        ROS_ERROR_STREAM("Unable to close port.");
+        return -1;
+    }
 
     return 0;
 }

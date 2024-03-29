@@ -2,14 +2,13 @@
 
 int JoystickReader::run()
 {
+    uint8_t buffer[1024] = {0x00}; // buffer to store the data
     // read data from the serial port
     size_t bytes_read = joystick_serial.available();
-    if (bytes_read)
+    if (bytes_read > 0)
     {
-        uint8_t buffer[1024]; // buffer to store the data
         size_t bytes_read = joystick_serial.read(buffer, BUFFER_SIZE);
         std::vector<uint8_t> packet(buffer, buffer + bytes_read);
-
         // 调用回调函数解析数据包
         HandlePacket(packet);
         return 0;
@@ -17,6 +16,11 @@ int JoystickReader::run()
     else{
         return -1;
     }
+};
+
+int JoystickReader::findStartPort()
+{
+    
 };
 
 void JoystickReader::HandlePacket(const std::vector<uint8_t> &packet)
@@ -130,6 +134,7 @@ int JoystickReader::openSerialPort()
     try
     {
         joystick_serial.open();
+        // joystick_serial.flush();
     }
     catch (serial::IOException &e)
     {
@@ -141,6 +146,21 @@ int JoystickReader::openSerialPort()
     if (joystick_serial.isOpen())
     {
         ROS_INFO_STREAM("Serial Port initialized.");
+    }
+    else
+    {
+        return -1;
+    }
+    return 0;
+};
+
+int JoystickReader::closeSerialPort()
+{
+    joystick_serial.flush();
+    joystick_serial.close();
+    if (!joystick_serial.isOpen())
+    {
+        ROS_INFO_STREAM("Serial Port closed.");
     }
     else
     {
@@ -164,4 +184,9 @@ void JoystickReader::deadzone(signed int short &nJOY, unsigned short int DEADZON
     {
         nJOY += DEADZONE;
     }
+};
+
+void JoystickReader::flush()
+{
+    joystick_serial.flush();
 };

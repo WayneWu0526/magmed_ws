@@ -1,16 +1,8 @@
 #ifndef DIFFKINE_H
 #define DIFFKINE_H
 
-// #include <modern_robotics.h>
-// #include <eigen3/Eigen/Dense>
-// #include <eigen3/Eigen/QR>
-// #include "magmed_msgs/MagPose.h"
 #include "magmed_controller/MSCRJacobi.h"
 #include "magmed_controller/velCtrlDef.h"
-
-// using namespace mr;
-// using namespace Eigen;
-// using namespace magmed_msgs;
 
 struct diana7KineSpaceParam
 {
@@ -49,12 +41,13 @@ struct diana7KineSpaceParam
             0.0, 0.0, 0.0, 0.0, a6, 0.0, -a7,
             0.0, 0.0, 0.0, a4, 0.0, 0.0, 0.0;
         
+        // 默认的磁性机器人初始位置
         Tsg << 0.0, 0.0, 1.0, 0.51, // x轴延伸0.3+0.32=0.92m, 0.19+0.32=0.51m
             1.0, 0.0, 0.0, 0.0,     // 机械臂坐标系的x轴与工作空间坐标系的y轴重合
             0.0, 1.0, 0.0, 0.06,    // 底盘高度：0.06m
             0.0, 0.0, 0.0, 1.0;
 
-        Rgb0.diagonal() << -1.0, 1.0, -1.0;
+        Rgb0.diagonal() << -1.0, 1.0, -1.0; // 机械臂相对于机器人的初始位置
 
         Pgb0 << pr.L, pr.H0, 0.0;
     };
@@ -87,11 +80,11 @@ class diffKine
 {
 public:
     diana7KineSpaceParam params = diana7KineSpaceParam();
-    void initConfig(const double (&thetaList)[JOINTNUM]);
+    // void initConfig(const double (&thetaList)[JOINTNUM]);
     void getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
-    VectorXd jacobiMap(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
-    VectorXd jacobiMap_dlt(magmed_msgs::RefPhi const refPhi, const double (&thetaList)[JOINTNUM]);
-    MagPose magTwist;
+    VectorXd jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM]);
+    VectorXd jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (&thetaList)[JOINTNUM]);
+    MagPose magTwist; // 磁性机器人的期望速度，包括psi和pos
     diffKine()
     {
         magTwist.psi = 0.0;
@@ -102,13 +95,14 @@ private:
     Matrix3d Rotphi = Matrix3d::Identity();
     Matrix3d Rinit = Matrix3d::Identity();
     Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
-    // 构建static TR, 初始时为单位矩阵
-    Matrix4d TR = Matrix4d::Identity();
     PICtrlParam piparams = PICtrlParam();
     // JacobiMap function: MagPos -> DsrTwist
-    Eigen::MatrixXd calcJacobi();
     Matrix3d Rphi(double phi);
     Matrix3d Rpsi(double psi);
+
+    double phi_d[2] = {0.0};
+    double psi_d[2] = {0.0};
+    Vector3d pos_d[2] = {Vector3d::Zero()};
 };
 
 #endif

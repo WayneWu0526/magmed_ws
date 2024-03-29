@@ -70,7 +70,7 @@ public:
 
         dianastate_pub = nh.advertise<magmed_msgs::RoboStates>("/magmed_manipulator/dianastate", 10);
 
-        joint_vel_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_controller/joint_vels",
+        joint_vel_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_manipulator/joint_vels",
                                                               10,
                                                               boost::bind(&JointVels::feed, &dsr_joint_vels, _1));
     }

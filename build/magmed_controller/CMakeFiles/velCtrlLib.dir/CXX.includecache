@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/devel/include/magmed_msgs/JoyRef.h
+/home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 string
 -
 vector
@@ -22,42 +22,6 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/Header.h
--
-magmed_msgs/RefPhi.h
--
-magmed_msgs/RefTheta.h
--
-
-/home/zhang/magmed_ws/devel/include/magmed_msgs/RefPhi.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
-/home/zhang/magmed_ws/devel/include/magmed_msgs/RefTheta.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
 -
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
@@ -122,12 +86,6 @@ magmed_controller/MSCRJacobi.h
 magmed_controller/velCtrlDef.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
 
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/optCtrl.h
-magmed_controller/MSCRJacobi.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/MSCRJacobi.h
-magmed_controller/velCtrlDef.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
-
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 eigen3/Eigen/Dense
 -
@@ -139,12 +97,8 @@ cmath
 -
 iostream
 -
-magmed_msgs/JoyRef.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/JoyRef.h
-magmed_msgs/RefTheta.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RefTheta.h
-magmed_msgs/RefPhi.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RefPhi.h
+magmed_msgs/PFjoystick.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/PFjoystick.h
 magmed_msgs/RoboStates.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/RoboStates.h
 magmed_msgs/RoboJoints.h
@@ -152,19 +106,13 @@ magmed_msgs/RoboJoints.h
 magmed_msgs/TipAngle.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/TipAngle.h
 std_msgs/Float64MultiArray.h
-/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/std_msgs/Float64MultiArray.h
-
-/home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
-magmed_controller/MSCRJacobi.h
-/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/MSCRJacobi.h
+-
+std_msgs/UInt32.h
+-
 
 /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
 magmed_controller/diffKine.h
 /home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/diffKine.h
-
-/home/zhang/magmed_ws/src/magmed_controller/src/optCtrl.cpp
-magmed_controller/optCtrl.h
-/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/optCtrl.h
 
 /opt/ros/noetic/include/ros/builtin_message_traits.h
 message_traits.h
@@ -380,5 +328,21 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/MultiArrayDimension.h
+-
+
+/opt/ros/noetic/include/std_msgs/UInt32.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 

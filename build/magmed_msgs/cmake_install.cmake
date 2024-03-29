@@ -41,9 +41,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_msgs/msg" TYPE FILE FILES
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/PFjoystick.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
-    "/home/zhang/magmed_ws/src/magmed_msgs/msg/JoyRef.msg"
-    "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefPhi.msg"
-    "/home/zhang/magmed_ws/src/magmed_msgs/msg/RefTheta.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
     )

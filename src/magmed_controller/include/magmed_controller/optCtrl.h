@@ -49,7 +49,7 @@ public:
 class optCtrl
 {
 public:
-    MagPose generateMagTwist(magmed_msgs::RefTheta const refTheta, magmed_msgs::TipAngle const tipAngle);
+    MagPose generateMagTwist(const double (&refTheta)[2], magmed_msgs::TipAngle const tipAngle);
     MagPose magPose;
     optCtrl()
     {

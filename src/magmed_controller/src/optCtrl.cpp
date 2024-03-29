@@ -87,13 +87,12 @@ RowVector4d optCtrl::getJacobi(MagPose magPose)
     return jacobi;
 }
 
-MagPose optCtrl::generateMagTwist(magmed_msgs::RefTheta const refTheta, magmed_msgs::TipAngle const tipAngle)
+MagPose optCtrl::generateMagTwist(const double (&refTheta)[2], magmed_msgs::TipAngle const tipAngle)
 {
     // calculate jacobi
     RowVector4d jacobi = getJacobi(magPose);
     // std::cout << "jacobian: " << jacobi << std::endl;
 
-    double thetaR[2] = {refTheta.theta, refTheta.dtheta};
     double thetaL = tipAngle.tipAngle;
 
     // initialize hatx
@@ -101,13 +100,13 @@ MagPose optCtrl::generateMagTwist(magmed_msgs::RefTheta const refTheta, magmed_m
     // std::cout << "hatx: " << hatx[0] << " " << hatx[1] << std::endl;
 
     // calculate virtualControlLaw
-    double virtualControlLaw = FF_controller(thetaR, hatx, thetaL);
+    double virtualControlLaw = FF_controller(refTheta, hatx, thetaL);
 
     // calculate control allocation
     MagPose magTwist = controlAllocation(virtualControlLaw, jacobi);
 
     // update hatx
-    LESO(thetaR, hatx, virtualControlLaw);
+    LESO(refTheta, hatx, virtualControlLaw);
 
     // trans velocity frame from robot to end-effector
     // WARNING: 平面偏转时使用，否则禁用

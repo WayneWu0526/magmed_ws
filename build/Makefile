@@ -545,121 +545,82 @@ rosgraph_msgs_generate_messages_py/fast:
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_nodejs
+# Target rules for targets named magrobo_feeder
 
 # Build rule for target.
-geometry_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_nodejs
-.PHONY : geometry_msgs_generate_messages_nodejs
+magrobo_feeder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magrobo_feeder
+.PHONY : magrobo_feeder
 
 # fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
+magrobo_feeder/fast:
+	$(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/build
+.PHONY : magrobo_feeder/fast
 
 #=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages
+# Target rules for targets named magmed_msgs_genpy
 
 # Build rule for target.
-magmed_msgs_generate_messages: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages
-.PHONY : magmed_msgs_generate_messages
+magmed_msgs_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genpy
+.PHONY : magmed_msgs_genpy
 
 # fast build rule for target.
-magmed_msgs_generate_messages/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
-.PHONY : magmed_msgs_generate_messages/fast
+magmed_msgs_genpy/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
+.PHONY : magmed_msgs_genpy/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_cpp
+# Target rules for targets named magmed_msgs_generate_messages_py
 
 # Build rule for target.
-geometry_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_cpp
-.PHONY : geometry_msgs_generate_messages_cpp
+magmed_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_py
+.PHONY : magmed_msgs_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
+magmed_msgs_generate_messages_py/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
+.PHONY : magmed_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_JoyRef
+# Target rules for targets named magmed_msgs_gennodejs
 
 # Build rule for target.
-_magmed_msgs_generate_messages_check_deps_JoyRef: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_JoyRef
-.PHONY : _magmed_msgs_generate_messages_check_deps_JoyRef
+magmed_msgs_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_gennodejs
+.PHONY : magmed_msgs_gennodejs
 
 # fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_JoyRef/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_JoyRef.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_JoyRef/fast
+magmed_msgs_gennodejs/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build
+.PHONY : magmed_msgs_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_py
+# Target rules for targets named magmed_msgs_genlisp
 
 # Build rule for target.
-geometry_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
-.PHONY : geometry_msgs_generate_messages_py
+magmed_msgs_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genlisp
+.PHONY : magmed_msgs_genlisp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+magmed_msgs_genlisp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build
+.PHONY : magmed_msgs_genlisp/fast
 
 #=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_lisp
+# Target rules for targets named magmed_msgs_generate_messages_lisp
 
 # Build rule for target.
-geometry_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_lisp
-.PHONY : geometry_msgs_generate_messages_lisp
+magmed_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_lisp
+.PHONY : magmed_msgs_generate_messages_lisp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_geneus
-
-# Build rule for target.
-magmed_msgs_geneus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_geneus
-.PHONY : magmed_msgs_geneus
-
-# fast build rule for target.
-magmed_msgs_geneus/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build
-.PHONY : magmed_msgs_geneus/fast
-
-#=============================================================================
-# Target rules for targets named geometry_msgs_generate_messages_eus
-
-# Build rule for target.
-geometry_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_eus
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RefPhi
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_RefPhi: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RefPhi
-.PHONY : _magmed_msgs_generate_messages_check_deps_RefPhi
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_RefPhi/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefPhi.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefPhi.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_RefPhi/fast
+magmed_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
+.PHONY : magmed_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages_nodejs
@@ -675,17 +636,43 @@ magmed_msgs_generate_messages_nodejs/fast:
 .PHONY : magmed_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboJoints
+# Target rules for targets named geometry_msgs_generate_messages_eus
 
 # Build rule for target.
-_magmed_msgs_generate_messages_check_deps_RoboJoints: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboJoints
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints
+geometry_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_eus
+.PHONY : geometry_msgs_generate_messages_eus
 
 # fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_RoboJoints/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints/fast
+geometry_msgs_generate_messages_eus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_PFjoystick
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_PFjoystick: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_PFjoystick
+.PHONY : _magmed_msgs_generate_messages_check_deps_PFjoystick
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_PFjoystick/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_PFjoystick/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_TipAngle
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_TipAngle: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_TipAngle
+.PHONY : _magmed_msgs_generate_messages_check_deps_TipAngle
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_TipAngle/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_TipAngle/fast
 
 #=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages_cpp
@@ -699,6 +686,110 @@ magmed_msgs_generate_messages_cpp: cmake_check_build_system
 magmed_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build
 .PHONY : magmed_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_geneus
+
+# Build rule for target.
+magmed_msgs_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_geneus
+.PHONY : magmed_msgs_geneus
+
+# fast build rule for target.
+magmed_msgs_geneus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build
+.PHONY : magmed_msgs_geneus/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_lisp
+
+# Build rule for target.
+geometry_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_lisp
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_cpp
+
+# Build rule for target.
+geometry_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_cpp
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_nodejs
+
+# Build rule for target.
+geometry_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_nodejs
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named geometry_msgs_generate_messages_py
+
+# Build rule for target.
+geometry_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 geometry_msgs_generate_messages_py
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboStates
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboStates
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboStates/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates/fast
+
+#=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages
+
+# Build rule for target.
+magmed_msgs_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages
+.PHONY : magmed_msgs_generate_messages
+
+# fast build rule for target.
+magmed_msgs_generate_messages/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
+.PHONY : magmed_msgs_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboJoints
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboJoints: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboJoints
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_RoboJoints/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints/fast
 
 #=============================================================================
 # Target rules for targets named magmed_msgs_gencpp
@@ -725,123 +816,6 @@ magmed_msgs_generate_messages_eus: cmake_check_build_system
 magmed_msgs_generate_messages_eus/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
 .PHONY : magmed_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_lisp
-
-# Build rule for target.
-magmed_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_lisp
-.PHONY : magmed_msgs_generate_messages_lisp
-
-# fast build rule for target.
-magmed_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
-.PHONY : magmed_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_genlisp
-
-# Build rule for target.
-magmed_msgs_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genlisp
-.PHONY : magmed_msgs_genlisp
-
-# fast build rule for target.
-magmed_msgs_genlisp/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build
-.PHONY : magmed_msgs_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_gennodejs
-
-# Build rule for target.
-magmed_msgs_gennodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_gennodejs
-.PHONY : magmed_msgs_gennodejs
-
-# fast build rule for target.
-magmed_msgs_gennodejs/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build
-.PHONY : magmed_msgs_gennodejs/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_PFjoystick
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_PFjoystick: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_PFjoystick
-.PHONY : _magmed_msgs_generate_messages_check_deps_PFjoystick
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_PFjoystick/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_PFjoystick/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_py
-
-# Build rule for target.
-magmed_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_py
-.PHONY : magmed_msgs_generate_messages_py
-
-# fast build rule for target.
-magmed_msgs_generate_messages_py/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
-.PHONY : magmed_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_genpy
-
-# Build rule for target.
-magmed_msgs_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_genpy
-.PHONY : magmed_msgs_genpy
-
-# fast build rule for target.
-magmed_msgs_genpy/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
-.PHONY : magmed_msgs_genpy/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RefTheta
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_RefTheta: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RefTheta
-.PHONY : _magmed_msgs_generate_messages_check_deps_RefTheta
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_RefTheta/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RefTheta.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_RefTheta/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_TipAngle
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_TipAngle: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_TipAngle
-.PHONY : _magmed_msgs_generate_messages_check_deps_TipAngle
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_TipAngle/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_TipAngle/fast
-
-#=============================================================================
-# Target rules for targets named _magmed_msgs_generate_messages_check_deps_RoboStates
-
-# Build rule for target.
-_magmed_msgs_generate_messages_check_deps_RoboStates: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_RoboStates
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates
-
-# fast build rule for target.
-_magmed_msgs_generate_messages_check_deps_RoboStates/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates/fast
 
 #=============================================================================
 # Target rules for targets named velCtrlNode
@@ -881,45 +855,6 @@ velCtrlLib: cmake_check_build_system
 velCtrlLib/fast:
 	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
 .PHONY : velCtrlLib/fast
-
-#=============================================================================
-# Target rules for targets named magrobo_feeder
-
-# Build rule for target.
-magrobo_feeder: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magrobo_feeder
-.PHONY : magrobo_feeder
-
-# fast build rule for target.
-magrobo_feeder/fast:
-	$(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/build
-.PHONY : magrobo_feeder/fast
-
-#=============================================================================
-# Target rules for targets named polarRef
-
-# Build rule for target.
-polarRef: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 polarRef
-.PHONY : polarRef
-
-# fast build rule for target.
-polarRef/fast:
-	$(MAKE) -f magmed_joystick/CMakeFiles/polarRef.dir/build.make magmed_joystick/CMakeFiles/polarRef.dir/build
-.PHONY : polarRef/fast
-
-#=============================================================================
-# Target rules for targets named refSignal
-
-# Build rule for target.
-refSignal: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 refSignal
-.PHONY : refSignal
-
-# fast build rule for target.
-refSignal/fast:
-	$(MAKE) -f magmed_joystick/CMakeFiles/refSignal.dir/build.make magmed_joystick/CMakeFiles/refSignal.dir/build
-.PHONY : refSignal/fast
 
 #=============================================================================
 # Target rules for targets named readJoystick
@@ -1145,35 +1080,30 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... magmed_msgs_generate_messages"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... _magmed_msgs_generate_messages_check_deps_JoyRef"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... magmed_msgs_geneus"
-	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... _magmed_msgs_generate_messages_check_deps_RefPhi"
+	@echo "... magrobo_feeder"
+	@echo "... magmed_msgs_genpy"
+	@echo "... magmed_msgs_generate_messages_py"
+	@echo "... magmed_msgs_gennodejs"
+	@echo "... magmed_msgs_genlisp"
+	@echo "... magmed_msgs_generate_messages_lisp"
 	@echo "... magmed_msgs_generate_messages_nodejs"
-	@echo "... _magmed_msgs_generate_messages_check_deps_RoboJoints"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... _magmed_msgs_generate_messages_check_deps_PFjoystick"
+	@echo "... _magmed_msgs_generate_messages_check_deps_TipAngle"
 	@echo "... magmed_msgs_generate_messages_cpp"
+	@echo "... magmed_msgs_geneus"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
+	@echo "... magmed_msgs_generate_messages"
+	@echo "... _magmed_msgs_generate_messages_check_deps_RoboJoints"
 	@echo "... magmed_msgs_gencpp"
 	@echo "... magmed_msgs_generate_messages_eus"
-	@echo "... magmed_msgs_generate_messages_lisp"
-	@echo "... magmed_msgs_genlisp"
-	@echo "... magmed_msgs_gennodejs"
-	@echo "... _magmed_msgs_generate_messages_check_deps_PFjoystick"
-	@echo "... magmed_msgs_generate_messages_py"
-	@echo "... magmed_msgs_genpy"
-	@echo "... _magmed_msgs_generate_messages_check_deps_RefTheta"
-	@echo "... _magmed_msgs_generate_messages_check_deps_TipAngle"
-	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
 	@echo "... velCtrlNode"
 	@echo "... velocityController"
 	@echo "... velCtrlLib"
-	@echo "... magrobo_feeder"
-	@echo "... polarRef"
-	@echo "... refSignal"
 	@echo "... readJoystick"
 	@echo "... readJoystickTwist"
 	@echo "... PathFinderlib"

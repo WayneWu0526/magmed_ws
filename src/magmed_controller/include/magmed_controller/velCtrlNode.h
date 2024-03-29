@@ -1,5 +1,4 @@
-#ifndef VELCTRLNODE_H
-#define VELCTRLNODE_H
+#pragma once
 
 #include <ros/ros.h>
 #include "magmed_controller/velCtrlDef.h"
@@ -7,6 +6,9 @@
 #include "magmed_controller/diffKine.h"
 #include "magmed_controller/optCtrl.h"
 
+const int CTRL_MODE = 1; // 0：手动版本，1：自动版本
+
+// camera feedback
 class TipAngle
 {
 public:
@@ -15,39 +17,31 @@ public:
     void feed(magmed_msgs::TipAngleConstPtr pMsg);
 };
 
-class JoyRef
+// joystick input (manual control)
+class Joystick
 {
 public:
-    magmed_msgs::JoyRef joy_ref;
-    magmed_msgs::RefPhi ref_phi;
-    magmed_msgs::RefTheta ref_theta;
-    JoyRef()
-    {
-        joy_ref.refPhi.phi = 0.0;
-        joy_ref.refTheta.theta = 0.0;
-        joy_ref.refPhi.dphi = 0.0;
-        joy_ref.refTheta.dtheta = 0.0;
-    };
-    void feed(magmed_msgs::JoyRefConstPtr pMsg);
+    magmed_msgs::PFjoystick joystick;
+    Feeder feeder;
+    DianaTcp dianaTcp;
+    MagCR magCR;
+    void feed(magmed_msgs::PFjoystickConstPtr pMsg);
+    Joystick(){};
 };
 
-class RoboStates
+// diana states
+class Diana
 {
 public:
     magmed_msgs::RoboStates robo_state;
-    RoboStates(){};
-    void feed(magmed_msgs::RoboStatesConstPtr pMsg);
-};
-
-class RoboJoints
-{
-public:
     double joint_states_array[JOINTNUM] = {0.0};
     magmed_msgs::RoboJoints joint_states;
-    RoboJoints(){};
-    void feed(magmed_msgs::RoboJointsConstPtr pMsg);
+    void feedState(magmed_msgs::RoboStatesConstPtr pMsg);
+    void feedJoints(magmed_msgs::RoboJointsConstPtr pMsg);
+    Diana(){};
 };
 
+// velocity control algorithm
 class VelCtrlNode
 {
 public:
@@ -56,52 +50,56 @@ public:
     VelCtrlNode(){};
     VelCtrlNode(ros::NodeHandle &nh) : nh(nh)
     {
-        refSignal_sub = nh.subscribe<magmed_msgs::JoyRef>("/magmed_joystick/joyRef",
-                                                          10,
-                                                          boost::bind(&JoyRef::feed, &refSignal, _1));
+        joystick_sub = nh.subscribe<magmed_msgs::PFjoystick>("/magmed_joystick/joystick_controller",
+                                                             10,
+                                                             boost::bind(&Joystick::feed, &joystick, _1));
 
-        tipAngle_sub = nh.subscribe<magmed_msgs::TipAngle>("/magmed_controller/tipAngle",
+        tipAngle_sub = nh.subscribe<magmed_msgs::TipAngle>("/magmed_camera/tipAngle",
                                                            10,
                                                            boost::bind(&TipAngle::feed, &tipAngle, _1));
 
-        jointStates_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_manipulator/dianajoints",
-                                                                10,
-                                                                boost::bind(&RoboJoints::feed, &jointStates, _1));
+        diana_jointStates_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_manipulator/dianajoints",
+                                                                      10,
+                                                                      boost::bind(&Diana::feedJoints, &diana, _1));
 
-        roboState_sub = nh.subscribe<magmed_msgs::RoboStates>("/magmed_manipulator/dianastate",
-                                                              10,
-                                                              boost::bind(&RoboStates::feed, &roboState, _1));
+        diana_roboState_sub = nh.subscribe<magmed_msgs::RoboStates>("/magmed_manipulator/dianastate",
+                                                                    10,
+                                                                    boost::bind(&Diana::feedState, &diana, _1));
 
-        jointVels_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_controller/joint_vels", 10);
+        diana_jointVels_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_manipulator/joint_vels", 10);
+
+        feeder_vel_pub = nh.advertise<std_msgs::UInt32>("/magmed_feeder/vel", 10);
         // ros::service::waitForService("/magmed_manipulator/roboStates", -1);
     };
 
 private:
-    JoyRef refSignal;
+    Joystick joystick;
     TipAngle tipAngle;
-    RoboJoints jointStates;
-    RoboStates roboState;
+    Diana diana;
 
     ros::NodeHandle nh;
-    ros::Subscriber refSignal_sub;
+    ros::Subscriber joystick_sub;
     ros::Subscriber tipAngle_sub;
-    ros::Subscriber jointStates_sub;
-    ros::Subscriber roboState_sub;
-    ros::Publisher jointVels_pub;
+    ros::Subscriber diana_jointStates_sub;
+    ros::Subscriber diana_roboState_sub;
+    ros::Publisher diana_jointVels_pub;
+    ros::Publisher feeder_vel_pub;
 
     optCtrl optctrl;
     diffKine diffkine;
-    int pubJointVels();
+    int pubVels();
     int loadInitPose();
+    int nRet = 0;
 };
 
+// 自动和手动模式。手动：0，自动：1
 void VelCtrlNode::run()
 {
     int initFlag = 0;
     ros::Rate loop_rate(CTRLFREQ);
     while (ros::ok())
     {
-        switch (roboState.robo_state.VAL)
+        switch (diana.robo_state.VAL)
         {
         case 0: // robot init
             if (initFlag == 0)
@@ -110,14 +108,15 @@ void VelCtrlNode::run()
                 initFlag = 1;
             }
             break;
+        // 机械臂已到达初始位置
         case 1: // robot run
-            if (initFlag == 1)
-            {
-                diffkine.initConfig(jointStates.joint_states_array);
-                initFlag = -1;
-                ROS_INFO("Ctrl init finished\n");
-            }
-            pubJointVels();
+            // if (initFlag == 1)
+            // {
+            //     diffkine.initConfig(diana.joint_states_array);
+            //     initFlag = -1;
+            //     ROS_INFO("Ctrl init finished\n");
+            // }
+            nRet = pubVels();
             break;
         case -1: // robot term
             ROS_WARN("Robot term, shutting down ros\n");
@@ -137,7 +136,7 @@ int VelCtrlNode::loadInitPose()
     // count init config
     std::vector<double> pose(6, 0.0);
     std::vector<Eigen::MatrixXd> Rp = TransToRp(diffkine.params.Tsg);
-    Vector3d P0 =  Rp[0] * diffkine.params.Pgb0 + Rp[1];
+    Vector3d P0 = Rp[0] * diffkine.params.Pgb0 + Rp[1];
     pose[0] = P0(0);
     pose[1] = P0(1);
     pose[2] = P0(2);
@@ -154,44 +153,65 @@ int VelCtrlNode::loadInitPose()
     return 0;
 }
 
-int VelCtrlNode::pubJointVels()
+// 闭环控制还需要分两种，一种是手柄操作一种是直接操作
+int VelCtrlNode::pubVels()
 {
+
     magmed_msgs::RoboJoints joint_vels;
     // get real mag pose
-    diffkine.getMagPose(optctrl.magPose, jointStates.joint_states_array);
+    diffkine.getMagPose(optctrl.magPose, diana.joint_states_array);
     // get mag twist
     // diffkine.magTwist = optctrl.generateMagTwist(refSignal.ref_theta, tipAngle.tip_angle);
-    diffkine.magTwist.psi = refSignal.ref_theta.dtheta;
+    diffkine.magTwist.psi = joystick.magCR.theta[2];
     // get joint vels
     // refSignal.ref_phi.dphi = 0.01;
-    // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
-    VectorXd jointVels = diffkine.jacobiMap_dlt(refSignal.ref_phi, jointStates.joint_states_array);
-    // print jointVels
-    // std::cout << "jointVels: " << jointVels << std::endl;
-    for (int i = 0; i < JOINTNUM; ++i)
+
+    // pub feeder
+    std_msgs::UInt32 feeder_msg;
+    switch(CTRL_MODE)
     {
-        // push_back joint_vels
-        joint_vels.joints.push_back(jointVels(i));
+    case 0: // 手动控制
+    {
+        VectorXd jointVels = diffkine.jacobiMap_tcp(joystick.dianaTcp.tcp_vel, diana.joint_states_array);
+        for (int i = 0; i < JOINTNUM; ++i)
+        {
+            // push_back joint_vels
+            joint_vels.joints.push_back(jointVels(i));
+        }
+        diana_jointVels_pub.publish(joint_vels);
+
+        feeder_msg.data = joystick.feeder.feeder_vel;
+        feeder_vel_pub.publish(feeder_msg);
+        break;
     }
-    jointVels_pub.publish(joint_vels);
+    case 1: // 自动控制
+    {
+        // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
+        VectorXd jointVels = diffkine.jacobiMap(joystick.magCR.phi, diana.joint_states_array);
+        for (int i = 0; i < JOINTNUM; ++i)
+        {
+            // push_back joint_vels
+            joint_vels.joints.push_back(jointVels(i));
+        }
+        diana_jointVels_pub.publish(joint_vels);
+
+        feeder_msg.data = joystick.feeder.feeder_vel;
+        feeder_vel_pub.publish(feeder_msg);
+        break;
+    }
+    default:
+        break;
+    }
+
     return 0;
 }
-
 
 void TipAngle::feed(magmed_msgs::TipAngleConstPtr pMsg)
 {
     tip_angle = *pMsg;
 };
 
-void JoyRef::feed(magmed_msgs::JoyRefConstPtr pMsg)
-{
-    joy_ref = *pMsg;
-    ref_theta = joy_ref.refTheta;
-    ref_phi = joy_ref.refPhi;
-    ROS_INFO("ref_phi: %f, ref_dphi: %f\n", ref_phi.phi, ref_phi.dphi);
-};
-
-void RoboJoints::feed(magmed_msgs::RoboJointsConstPtr pMsg)
+void Diana::feedJoints(magmed_msgs::RoboJointsConstPtr pMsg)
 {
 
     joint_states = *pMsg;
@@ -201,9 +221,40 @@ void RoboJoints::feed(magmed_msgs::RoboJointsConstPtr pMsg)
     }
 };
 
-void RoboStates::feed(magmed_msgs::RoboStatesConstPtr pMsg)
+void Diana::feedState(magmed_msgs::RoboStatesConstPtr pMsg)
 {
     robo_state = *pMsg;
 };
 
-#endif
+void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
+{
+    joystick = *pMsg;
+    // feeder 数据
+    feeder.FEEDER_VEL_GAIN = joystick.POTA * 50;
+    feeder.feeder_vel = static_cast<uint32_t>(feeder.FEEDER_VEL_GAIN * joystick.nJOY3[0]);
+    // diana tcp 数据
+    dianaTcp.TCP_VEL_GAIN = joystick.POTB / 1000.0 * M_PI;
+    if (joystick.bJOYD)
+    {
+        dianaTcp.tcp_vel[0] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[1];
+        dianaTcp.tcp_vel[1] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[0];
+        dianaTcp.tcp_vel[2] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[2];
+        dianaTcp.tcp_vel[3] = 0.0;
+        dianaTcp.tcp_vel[4] = 0.0;
+        dianaTcp.tcp_vel[5] = 0.0;
+    }
+    else
+    {
+        dianaTcp.tcp_vel[0] = 0.0;
+        dianaTcp.tcp_vel[1] = 0.0;
+        dianaTcp.tcp_vel[2] = 0.0;
+        dianaTcp.tcp_vel[3] = - dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[1];
+        dianaTcp.tcp_vel[4] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[0];
+        dianaTcp.tcp_vel[5] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[2];
+    }
+    // magCR 数据
+    magCR.phi[0] = 0.0;
+    magCR.phi[1] = joystick.nJOY1[1];
+    magCR.theta[0] = 0.0;
+    magCR.theta[1] = joystick.nJOY1[2];
+}

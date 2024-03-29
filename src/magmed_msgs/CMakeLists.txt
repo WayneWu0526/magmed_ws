@@ -53,9 +53,6 @@ add_message_files(
   FILES
   PFjoystick.msg
   RoboJoints.msg
-  JoyRef.msg
-  RefPhi.msg
-  RefTheta.msg
   RoboStates.msg
   TipAngle.msg
 )

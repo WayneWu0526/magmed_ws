@@ -6,29 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-std_msgs/Header.h
--
-
 /home/zhang/magmed_ws/src/magmed_feeder/include/magrobo_feeder.hpp
 serial/serial.h
 -
-magmed_msgs/PFjoystick.h
-/home/zhang/magmed_ws/src/magmed_feeder/include/magmed_msgs/PFjoystick.h
+std_msgs/UInt32.h
+/home/zhang/magmed_ws/src/magmed_feeder/include/std_msgs/UInt32.h
 ros/ros.h
 /home/zhang/magmed_ws/src/magmed_feeder/include/ros/ros.h
 vector
@@ -714,7 +696,7 @@ stdio.h
 stdint.h
 -
 
-/opt/ros/noetic/include/std_msgs/Header.h
+/opt/ros/noetic/include/std_msgs/UInt32.h
 string
 -
 vector
