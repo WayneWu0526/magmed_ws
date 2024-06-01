@@ -57,6 +57,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp
 
 
 /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
@@ -82,11 +83,19 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg
 
+/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
+/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Lisp code from magmed_msgs/SelfCollisionCheck.srv"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv
+
 magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboStates.lisp
 magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/TipAngle.lisp
+magmed_msgs_generate_messages_lisp: /home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/srv/SelfCollisionCheck.lisp
 magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make
 
 .PHONY : magmed_msgs_generate_messages_lisp

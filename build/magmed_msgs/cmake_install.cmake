@@ -47,6 +47,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_msgs/srv" TYPE FILE FILES "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/magmed_msgs/cmake" TYPE FILE FILES "/home/zhang/magmed_ws/build/magmed_msgs/catkin_generated/installspace/magmed_msgs-msg-paths.cmake")
 endif()
 

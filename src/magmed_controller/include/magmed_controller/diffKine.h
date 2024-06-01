@@ -23,6 +23,8 @@ struct diana7KineSpaceParam
     Matrix3d Rgb0 = Matrix3d::Identity();
     Vector3d Pgb0;
     Matrix4d Tsg;
+    // create a vector to store the minimum joint velocity limits
+    Eigen::Matrix<double, JOINTNUM, 1> jointVelLimits;
 
     diana7KineSpaceParam() // 构造函数。当直接执行时，会按照下面的参数初始化
     {
@@ -50,6 +52,10 @@ struct diana7KineSpaceParam
         Rgb0.diagonal() << -1.0, 1.0, -1.0; // 机械臂相对于机器人的初始位置
 
         Pgb0 << pr.L, pr.H0, 0.0;
+
+        jointVelLimits << 2.61, 2.618, 2.61, 2.61, 3.14, 3.14, 3.14;
+        // jointVelLimits << 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0;
+        // jointVelLimits << 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5;
     };
 
     // 构造函数，执行时会按照输入的函数进行初始化
@@ -63,8 +69,8 @@ struct PICtrlParam
     int nf_;    //
     PICtrlParam()
     {
-        kp_ = 1.0;
-        ki_ = 0.01;
+        kp_ = 0.8; // default: 2.0
+        ki_ = 0.0;
         nf_ = CTRLFREQ;
     }; // 构造函数
 
@@ -82,8 +88,9 @@ public:
     diana7KineSpaceParam params = diana7KineSpaceParam();
     // void initConfig(const double (&thetaList)[JOINTNUM]);
     void getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM]);
-    VectorXd jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM]);
+    VectorXd jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM], const int CTRLMODE);
     VectorXd jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (&thetaList)[JOINTNUM]);
+    VectorXd ctrlModeTrans(const double (&thetaList)[JOINTNUM], int* CTRLMODE, const int TRANSMETHOD);
     MagPose magTwist; // 磁性机器人的期望速度，包括psi和pos
     diffKine()
     {
@@ -94,7 +101,7 @@ public:
 private:
     Matrix3d Rotphi = Matrix3d::Identity();
     Matrix3d Rinit = Matrix3d::Identity();
-    Matrix4d T0 = Matrix4d::Identity(); // 初始位姿
+    // void smoothTraj(Vector2d &Omega, const Vector2d &OMEGA, double T);
     PICtrlParam piparams = PICtrlParam();
     // JacobiMap function: MagPos -> DsrTwist
     Matrix3d Rphi(double phi);

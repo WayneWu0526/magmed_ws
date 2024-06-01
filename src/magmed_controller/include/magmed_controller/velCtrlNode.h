@@ -6,7 +6,7 @@
 #include "magmed_controller/diffKine.h"
 #include "magmed_controller/optCtrl.h"
 
-const int CTRL_MODE = 1; // 0：手动版本，1：自动版本
+const int SYSCTRLMODE = 0; // 0：手动版本，1：自动版本
 
 // camera feedback
 class TipAngle
@@ -69,6 +69,8 @@ public:
         diana_jointVels_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_manipulator/joint_vels", 10);
 
         feeder_vel_pub = nh.advertise<std_msgs::UInt32>("/magmed_feeder/vel", 10);
+
+        selfcollision_client = nh.serviceClient<magmed_msgs::SelfCollisionCheck>("/magmed_modules/selfCollisionCheck"); 
         // ros::service::waitForService("/magmed_manipulator/roboStates", -1);
     };
 
@@ -84,12 +86,16 @@ private:
     ros::Subscriber diana_roboState_sub;
     ros::Publisher diana_jointVels_pub;
     ros::Publisher feeder_vel_pub;
+    ros::ServiceClient selfcollision_client;
 
     optCtrl optctrl;
     diffKine diffkine;
     int pubVels();
     int loadInitPose();
     int nRet = 0;
+    int CTRLMODE = enum_CTRLMODE::NM;
+    bool SCC_FLAG = false;
+    // bool isSwitching = false;
 };
 
 // 自动和手动模式。手动：0，自动：1
@@ -97,6 +103,7 @@ void VelCtrlNode::run()
 {
     int initFlag = 0;
     ros::Rate loop_rate(CTRLFREQ);
+    ros::service::waitForService("/magmed_modules/selfCollisionCheck", -1);
     while (ros::ok())
     {
         switch (diana.robo_state.VAL)
@@ -156,7 +163,6 @@ int VelCtrlNode::loadInitPose()
 // 闭环控制还需要分两种，一种是手柄操作一种是直接操作
 int VelCtrlNode::pubVels()
 {
-
     magmed_msgs::RoboJoints joint_vels;
     // get real mag pose
     diffkine.getMagPose(optctrl.magPose, diana.joint_states_array);
@@ -168,7 +174,7 @@ int VelCtrlNode::pubVels()
 
     // pub feeder
     std_msgs::UInt32 feeder_msg;
-    switch(CTRL_MODE)
+    switch(SYSCTRLMODE)
     {
     case 0: // 手动控制
     {
@@ -186,8 +192,48 @@ int VelCtrlNode::pubVels()
     }
     case 1: // 自动控制
     {
-        // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
-        VectorXd jointVels = diffkine.jacobiMap(joystick.magCR.phi, diana.joint_states_array);
+        VectorXd jointVels = VectorXd::Zero(JOINTNUM);
+        switch(CTRLMODE)
+        {
+            enum_TRANSMETHOD TRANSMETHOD = enum_TRANSMETHOD::NT;
+            case enum_CTRLMODE::TRANS:
+            {
+                // 1.2.1. 如果检查后显示不会碰撞，则让diffKine.jacobiMap发布切换过程的jointVels
+                // 1.2.2. 如果检查后仍碰撞，则停止机械臂运动
+                // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
+                // jointVels = diffkine.jacobiMap(joystick.magCR.phi, diana.joint_states_array, CTRLMODE);
+                jointVels = diffkine.ctrlModeTrans(diana.joint_states_array, &CTRLMODE, TRANSMETHOD);
+                break;
+            }
+            default:
+            {
+                jointVels = diffkine.jacobiMap(joystick.magCR.phi, diana.joint_states_array, CTRLMODE);
+                // 1. 基于当前的diana.joint_states和jointVels一步预测未来的q会不会发生碰撞
+                magmed_msgs::RoboJoints pred_robojoints;
+                for(int i = 0; i < JOINTNUM; ++i)
+                {
+                    pred_robojoints.joints.push_back(diana.joint_states_array[i] + jointVels(i) / CTRLFREQ);
+                }
+                // selfCollisionCheck
+                magmed_msgs::SelfCollisionCheck sCC;
+                sCC.request.joints = pred_robojoints;
+                if(sCC.response.checkResult == true) // 1.1.1 如果会碰撞，则检测其他的控制模式
+                {
+                    CTRLMODE = enum_CTRLMODE::TRANS;
+                }
+                else // 1.2. 如果selfCollisionCheck调用失败
+                {
+                    ROS_INFO("Failed/Not to call service selfCollisionCheck\n");
+                    // break;
+                }
+                break;
+            }
+        }
+
+        // 发布jointVels
+
+        // 将jointVels缩放至合适的范围
+
         for (int i = 0; i < JOINTNUM; ++i)
         {
             // push_back joint_vels
@@ -252,9 +298,16 @@ void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
         dianaTcp.tcp_vel[4] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[0];
         dianaTcp.tcp_vel[5] = dianaTcp.TCP_VEL_GAIN * joystick.nJOY1[2];
     }
-    // magCR 数据
-    magCR.phi[0] = 0.0;
-    magCR.phi[1] = joystick.nJOY1[1];
+    // magCR 数据 增量数据
+    magCR.phi[0] = M_PI / 2.0 * joystick.nJOY1[1];
+    magCR.phi[1] = 0.0;
+    // magCR.phi[0] += magCR.phi[1] / CTRLFREQ;
     magCR.theta[0] = 0.0;
     magCR.theta[1] = joystick.nJOY1[2];
+
+    // magCR.phi[0] = joystick.nJOY1[0];
+    // magCR.phi[1] = 0.0;
+    // magCR.theta[0] = sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2)); // 模值开方
+    // magCR.theta[1] = 0.0;
+
 }

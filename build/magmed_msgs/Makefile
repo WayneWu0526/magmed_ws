@@ -56,16 +56,6 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -99,6 +89,18 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -123,17 +125,15 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -241,6 +241,21 @@ magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_
 magmed_msgs_generate_messages_lisp/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
 .PHONY : magmed_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
+.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
+
+.PHONY : magmed_msgs_generate_messages_eus
+
+# fast build rule for target.
+magmed_msgs_generate_messages_eus/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+.PHONY : magmed_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule:
@@ -438,6 +453,21 @@ _magmed_msgs_generate_messages_check_deps_RoboJoints/fast:
 .PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints/fast
 
 # Convenience name for target.
+magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule
+.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule
+
+# Convenience name for target.
+_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule
+
+.PHONY : _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck/fast:
+	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck/fast
+
+# Convenience name for target.
 magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule
 .PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule
@@ -452,28 +482,12 @@ magmed_msgs_gencpp/fast:
 	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build
 .PHONY : magmed_msgs_gencpp/fast
 
-# Convenience name for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_eus
-
-# fast build rule for target.
-magmed_msgs_generate_messages_eus/fast:
-	cd /home/zhang/magmed_ws/build && $(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-.PHONY : magmed_msgs_generate_messages_eus/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
@@ -482,6 +496,8 @@ help:
 	@echo "... magmed_msgs_gennodejs"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_generate_messages_lisp"
+	@echo "... install/strip"
+	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... install/local"
 	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_eus"
@@ -497,9 +513,9 @@ help:
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
 	@echo "... magmed_msgs_generate_messages"
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboJoints"
+	@echo "... list_install_components"
+	@echo "... _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck"
 	@echo "... magmed_msgs_gencpp"
-	@echo "... install/strip"
-	@echo "... magmed_msgs_generate_messages_eus"
 .PHONY : help
 
 

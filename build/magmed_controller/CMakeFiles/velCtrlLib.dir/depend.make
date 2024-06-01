@@ -4,6 +4,9 @@
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
@@ -21,6 +24,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noeti
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/rostime_decl.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/serialization.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/service_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/types.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
@@ -32,6 +36,9 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noeti
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h
@@ -50,6 +57,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/rostime_decl.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/serialization.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/service_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/types.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
@@ -61,6 +69,9 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/optCtrl.h
@@ -79,6 +90,7 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/i
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/rostime_decl.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/serialization.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/service_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/time.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/types.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/std_msgs/Float64MultiArray.h

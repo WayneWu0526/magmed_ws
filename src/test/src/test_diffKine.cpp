@@ -5,6 +5,8 @@
 
 #define JOINTNUM 7
 
+enum_DUALMODE DUALMODE = MODEA;
+
 int main(int argc, char *argv[])
 {
     /* code */
@@ -29,7 +31,7 @@ int main(int argc, char *argv[])
     {
         dk.magTwist.psi = 0.03;
         dk.magTwist.pos = {0.0, 0.03, 0.0};
-        JointsVels = dk.jacobiMap(refPhi, thetalist);
+        JointsVels = dk.jacobiMap(refPhi, thetalist, DUALMODE);
         
         // refPhi.phi += refPhi.dphi * h;
         // update thetalist

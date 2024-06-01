@@ -623,6 +623,19 @@ magmed_msgs_generate_messages_lisp/fast:
 .PHONY : magmed_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named magmed_msgs_generate_messages_eus
+
+# Build rule for target.
+magmed_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
+.PHONY : magmed_msgs_generate_messages_eus
+
+# fast build rule for target.
+magmed_msgs_generate_messages_eus/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+.PHONY : magmed_msgs_generate_messages_eus/fast
+
+#=============================================================================
 # Target rules for targets named magmed_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -792,6 +805,19 @@ _magmed_msgs_generate_messages_check_deps_RoboJoints/fast:
 .PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints/fast
 
 #=============================================================================
+# Target rules for targets named _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck
+
+# Build rule for target.
+_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck
+.PHONY : _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck
+
+# fast build rule for target.
+_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck/fast:
+	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build
+.PHONY : _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck/fast
+
+#=============================================================================
 # Target rules for targets named magmed_msgs_gencpp
 
 # Build rule for target.
@@ -803,19 +829,6 @@ magmed_msgs_gencpp: cmake_check_build_system
 magmed_msgs_gencpp/fast:
 	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build
 .PHONY : magmed_msgs_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named magmed_msgs_generate_messages_eus
-
-# Build rule for target.
-magmed_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs_generate_messages_eus
-.PHONY : magmed_msgs_generate_messages_eus
-
-# fast build rule for target.
-magmed_msgs_generate_messages_eus/fast:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-.PHONY : magmed_msgs_generate_messages_eus/fast
 
 #=============================================================================
 # Target rules for targets named velCtrlNode
@@ -1086,6 +1099,7 @@ help:
 	@echo "... magmed_msgs_gennodejs"
 	@echo "... magmed_msgs_genlisp"
 	@echo "... magmed_msgs_generate_messages_lisp"
+	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... magmed_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... _magmed_msgs_generate_messages_check_deps_PFjoystick"
@@ -1099,8 +1113,8 @@ help:
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboStates"
 	@echo "... magmed_msgs_generate_messages"
 	@echo "... _magmed_msgs_generate_messages_check_deps_RoboJoints"
+	@echo "... _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck"
 	@echo "... magmed_msgs_gencpp"
-	@echo "... magmed_msgs_generate_messages_eus"
 	@echo "... velCtrlNode"
 	@echo "... velocityController"
 	@echo "... velCtrlLib"

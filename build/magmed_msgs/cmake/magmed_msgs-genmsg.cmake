@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "magmed_msgs: 4 messages, 0 services")
+message(STATUS "magmed_msgs: 4 messages, 1 services")
 
 set(MSG_I_FLAGS "-Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -37,6 +37,11 @@ add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" "std_msgs/Header"
 )
 
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
+add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" "std_msgs/Header:magmed_msgs/RoboJoints"
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -69,6 +74,12 @@ _generate_msg_cpp(magmed_msgs
 )
 
 ### Generating Services
+_generate_srv_cpp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
+)
 
 ### Generating Module File
 _generate_module_cpp(magmed_msgs
@@ -89,6 +100,8 @@ add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_message
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_cpp _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -126,6 +139,12 @@ _generate_msg_eus(magmed_msgs
 )
 
 ### Generating Services
+_generate_srv_eus(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
+)
 
 ### Generating Module File
 _generate_module_eus(magmed_msgs
@@ -146,6 +165,8 @@ add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_message
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_eus _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -183,6 +204,12 @@ _generate_msg_lisp(magmed_msgs
 )
 
 ### Generating Services
+_generate_srv_lisp(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
+)
 
 ### Generating Module File
 _generate_module_lisp(magmed_msgs
@@ -203,6 +230,8 @@ add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messag
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_lisp _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -240,6 +269,12 @@ _generate_msg_nodejs(magmed_msgs
 )
 
 ### Generating Services
+_generate_srv_nodejs(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
+)
 
 ### Generating Module File
 _generate_module_nodejs(magmed_msgs
@@ -260,6 +295,8 @@ add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_mess
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_nodejs _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -297,6 +334,12 @@ _generate_msg_py(magmed_msgs
 )
 
 ### Generating Services
+_generate_srv_py(magmed_msgs
+  "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
+)
 
 ### Generating Module File
 _generate_module_py(magmed_msgs
@@ -317,6 +360,8 @@ add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg" NAME_WE)
+add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_dependencies(magmed_msgs_generate_messages_py _magmed_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

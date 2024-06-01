@@ -57,6 +57,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js
 
 
 /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
@@ -82,11 +83,19 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg
 
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from magmed_msgs/SelfCollisionCheck.srv"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv
+
 magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboStates.js
 magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/TipAngle.js
+magmed_msgs_generate_messages_nodejs: /home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/srv/SelfCollisionCheck.js
 magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make
 
 .PHONY : magmed_msgs_generate_messages_nodejs

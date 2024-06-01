@@ -5,6 +5,9 @@ magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o
  /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h

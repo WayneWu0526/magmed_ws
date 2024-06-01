@@ -4,6 +4,9 @@
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/src/dianaManipulator_joystick.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h

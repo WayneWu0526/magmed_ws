@@ -91,7 +91,13 @@
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/rebuild_cache.dir
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_maglocator/CMakeFiles/test.dir
-/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/list_install_components.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/install/strip.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/install/local.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/install.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/list_install_components.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/rebuild_cache.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/edit_cache.dir
+/home/zhang/magmed_ws/build/magmed_modules/CMakeFiles/test.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/rebuild_cache.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/edit_cache.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/test.dir
@@ -100,6 +106,8 @@
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir
+/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/install/strip.dir
+/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/install/local.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir
@@ -115,9 +123,9 @@
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir
+/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/list_install_components.dir
+/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir
 /home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir
-/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/install/strip.dir
-/home/zhang/magmed_ws/build/magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/install/strip.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/install.dir
 /home/zhang/magmed_ws/build/magmed_controller/CMakeFiles/list_install_components.dir

@@ -546,6 +546,12 @@ magmed_manipulator_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_manipula
 magmed_manipulator_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_manipulator
 
 //Value Computed by CMake
+magmed_modules_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_modules
+
+//Value Computed by CMake
+magmed_modules_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_modules
+
+//Value Computed by CMake
 magmed_msgs_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_msgs
 
 //The directory containing a CMake configuration file for magmed_msgs.
@@ -553,6 +559,18 @@ magmed_msgs_DIR:PATH=/home/zhang/magmed_ws/devel/share/magmed_msgs/cmake
 
 //Value Computed by CMake
 magmed_msgs_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_msgs
+
+//Value Computed by CMake
+magmed_safeRL_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_safeRL
+
+//Value Computed by CMake
+magmed_safeRL_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_safeRL
+
+//Value Computed by CMake
+magmed_srv_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_srv
+
+//Value Computed by CMake
+magmed_srv_SOURCE_DIR:STATIC=/home/zhang/magmed_ws/src/magmed_srv
 
 //Value Computed by CMake
 magmed_virtualsurgery_BINARY_DIR:STATIC=/home/zhang/magmed_ws/build/magmed_virtualsurgery
@@ -779,7 +797,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=16
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=17
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

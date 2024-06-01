@@ -5,6 +5,9 @@ magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o
  /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
@@ -22,6 +25,7 @@ magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o
  /opt/ros/noetic/include/ros/rostime_decl.h
  /opt/ros/noetic/include/ros/serialization.h
  /opt/ros/noetic/include/ros/serialized_message.h
+ /opt/ros/noetic/include/ros/service_traits.h
  /opt/ros/noetic/include/ros/time.h
  /opt/ros/noetic/include/ros/types.h
  /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
@@ -33,6 +37,9 @@ magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
  /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+ /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
  /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h

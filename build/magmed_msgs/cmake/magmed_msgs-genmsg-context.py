@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = "/home/zhang/magmed_ws/src/magmed_msgs/msg/PFjoystick.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
-services_str = ""
+services_str = "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
 pkg_name = "magmed_msgs"
 dependencies_str = "geometry_msgs;std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

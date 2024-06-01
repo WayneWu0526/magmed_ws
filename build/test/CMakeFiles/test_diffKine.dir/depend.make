@@ -4,6 +4,9 @@
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckRequest.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheckResponse.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/MSCRJacobi.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/diffKine.h
@@ -22,6 +25,7 @@ test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/inclu
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/rostime_decl.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/serialization.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/service_traits.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/time.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/types.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/std_msgs/Float64MultiArray.h

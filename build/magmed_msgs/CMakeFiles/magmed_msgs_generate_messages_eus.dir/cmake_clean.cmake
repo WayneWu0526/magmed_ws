@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/TipAngle.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l"
   "CMakeFiles/magmed_msgs_generate_messages_eus"
 )
 

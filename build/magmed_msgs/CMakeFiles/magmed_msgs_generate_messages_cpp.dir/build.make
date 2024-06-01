@@ -57,6 +57,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
 
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -86,11 +87,21 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating C++ code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/gencpp/msg.h.template
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating C++ code from magmed_msgs/SelfCollisionCheck.srv"
+	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
+
 magmed_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboJoints.h
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/RoboStates.h
 magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/TipAngle.h
+magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h
 magmed_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make
 
 .PHONY : magmed_msgs_generate_messages_cpp

@@ -39,7 +39,7 @@ void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM])
     magPose.pos = Rp[0] * Rp[1];
 };
 
-VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM])
+VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM], const int CTRLMODE)
 {
     // compute Jb
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
@@ -52,41 +52,55 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&thetaList
     // use real input
     // VectorXd v_sg = VectorXd::Zero(6); // 预留：机器人的twist
 
-    // phi_d[0] = refPhi[0];
-    // phi_d[1] = refPhi[1];
+    phi_d[0] = refPhi[0];
+    phi_d[1] = refPhi[1];
+    printf("phi_d[0]: %f, phi_d[1]: %f\n", phi_d[0], phi_d[1]);
 
     // psi_d[0] +=  magTwist.psi / CTRLFREQ;
     // psi_d[1] = magTwist.psi;
-    
+
     // pos_d[0] += magTwist.pos / CTRLFREQ;
     // pos_d[1] = magTwist.pos;
 
     // use mock input
     VectorXd v_sg = VectorXd::Zero(6); // 机器人坐标系的twist
-    phi_d[0] = 0.0;
-    phi_d[1] += phi_d[0] / CTRLFREQ;
-    psi_d[0] = 0.0;
-    psi_d[1] += psi_d[0] / CTRLFREQ;
-    pos_d[0] = Vector3d::Zero();
+    // double PHI_D = -M_PI / 2.0;
+    // phi_d[1] = PHI_D / 30.0; // dphi
+    // phi_d[0] += phi_d[1] / CTRLFREQ; // phi
+
+    psi_d[1] = 0.0; // dpsi
+    psi_d[0] += psi_d[1] / CTRLFREQ; // psi
+    
     pos_d[1] = Vector3d::Zero();
+    pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
+
+    // 设置对偶模态切换角度和角速度
+    double omega = 0.0;
+    switch(CTRLMODE)
+    {
+        case enum_CTRLMODE::NM:
+        {
+            omega = 0.0;
+            break;
+        }
+        default:
+        {
+            omega = M_PI;
+            break;
+        }
+    }
 
     // compute desired pose
     MatrixXd T0 = RpToTrans(diffKine::params.Rgb0, diffKine::params.Pgb0);
     MatrixXd T1 = RpToTrans(Rphi(phi_d[0]), Vector3d::Zero());
     MatrixXd T2 = RpToTrans(Rpsi(psi_d[0]), pos_d[0]);
-    MatrixXd Tgd = T1 * T0 * T2;
+    MatrixXd T3 = RpToTrans(Rphi(omega), Vector3d::Zero());
+    MatrixXd Tgd = T1 * T0 * T2 * T3;
     // 预留接口：change of robot pose
     // diffKine::params.Tsg 与 v_sg 的增量
     MatrixXd Tsd = diffKine::params.Tsg * Tgd;
 
     // 控制模态切换矩阵T3
-    MatrixXd T3 = MatrixXd::Identity(4, 4);
-    if(true)
-    {
-        MatrixXd T3 = MatrixXd::Identity(4, 4);
-        Tsd = Tsd * T3;
-        Tgd = TransInv(diffKine::params.Tsg) * Tsd;
-    }
     Eigen::Matrix<double, TCPNUM, INPUTNUM> J;
     // 初始化J，赋0元素
     J.setZero();
@@ -98,29 +112,118 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&thetaList
 
     // desired twist Vd
     VectorXd dPos(INPUTNUM);
-    dPos << refPhi[1], magTwist.psi, magTwist.pos; // For closed-loop control
+    dPos << phi_d[1], psi_d[1], pos_d[1]; // For closed-loop control
 
     VectorXd nu_sd(TCPNUM);
-    nu_sd = J * dPos + Adjoint(TransInv((Tgd))) * v_sg;
+    nu_sd = J * dPos + Adjoint(TransInv((Tgd))) * v_sg; // + VectorXd::Unit(6, 0) * omega_d[1];
 
+    // weighted damped persudo-inverse
+    double LAMBDA_MAX = 0.005; // max damping factor
+    double EPSILON = 0.005;    // min damping factor
+    double lambda = 0.0;
     DiagonalMatrix<double, JOINTNUM> W;
-    W.diagonal() << 100.0, 10.0, 10.0, 10.0, 10.0, 10.0, 1.0;
-    MatrixXd pinvJb = W.inverse() * Jb.transpose() * (Jb * W.inverse() * Jb.transpose()).inverse();
+    // W.diagonal() << 10.0, 10.0, 0.1, 10.0, 0.1, 1.0, 1.0; // W越小表示对应关节优先级越高
+    W.diagonal() << 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.1;
+    JacobiSVD<MatrixXd> svd(Jb * W);
+    VectorXd singular_values = svd.singularValues();
+    if (singular_values.minCoeff() < EPSILON)
+    {
+        lambda = (1-pow(singular_values.minCoeff() / EPSILON, 2))*LAMBDA_MAX;
+    }
+    // dont need to use damping
+    lambda = 0.0;
+
+    MatrixXd pinvJb = W.inverse() * Jb.transpose() * (Jb * W.inverse() * Jb.transpose() + lambda * MatrixXd::Identity(TCPNUM, TCPNUM)).inverse();
 
     // compute dthetalist
     VectorXd taue = se3ToVec(MatrixLog6(TransInv(Tsb) * Tsd));
     VectorXd dthetalist(JOINTNUM);
     dthetalist = pinvJb * (Adjoint(TransInv(Tsb) * Tsd) * nu_sd + diffKine::piparams.kp_ * taue);
 
-    // saturate the joint velocity
-    // Eigen::VectorXd dqmax(7);
-    // dqmax << 2.61, 2.618, 2.61, 2.61, 3.14, 3.14, 3.14;
-    // dthetalist = dthetalist.cwiseMin(dqmax);
-    // dthetalist = dthetalist.cwiseMax(-dqmax);
+    return dthetalist;
+};
+
+VectorXd diffKine::ctrlModeTrans(const double (&thetaList)[JOINTNUM], int* CTRLMODE, const int TRANSMETHOD)
+{
+
+    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
+    MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
+    // compute the spatial Jacobian
+    MatrixXd Js = JacobianSpace(params.Slist, thetalist);
+    // compute the body Jacobian
+    MatrixXd Jb = Adjoint(TransInv(Tsb)) * Js;   
+
+    VectorXd dthetalist = VectorXd::Zero(JOINTNUM);
+    switch (TRANSMETHOD)
+    {
+        case enum_TRANSMETHOD::OCT:
+        {
+            /* code */
+            break;
+        }
+        case enum_TRANSMETHOD::OFT:
+        {
+            /* code */
+            break;
+        }
+        case enum_TRANSMETHOD::optOFT:
+        {
+            /* code */
+            break;
+        }
+        default: // default:NT
+        {
+            
+            break;
+        }
+    };
+
+    // 判断需要被切换到的控制模态
+    if (dthetalist.norm() < 0.01)
+    {
+        if (*CTRLMODE == enum_CTRLMODE::NM)
+        {
+            if (TRANSMETHOD == enum_TRANSMETHOD::NT)
+            {
+                if (thetaList[6] > 0.0)
+                {
+                    *CTRLMODE = enum_CTRLMODE::SM;
+                }
+                else
+                {
+                    *CTRLMODE = enum_CTRLMODE::DM;
+                }
+            }
+            else
+            {
+                *CTRLMODE = enum_CTRLMODE::DM;
+            }
+        }
+        else
+        {
+            *CTRLMODE = enum_CTRLMODE::NM;
+        }
+    }
 
     return dthetalist;
 };
 
+// void diffKine::smoothTraj(Vector2d &Omega, const Vector2d &OMEGA, double T)
+// {
+//     // smooth the trajectory using 3-times differentiable function
+//     static double t = 0.0;
+//     if (t < T)
+//     {
+//         Omega[0] = OMEGA[0] + (3.0 * pow(t, 2) / pow(T, 2) - 2.0 * pow(t, 3) / pow(T, 3)) * (OMEGA[1] - OMEGA[0]);
+//         Omega[1] = (6.0 * t / pow(T, 2) - 6.0 * pow(t, 2) / pow(T, 3)) * (OMEGA[1] - OMEGA[0]);
+//         t += 1.0 / CTRLFREQ;
+//     }
+//     else
+//     {
+//         Omega[0] = OMEGA[1];
+//         Omega[1] = 0.0;
+//     }
+// };
 
 // VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&thetaList)[JOINTNUM])
 // {
@@ -208,5 +311,5 @@ VectorXd diffKine::jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (
     MatrixXd Jspinv = W.inverse() * Js.transpose() * (Js * W.inverse() * Js.transpose()).inverse();
     dthetalist = Jspinv * tcpVels_s;
 
-    return dthetalist;    
+    return dthetalist;
 };

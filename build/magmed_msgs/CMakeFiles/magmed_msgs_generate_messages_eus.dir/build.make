@@ -57,6 +57,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/TipAngle.l
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l
 
 
@@ -83,8 +84,15 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from magmed_msgs/TipAngle.msg"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg
 
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp code from magmed_msgs/SelfCollisionCheck.srv"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv
+
 /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp manifest code for magmed_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating EusLisp manifest code for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs magmed_msgs geometry_msgs std_msgs
 
 magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus
@@ -92,6 +100,7 @@ magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/
 magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l
 magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboStates.l
 magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/TipAngle.l
+magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/srv/SelfCollisionCheck.l
 magmed_msgs_generate_messages_eus: /home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l
 magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make
 

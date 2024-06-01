@@ -10,6 +10,7 @@
 #include "magmed_msgs/RoboStates.h"
 #include "magmed_msgs/RoboJoints.h"
 #include "magmed_msgs/TipAngle.h"
+#include "magmed_msgs/SelfCollisionCheck.h"
 #include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/UInt32.h>
 
@@ -55,4 +56,20 @@ struct MagCR
     double theta[2] = {0.0, 0.0};
 
     MagCR(){};
+};
+
+enum enum_CTRLMODE
+{
+    NM = 0,
+    SM = 1,
+    DM = 2,
+    TRANS = 3
+};
+
+enum enum_TRANSMETHOD
+{
+    NT = 0,
+    OCT = 1,
+    OFT = 2,
+    optOFT = 3
 };

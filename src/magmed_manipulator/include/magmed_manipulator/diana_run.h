@@ -16,7 +16,7 @@ class DianaSpeedSets
 public:
     struct DianaJointSets
     {
-        double acc = {0.5};
+        double acc = {0.2}; // 加速度上限是多少？
         double t = 0.0;
         bool realiable = true;
         DianaJointSets(){};
@@ -149,7 +149,7 @@ int DianaStateManage::srvJointInit()
         return -1;
     }
 
-    ret = moveJToPose(initPose.data(), 0.2, 0.2, nullptr, strIpAddress);
+    ret = moveJToPose(initPose.data(), 0.5, 0.5, nullptr, strIpAddress);
     if (ret < 0)
     {
         ROS_ERROR("moveJToPose failed! Return value = %d\n", ret);
