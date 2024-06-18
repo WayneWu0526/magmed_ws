@@ -1,0 +1,8 @@
+<launch>
+    <arg name="arg_to_nFlag" default="1"/>
+    <node pkg="magmed_camera" type="pubTipAngle" name="pubTipAngle"/>
+    <param name="nFlag" value="$(arg arg_to_nFlag)"/>
+    <node pkg="magmed_manipulator" type="dianaManipulator" name="dianaManipulator"/>
+    <node pkg="magmed_controller" type="velocityController" name="velocityController" output="screen"/>
+    <node pkg="magmed_joystick" type="refSignal" name="refSignal"/>
+</launch>

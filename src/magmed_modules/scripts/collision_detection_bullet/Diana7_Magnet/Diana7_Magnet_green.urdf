@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Diana7_Magnet">
+  <!-- <param name="global_color" value="0.79216 0.81961 0.93333 1" /> -->
+  <param name="global_color" value="0.75 0.75 0.75 1" />
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.2856"
+      rpy="3.1416 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.12"
+      upper="3.12"
+      effort="235"
+      velocity="2.61" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="235"
+      velocity="2.618" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0 -0.4586 0"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.12"
+      upper="3.12"
+      effort="111"
+      velocity="2.61" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0.065 0 0"
+      rpy="1.5708 0.038588 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.05"
+      effort="111"
+      velocity="2.61" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="-0.035192 -0.4571 1.8338E-05"
+      rpy="-1.5708 0 0.038588" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 -1.338E-05 1" />
+    <limit
+      lower="-3.12"
+      upper="3.12"
+      effort="54"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="link_6">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1.0, 1.0, 1.0, 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6"
+    type="revolute">
+    <origin
+      xyz="-0.0122 0 0.00054"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.12"
+      upper="3.12"
+      effort="54"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="link_7">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75, 0.75, 0.75, 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/link_7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_7"
+    type="revolute">
+    <origin
+      xyz="0.087 -0.11744 0"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="link_6" />
+    <child
+      link="link_7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.12"
+      upper="3.12"
+      effort="54"
+      velocity="3.14" />
+  </joint>
+  <link
+    name="end_effector">
+    <inertial>
+      <origin
+        xyz="-0.0071664 -0.0025237 0.62327"
+        rpy="0 0 0" />
+      <mass
+        value="26" />
+      <inertia
+        ixx="4.7812"
+        ixy="0.00014947"
+        ixz="0.20832"
+        iyy="4.7983"
+        iyz="0.026729"
+        izz="0.11254" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/end_effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 0.1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Diana7_Magnet/meshes/end_effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="magnet"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.081"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="link_7" />
+    <child
+      link="end_effector" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

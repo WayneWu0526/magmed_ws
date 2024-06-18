@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find spacenav_node)/launch/static_deadband.launch" />
+    <node pkg = "magmed_manipulator" type = "dianaManipulator_joystick" name = "dianaManipulator_joystick" />
+</launch>

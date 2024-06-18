@@ -1,0 +1,6 @@
+./src/magmed_stereocamera/scripts/depth_D435i/weights/best.pt
+./src/magmed_stereocamera/scripts/depth_ZED2i/weights/best.pt
+./src/magmed_stereocamera/scripts/depth_ZED2i/weights/last.pt.pt
+./src/magmed_stereocamera/scripts/depth_ZED2i/weights/last.pt
+./src/magmed_stereocamera/scripts/depth_ZED2i/weights/yolov5s.pt
+*.pt

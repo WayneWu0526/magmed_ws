@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "name": "ROS",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "c++17",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/noetic/include",
+                "/opt/ros/noetic/share",
+                "/opt/DianaApi/include",
+                "/opt/MVS/include",
+                "/usr/local/include",
+                "/usr/include/opencv4",
+                "/usr/include/libusb-1.0",
+                "${workspaceFolder}/devel/include",
+                "${workspaceFolder}/src/magmed_controller/include",
+                "${workspaceFolder}/src/magmed_manipulator/include",
+                "${workspaceFolder}/src/magmed_feeder/include"
+                // "${workspaceFolder}/src/hikrobot_camera/include"
+            ],
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "/opt/DianaApi/lib",
+                    "/opt/MVS/lib/64"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}

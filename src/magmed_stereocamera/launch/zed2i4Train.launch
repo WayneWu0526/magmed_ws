@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="magmed_stereocamera" type="pubImg4Train.py" name="zed2i_image_publisher"/>
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/zhang/magmed_ws/devel
+
+Name: magmed_modules
+Description: Description of magmed_modules
+Version: 0.0.0
+Cflags: -I/home/zhang/magmed_ws/src/magmed_modules/include
+Libs: -L${prefix}/lib -lmagmed_modules
+Requires: roscpp rospy std_msgs magmed_msgs

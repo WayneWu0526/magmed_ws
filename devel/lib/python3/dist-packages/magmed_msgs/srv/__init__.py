@@ -1,0 +1,1 @@
+from ._SelfCollisionCheck import *

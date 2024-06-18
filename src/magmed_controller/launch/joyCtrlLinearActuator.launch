@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="magmed_joystick" type="readJoystick" name="readJoystick"/>
+    <node pkg="magmed_modules" type="linear_actuator" name="linear_actuator" output="screen"/>
+</launch>

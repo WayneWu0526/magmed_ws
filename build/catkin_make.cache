@@ -1,0 +1,2 @@
+diana7_description:magmed_camera:magmed_controller:magmed_deeplearning:magmed_feeder:magmed_joystick:magmed_maglocator:magmed_manipulator:magmed_modules:magmed_msgs:magmed_stereocamera:magmed_virtualsurgery:test
+-DCATKIN_DEVEL_PREFIX=/home/zhang/magmed_ws/devel -DCMAKE_INSTALL_PREFIX=/home/zhang/magmed_ws/install -G Unix Makefiles

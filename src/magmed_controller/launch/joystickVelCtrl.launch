@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="magmed_joystick" type="readJoystick" name="readJoystick" output="screen"/>
+    <node pkg="magmed_controller" type="velCtrlNode" name="velocityController" output="screen"/>
+    <node pkg="magmed_manipulator" type="diana_run" name="dianamanipulator" output="screen"/>
+    <node pkg="magmed_modules" type="check.py" name="collision_checker_service"/>
+    <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/>
+</launch>
