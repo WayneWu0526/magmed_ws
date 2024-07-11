@@ -12,7 +12,7 @@ const float JOY2_MAX = 300.0;
 const float JOY3_MAX = 300.0;
 const unsigned short int JOY1_DEADZONE = 30;
 const unsigned short int JOY2_DEADZONE = 15;
-const unsigned short int JOY3_DEADZONE = 15;
+const unsigned short int JOY3_DEADZONE = 30;
 
 // 定义手柄数据包的结构
 class JoystickDataPacket
@@ -53,7 +53,6 @@ public:
     void HandlePacket(const std::vector<uint8_t>& packet);
     int run();
     void flush();
-    int findStartPort();
     int openSerialPort();
     int closeSerialPort();
     JoystickReader() {};

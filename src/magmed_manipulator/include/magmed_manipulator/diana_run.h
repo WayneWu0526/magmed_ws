@@ -149,8 +149,9 @@ int DianaStateManage::srvJointInit()
         ROS_ERROR_STREAM("[magmed_manipulator] Failed to retrieve initPose parameter. Make sure it's set.");
         return -1;
     }
-
-    ret = moveJToPose(initPose.data(), 0.5, 0.5, nullptr, strIpAddress);
+    /****当SYSCTRLMODE=0时候设置*****/
+    ret = moveJToPose(initPose.data(), 0.2, 0.2, nullptr, strIpAddress);
+    // ret = 1;
     if (ret < 0)
     {
         ROS_ERROR("[magmed_manipulator] moveJToPose failed! Return value = %d\n", ret);
@@ -168,7 +169,7 @@ int DianaStateManage::mvJointZeros()
 {
     // 将机械臂移动到关节角度为 0 的位置
     double jointzero[JOINTNUM] = {0.0};
-    ret = moveJToTarget(jointzero, 0.5, 0.5, strIpAddress);
+    ret = moveJToTarget(jointzero, 0.1, 0.1, strIpAddress);
     if (ret < 0)
     {
         ROS_ERROR("[magmed_manipulator] moveJToTarget failed! Return value = %d\n", ret);
@@ -269,6 +270,7 @@ void DianaStateManage::run()
 {
     // set state to INIT
     state.VAL = magmed_msgs::RoboStates::INIT;
+    // state.VAL = magmed_msgs::RoboStates::RUN;
     std::thread serviceThread(&DianaStateManage::serviceLoop, this);
     // 如果线程创建失败，那么就退出系统。
     if (!serviceThread.joinable())
@@ -313,30 +315,33 @@ void DianaStateManage::run()
         }
         M_SLEEP(2000); // delay 2s
 
-        ret = setJointsSoftLimit();
-        if (ret < 0)
-        {
-            ROS_ERROR("[magmed_manipulator] setJointsSoftLimit failed! return value = %d\n", ret);
-            state.VAL = magmed_msgs::RoboStates::TERM;
-            break;
-        }
+        // ret = setJointsSoftLimit();
+        // if (ret < 0)
+        // {
+        //     ROS_ERROR("[magmed_manipulator] setJointsSoftLimit failed! return value = %d\n", ret);
+        //     state.VAL = magmed_msgs::RoboStates::TERM;
+        //     break;
+        // }
 
-        // 将机械臂移动到关节角度为 0 的位置
-        if (mvJointZeros() < 0)
+        if (state.VAL == magmed_msgs::RoboStates::INIT)
         {
-            ROS_ERROR("[magmed_manipulator] move joints to zeros failed, return value = %d\n", ret);
-            state.VAL = magmed_msgs::RoboStates::TERM;
-            break;
-        }
+            // 将机械臂移动到关节角度为 0 的位置
+            /******* [note]: 当SYSCTRLMODE = 0的时候，如下不设置。*******/
+            // if (mvJointZeros() < 0)
+            // {
+            //     ROS_ERROR("[magmed_manipulator] move joints to zeros failed, return value = %d\n", ret);
+            //     state.VAL = magmed_msgs::RoboStates::TERM;
+            //     break;
+            // }
 
-        // 将机械臂移动到TCP为 init 的位置
-        if (srvJointInit() < 0)
-        {
-            ROS_ERROR("[magmed_manipulator] srv joint to initstates failed, return value = %d\n", ret);
-            state.VAL = magmed_msgs::RoboStates::TERM;
-            break;
+            // 将机械臂移动到TCP为 init 的位置
+            if (srvJointInit() < 0)
+            {
+                ROS_ERROR("[magmed_manipulator] srv joint to initstates failed, return value = %d\n", ret);
+                state.VAL = magmed_msgs::RoboStates::TERM;
+                break;
+            }
         }
-
         // set state to RUN
         ros::Rate rate(100);
         state.VAL = magmed_msgs::RoboStates::RUN;

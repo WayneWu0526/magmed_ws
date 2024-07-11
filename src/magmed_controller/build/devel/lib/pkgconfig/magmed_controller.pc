@@ -1,0 +1,8 @@
+prefix=/home/zhang/magmed_ws/src/magmed_controller/build/devel
+
+Name: magmed_controller
+Description: Description of magmed_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

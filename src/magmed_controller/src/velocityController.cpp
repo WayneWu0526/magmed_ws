@@ -109,8 +109,8 @@ int main(int argc, char *argv[])
         // double phi = M_PI / 2.0;        
 
         // get jacobian of the robot
-        RowVector4d J = mcr.get_jacobian(g_fPsi, pa);
-        double jacobian = J[0];
+        auto [thetaL_, jacobian_] = mcr.get_states(g_fPsi, pa);
+        double jacobian = jacobian_[0];
         ROS_INFO("jacobian: %f", jacobian);
 
         // calculate the control input

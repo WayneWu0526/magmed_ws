@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -163,6 +164,7 @@ catkin_install_python(PROGRAMS
   scripts/depth_D435i/rstest.py
   # scripts/depth_ZED2i/depthEst.py
   scripts/depth_ZED2i/pubImg4Train.py
+  scripts/depth_ZED2i/pubDepthEst.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

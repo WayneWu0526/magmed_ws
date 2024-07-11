@@ -31,17 +31,49 @@ Matrix3d diffKine::Rpsi(double psi)
 // };
 
 // getRealMagPose: Matrix3d Rgb = getRealMagPose(magPose)
-void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM])
+void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM], const int CTRLMODE)
 {
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
     // calculate [Rgb, Pgb] = Tgb, Rgb = Rp[0], Pgb = Rp[1];
     std::vector<Eigen::MatrixXd> Rp = TransToRp(TransInv(params.Tsg) * Tsb);
-    magPose.psi = thetalist(JOINTNUM - 1);
-    magPose.pos = Rp[0] * Rp[1];
+
+    // magPose.psi = thetalist(JOINTNUM - 1);
+    Matrix3d Rz;
+    Rz.col(0) << -1, 0, 0;
+    Vector3d z = Rp[0].col(2);
+    Rz.col(1) = Vector3d::UnitX().cross(z);
+    Rz.col(2) = Rp[0].col(2);
+
+    // std::cout << "Rz: " << Rz << std::endl;
+    // std::cout << "Rp[0]: " << Rp[0] << std::endl;
+
+    magPose.psi = Vector3d::UnitZ().transpose() * so3ToVec(MatrixLog3(Rz.transpose() * Rp[0]));
+    Matrix3d rotz = Eigen::AngleAxisd(magPose.psi, Eigen::Vector3d::UnitZ()).toRotationMatrix();
+    magPhi = Vector3d::UnitX().transpose() * so3ToVec(MatrixLog3(Rp[0] * (diffKine::params.Rgb0 * rotz).transpose()));
+    Matrix3d rotx = Eigen::AngleAxisd(magPhi, Eigen::Vector3d::UnitX()).toRotationMatrix();
+    magPose.pos = rotx.transpose() * Rp[1];
+    switch(CTRLMODE)
+    {
+        case enum_CTRLMODE::NM:
+        {
+            break;
+        }
+        case enum_CTRLMODE::DM:
+        {
+            magPose.pos[1] = -magPose.pos[1];
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    // std::cout << "magPose.psi: " << magPose.psi << std::endl;
+    // std::cout << "magPose.pos: " << magPose.pos << std::endl;
 };
 
-VectorXd diffKine::jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (&thetaList)[JOINTNUM])
+VectorXd diffKine::jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (&thetaList)[JOINTNUM], const unsigned char BANA_MODE)
 {
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
@@ -64,15 +96,36 @@ VectorXd diffKine::jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (
     W.diagonal() << 50.0, 50.0, 30.0, 30.0, 10.0, 10.0, 1.0;
     // MatrixXd Jbpinv = W.inverse() * Jb.transpose() * (Jb * W.inverse() * Jb.transpose()).inverse();
     // dthetalist = Jbpinv * tcpVels_vector;
-
-    Eigen::VectorXd tcpVels_s(TCPNUM);
-    tcpVels_s << 0.0, 0.0, 0.0, tcpVels[3], tcpVels[4], tcpVels[5];
-    Eigen::VectorXd tcpVels_b(TCPNUM);
-    tcpVels_b << tcpVels[0], tcpVels[1], tcpVels[2], 0.0, 0.0, 0.0;
-    tcpVels_s = tcpVels_s + Adjoint(Tsb) * tcpVels_b;
-
-    MatrixXd Jspinv = W.inverse() * Js.transpose() * (Js * W.inverse() * Js.transpose()).inverse();
-    dthetalist = Jspinv * tcpVels_s;
+    Eigen::VectorXd tcpVels_s = Eigen::VectorXd::Zero(TCPNUM);
+    Eigen::VectorXd tcpVels_b = Eigen::VectorXd::Zero(TCPNUM);
+    if (BANA_MODE == 0x01) // normal mode
+    {
+        tcpVels_s << 0.0, 0.0, 0.0, tcpVels[3], tcpVels[4], tcpVels[5];
+        tcpVels_b << tcpVels[0], tcpVels[1], tcpVels[2], 0.0, 0.0, 0.0;
+        tcpVels_s = tcpVels_s + Adjoint(Tsb) * tcpVels_b;
+    }
+    else if (BANA_MODE == 0x02) // {s} frame
+    {
+        tcpVels_s << tcpVels[0], tcpVels[1], tcpVels[2], tcpVels[3], tcpVels[4], tcpVels[5];
+    }
+    else if (BANA_MODE == 0x03) // {b} frame
+    {
+        tcpVels_b << tcpVels[0], tcpVels[1], tcpVels[2], tcpVels[3], tcpVels[4], tcpVels[5];
+        tcpVels_s = Adjoint(Tsb) * tcpVels_b;
+    }
+    else if (BANA_MODE != 0x04)
+    {
+        printf("[magmed_controller] Invalid TOG_MODE: %d\n", BANA_MODE);
+    }
+    if (BANA_MODE == 0x04) // 矫正回原
+    {
+        dthetalist = - 0.05 * thetalist;
+    }
+    else
+    {
+        MatrixXd Jspinv = W.inverse() * Js.transpose() * (Js * W.inverse() * Js.transpose()).inverse();
+        dthetalist = Jspinv * tcpVels_s;    
+    }
 
     return dthetalist;
 };
@@ -141,14 +194,15 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     VectorXd tau_sg(TCPNUM);
     tau_sg << V_sg[0], V_sg[1], V_sg[2], V_sg[3], V_sg[4], V_sg[5];
     // using real value
-    // MatrixXd Tsg = MatrixExp6(VecTose3(tau_sg));
+    MatrixXd Tsg = MatrixExp6(VecTose3(tau_sg));
 
     // using mock value
-    static MatrixXd Tsg_mock = diffKine::params.Tsg;
-    VectorXd vsg_mock = VectorXd::Zero(6);
-    // vsg_mock(3) = 0.0001;
-    Tsg_mock *= MatrixExp6(VecTose3(vsg_mock));
-    MatrixXd Tsg = Tsg_mock;
+    // static MatrixXd Tsg_mock = diffKine::params.Tsg;
+    // VectorXd vsg_mock = VectorXd::Zero(6);
+    // vsg_mock(3) = - 0.001 * V_sg[TCPNUM + 3];
+    // Tsg_mock *= MatrixExp6(VecTose3(vsg_mock));
+    // MatrixXd Tsg = Tsg_mock;
+
     MatrixXd Tsd = Tsg * Tgd;
 
     // 控制模态切换矩阵T3
@@ -169,6 +223,7 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     // 令V_sg的TCPNUM:2*TCPNUM-1的元素赋值给v_sg
     VectorXd v_sg(TCPNUM);
     v_sg << V_sg[TCPNUM], V_sg[TCPNUM + 1], V_sg[TCPNUM + 2], V_sg[TCPNUM + 3], V_sg[TCPNUM + 4], V_sg[TCPNUM + 5];
+    // v_sg = vsg_mock;
     nu_sd = J * dPos + Adjoint(TransInv((Tgd))) * v_sg; // + VectorXd::Unit(6, 0) * omega_d[1];
 
     // weighted damped persudo-inverse

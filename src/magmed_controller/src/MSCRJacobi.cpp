@@ -21,19 +21,19 @@ Matrix3d Magnet::get_gradb(const Vector3d ps)
 
 // return two double values: theta and J
 
-double MSCRJacobi::g(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa)
+std::pair<double, double> MSCRJacobi::g(const double theta, const Vector3d x, const Vector3d dx, const Vector3d pa, const Vector3d hatma)
 {
     Magnet magnet;
     magnet.hatma = hatma;
     magnet.pa = pa;
     Vector3d b = magnet.get_b(x);
     Matrix3d gradb = magnet.get_gradb(x);
-    Matrix3d Rz = RotZ(theta(0));
-    Vector3d pRzM = pRotZ(theta(0)) * vecM;
-    Vector3d ppRzM = ppRotZ(theta(0)) * vecM;
+    Matrix3d Rz = RotZ(theta);
+    Vector3d pRzM = pRotZ(theta) * vecM;
+    Vector3d ppRzM = ppRotZ(theta) * vecM;
     double fval = -pr.A / (pr.E * pr.I) * (pRzM.dot(b) + dx.dot(gradb.transpose() * Rz * vecM));
     double As = -pr.A / (pr.E * pr.I) * (ppRzM.dot(b) + 2.0 * (pRzM.dot(gradb * dx)));
-    // return std::make_pair(fval, As);
+    return std::make_pair(fval, As);
     // return 0.0;
 };
 
@@ -58,49 +58,104 @@ RowVector3d MSCRJacobi::g_ex(const Vector3d x, const Vector3d dx, const Vector2d
     return pr.A / (pr.E * pr.I) * ((pRz * vecM).transpose() * gradb + dx.transpose() * (Db1 + Db2));
 };
 
-// void MSCRJacobi::fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma, MSCRState& state) {
-//     double ds = pr.L / pr.N;
+std::tuple<double, VectorXd, MatrixXd, MatrixXd> MSCRJacobi::fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma) {
+    int N = 100;
+    double ds = pr.L / N;
 
-//     state.theta(0) = gamma;
-//     MatrixXd x = MatrixXd::Zero(3, pr.N);
-//     MatrixXd dx = MatrixXd::Zero(3, pr.N);
+    VectorXd theta = VectorXd::Zero(N);
+    VectorXd dtheta = VectorXd::Zero(N);
+    MatrixXd x = MatrixXd::Zero(3, N);
+    MatrixXd dx = MatrixXd::Zero(3, N);
 
-//     for (int i = 0; i < pr.N - 1; ++i) {
-//         g(state.x.col(i), state.dx.col(i), state.theta, xa, hatma)
-//         state.dtheta(i + 1) = state.dtheta(i) + ds;
-//         state.theta(i + 1) = state.theta(i) + ds * state.dtheta(i);
-//         state.x.col(i + 1) = state.x.col(i) + ds * Vector3d(cos(state.theta(i)), sin(state.theta(i)), 0.0);
-//         state.dx.col(i + 1) = state.dx.col(i) + ds * Vector3d(-sin(state.theta(i)), cos(state.theta(i)), 0.0);
-//     }
+    dtheta(0) = gamma;
 
-//     state.beta = state.dtheta(pr.N - 1);
-// }
-
-double MSCRJacobi::get_theta(double psi, const Vector3d pa)
-{
-    Vector2d theta = Vector2d::Zero(2, 1);
-    Vector3d dx = {0.0, 0.0, 0.0};
-    Vector3d pa_bar(pa[0], 0.0, sqrt((pa[1] * pa[1] + pa[2] * pa[2])));
-
-    Vector3d hatma = {-cos(psi), sin(psi), 0.0};
-    for (int i = 0; i < pr.N - 1; i++)
-    {
-        // // 4-order Runge-Kutta method (unfinished)
-        // Vector2d k1 = g(x.col(i), dx, theta, hatma, pa_bar);
-        // Vector2d k2 = g(x.col(i), dx, theta + ds / 2.0 * k1, hatma, pa_bar);
-        // Vector2d k3 = g(x.col(i), dx, theta + ds / 2.0 * k2, hatma, pa_bar);
-        // Vector2d k4 = g(x.col(i), dx, theta + ds * k3, hatma, pa_bar);
-        // theta += ds / 6.0 * (k1 + 2.0 * k2 + 2.0 * k3 + k4);
-        Vector2d dtheta = Vector2d(theta(1), g(x.col(i), dx, theta, hatma, pa_bar));
-        theta += ds * dtheta;
-
-        x.col(static_cast<Eigen::Index>(i) + 1) = x.col(i) + (Vector3d(cos(theta(0)), 0, sin(theta(0)))) * ds;
-        dx += (Vector3d(-sin(theta(0)), 0, cos(theta(0)))) * ds;
+    for (int i = 0; i < N - 1; ++i) {
+        auto [fval, _] = g(theta(i), x.col(i), dx.col(i), xa, hatma);
+        dtheta(i + 1) = dtheta(i) + ds * fval;
+        theta(i + 1) = theta(i) + ds * dtheta(i);
+        x.col(i + 1) = x.col(i) + ds * Vector3d(cos(theta(i)), sin(theta(i)), 0);
+        dx.col(i + 1) = dx.col(i) + ds * Vector3d(-sin(theta(i)), cos(theta(i)), 0);
     }
-    return theta(0);
+    double beta = dtheta(N - 1);
+    return std::make_tuple(beta, theta, x, dx);
+}
+
+std::tuple<VectorXd, double, MatrixXd> MSCRJacobi::newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma)
+{
+    int MAX_ITER = 20;
+    VectorXd gamma(MAX_ITER);
+    VectorXd beta(MAX_ITER);
+    int N = 100;
+    VectorXd theta = VectorXd::Zero(N);
+    MatrixXd x = MatrixXd::Zero(3, N); 
+    MatrixXd dx = MatrixXd::Zero(3, N);
+
+    gamma(0) = 0.0;
+    beta(0) = std::get<0>(fgamma(pa, hatma, gamma(0)));
+
+    gamma(1) = -beta(0);
+    beta(1) = std::get<0>(fgamma(pa, hatma, gamma(1)));
+
+    for(int i = 1; i < MAX_ITER; ++i)
+    {
+        gamma(i+1) = gamma(i) - beta(i) * (gamma(i) - gamma(i-1)) / (beta(i) - beta(i-1));
+        auto [beta_, theta_, x_, dx_] = fgamma(pa, hatma, gamma(i+1));
+        beta(i+1) = beta_;
+        theta = theta_;
+        x = x_;
+        dx = dx_;
+        // std::cout << beta_ << std::endl;
+        if(i == MAX_ITER - 1)
+        {
+            printf("shooting method failed!\n");
+        }
+        if(fabs(beta_) < 1e-3)
+        {
+            break;
+        }
+    };
+    // print theta
+    // std::cout << theta << std::endl;
+    double ds = pr.L / N;
+
+    MatrixXd u(2, N);
+    MatrixXd v(2, N);
+    u.setZero();
+    v.setZero();
+    v(1, 0) = 1;
+    for (int i = 0; i < N - 1; ++i) {
+        auto [fval, As] = g(theta(i), x.col(i), dx.col(i), pa, hatma);
+        // std::cout << As << std::endl;
+        auto [Bs, _] = g(theta(i), x.col(i), dx.col(i), pa, phatma);
+        // std::cout << Bs << std::endl;
+        u.col(i + 1) = u.col(i) + ds * Vector2d(u(1, i), As * u(0, i) + Bs);
+        v.col(i + 1) = v.col(i) + ds * Vector2d(v(1, i), As * v(0, i));
+    }
+
+    double ga = -u(1, N - 1) / v(1, N - 1);
+    // std::cout << ga << std::endl;
+    VectorXd J = u.row(0).transpose() + ga * v.row(0).transpose();
+    double jacobian = J(N - 1);
+
+    // std::cout << jacobian << std::endl;
+    return std::make_tuple(theta, jacobian, x);
+
 };
 
-RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
+// double MSCRJacobi::get_theta(double psi, const Vector3d pa)
+// {
+//     int N = 100;
+//     VectorXd Theta = VectorXd::Zero(N);
+
+//     Vector3d hatma = {-cos(psi), sin(psi), 0.0};
+//     Vector3d phatma = {sin(psi), cos(psi), 0.0};
+
+//     Theta = std::get<0>(newton_method_bvp(pa, hatma, phatma));
+//     // std::cout << Theta(N - 1) << std::endl;
+//     return Theta(N - 1);
+// };
+
+std::pair<double, RowVector4d> MSCRJacobi::get_states(double psi, const Vector3d pa)
 {
     Vector2d theta = Vector2d::Zero(2, 1);
     Vector2d J_psi = Vector2d::Zero(2, 1);
@@ -114,7 +169,11 @@ RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
 
     // for 3D deflection
     // Vector3d pa_bar(pa[0], 0.0, sqrt((pa[1] * pa[1] + pa[2] * pa[2])));
-
+    auto [theta_, Jpsi_, x_] = newton_method_bvp(pa, hatma, phatma);
+    J_psi(0) = Jpsi_;
+    // thetaL = theta_(100 - 1);
+    // J_psi(0) = std::get<1>(newton_method_bvp(pa, hatma, phatma));
+    // printf("J_psi(0): %f\n", J_psi(0));
     for (int i = 0; i < pr.N - 1; i++)
     {
         // 4-order Runge-Kutta method (unfinished)
@@ -141,14 +200,14 @@ RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
         // J += ds * g(x.col(i), dx, Vector2d(theta(0), J(1)), phatma, pa_bar);
         // theta += ds* g(x.col(i), dx, theta, hatma, pa_bar);
 
-        Vector2d dJpsi = Vector2d(J_psi(1), g(x.col(i), dx, theta, phatma, pa));
-        J_psi += ds * dJpsi;
+        // Vector2d dJpsi = Vector2d(J_psi(1), g(x.col(i), dx, theta, phatma, pa));
+        // J_psi += ds * dJpsi;
         Eigen::Matrix<double, 2, 3> dJp;
         dJp.row(0) = J_p.row(1);
         dJp.row(1) = g_ex(x.col(i), dx, theta, hatma, pa);
         J_p += ds * dJp;
         // std::cout << J << std::endl;
-        Vector2d dtheta = Vector2d(theta(1), g(x.col(i), dx, theta, hatma, pa));
+        Vector2d dtheta = Vector2d(theta(1), std::get<0>(g(theta(0), x.col(i), dx, pa, hatma)));
         theta += ds * dtheta;
 
         x.col(static_cast<Eigen::Index>(i) + 1) = x.col(i) + (Vector3d(cos(theta(0)), 0, sin(theta(0)))) * ds;
@@ -156,5 +215,17 @@ RowVector4d MSCRJacobi::get_jacobian(double psi, const Vector3d pa)
     }
     RowVector4d jacobian;
     jacobian << J_psi(0), -J_p.row(0);
-    return jacobian;
+    return std::make_pair(theta_(100-1), jacobian);
 };
+
+// int main()
+// {
+//     // printf("hello world\n");
+//     RowVector4d jacobian;
+//     MSCRJacobi mscrjacobi;
+//     auto [thetaL_, jacobian_] = mscrjacobi.get_states(M_PI/2.0, Vector3d(mscrjacobi.pr.L, 180e-3, 0.0));
+//     // std::cout << jacobian << std::endl;
+//     std::cout << "thetaL:" << thetaL_ << std::endl;
+//     std::cout << "jacobian:" << jacobian_ << std::endl;
+//     return 0;
+// };

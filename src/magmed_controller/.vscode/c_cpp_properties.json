@@ -1,0 +1,35 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/zhang/zed_ws/devel/include/**",
+        "/home/zhang/diana7_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/zhang/magmed_ws/devel/include/**",
+        "/home/zhang/diana7_ws/src/diana7_ros/diana7_control/include/**",
+        "/home/zhang/diana7_ws/src/diana7_ros/diana7_gazebo/include/**",
+        "/home/zhang/diana7_ws/src/diana7_ros/diana7_hw/include/**",
+        "/home/zhang/magmed_ws/src/magmed_camera/include/**",
+        "/home/zhang/magmed_ws/src/magmed_controller/include/**",
+        "/home/zhang/magmed_ws/src/magmed_feeder/include/**",
+        "/home/zhang/magmed_ws/src/magmed_joystick/include/**",
+        "/home/zhang/magmed_ws/src/magmed_manipulator/include/**",
+        "/home/zhang/magmed_ws/src/magmed_modules/include/**",
+        "/home/zhang/magmed_ws/src/magmed_stereocamera/include/**",
+        "/home/zhang/diana7_ws/src/diana7_ros/test/include/**",
+        "/home/zhang/zed_ws/src/zed-ros-wrapper/zed-ros-interfaces/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

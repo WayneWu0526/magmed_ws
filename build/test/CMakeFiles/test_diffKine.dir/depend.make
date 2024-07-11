@@ -14,9 +14,11 @@ test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /home/zhang/magmed_ws/src/test/src/test_diffKine.cpp
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
 test/CMakeFiles/test_diffKine.dir/src/test_diffKine.cpp.o: /opt/ros/noetic/include/ros/datatypes.h

@@ -13,9 +13,11 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/ma
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/datatypes.h
@@ -53,9 +55,11 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magm
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/diffKine.cpp.o: /opt/ros/noetic/include/ros/datatypes.h
@@ -93,9 +97,11 @@ magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magme
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/optCtrl.cpp
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
 magmed_controller/CMakeFiles/velCtrlLib.dir/src/optCtrl.cpp.o: /opt/ros/noetic/include/ros/datatypes.h

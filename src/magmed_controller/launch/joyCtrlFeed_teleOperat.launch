@@ -1,0 +1,6 @@
+<launch>
+    <!-- <node pkg="magmed_joystick" type="readJoystick" name="readJoystick"/> -->
+    <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/>
+    <node pkg="magmed_controller" type="joyCtrlFeed" name="joyCtrlFeed"/>
+    <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/joyCtrlFeed_tele.bag"/>
+</launch>

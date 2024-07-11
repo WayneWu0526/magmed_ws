@@ -22,7 +22,7 @@ if zed.open(init_params) != sl.ERROR_CODE.SUCCESS:
     print("无法打开ZED相机")
     exit(1)
 
-zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, 0)  # 设置亮度
+zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, 5)  # 设置亮度
 zed.set_camera_settings(sl.VIDEO_SETTINGS.CONTRAST, 4)  # 设置对比度
 zed.set_camera_settings(sl.VIDEO_SETTINGS.HUE, 0)  # 设置色调
 zed.set_camera_settings(sl.VIDEO_SETTINGS.SATURATION, 8)  # 设置饱和度
@@ -30,14 +30,21 @@ zed.set_camera_settings(sl.VIDEO_SETTINGS.SHARPNESS, 8)  # 设置锐度
 zed.set_camera_settings(sl.VIDEO_SETTINGS.GAMMA, 1)  # 设置Gamma
 zed.set_camera_settings(sl.VIDEO_SETTINGS.WHITEBALANCE_TEMPERATURE, 4500)  # 设置白平衡
 
+zed.set_camera_settings(sl.VIDEO_SETTINGS.AEC_AGC, 0)  # 关闭自动曝光/增益
 zed.set_camera_settings(sl.VIDEO_SETTINGS.GAIN, 21)  # 设置增益
 zed.set_camera_settings(sl.VIDEO_SETTINGS.EXPOSURE, 42)  # 设置曝光
-zed.set_camera_settings(sl.VIDEO_SETTINGS.AEC_AGC, 0)  # 关闭自动曝光/增益
 
 # 创建运行时参数对象
 runtime_parameters = sl.RuntimeParameters()
 runtime_parameters.confidence_threshold = 100
 runtime_parameters.texture_confidence_threshold = 100
+
+# 获取相机内参
+calib_params = zed.get_camera_information().camera_configuration.calibration_parameters
+calib_fx = calib_params.left_cam.fx
+calib_fy = calib_params.left_cam.fy
+calib_cx = calib_params.left_cam.cx
+calib_cy = calib_params.left_cam.cy
 
 # 创建深度图和RGB图对象
 depth = sl.Mat()
@@ -69,7 +76,7 @@ while True:
         hsv = cv2.cvtColor(image_ocv_bgr, cv2.COLOR_BGR2HSV)
 
         # 设置从暗红色到亮红色的HSV范围
-        lower_red1 = np.array([0, 50, 50])
+        lower_red1 = np.array([20, 50, 50])
         upper_red1 = np.array([10, 255, 255])
         mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
 
@@ -108,6 +115,17 @@ while True:
                 label = f'Depth: {depth_value:.2f} mm'
                 cv2.putText(image_ocv_bgr, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
+            x_ndc = (cx + roi_x - calib_cx) / calib_fx
+            y_ndc = (cy + roi_y - calib_cy) / calib_fy
+
+            print("calib_cx: {}, calib_cy: {} ".format(calib_cx, calib_cy))
+
+            X = x_ndc * depth_value
+            Y = y_ndc * depth_value
+            Z = depth_value
+
+            print("Camera coordinates: (X: {}, Y: {}, Z: {})".format(X, Y, Z))
+
             # 获取图像中心的深度信息
             center_x, center_y = image_ocv_bgr.shape[1] // 2, image_ocv_bgr.shape[0] // 2
             center_y = center_y - 50
@@ -121,9 +139,9 @@ while True:
             normalized_depth = cv2.normalize(averaged_depth, None, 0, 255, cv2.NORM_MINMAX)
             colored_depth = cv2.applyColorMap(np.uint8(normalized_depth), cv2.COLORMAP_JET)
 
-            # 显示结果
-            cv2.imshow("Colored Depth Map", colored_depth)
-            cv2.imshow("RGB Image", image_ocv_bgr)
+            # # 显示结果
+            # cv2.imshow("Colored Depth Map", colored_depth)
+            # cv2.imshow("RGB Image", image_ocv_bgr)
             
             # 按下ESC键退出循环
             if cv2.waitKey(1) == 27:

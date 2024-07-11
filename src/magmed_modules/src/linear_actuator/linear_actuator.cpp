@@ -10,6 +10,7 @@ namespace linear_actuator
         joystick_sub = nh.subscribe<magmed_msgs::PFjoystick>("/magmed_joystick/joystick_controller",
                                                              10,
                                                              boost::bind(&Joystick::feed, &joystick, _1));
+        linear_actuator_vel_pub = nh.advertise<geometry_msgs::TwistStamped>("linear_actuator/gframe_twist", 10);
     }
 
     LinearActuator::~LinearActuator()
@@ -43,6 +44,19 @@ namespace linear_actuator
 
         ros::Duration(1.0).sleep();
         while (ros::ok()) {
+            double VEL_FACTOR = 0.01 / 7.76 / 1.04 / 5.00;
+            geometry_msgs::TwistStamped linear_actuator_vel;
+            linear_actuator_vel.header.stamp = ros::Time::now();
+            linear_actuator_vel.twist.linear.x = VEL_FACTOR * joystick.pf_joystick.nJOY3[0] * GAIN;
+            // std::cout << joystick.pf_joystick.nJOY3[0] << std::endl;
+            // std::cout << linear_actuator_vel.twist.linear.x << std::endl;
+            linear_actuator_vel.twist.linear.y = 0.0;
+            linear_actuator_vel.twist.linear.z = 0.0;
+            linear_actuator_vel.twist.angular.x = 0.0;
+            linear_actuator_vel.twist.angular.y = 0.0;
+            linear_actuator_vel.twist.angular.z = 0.0;
+            linear_actuator_vel_pub.publish(linear_actuator_vel);    
+
             ros::spinOnce();
             loop_rate.sleep();
         }

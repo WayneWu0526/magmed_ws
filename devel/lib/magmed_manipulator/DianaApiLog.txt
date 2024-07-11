@@ -1,0 +1,9 @@
+ [Info]  [CRobotApiSystem::addRobotApi] the specified ip Robot add success, ip:  192.168.10.75
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 0 local ip-port: 0.0.0.0-59723
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 1 local ip-port: 0.0.0.0-44924
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 2 local ip-port: 0.0.0.0-37707
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 3 local ip-port: 0.0.0.0-39182
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 4 local ip-port: 0.0.0.0-42350
+ [Info] [CThreadProcessorBase::start] start thread processor
+ [Info] [CThreadProcessorBase::start] start thread processor
+ [Info] [CRobotApiImp::requestJointCount] joint cout is  7

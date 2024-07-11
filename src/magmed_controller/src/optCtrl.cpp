@@ -16,6 +16,7 @@ double optCtrl::FF_controller(const double (&thetaR)[2], double (&hatx)[2], doub
     double hatx1 = 0.0; 
     // double hatx1 = hatx[1];
     // std::cout << "virtual FF_controller:" << thetaR[1] + param.fk * (thetaR[0] - thetaL) << std::endl;
+    std::cout << "theta_r:" << thetaR[0] << "dtheta_r:" << thetaR[1] << std::endl;
     return thetaR[1] + param.fk * (thetaR[0] - thetaL) - hatx1;
 }
 
@@ -69,38 +70,44 @@ MagPose optCtrl::controlAllocation(double virtualControlLaw, RowVector4d jacobia
     QProblem qpCA(5, 1);
     qpCA.setOptions(options);
     int_t nWSR = 10;
-    qpCA.init(H, g, A, lb, ub, lbA, ubA, nWSR);
+    // qpCA.init(H, g, A, lb, ub, lbA, ubA, nWSR);
     real_t xOpt[5];
-    qpCA.getPrimalSolution(xOpt);
+    // qpCA.getPrimalSolution(xOpt);
 
     MagPose magTwist;
     magTwist.psi = xOpt[0];
     magTwist.pos = {xOpt[1], xOpt[2], xOpt[3]};
+
+    /* using pesudo-inverse controller */
+    magTwist.psi = 1.0 / jacobian[0] * virtualControlLaw;
+    // std::cout << "jacobian[0]:" << jacobian[0] << std::endl;
+    std::cout << "magTwist.psi:" << magTwist.psi << std::endl;
+    magTwist.pos = {0.0, 0.0, 0.0};
+    
     // std::cout << "optimal control input: " << optController << std::endl;
     return magTwist;
 }
 
-RowVector4d optCtrl::getJacobi(MagPose magPose)
+MagPose optCtrl::generateMagTwist(const double (&refTheta)[2], double thetaL)
 {
     MSCRJacobi mscrjacobi;
-    RowVector4d jacobi = mscrjacobi.get_jacobian(magPose.psi, magPose.pos);
-    return jacobi;
-}
-
-MagPose optCtrl::generateMagTwist(const double (&refTheta)[2], magmed_msgs::TipAngle const tipAngle)
-{
     // calculate jacobi
-    RowVector4d jacobi = getJacobi(magPose);
+    RowVector4d jacobi;
+    // std::cout << "psi:" << optCtrl::magPose.psi << std::endl;optCtrl::magPose.psi
+    // std::cout << "pos:" << optCtrl::magPose.pos << std::endl;
+    auto [thetaL_mock, jacobian_] = mscrjacobi.get_states(optCtrl::magPose.psi, optCtrl::magPose.pos);
     // std::cout << "jacobian: " << jacobi << std::endl;
-
-    double thetaL = tipAngle.tipAngle;
+    jacobi = jacobian_;
 
     // initialize hatx
     static double hatx[2] = {0.0, 0.0}; // 不会被销毁，只会在第一次调用时初始化
     // std::cout << "hatx: " << hatx[0] << " " << hatx[1] << std::endl;
 
     // calculate virtualControlLaw
-    double virtualControlLaw = FF_controller(refTheta, hatx, thetaL);
+    /* using mock value */
+    // double virtualControlLaw = FF_controller(refTheta, hatx, thetaL);
+    std::cout << "thetaL: " << thetaL_mock << std::endl;
+    double virtualControlLaw = FF_controller(refTheta, hatx, thetaL_mock);
 
     // calculate control allocation
     MagPose magTwist = controlAllocation(virtualControlLaw, jacobi);

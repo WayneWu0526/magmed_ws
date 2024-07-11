@@ -1,12 +1,16 @@
 #ifndef MSCRJACOBI_H
 #define MSCRJACOBI_H
 
-// #include <eigen3/Eigen/Dense>
 // #include <iostream>
 // #include <cmath>
 #include "magmed_controller/velCtrlDef.h"
+// #include <eigen3/Eigen/Dense>
+// #include <cmath>
+// #include <iostream>
+// #include <utility>
+// #include <tuple>
 
-// using namespace Eigen;
+using namespace Eigen;
 
 // JacobiParams
 class JacobiParams
@@ -29,18 +33,39 @@ public:
         Vector3d hatM; // the magnetization direction of the robot
         double normM;  // 144.0e3; // the norm of the magnetization of the robot
 
+        // void loadFromYAML(const std::string& filename) {
+        //     YAML::Node config = YAML::LoadFile(filename);
+        //     const YAML::Node& mscrProperties = config["MSCRProperties"];
+
+        //     E = mscrProperties["E"].as<double>();
+        //     r = mscrProperties["r"].as<double>();
+        //     I = mscrProperties["I"].as<double>();
+        //     A = mscrProperties["A"].as<double>();
+        //     L = mscrProperties["L"].as<double>();
+        //     H0 = mscrProperties["H0"].as<double>();
+        //     normM = mscrProperties["normM"].as<double>();
+        //     N = mscrProperties["N"].as<int>();
+            
+        //     const YAML::Node& hatMNode = mscrProperties["hatM"];
+        //     hatM(0) = hatMNode[0].as<double>();
+        //     hatM(1) = hatMNode[1].as<double>();
+        //     hatM(2) = hatMNode[2].as<double>();
+        // }
+
         MSCRProperties()
         {
+            // loadFromYAML("../config/MSCRproperties.yaml");
             E = 3.0e6;
             r = (1.086e-03) / 2.0;
             I = M_PI * pow(r, 4.0) / 4.0;
             A = M_PI * r * r;
             L = 24.0e-3;
-            H0 = 200.0e-3;
-            // H0 = 250.0e-3;
+            // H0 = 200.0e-3;
+            H0 = 180.0e-3;
             hatM = {1.0, 0.0, 0.0};
-            normM = 10.0e4;
-            N = 1000;
+            // normM = 10.0e4;
+            normM = 8.0e4;
+            N = 100;
         };
         MSCRProperties(double E, double r, double I, double A, double L, double H0, Vector3d hatM, double normM) : 
             E(E), r(r), I(I), A(A), L(L), H0(H0), hatM(hatM), normM(normM){};
@@ -50,7 +75,7 @@ public:
     {
         double k;
 
-        MagnetParams() { k = 3.4286e-05; };
+        MagnetParams() { k = 3.4286e-05; }; // Magnet D50
         MagnetParams(double k) : k(k){};
     }magnetparams;
 
@@ -64,8 +89,9 @@ public:
     // physical properties of the robot
     // properties of the robot
     JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();              
-    double get_theta(double psi, const Vector3d pa);         // get the tip angle of the robot
-    RowVector4d get_jacobian(double psi, const Vector3d pa); // get the Jacobian of the robot
+    // double get_theta();         // get the tip angle of the robot
+    double thetaL = 0.0;
+    std::pair<double, RowVector4d> get_states(double psi, const Vector3d pa); // get the Jacobian of the robot
     Matrix3d RotZ(double theta)
     {
         AngleAxisd vecZ(theta, Vector3d(0, 0, 1));
@@ -111,24 +137,25 @@ private:
             -cos(theta), 0.0, -sin(theta);
         return pRY;
     }
-    struct MSCRState 
-    {
-        double gamma;
-        double beta;
-        MatrixXd theta;
-        MatrixXd x;
-        MatrixXd dx;
-    }mscrstate;
+    // struct MSCRState 
+    // {
+    //     double gamma;
+    //     double beta;
+    //     MatrixXd theta;
+    //     MatrixXd x;
+    //     MatrixXd dx;
+    // }mscrstate;
 
-    struct MSCRResult
-    {
-        double thetaL;
-        double jacobian;
-    }mscrresult;
+    // struct MSCRResult
+    // {
+    //     double thetaL;
+    //     double jacobian;
+    // }mscrresult;
 
-    void fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma, MSCRState& state);
-    double g(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa);
+    std::tuple<double, VectorXd, MatrixXd, MatrixXd> fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma);
+    std::pair<double, double> g(const double theta, const Vector3d x, const Vector3d dx, const Vector3d pa, const Vector3d hatma);
     RowVector3d g_ex(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa);
+    std::tuple<VectorXd, double, MatrixXd> newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma);
 };
 
 class Magnet

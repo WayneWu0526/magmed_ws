@@ -3,5 +3,8 @@
     <node pkg="magmed_controller" type="velCtrlNode" name="velocityController" output="screen"/>
     <node pkg="magmed_manipulator" type="diana_run" name="dianamanipulator" output="screen"/>
     <node pkg="magmed_modules" type="check.py" name="collision_checker_service"/>
-    <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/>
+    <!-- <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/> -->
+    <node pkg="magmed_modules" type="linear_actuator" name="linear_actuator" output="screen"/>
+    <node pkg="magmed_stereocamera" type="pubDepthEst.py" name="zed_depth_publisher" output="screen"/>
+    <!-- <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/joyVelCtrl.bag"/> -->
 </launch>

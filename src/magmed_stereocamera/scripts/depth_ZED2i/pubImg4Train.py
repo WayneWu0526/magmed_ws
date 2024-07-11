@@ -15,7 +15,7 @@ def main():
     # 创建ZED相机对象
     zed = sl.Camera()
     
-    zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, 0)  # 设置亮度
+    zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, 5)  # 设置亮度
     zed.set_camera_settings(sl.VIDEO_SETTINGS.CONTRAST, 4)  # 设置对比度
     zed.set_camera_settings(sl.VIDEO_SETTINGS.HUE, 0)  # 设置色调
     zed.set_camera_settings(sl.VIDEO_SETTINGS.SATURATION, 8)  # 设置饱和度
@@ -23,7 +23,7 @@ def main():
     zed.set_camera_settings(sl.VIDEO_SETTINGS.GAMMA, 1)  # 设置锐度
     zed.set_camera_settings(sl.VIDEO_SETTINGS.WHITEBALANCE_TEMPERATURE, 4500)  # 设置白平衡
 
-    zed.set_camera_settings(sl.VIDEO_SETTINGS.AEC_AGC, 0)  # 关闭自动曝光/增益
+    zed.set_camera_settings(sl.VIDEO_SETTINGS.AEC_AGC, 1)  # 关闭自动曝光/增益
     zed.set_camera_settings(sl.VIDEO_SETTINGS.EXPOSURE, 42)  # 设置曝光
     zed.set_camera_settings(sl.VIDEO_SETTINGS.GAIN, 21)  # 设置增益
     

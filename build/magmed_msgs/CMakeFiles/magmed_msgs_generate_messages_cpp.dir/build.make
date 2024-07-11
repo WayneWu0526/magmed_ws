@@ -90,20 +90,20 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp: /home/zhang/magmed_ws/
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg
-/home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PoseTwist.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating C++ code from magmed_msgs/PoseTwist.msg"
 	cd /home/zhang/magmed_ws/src/magmed_msgs && /home/zhang/magmed_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/include/magmed_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
 /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
-/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
 /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/gencpp/msg.h.template
 /home/zhang/magmed_ws/devel/include/magmed_msgs/SelfCollisionCheck.h: /opt/ros/noetic/share/gencpp/srv.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating C++ code from magmed_msgs/SelfCollisionCheck.srv"

@@ -17,9 +17,11 @@ magmed_controller/CMakeFiles/velCtrlNode.dir/src/velCtrlNode.cpp.o
  /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlNode.hpp
  /home/zhang/magmed_ws/src/magmed_controller/src/velCtrlNode.cpp
  /opt/ros/noetic/include/geometry_msgs/Point.h
+ /opt/ros/noetic/include/geometry_msgs/PointStamped.h
  /opt/ros/noetic/include/geometry_msgs/Pose.h
  /opt/ros/noetic/include/geometry_msgs/Quaternion.h
  /opt/ros/noetic/include/geometry_msgs/Twist.h
+ /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
  /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h

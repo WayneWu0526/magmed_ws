@@ -6,27 +6,30 @@
 #include <ros/ros.h>
 #include <pthread.h>
 #include "magmed_msgs/PFjoystick.h"
+#include "geometry_msgs/TwistStamped.h"
 #include <atomic>
 
 namespace linear_actuator
 {
-    const int FREQUENCY = 5 * 3200; // Hz
+    int GAIN = 0;
+    const int FREQUENCY = 3200; // Hz
 
     // joystick input (manual control)
     class Joystick
     {
     public:
-        magmed_msgs::PFjoystick joystick;
+        magmed_msgs::PFjoystick pf_joystick;
 
         std::atomic<bool> dir; // 0: forward, 1: backward
         std::atomic<int> speed; // 0: stop, 1: low speed, 2: high speed
 
         void feed(magmed_msgs::PFjoystickConstPtr pMsg)
         {
-            joystick = *pMsg;
-
-            dir = joystick.nJOY3[0] > 0 ? 1 : 0;
-            speed = (int) (std::fabs(joystick.nJOY3[0]) * FREQUENCY);
+            pf_joystick = *pMsg;
+            GAIN = (int) (pf_joystick.POTA / 1000.0 * 10.0);
+            // printf("GAIN: %d\n", GAIN);
+            dir = pf_joystick.nJOY3[0] > 0 ? 1 : 0;
+            speed = (int) (std::fabs(pf_joystick.nJOY3[0]) * GAIN * FREQUENCY);
         }
         Joystick() : dir(0), speed(0) {};
     };
@@ -45,6 +48,7 @@ namespace linear_actuator
 
         ros::NodeHandle nh;
         ros::Subscriber joystick_sub;
+        ros::Publisher linear_actuator_vel_pub;
         Joystick joystick;
         usb_dev_handle* device_handle;
         unsigned char gpio_data = 0x00;

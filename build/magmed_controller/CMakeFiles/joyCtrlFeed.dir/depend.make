@@ -13,9 +13,11 @@ magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /home/zhang/
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/joyCtrlFeed.cpp
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 magmed_controller/CMakeFiles/joyCtrlFeed.dir/src/joyCtrlFeed.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h

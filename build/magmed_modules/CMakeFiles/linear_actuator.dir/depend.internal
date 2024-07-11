@@ -6,6 +6,9 @@ magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuato
  /home/zhang/magmed_ws/src/magmed_modules/include/linear_actuator/ch9326.h
  /home/zhang/magmed_ws/src/magmed_modules/include/linear_actuator/linear_actuator.hpp
  /home/zhang/magmed_ws/src/magmed_modules/src/linear_actuator/linear_actuator.cpp
+ /opt/ros/noetic/include/geometry_msgs/Twist.h
+ /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
+ /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h

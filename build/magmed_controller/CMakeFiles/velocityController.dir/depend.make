@@ -13,9 +13,11 @@ magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /home/
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
 magmed_controller/CMakeFiles/velocityController.dir/src/MSCRJacobi.cpp.o: /opt/ros/noetic/include/ros/datatypes.h
@@ -52,9 +54,11 @@ magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /home/zhang/magmed_ws/src/magmed_controller/src/velocityController.cpp
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/PointStamped.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 magmed_controller/CMakeFiles/velocityController.dir/src/velocityController.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h

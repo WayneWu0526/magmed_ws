@@ -22,6 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   # pthread REQUIRED
   magmed_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -116,7 +117,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES magmed_modules
- CATKIN_DEPENDS roscpp rospy std_msgs magmed_msgs
+ CATKIN_DEPENDS roscpp rospy std_msgs magmed_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 

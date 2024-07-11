@@ -18,11 +18,6 @@ int JoystickReader::run()
     }
 };
 
-int JoystickReader::findStartPort()
-{
-    
-};
-
 void JoystickReader::HandlePacket(const std::vector<uint8_t> &packet)
 {
 

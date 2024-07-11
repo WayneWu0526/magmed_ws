@@ -5,6 +5,9 @@ magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuato
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /home/zhang/magmed_ws/src/magmed_modules/include/linear_actuator/ch9326.h
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /home/zhang/magmed_ws/src/magmed_modules/include/linear_actuator/linear_actuator.hpp
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /home/zhang/magmed_ws/src/magmed_modules/src/linear_actuator/linear_actuator.cpp
+magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/geometry_msgs/Twist.h
+magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
+magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/geometry_msgs/Vector3.h
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h
 magmed_modules/CMakeFiles/linear_actuator.dir/src/linear_actuator/linear_actuator.cpp.o: /opt/ros/noetic/include/ros/assert.h

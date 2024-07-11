@@ -25,7 +25,8 @@ public:
 
     struct FFParam
     {
-        float fk = 200.0;
+        // float fk = 200.0;
+        float fk = 1.1;
     } ffparam;
     struct CAParam
     {
@@ -49,7 +50,8 @@ public:
 class optCtrl
 {
 public:
-    MagPose generateMagTwist(const double (&refTheta)[2], magmed_msgs::TipAngle const tipAngle);
+    MagPose generateMagTwist(const double (&refTheta)[2], double thetaL);
+    double getTheta();
     MagPose magPose;
     optCtrl()
     {

@@ -88,7 +88,8 @@
         "core": "cpp",
         "optctrlcpp": "cpp",
         "*.ipp": "cpp",
-        "*.txx": "cpp"
+        "*.txx": "cpp",
+        "future": "cpp"
     },
 }
 // {
