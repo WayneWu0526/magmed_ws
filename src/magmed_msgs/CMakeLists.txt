@@ -57,6 +57,7 @@ add_message_files(
   RoboStates.msg
   TipAngle.msg
   PoseTwist.msg
+  MagCR.msg
 )
 
 ## Generate services in the 'srv' folder
