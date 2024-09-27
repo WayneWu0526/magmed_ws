@@ -1,0 +1,1 @@
+diana_run subscribe 各个关节的速度的输入, load initpose

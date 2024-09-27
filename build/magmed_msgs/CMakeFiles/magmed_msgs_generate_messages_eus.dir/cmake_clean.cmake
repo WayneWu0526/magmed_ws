@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/manifest.l"
+  "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/MagCR.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/PFjoystick.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/PoseTwist.l"
   "/home/zhang/magmed_ws/devel/share/roseus/ros/magmed_msgs/msg/RoboJoints.l"

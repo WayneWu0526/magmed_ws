@@ -2,28 +2,26 @@ import pyzed.sl as sl
 import cv2
 import numpy as np
 import rospy
+from math import *
 from geometry_msgs.msg import PointStamped
-    
+from std_msgs.msg import Float64
+from scipy.signal import butter, filtfilt
+
 def main():
     # 初始化ROS节点
     rospy.init_node('zed_depth_publisher', anonymous=True)
     point_pub = rospy.Publisher('/magmed_stereoCamera/tipPoint', PointStamped, queue_size=10)
+    depth_bkg_pub = rospy.Publisher('/magmed_stereoCamera/backgroundDepth', Float64, queue_size=10)
 
     # 创建ZED相机对象
     zed = sl.Camera()
-
-    # zed.close()
 
     # 设置初始化参数
     init_params = sl.InitParameters()
     init_params.camera_resolution = sl.RESOLUTION.HD2K  # 使用2K分辨率
     init_params.coordinate_units = sl.UNIT.MILLIMETER  # 使用毫米作为单位
-    # init_params.coordinate_units = sl.UNIT.METER  # 使用米作为单位
     init_params.depth_minimum_distance = 200  # 设置最小深度为200mm
-    # init_params.depth_maximum_distance = 300  # 设置最大深度为300mm
-    # init_params.depth_mode = sl.DEPTH_MODE.ULTRA  # 使用超高精度模式
     init_params.depth_mode = sl.DEPTH_MODE.NEURAL  # 使用深度神经网络模式
-    # init_params.enable_image_enhancement = True  # 启用图像增强
 
     # 打开相机
     if zed.open(init_params) != sl.ERROR_CODE.SUCCESS:
@@ -58,14 +56,34 @@ def main():
     depth = sl.Mat()
     image = sl.Mat()
 
-    # 设置感兴趣区域的坐标（例如一个矩形区域）
-    roi_x, roi_y, roi_width, roi_height = 1150, 470, 250, 250
-    # roi_x, roi_y, roi_width, roi_height = 1200, 300, 400, 400
+    # 设置感兴趣区域的坐标
+    roi_x, roi_y, roi_width, roi_height = 990, 460, 225, 225
 
+    # Low-pass filter parameters
+    fs = 30  # 假设循环大约每秒运行30次
+    cutoff_freq = 0.1  # 截止频率 (Hz)
+    b, a = butter(2, cutoff_freq / (fs / 2), btype='low')
 
-    # 创建一个用于多帧平均的缓冲区
-    frame_buffer = []
-    buffer_size = 1
+    # 缓冲区用于存储历史 depth_value
+    depth_buffer = []
+    buffer_size = 50  # 缓冲区大小
+    
+    hist_X = 0
+    hist_Y = 0
+    hist_Z = 0
+
+    def apply_low_pass_filter(data_buffer, new_value):
+        data_buffer.append(new_value)
+        
+        # 保持缓冲区只包含最近的N个值
+        if len(data_buffer) > buffer_size:
+            data_buffer.pop(0)
+        
+        # 如果有足够的数据点，则应用低通滤波器
+        if len(data_buffer) > 10:
+            return filtfilt(b, a, data_buffer)[-1]  # 返回最新的滤波值
+        else:
+            return new_value  # 如果数据点不足，返回原始值
 
     while not rospy.is_shutdown():
 
@@ -85,88 +103,67 @@ def main():
             hsv = cv2.cvtColor(image_ocv_bgr, cv2.COLOR_BGR2HSV)
 
             # 设置从暗红色到亮红色的HSV范围
-            # 设置从暗红色到亮红色的BGR范围
-            lower_red1 = np.array([0, 60, 100])
-            upper_red1 = np.array([20, 255, 255])
-            mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
-
-            lower_red2 = np.array([160, 60, 100])
-            upper_red2 = np.array([180, 255, 255])
-            mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
-
-            # 合并两个掩码
-            mask = cv2.bitwise_or(mask1, mask2)
-            # mask = mask1
-            # mask = mask2
+            lower_red1 = np.array([0, 80, 80])
+            upper_red1 = np.array([10, 255, 255])
+            mask = cv2.inRange(hsv, lower_red1, upper_red1)
 
             # 使用形态学操作去除噪声
-            kernel = np.ones((5, 5), np.uint8)
+            kernel = np.ones((3, 3), np.uint8)
             mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
             mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
 
             # 找到轮廓
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-            # 将当前帧的深度数据添加到缓冲区
-            frame_buffer.append(roi_depth)
-
-            # 如果缓冲区已满，则计算平均深度
-            if len(frame_buffer) >= buffer_size:
-                averaged_depth = np.mean(frame_buffer, axis=0)
-                frame_buffer.pop(0)  # 移除最旧的帧
-
-                # 绘制矩形框并获取深度信息
+            if len(contours) != 0:
+                min_dist = 1000000
                 for contour in contours:
                     x, y, w, h = cv2.boundingRect(contour)
                     cv2.rectangle(image_ocv_bgr, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                    # 获取红点中心的深度信息
                     cx = x + w // 2
                     cy = y + h // 2
-                    depth_value = averaged_depth[cy, cx]
-                    # 在图像上显示深度信息
-                    label = f'Depth: {depth_value:.2f} mm'
-                    cv2.putText(image_ocv_bgr, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    depth_value = roi_depth[cy, cx]
+
+                    # 对 depth_value 进行低通滤波
+                    filtered_depth_value = apply_low_pass_filter(depth_buffer, depth_value)
 
                     x_ndc = (cx + roi_x - calib_cx) / calib_fx
                     y_ndc = (cy + roi_y - calib_cy) / calib_fy
+                    X = x_ndc * filtered_depth_value
+                    Y = y_ndc * filtered_depth_value
+                    Z = filtered_depth_value
 
-                    # print("calib_cx: {}, calib_cy: {} ".format(calib_cx, calib_cy))
+                    dist = sqrt((X - hist_X) ** 2 + (Y - hist_Y) ** 2 + (Z - hist_Z) ** 2)
+                    if dist < min_dist:
+                        min_dist = dist
+                        hist_X = X
+                        hist_Y = Y
+                        hist_Z = Z
 
-                    X = x_ndc * depth_value
-                    Y = y_ndc * depth_value
-                    Z = depth_value
+                    # 在图像上显示深度信息
+                    label = f'Depth: {filtered_depth_value:.2f} mm'
+                    cv2.putText(image_ocv_bgr, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
-                    print("Camera coordinates: (X: {}, Y: {}, Z: {})".format(X, Y, Z))
+            # 发布点信息到ROS话题
+            point_msg = PointStamped()
+            point_msg.header.stamp = rospy.Time.now()
+            point_msg.header.frame_id = "zed_camera"
+            point_msg.point.x = hist_X / 1000  # 转换为米
+            point_msg.point.y = hist_Y / 1000  # 转换为米
+            point_msg.point.z = hist_Z / 1000  # 转换为米
+            point_pub.publish(point_msg)
 
-                    # 发布点信息到ROS话题
-                    point_msg = PointStamped()
-                    point_msg.header.stamp = rospy.Time.now()
-                    point_msg.header.frame_id = "zed_camera"
-                    point_msg.point.x = X / 1000  # 转换为米
-                    point_msg.point.y = Y / 1000  # 转换为米
-                    point_msg.point.z = Z / 1000  # 转换为米
-                    point_pub.publish(point_msg)
+            # 将深度数据转换为伪彩色图像
+            normalized_depth = cv2.normalize(roi_depth, None, 0, 255, cv2.NORM_MINMAX)
+            colored_depth = cv2.applyColorMap(np.uint8(normalized_depth), cv2.COLORMAP_JET)
 
-                # # 获取图像中心的深度信息
-                # center_x, center_y = image_ocv_bgr.shape[1] // 2, image_ocv_bgr.shape[0] // 2
-                # center_y = center_y - 50
-                # center_depth_value = averaged_depth[center_y, center_x]
+            # 显示结果
+            cv2.imshow("Colored Depth Map", colored_depth)
+            cv2.imshow("RGB Image", image_ocv_bgr)
 
-                # # 在图像上显示中心的深度信息
-                # center_label = f'Center Depth: {center_depth_value:.2f} mm'
-                # cv2.putText(image_ocv_bgr, center_label, (center_x - 50, center_y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
-
-                # 将深度数据转换为伪彩色图像
-                normalized_depth = cv2.normalize(averaged_depth, None, 0, 255, cv2.NORM_MINMAX)
-                colored_depth = cv2.applyColorMap(np.uint8(normalized_depth), cv2.COLORMAP_JET)
-
-                # 显示结果
-                # cv2.imshow("Colored Depth Map", colored_depth)
-                # cv2.imshow("RGB Image", image_ocv_bgr)
-                
-                # 按下ESC键退出循环
-                # if cv2.waitKey(1) == 27:
-                #     break
+            # 按下ESC键退出循环
+            if cv2.waitKey(1) == 27:
+                break
 
     # 关闭相机
     zed.close()

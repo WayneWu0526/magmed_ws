@@ -37,15 +37,15 @@ std::pair<double, double> MSCRJacobi::g(const double theta, const Vector3d x, co
     // return 0.0;
 };
 
-RowVector3d MSCRJacobi::g_ex(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa)
+RowVector3d MSCRJacobi::g_ex(double theta, const Vector3d x, const Vector3d dx, const Vector3d hatma, const Vector3d pa)
 {
     Magnet magnet;
     magnet.hatma = hatma;
     magnet.pa = pa;
     double k = magnet.magpr.k;
     Matrix3d gradb = magnet.get_gradb(x);
-    Matrix3d Rz = RotZ(theta(0));
-    Matrix3d pRz = pRotZ(theta(0));
+    Matrix3d Rz = RotZ(theta);
+    Matrix3d pRz = pRotZ(theta);
     Vector3d v = Rz * vecM;
     Vector3d p = x - pa;
     Vector3d hatp = p / p.norm();
@@ -59,36 +59,40 @@ RowVector3d MSCRJacobi::g_ex(const Vector3d x, const Vector3d dx, const Vector2d
 };
 
 std::tuple<double, VectorXd, MatrixXd, MatrixXd> MSCRJacobi::fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma) {
-    int N = 100;
-    double ds = pr.L / N;
+    double ds = pr.L / pr.N;
 
-    VectorXd theta = VectorXd::Zero(N);
-    VectorXd dtheta = VectorXd::Zero(N);
-    MatrixXd x = MatrixXd::Zero(3, N);
-    MatrixXd dx = MatrixXd::Zero(3, N);
-
+    VectorXd theta = VectorXd::Zero(pr.N);
+    VectorXd dtheta = VectorXd::Zero(pr.N);
+    MatrixXd x = MatrixXd::Zero(3, pr.N);
+    MatrixXd dx = MatrixXd::Zero(3, pr.N);
+    double fval;
     dtheta(0) = gamma;
 
-    for (int i = 0; i < N - 1; ++i) {
-        auto [fval, _] = g(theta(i), x.col(i), dx.col(i), xa, hatma);
+    for (int i = 0; i < pr.N - 1; ++i) {
+        std::tie(fval, std::ignore) = g(theta(i), x.col(i), dx.col(i), xa, hatma);
         dtheta(i + 1) = dtheta(i) + ds * fval;
         theta(i + 1) = theta(i) + ds * dtheta(i);
         x.col(i + 1) = x.col(i) + ds * Vector3d(cos(theta(i)), sin(theta(i)), 0);
         dx.col(i + 1) = dx.col(i) + ds * Vector3d(-sin(theta(i)), cos(theta(i)), 0);
     }
-    double beta = dtheta(N - 1);
+    double beta = dtheta(pr.N - 1);
     return std::make_tuple(beta, theta, x, dx);
 }
 
-std::tuple<VectorXd, double, MatrixXd> MSCRJacobi::newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma)
+
+// std::tuple<VectorXd, RowVector4d, MatrixXd>
+std::tuple<VectorXd, MatrixXd, RowVector4d, Vector3d> MSCRJacobi::newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma)
 {
     int MAX_ITER = 20;
-    VectorXd gamma(MAX_ITER);
-    VectorXd beta(MAX_ITER);
-    int N = 100;
-    VectorXd theta = VectorXd::Zero(N);
-    MatrixXd x = MatrixXd::Zero(3, N); 
-    MatrixXd dx = MatrixXd::Zero(3, N);
+    VectorXd gamma = VectorXd::Zero(MAX_ITER);
+    VectorXd beta = VectorXd::Zero(MAX_ITER);
+    VectorXd theta = VectorXd::Zero(pr.N);
+    MatrixXd x = MatrixXd::Zero(3, pr.N); 
+    MatrixXd dx = MatrixXd::Zero(3, pr.N);
+    MatrixXd dJp = MatrixXd::Zero(pr.N, 3);
+    MatrixXd Jp = MatrixXd::Zero(pr.N, 3);
+    Vector3d Jx = Vector3d::Zero();
+    RowVector4d jacobian = RowVector4d::Zero();
 
     gamma(0) = 0.0;
     beta(0) = std::get<0>(fgamma(pa, hatma, gamma(0)));
@@ -96,50 +100,62 @@ std::tuple<VectorXd, double, MatrixXd> MSCRJacobi::newton_method_bvp(const Vecto
     gamma(1) = -beta(0);
     beta(1) = std::get<0>(fgamma(pa, hatma, gamma(1)));
 
-    for(int i = 1; i < MAX_ITER; ++i)
+    for(int i = 1; i < MAX_ITER - 1; ++i)
     {
         gamma(i+1) = gamma(i) - beta(i) * (gamma(i) - gamma(i-1)) / (beta(i) - beta(i-1));
-        auto [beta_, theta_, x_, dx_] = fgamma(pa, hatma, gamma(i+1));
-        beta(i+1) = beta_;
-        theta = theta_;
-        x = x_;
-        dx = dx_;
+        std::tie(beta(i+1), theta, x, dx) = fgamma(pa, hatma, gamma(i+1));
+        // auto [beta_, theta_, x_, dx_] = fgamma(pa, hatma, gamma(i+1));
+        // beta(i+1) = beta_;
+        // theta = theta_;
+        // x = x_;
+        // dx = dx_;
         // std::cout << beta_ << std::endl;
-        if(i == MAX_ITER - 1)
-        {
-            printf("shooting method failed!\n");
+        if(fabs(beta(i+1)) < 1e-3)
+        {   
+            break;
+            // std::cout << jacobian << std::endl;
         }
-        if(fabs(beta_) < 1e-3)
+        else if (i == MAX_ITER - 1)
         {
+            
+            std::cout << "Newton method did not converge" << std::endl;
+
             break;
         }
     };
-    // print theta
-    // std::cout << theta << std::endl;
-    double ds = pr.L / N;
 
-    MatrixXd u(2, N);
-    MatrixXd v(2, N);
+    double ds = pr.L / pr.N;
+    MatrixXd u(2, pr.N);
+    MatrixXd v(2, pr.N);
     u.setZero();
     v.setZero();
     v(1, 0) = 1;
-    for (int i = 0; i < N - 1; ++i) {
-        auto [fval, As] = g(theta(i), x.col(i), dx.col(i), pa, hatma);
+    double As, Bs;
+    for (int i = 0; i < pr.N - 1; ++i) {
+        std::tie(std::ignore, As) = g(theta(i), x.col(i), dx.col(i), pa, hatma);
         // std::cout << As << std::endl;
-        auto [Bs, _] = g(theta(i), x.col(i), dx.col(i), pa, phatma);
+        std::tie(Bs, std::ignore) = g(theta(i), x.col(i), dx.col(i), pa, phatma);
         // std::cout << Bs << std::endl;
         u.col(i + 1) = u.col(i) + ds * Vector2d(u(1, i), As * u(0, i) + Bs);
         v.col(i + 1) = v.col(i) + ds * Vector2d(v(1, i), As * v(0, i));
+        
+        dJp.row(i + 1) = dJp.row(i) + ds * g_ex(theta(i), x.col(i), dx.col(i), hatma, pa);
+        Jp.row(i + 1) = Jp.row(i) + ds * dJp.row(i);
     }
 
-    double ga = -u(1, N - 1) / v(1, N - 1);
+    double ga = -u(1, pr.N - 1) / v(1, pr.N - 1);
     // std::cout << ga << std::endl;
     VectorXd J = u.row(0).transpose() + ga * v.row(0).transpose();
-    double jacobian = J(N - 1);
 
-    // std::cout << jacobian << std::endl;
-    return std::make_tuple(theta, jacobian, x);
+    for (int i = 0; i < pr.N - 1; ++i) {
+        Jx += ds * Vector3d(-sin(theta(i)) * J(i), cos(theta(i)) * J(i), 0.0);
+    }
+    jacobian << J(pr.N - 1), -Jp.row(pr.N - 1);
 
+    // return std::make_tuple(theta, jacobian, x);
+    return std::make_tuple(theta, x, jacobian, Jx);
+    // print theta
+    // std::cout << theta << std::endl;
 };
 
 // double MSCRJacobi::get_theta(double psi, const Vector3d pa)
@@ -155,77 +171,35 @@ std::tuple<VectorXd, double, MatrixXd> MSCRJacobi::newton_method_bvp(const Vecto
 //     return Theta(N - 1);
 // };
 
-std::pair<double, RowVector4d> MSCRJacobi::get_states(double psi, const Vector3d pa)
+std::tuple<double, RowVector4d, Vector3d> MSCRJacobi::get_states(double psi, const Vector3d pa)
 {
-    Vector2d theta = Vector2d::Zero(2, 1);
-    Vector2d J_psi = Vector2d::Zero(2, 1);
-    Eigen::Matrix<double, 2, 3> J_p;
-    J_p << 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0;
-    Vector3d dx = {0.0, 0.0, 0.0};
-
     Vector3d hatma = {-cos(psi), sin(psi), 0.0};
     Vector3d phatma = {sin(psi), cos(psi), 0.0};
 
     // for 3D deflection
     // Vector3d pa_bar(pa[0], 0.0, sqrt((pa[1] * pa[1] + pa[2] * pa[2])));
-    auto [theta_, Jpsi_, x_] = newton_method_bvp(pa, hatma, phatma);
-    J_psi(0) = Jpsi_;
+    VectorXd theta(pr.N);
+    MatrixXd x(3, pr.N);
+    RowVector4d jacobian = RowVector4d::Zero();
+    Vector3d Jx = Vector3d::Zero();
+    std::tie(theta, x, jacobian, Jx) = newton_method_bvp(pa, hatma, phatma);
     // thetaL = theta_(100 - 1);
     // J_psi(0) = std::get<1>(newton_method_bvp(pa, hatma, phatma));
     // printf("J_psi(0): %f\n", J_psi(0));
-    for (int i = 0; i < pr.N - 1; i++)
-    {
-        // 4-order Runge-Kutta method (unfinished)
-        // Vector2d k21 = g(x.col(i), dx, Vector2d(theta(0), J(1)), phatma, pa);
-
-        // Vector2d k22 = g(x.col(i), dx, Vector2d(theta(0), J(1)) + ds / 2.0 * k21, phatma, pa);
-        // Vector2d k23 = g(x.col(i), dx, Vector2d(theta(0), J(1)) + ds / 2.0 * k22, phatma, pa);
-        // Vector2d k24 = g(x.col(i), dx, Vector2d(theta(0), J(1)) + ds * k23, phatma, pa);
-
-        // J += ds / 6.0 * (k21 + 2 * k22 + 2 * k23 + k24);
-
-        // Vector2d k11 = g(x.col(i) + (Vector3d(cos(theta(0) + ds / 2.0 * k11(0)), 0, sin(theta(0) + ds / 2.0 * k11(0)))) * ds / 2.0,
-        //  dx + (Vector3d(-sin(theta(0) + ds / 2.0 * k11(0)), 0, cos(theta(0) + ds / 2.0 * k11(0)))) * ds / 2.0,
-        //  theta + ds / 2.0 * k11, hatma, pa);
-        // Vector2d k12 = g(x.col(i), dx, theta + ds / 2.0 * k11, hatma, pa);
-        // Vector2d k13 = g(x.col(i), dx, theta + ds / 2.0 * k12, hatma, pa);
-        // Vector2d k14 = g(x.col(i), dx, theta + ds * k13, hatma, pa);
-
-        // theta += ds / 6.0 * (k11 + 2 * k12 + 2 * k13 + k14);
-
-        // std::cout << J << std::endl;
-
-        // for 3D deflection
-        // J += ds * g(x.col(i), dx, Vector2d(theta(0), J(1)), phatma, pa_bar);
-        // theta += ds* g(x.col(i), dx, theta, hatma, pa_bar);
-
-        // Vector2d dJpsi = Vector2d(J_psi(1), g(x.col(i), dx, theta, phatma, pa));
-        // J_psi += ds * dJpsi;
-        Eigen::Matrix<double, 2, 3> dJp;
-        dJp.row(0) = J_p.row(1);
-        dJp.row(1) = g_ex(x.col(i), dx, theta, hatma, pa);
-        J_p += ds * dJp;
-        // std::cout << J << std::endl;
-        Vector2d dtheta = Vector2d(theta(1), std::get<0>(g(theta(0), x.col(i), dx, pa, hatma)));
-        theta += ds * dtheta;
-
-        x.col(static_cast<Eigen::Index>(i) + 1) = x.col(i) + (Vector3d(cos(theta(0)), 0, sin(theta(0)))) * ds;
-        dx += (Vector3d(-sin(theta(0)), 0, cos(theta(0)))) * ds;
-    }
-    RowVector4d jacobian;
-    jacobian << J_psi(0), -J_p.row(0);
-    return std::make_pair(theta_(100-1), jacobian);
+    return std::make_tuple(theta(pr.N-1), jacobian, Jx);
 };
 
 // int main()
 // {
 //     // printf("hello world\n");
 //     RowVector4d jacobian;
+//     double thetaL;
+//     Vector3d Jx;
 //     MSCRJacobi mscrjacobi;
-//     auto [thetaL_, jacobian_] = mscrjacobi.get_states(M_PI/2.0, Vector3d(mscrjacobi.pr.L, 180e-3, 0.0));
+//     std::tie(thetaL, jacobian, Jx) = mscrjacobi.get_states(M_PI / 2.0, Vector3d(mscrjacobi.pr.L, 180.0e-3, 0.0));
 //     // std::cout << jacobian << std::endl;
-//     std::cout << "thetaL:" << thetaL_ << std::endl;
-//     std::cout << "jacobian:" << jacobian_ << std::endl;
+//     std::cout << "thetaL:" << thetaL << std::endl;
+//     std::cout << "jacobian:" << jacobian << std::endl;
+//     std::cout << "Jx:" << Jx << std::endl;
 //     return 0;
 // };

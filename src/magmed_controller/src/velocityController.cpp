@@ -109,7 +109,10 @@ int main(int argc, char *argv[])
         // double phi = M_PI / 2.0;        
 
         // get jacobian of the robot
-        auto [thetaL_, jacobian_] = mcr.get_states(g_fPsi, pa);
+        double thetaL_;
+        RowVector4d jacobian_;
+        Vector3d Jx;
+        std::tie(thetaL_, jacobian_, Jx) = mcr.get_states(g_fPsi, pa);
         double jacobian = jacobian_[0];
         ROS_INFO("jacobian: %f", jacobian);
 
@@ -137,7 +140,6 @@ int main(int argc, char *argv[])
         ros::spinOnce();
         rate.sleep();
     }
-
 
     return 0;
 }

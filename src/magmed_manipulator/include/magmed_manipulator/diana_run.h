@@ -18,7 +18,7 @@ public:
     {
         double acc = {0.5}; // set the acceleration
         double t = 0.0;
-        bool realiable = true;
+        bool realiable = false;
         DianaJointSets(){};
         DianaJointSets(double acc)
         {
@@ -185,10 +185,10 @@ int DianaStateManage::mvJointZeros()
 
 int DianaStateManage::srvJointVels()
 {
-    // ret = speedJ_ex(dsr_joint_vels.joint_vel_array, pred_sets.diana_jointsets.acc,
-    //                 pred_sets.diana_jointsets.t, pred_sets.diana_jointsets.realiable, strIpAddress);
-    ret = speedJ(dsr_joint_vels.joint_vel_array, pred_sets.diana_jointsets.acc,
-                    pred_sets.diana_jointsets.t, strIpAddress);
+    ret = speedJ_ex(dsr_joint_vels.joint_vel_array, pred_sets.diana_jointsets.acc,
+                    pred_sets.diana_jointsets.t, pred_sets.diana_jointsets.realiable, strIpAddress);
+    // ret = speedJ(dsr_joint_vels.joint_vel_array, pred_sets.diana_jointsets.acc,
+    //                 pred_sets.diana_jointsets.t, strIpAddress);
     if (ret < 0)
     {
         ROS_ERROR("[magmed_manipulator] speedJ_ex failed! Return value = %d\n", ret);
@@ -443,6 +443,7 @@ void JointVels::feed(magmed_msgs::RoboJointsConstPtr pMsg)
     for (int i = 0; i < JOINTNUM; ++i)
     {
         joint_vel_array[i] = joint_vel.joints[i];
+        // printf("joint_vel_array[%d] = %f\n", i, joint_vel_array[i]);
     }
 };
 

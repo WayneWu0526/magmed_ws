@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/MagCR.js"
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PFjoystick.js"
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/PoseTwist.js"
   "/home/zhang/magmed_ws/devel/share/gennodejs/ros/magmed_msgs/msg/RoboJoints.js"

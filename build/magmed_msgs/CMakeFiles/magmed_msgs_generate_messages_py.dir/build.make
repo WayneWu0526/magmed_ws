@@ -58,6 +58,7 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/d
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py
+magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py
@@ -88,20 +89,29 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/d
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG magmed_msgs/PoseTwist"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
 
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python from MSG magmed_msgs/MagCR"
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg
+
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py: /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv
-/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py: /home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python code from SRV magmed_msgs/SelfCollisionCheck"
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python code from SRV magmed_msgs/SelfCollisionCheck"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv -Imagmed_msgs:/home/zhang/magmed_ws/src/magmed_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p magmed_msgs -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -110,8 +120,9 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/d
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python msg __init__.py for magmed_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating Python msg __init__.py for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg --initpy
 
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -120,8 +131,9 @@ magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/d
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py
+/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py
 /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating Python srv __init__.py for magmed_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating Python srv __init__.py for magmed_msgs"
 	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv --initpy
 
 magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py
@@ -130,6 +142,7 @@ magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-p
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboStates.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_TipAngle.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py
+magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/_SelfCollisionCheck.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/__init__.py
 magmed_msgs_generate_messages_py: /home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/srv/__init__.py

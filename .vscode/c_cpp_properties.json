@@ -19,8 +19,9 @@
                 "${workspaceFolder}/devel/include",
                 "${workspaceFolder}/src/magmed_controller/include",
                 "${workspaceFolder}/src/magmed_manipulator/include",
-                "${workspaceFolder}/src/magmed_feeder/include"
-                // "${workspaceFolder}/src/hikrobot_camera/include"
+                "${workspaceFolder}/src/magmed_maglocator/include",
+                "${workspaceFolder}/src/magmed_feeder/include",
+                "${workspaceFolder}/src"
             ],
             "browse": {
                 "databaseFilename": "${default}",

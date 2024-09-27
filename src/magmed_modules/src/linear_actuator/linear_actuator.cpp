@@ -7,10 +7,12 @@ namespace linear_actuator
 
     LinearActuator::LinearActuator(ros::NodeHandle &nh) : nh(nh), running_(true)
     {
-        joystick_sub = nh.subscribe<magmed_msgs::PFjoystick>("/magmed_joystick/joystick_controller",
-                                                             10,
-                                                             boost::bind(&Joystick::feed, &joystick, _1));
-        linear_actuator_vel_pub = nh.advertise<geometry_msgs::TwistStamped>("linear_actuator/gframe_twist", 10);
+        vel_ctrl_sub = nh.subscribe<std_msgs::Float64MultiArray>("/magmed_linearactuator/vel_ctrl",
+                                                            10,
+                                                            boost::bind(&Velctrl::feed, &velctrl, _1));
+
+        linear_actuator_vel_pub = nh.advertise<std_msgs::Float64>("linear_actuator/vel", 10);
+
     }
 
     LinearActuator::~LinearActuator()
@@ -44,17 +46,12 @@ namespace linear_actuator
 
         ros::Duration(1.0).sleep();
         while (ros::ok()) {
-            double VEL_FACTOR = 0.01 / 7.76 / 1.04 / 5.00;
-            geometry_msgs::TwistStamped linear_actuator_vel;
-            linear_actuator_vel.header.stamp = ros::Time::now();
-            linear_actuator_vel.twist.linear.x = VEL_FACTOR * joystick.pf_joystick.nJOY3[0] * GAIN;
-            // std::cout << joystick.pf_joystick.nJOY3[0] << std::endl;
+            double VEL_FACTOR = 0.01 / 7.9 / (1.0 * 5.00);
+            std_msgs::Float64 linear_actuator_vel;
+            // linear_actuator_vel.twist.linear.x = VEL_FACTOR * GAIN * velctrl.vel_ctrl.data[1];
+            linear_actuator_vel.data = VEL_FACTOR * GAIN * velctrl.vel_ctrl.data[1];
             // std::cout << linear_actuator_vel.twist.linear.x << std::endl;
-            linear_actuator_vel.twist.linear.y = 0.0;
-            linear_actuator_vel.twist.linear.z = 0.0;
-            linear_actuator_vel.twist.angular.x = 0.0;
-            linear_actuator_vel.twist.angular.y = 0.0;
-            linear_actuator_vel.twist.angular.z = 0.0;
+            // std::cout << linear_actuator_vel.twist.linear.x << std::endl;
             linear_actuator_vel_pub.publish(linear_actuator_vel);    
 
             ros::spinOnce();
@@ -78,10 +75,10 @@ namespace linear_actuator
     {
         LinearActuator* actuator = (LinearActuator*)arg;
         while (actuator->running_) {
-            int frequency = actuator->joystick.speed.load();
+            int frequency = actuator->velctrl.speed.load();
             if (frequency > 0) {
                 int period = 1000000 / frequency; // 微秒
-                bool direction = actuator->joystick.dir.load();
+                bool direction = actuator->velctrl.dir.load();
                 actuator->setGPIOState(direction, true);  // 设置IO1和IO2高电平
                 usleep(period / 2); // 半个周期
                 actuator->setGPIOState(direction, false); // 设置IO2低电平

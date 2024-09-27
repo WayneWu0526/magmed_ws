@@ -64,3 +64,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/magmed_stereocamera" TYPE PROGRAM FILES "/home/zhang/magmed_ws/build/magmed_stereocamera/catkin_generated/installspace/pubDepthEst.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/magmed_stereocamera" TYPE PROGRAM FILES "/home/zhang/magmed_ws/build/magmed_stereocamera/catkin_generated/installspace/pubDepthAprilTag.py")
+endif()
+

@@ -44,6 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboStates.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/TipAngle.msg"
     "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
+    "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
     )
 endif()
 

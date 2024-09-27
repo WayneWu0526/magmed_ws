@@ -1,6 +1,8 @@
 (cl:defpackage magmed_msgs-msg
   (:use )
   (:export
+   "<MAGCR>"
+   "MAGCR"
    "<PFJOYSTICK>"
    "PFJOYSTICK"
    "<POSETWIST>"

@@ -6,6 +6,8 @@
                :std_msgs-msg
 )
   :components ((:file "_package")
+    (:file "MagCR" :depends-on ("_package_MagCR"))
+    (:file "_package_MagCR" :depends-on ("_package"))
     (:file "PFjoystick" :depends-on ("_package_PFjoystick"))
     (:file "_package_PFjoystick" :depends-on ("_package"))
     (:file "PoseTwist" :depends-on ("_package_PoseTwist"))

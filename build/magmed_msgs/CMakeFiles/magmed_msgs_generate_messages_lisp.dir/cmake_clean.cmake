@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/MagCR.lisp"
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PFjoystick.lisp"
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/PoseTwist.lisp"
   "/home/zhang/magmed_ws/devel/share/common-lisp/ros/magmed_msgs/msg/RoboJoints.lisp"

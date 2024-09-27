@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_MagCR.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PFjoystick.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_PoseTwist.py"
   "/home/zhang/magmed_ws/devel/lib/python3/dist-packages/magmed_msgs/msg/_RoboJoints.py"

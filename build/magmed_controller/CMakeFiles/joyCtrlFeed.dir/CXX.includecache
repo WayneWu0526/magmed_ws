@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/zhang/magmed_ws/devel/include/magmed_msgs/MagCR.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/Pose.h
+-
+
 /home/zhang/magmed_ws/devel/include/magmed_msgs/PFjoystick.h
 string
 -
@@ -147,15 +167,21 @@ magmed_controller/velCtrlDef.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
 
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
-nlopt.hpp
--
 eigen3/Eigen/Dense
+-
+nlopt.hpp
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/nlopt.hpp
+fstream
+-
+sstream
 -
 modern_robotics.h
 -
 qpOASES.hpp
 -
 cmath
+-
+algorithm
 -
 utility
 -
@@ -175,17 +201,23 @@ magmed_msgs/TipAngle.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/TipAngle.h
 magmed_msgs/PoseTwist.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/PoseTwist.h
+magmed_msgs/MagCR.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/MagCR.h
 magmed_msgs/SelfCollisionCheck.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_msgs/SelfCollisionCheck.h
 geometry_msgs/PointStamped.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/geometry_msgs/PointStamped.h
 geometry_msgs/TwistStamped.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/geometry_msgs/TwistStamped.h
+geometry_msgs/PoseStamped.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/geometry_msgs/PoseStamped.h
 std_msgs/Float64MultiArray.h
 -
 std_msgs/UInt32.h
 -
 std_msgs/UInt32MultiArray.h
+-
+std_msgs/Float64.h
 -
 
 /home/zhang/magmed_ws/src/magmed_controller/src/joyCtrlFeed.cpp
@@ -246,6 +278,26 @@ ros/message_operations.h
 geometry_msgs/Point.h
 -
 geometry_msgs/Quaternion.h
+-
+
+/opt/ros/noetic/include/geometry_msgs/PoseStamped.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/Pose.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/Quaternion.h
@@ -969,6 +1021,22 @@ ros/forwards.h
 /opt/ros/noetic/include/ros/ros/forwards.h
 
 /opt/ros/noetic/include/rosconsole/macros_generated.h
+
+/opt/ros/noetic/include/std_msgs/Float64.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/noetic/include/std_msgs/Float64MultiArray.h
 string

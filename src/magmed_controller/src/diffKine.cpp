@@ -31,44 +31,51 @@ Matrix3d diffKine::Rpsi(double psi)
 // };
 
 // getRealMagPose: Matrix3d Rgb = getRealMagPose(magPose)
-void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM], const int CTRLMODE)
+void diffKine::getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM], Matrix4d Tsg, const int CTRLMODE)
 {
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
     MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
     // calculate [Rgb, Pgb] = Tgb, Rgb = Rp[0], Pgb = Rp[1];
-    std::vector<Eigen::MatrixXd> Rp = TransToRp(TransInv(params.Tsg) * Tsb);
-
-    // magPose.psi = thetalist(JOINTNUM - 1);
-    Matrix3d Rz;
-    Rz.col(0) << -1, 0, 0;
-    Vector3d z = Rp[0].col(2);
-    Rz.col(1) = Vector3d::UnitX().cross(z);
-    Rz.col(2) = Rp[0].col(2);
-
-    // std::cout << "Rz: " << Rz << std::endl;
-    // std::cout << "Rp[0]: " << Rp[0] << std::endl;
-
-    magPose.psi = Vector3d::UnitZ().transpose() * so3ToVec(MatrixLog3(Rz.transpose() * Rp[0]));
-    Matrix3d rotz = Eigen::AngleAxisd(magPose.psi, Eigen::Vector3d::UnitZ()).toRotationMatrix();
-    magPhi = Vector3d::UnitX().transpose() * so3ToVec(MatrixLog3(Rp[0] * (diffKine::params.Rgb0 * rotz).transpose()));
-    Matrix3d rotx = Eigen::AngleAxisd(magPhi, Eigen::Vector3d::UnitX()).toRotationMatrix();
-    magPose.pos = rotx.transpose() * Rp[1];
+    std::vector<Eigen::MatrixXd> Rp_gb;
     switch(CTRLMODE)
     {
         case enum_CTRLMODE::NM:
         {
+            Rp_gb = TransToRp(TransInv(Tsg) * Tsb);
             break;
         }
         case enum_CTRLMODE::DM:
         {
-            magPose.pos[1] = -magPose.pos[1];
+            Rp_gb = TransToRp(TransInv(Tsg) * Tsb * RpToTrans(Rphi(M_PI), Vector3d::Zero()));            
             break;
         }
         default:
         {
+            Rp_gb = TransToRp(TransInv(Tsg) * Tsb);
             break;
         }
     }
+    pushMagPoseStamped(Rp_gb);
+    // diffkine.pushMagPoseMsg(optctrl.magPose, diffkine.magTwist);
+    // magPose.psi = thetalist(JOINTNUM - 1);
+    Matrix3d Rz;
+    Rz.col(0) << -1, 0, 0;
+    Vector3d z = Rp_gb[0].col(2);
+    Rz.col(1) = Vector3d::UnitX().cross(z);
+    Rz.col(2) = Rp_gb[0].col(2);
+
+    // std::cout << "Rz: " << Rz << std::endl;
+    // std::cout << "Rp_gb[0]: " << Rp_gb[0] << std::endl;
+
+    magPose.psi = Vector3d::UnitZ().transpose() * so3ToVec(MatrixLog3(Rz.transpose() * Rp_gb[0]));
+    Matrix3d rotz = Eigen::AngleAxisd(magPose.psi, Eigen::Vector3d::UnitZ()).toRotationMatrix();
+    magPhi = Vector3d::UnitX().transpose() * so3ToVec(MatrixLog3(Rp_gb[0] * (diffKine::params.Rgb0 * rotz).transpose()));
+    Matrix3d rotx = Eigen::AngleAxisd(magPhi, Eigen::Vector3d::UnitX()).toRotationMatrix();
+    magPose.pos = rotx.transpose() * Rp_gb[1];
+    /* [warning] */
+    magPose.pos[1] = 180.0e-3;
+
+    // std::cout << "magPhi: " << magPhi << std::endl;
     // std::cout << "magPose.psi: " << magPose.psi << std::endl;
     // std::cout << "magPose.pos: " << magPose.pos << std::endl;
 };
@@ -163,8 +170,10 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     // psi_d[1] = 0.0; // dpsi
     // psi_d[0] += psi_d[1] / CTRLFREQ; // psi
     
-    pos_d[1] = Vector3d::Zero();
+    pos_d[1] = magTwist.pos;
     pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
+    // pos_d[1] = Vector3d::Zero();
+    // pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
 
     // 设置对偶模态切换角度和角速度
     double omega = 0.0;
@@ -235,6 +244,9 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     W.diagonal() << 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0;
     // W.diagonal() << 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 1.0;
     JacobiSVD<MatrixXd> svd(Jb * W);
+
+    // std::cout << "可操作度：" << sqrt((Jb * Jb.transpose()).determinant()) << std::endl;
+
     VectorXd singular_values = svd.singularValues();
     if (singular_values.minCoeff() < EPSILON)
     {
@@ -246,31 +258,13 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     MatrixXd pinvJb = W.inverse() * Jb.transpose() * (Jb * W.inverse() * Jb.transpose() + lambda * MatrixXd::Identity(TCPNUM, TCPNUM)).inverse();
 
     MatrixXd P = MatrixXd::Identity(JOINTNUM, JOINTNUM) - pinvJb * Jb;
-    VectorXd nablaH = thetalist;
-    nablaH(JOINTNUM - 1) = 0.0;
 
     // compute dthetalist
     VectorXd taue = se3ToVec(MatrixLog6(TransInv(Tsb) * Tsd));
     VectorXd dthetalist(JOINTNUM);
-    dthetalist = pinvJb * (Adjoint(TransInv(Tsb) * Tsd) * nu_sd + diffKine::piparams.kp_ * taue) - 0.5 * P * thetalist;
+    dthetalist = pinvJb * (Adjoint(TransInv(Tsb) * Tsd) * nu_sd + diffKine::piparams.kp_ * taue) - 1.5 * P * thetalist;
 
     return dthetalist;
-};
-
-int diffKine::initTransMode(const double (&thetaList)[JOINTNUM], const int TRANSMETHOD, enum_CTRLMODE CTRLMODE)
-{
-    CTRLMODEb4Trans = CTRLMODE;
-    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
-    MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
-    Tsd_trans = Tsb * RpToTrans(Rphi(M_PI), Vector3d::Zero());
-    if((TRANSMETHOD == enum_TRANSMETHOD::OFT) || (TRANSMETHOD == enum_TRANSMETHOD::optOFT)) // compute desired joint angles
-    {
-        qd_trans << thetalist[0], thetalist[1], thetalist[2], thetalist[3], 0.0, -thetalist[5], -thetalist[6];
-        int nRet = solveDualModeJointAngles(qd_trans);
-        return nRet;
-        // qd_trans = ...
-    };
-    return 0;
 };
 
 VectorXd diffKine::ctrlModeTrans(const double (&thetaList)[JOINTNUM], enum_CTRLMODE* CTRLMODE, int TRANSMETHOD)
@@ -332,9 +326,9 @@ VectorXd diffKine::ctrlModeTrans(const double (&thetaList)[JOINTNUM], enum_CTRLM
             // double domega = -0.5 * (abs(Jt) > epsilon ? sgn(Jt) : Jt / epsilon);
             double dphi = 0;
             if (CTRLMODEb4Trans == enum_CTRLMODE::NM) {
-                dphi = 1;
+                dphi = -1.0;
             } else {
-                dphi = -1;
+                dphi = 1.0;
             }
             double GAIN = 0.5; // gain of the controller
             // double domega = -sgn((M_PI / 2.0 - fabs(thetalist[JOINTNUM - 1])) * dphi) * (y > epsilon ? GAIN : y / epsilon);
@@ -412,6 +406,32 @@ VectorXd diffKine::ctrlModeTrans(const double (&thetaList)[JOINTNUM], enum_CTRLM
 //     return 0.5 * (f - fd).squaredNorm();
 // }
 
+int diffKine::initTransMode(const double (&thetaList)[JOINTNUM], const int TRANSMETHOD, enum_CTRLMODE CTRLMODE)
+{
+    CTRLMODEb4Trans = CTRLMODE;
+    VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
+    std::cout << "thetalist: " << thetalist << std::endl;
+    MatrixXd Tsb = FKinSpace(params.M, params.Slist, thetalist);
+    Tsd_trans = Tsb * RpToTrans(Rphi(M_PI), Vector3d::Zero());
+    if((TRANSMETHOD == enum_TRANSMETHOD::OFT) || (TRANSMETHOD == enum_TRANSMETHOD::optOFT)) // compute desired joint angles
+    {
+        // qd_trans << thetalist[0], thetalist[1], thetalist[2], thetalist[3], 0.0, -thetalist[5], -thetalist[6];
+        // if(abs(thetalist[6]) <= M_PI / 2.0){
+        qd_trans << thetalist[0], thetalist[1], thetalist[2], thetalist[3], 0.0, -thetalist[5], 0.0;
+        // else if(thetalist[6] > M_PI / 2.0){
+        //     qd_trans << thetalist[0], thetalist[1], thetalist[2], thetalist[3], 0.0, -thetalist[5], M_PI / 2.0;
+        // }
+        // else if(thetalist[6] < -M_PI / 2.0){
+        //     qd_trans << thetalist[0], thetalist[1], thetalist[2], thetalist[3], 0.0, -thetalist[5], -M_PI / 2.0;
+        // }
+
+        int nRet = solveDualModeJointAngles(qd_trans);
+        return nRet;
+        // qd_trans = ...
+    };
+    return 0;
+};
+
 double myvfunc(const std::vector<double> &x, std::vector<double> &grad, void *my_func_data)
 {
     // convert x to VectorXd
@@ -433,19 +453,30 @@ double myvfunc(const std::vector<double> &x, std::vector<double> &grad, void *my
         }
     }
     return 0.5 * se3ToVec(MatrixLog6(TransInv(Tsb) * fd)).squaredNorm();
+    // return 0.5 * (se3ToVec(MatrixLog6(Tsb)) - se3ToVec(MatrixLog6(fd))).squaredNorm();
 };
 
 int diffKine::solveDualModeJointAngles(VectorXd &q0){
     // nlopt::opt opt(nlopt::LN_PRAXIS, JOINTNUM);
-    // printf("q0: %f, %f, %f, %f, %f, %f, %f\n", q0[0], q0[1], q0[2], q0[3], q0[4], q0[5], q0[6]);
+    printf("q0: %f, %f, %f, %f, %f, %f, %f\n", q0[0], q0[1], q0[2], q0[3], q0[4], q0[5], q0[6]);
     // printf Tsd_trans
-    nlopt::opt opt(nlopt::LN_PRAXIS, JOINTNUM);
+    // nlopt::opt opt(nlopt::LN_PRAXIS, JOINTNUM);
     // lb[0] = -HUGE_VAL; lb[1] = 0;
+    nlopt::opt opt;
+    std::vector<double> ub(params.jointUpperLimits);
+    std::vector<double> lb(params.jointLowerLimits);
+    ub[4] = 0.5;
+    lb[4] = -0.5;
+    // if(qd_trans[6] == 0.0){
+    //     ub[6] = M_PI / 2.0;
+    //     lb[6] = -M_PI / 2.0;
+    // }
+
     if(CTRLMODEb4Trans == enum_CTRLMODE::NM) {
+        opt = nlopt::opt(nlopt::LN_PRAXIS, JOINTNUM);
         // copy the params.jointLowerLimits to a std::vector lb
-        std::vector<double> ub(params.jointUpperLimits);
         ub[5] = 0.0;
-        opt.set_lower_bounds(params.jointLowerLimits);
+        opt.set_lower_bounds(lb);
         opt.set_upper_bounds(ub);
         // print ub
         // for (int i = 0; i < JOINTNUM; ++i) {
@@ -453,15 +484,22 @@ int diffKine::solveDualModeJointAngles(VectorXd &q0){
         // }
     }
     else{
-        std::vector<double> lb(params.jointLowerLimits);
+        // opt = nlopt::opt(nlopt::LN_BOBYQA, JOINTNUM);
+        opt = nlopt::opt(nlopt::GN_MLSL, JOINTNUM);
         lb[5] = 0.0;
+        // ub[6] = M_PI / 2.0;
+        // lb[6] = -M_PI / 2.0;
         opt.set_lower_bounds(lb);
-        opt.set_upper_bounds(params.jointUpperLimits);
+        opt.set_upper_bounds(ub);
+        opt.set_ftol_rel(1e-8);
+        opt.set_maxeval(1000);
+        opt.set_initial_step(1e-2);
     }
     // opt.set_min_objective(myvfunc, NULL);
     // VectorXd fd = se3ToVec(MatrixLog6(Tsd_trans));
     // opt.set_min_objective(myvfunc, &fd);
     opt.set_min_objective(myvfunc, &Tsd_trans);
+    std::cout << "Tsd_trans:" << Tsd_trans << std::endl;
     // opt.set_min_objective(objectiveFunction, NULL);
     // opt.add_equality_constraint(constraintFunction, &fd, 1e-2);
     opt.set_ftol_abs(1e-3);
@@ -480,8 +518,8 @@ int diffKine::solveDualModeJointAngles(VectorXd &q0){
         for (int i = 0; i < JOINTNUM; ++i) {
             q0[i] = x[i];
         }
-        std::cout << "[magmed_controller] Target joint angles found with minuum f: " << minf << std::endl;
-        // std::cout << "found minimum at f(" << q.transpose() << ") = " << minf << std::endl;
+        // std::cout << "[magmed_controller] Target joint angles found with minuum f: " << minf << std::endl;
+        std::cout << "found minimum at f(" << q0.transpose() << ") = " << minf << std::endl;
         return 0;
     }
     catch(std::exception &e) {

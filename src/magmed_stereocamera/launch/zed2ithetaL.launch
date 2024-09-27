@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="magmed_stereocamera" type="pubDepthEst.py" name="zed_depth_publisher"/>
+    <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/zed2i.bag"/>
+</launch>

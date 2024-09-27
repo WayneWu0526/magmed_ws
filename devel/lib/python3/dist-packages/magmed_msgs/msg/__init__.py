@@ -1,3 +1,4 @@
+from ._MagCR import *
 from ._PFjoystick import *
 from ._PoseTwist import *
 from ._RoboJoints import *

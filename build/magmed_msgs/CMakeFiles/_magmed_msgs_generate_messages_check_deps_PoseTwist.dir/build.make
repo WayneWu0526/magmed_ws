@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 include magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/progress.make
 
 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist:
-	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg geometry_msgs/Twist:geometry_msgs/Quaternion:geometry_msgs/Vector3:geometry_msgs/Point:std_msgs/Header:geometry_msgs/Pose
+	cd /home/zhang/magmed_ws/build/magmed_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py magmed_msgs /home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Twist:std_msgs/Header:geometry_msgs/Vector3:geometry_msgs/Quaternion
 
 _magmed_msgs_generate_messages_check_deps_PoseTwist: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist
 _magmed_msgs_generate_messages_check_deps_PoseTwist: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/build.make

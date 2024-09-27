@@ -5,8 +5,9 @@
 #include <iostream>
 #include <ros/ros.h>
 #include <pthread.h>
-#include "magmed_msgs/PFjoystick.h"
-#include "geometry_msgs/TwistStamped.h"
+#include <std_msgs/Float64MultiArray.h>
+// #include "geometry_msgs/TwistStamped.h"
+#include <std_msgs/Float64.h>
 #include <atomic>
 
 namespace linear_actuator
@@ -15,23 +16,29 @@ namespace linear_actuator
     const int FREQUENCY = 3200; // Hz
 
     // joystick input (manual control)
-    class Joystick
+
+    class Velctrl
     {
     public:
-        magmed_msgs::PFjoystick pf_joystick;
-
-        std::atomic<bool> dir; // 0: forward, 1: backward
-        std::atomic<int> speed; // 0: stop, 1: low speed, 2: high speed
-
-        void feed(magmed_msgs::PFjoystickConstPtr pMsg)
+        std_msgs::Float64MultiArray vel_ctrl;
+        std::atomic<bool> dir;
+        std::atomic<int> speed;
+        double input_vel;
+        Velctrl(): dir(0), speed(0), input_vel(0) {
+            vel_ctrl.data.resize(2);
+            vel_ctrl.data[0] = 0.0;
+            vel_ctrl.data[1] = 0.0;
+        };
+        void feed(std_msgs::Float64MultiArrayConstPtr pMsg)
         {
-            pf_joystick = *pMsg;
-            GAIN = (int) (pf_joystick.POTA / 1000.0 * 10.0);
+            vel_ctrl = *pMsg;
+            GAIN = (int) (vel_ctrl.data[0] / 1000.0 * 10.0);
             // printf("GAIN: %d\n", GAIN);
-            dir = pf_joystick.nJOY3[0] > 0 ? 1 : 0;
-            speed = (int) (std::fabs(pf_joystick.nJOY3[0]) * GAIN * FREQUENCY);
+            // std::cout << "GAIN:" << vel_ctrl.data[0] << std::endl;
+            dir = vel_ctrl.data[1] > 0 ? 1 : 0;
+            speed = (int) (std::fabs(vel_ctrl.data[1]) * GAIN * FREQUENCY);
+            // std::cout << "speed:" << vel_ctrl.data[1] << std::endl;
         }
-        Joystick() : dir(0), speed(0) {};
     };
 
     class LinearActuator
@@ -48,8 +55,9 @@ namespace linear_actuator
 
         ros::NodeHandle nh;
         ros::Subscriber joystick_sub;
+        ros::Subscriber vel_ctrl_sub;
         ros::Publisher linear_actuator_vel_pub;
-        Joystick joystick;
+        Velctrl velctrl;
         usb_dev_handle* device_handle;
         unsigned char gpio_data = 0x00;
         unsigned char gpio_dir = 0x03; // 设置IO1和IO2为输出

@@ -76,7 +76,7 @@ while True:
         hsv = cv2.cvtColor(image_ocv_bgr, cv2.COLOR_BGR2HSV)
 
         # 设置从暗红色到亮红色的HSV范围
-        lower_red1 = np.array([20, 50, 50])
+        lower_red1 = np.array([0, 50, 50])
         upper_red1 = np.array([10, 255, 255])
         mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
 

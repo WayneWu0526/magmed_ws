@@ -8,7 +8,7 @@ import rospy
 from magmed_msgs.srv import SelfCollisionCheck, SelfCollisionCheckResponse
 # from magmed_msgs.srv import SelfCollisionCheck
 
-CHECKTHRESHOLD = 0.01
+CHECKTHRESHOLD = 0.02
 
 class MultiPanda_bullet:
     def __init__(self, base_poses, base_orientations, stepsize=1e-3, realtime=0, GUI=False, debug=False,
@@ -309,9 +309,6 @@ class MultiPanda_bullet:
         return flag
 
 
-    
-
-
 def collision_checker(req):
     
     # print(f'type(req.joints)=',type(req.joints.joints))
@@ -332,6 +329,6 @@ if __name__ == '__main__':
                             collision_shape='mesh')
 
     
-    server = rospy.Service('magmed_modules/selfCollisionCheck', SelfCollisionCheck, collision_checker)
+    server = rospy.Service('/magmed_modules/selfCollisionCheck', SelfCollisionCheck, collision_checker)
    
     rospy.spin()

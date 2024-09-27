@@ -54,37 +54,13 @@ CMAKE_BINARY_DIR = /home/zhang/magmed_ws/build
 
 # The main recursive "all" target.
 all: gtest/all
-all: diana7_description/all
-all: magmed_camera/all
-all: magmed_deeplearning/all
-all: magmed_feeder/all
 all: magmed_maglocator/all
-all: magmed_msgs/all
-all: magmed_controller/all
-all: magmed_joystick/all
-all: magmed_manipulator/all
-all: magmed_modules/all
-all: magmed_stereocamera/all
-all: magmed_virtualsurgery/all
-all: test/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
-preinstall: diana7_description/preinstall
-preinstall: magmed_camera/preinstall
-preinstall: magmed_deeplearning/preinstall
-preinstall: magmed_feeder/preinstall
 preinstall: magmed_maglocator/preinstall
-preinstall: magmed_msgs/preinstall
-preinstall: magmed_controller/preinstall
-preinstall: magmed_joystick/preinstall
-preinstall: magmed_manipulator/preinstall
-preinstall: magmed_modules/preinstall
-preinstall: magmed_stereocamera/preinstall
-preinstall: magmed_virtualsurgery/preinstall
-preinstall: test/preinstall
 
 .PHONY : preinstall
 
@@ -95,39 +71,9 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
-clean: diana7_description/clean
-clean: magmed_camera/clean
-clean: magmed_deeplearning/clean
-clean: magmed_feeder/clean
 clean: magmed_maglocator/clean
-clean: magmed_msgs/clean
-clean: magmed_controller/clean
-clean: magmed_joystick/clean
-clean: magmed_manipulator/clean
-clean: magmed_modules/clean
-clean: magmed_stereocamera/clean
-clean: magmed_virtualsurgery/clean
-clean: test/clean
 
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory diana7_description
-
-# Recursive "all" directory target.
-diana7_description/all:
-
-.PHONY : diana7_description/all
-
-# Recursive "preinstall" directory target.
-diana7_description/preinstall:
-
-.PHONY : diana7_description/preinstall
-
-# Recursive "clean" directory target.
-diana7_description/clean: diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/clean
-
-.PHONY : diana7_description/clean
 
 #=============================================================================
 # Directory level rules for directory gtest
@@ -187,131 +133,10 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : gtest/googletest/clean
 
 #=============================================================================
-# Directory level rules for directory magmed_camera
-
-# Recursive "all" directory target.
-magmed_camera/all: magmed_camera/CMakeFiles/pubTipAngle.dir/all
-magmed_camera/all: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
-magmed_camera/all: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
-magmed_camera/all: magmed_camera/CMakeFiles/demo01_camera_connect.dir/all
-
-.PHONY : magmed_camera/all
-
-# Recursive "preinstall" directory target.
-magmed_camera/preinstall:
-
-.PHONY : magmed_camera/preinstall
-
-# Recursive "clean" directory target.
-magmed_camera/clean: magmed_camera/CMakeFiles/pubTipAngle.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/demo01_camera_connect.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-magmed_camera/clean: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-
-.PHONY : magmed_camera/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_controller
-
-# Recursive "all" directory target.
-magmed_controller/all: magmed_controller/CMakeFiles/joyCtrlFeed.dir/all
-magmed_controller/all: magmed_controller/CMakeFiles/velCtrlNode.dir/all
-magmed_controller/all: magmed_controller/CMakeFiles/velocityController.dir/all
-magmed_controller/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
-
-.PHONY : magmed_controller/all
-
-# Recursive "preinstall" directory target.
-magmed_controller/preinstall:
-
-.PHONY : magmed_controller/preinstall
-
-# Recursive "clean" directory target.
-magmed_controller/clean: magmed_controller/CMakeFiles/joyCtrlFeed.dir/clean
-magmed_controller/clean: magmed_controller/CMakeFiles/velCtrlNode.dir/clean
-magmed_controller/clean: magmed_controller/CMakeFiles/velocityController.dir/clean
-magmed_controller/clean: magmed_controller/CMakeFiles/velCtrlLib.dir/clean
-
-.PHONY : magmed_controller/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_deeplearning
-
-# Recursive "all" directory target.
-magmed_deeplearning/all:
-
-.PHONY : magmed_deeplearning/all
-
-# Recursive "preinstall" directory target.
-magmed_deeplearning/preinstall:
-
-.PHONY : magmed_deeplearning/preinstall
-
-# Recursive "clean" directory target.
-magmed_deeplearning/clean:
-
-.PHONY : magmed_deeplearning/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_feeder
-
-# Recursive "all" directory target.
-magmed_feeder/all: magmed_feeder/CMakeFiles/magrobo_feeder.dir/all
-
-.PHONY : magmed_feeder/all
-
-# Recursive "preinstall" directory target.
-magmed_feeder/preinstall:
-
-.PHONY : magmed_feeder/preinstall
-
-# Recursive "clean" directory target.
-magmed_feeder/clean: magmed_feeder/CMakeFiles/magrobo_feeder.dir/clean
-
-.PHONY : magmed_feeder/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_joystick
-
-# Recursive "all" directory target.
-magmed_joystick/all: magmed_joystick/CMakeFiles/readJoystick.dir/all
-magmed_joystick/all: magmed_joystick/CMakeFiles/readJoystickTwist.dir/all
-magmed_joystick/all: magmed_joystick/CMakeFiles/PathFinderlib.dir/all
-
-.PHONY : magmed_joystick/all
-
-# Recursive "preinstall" directory target.
-magmed_joystick/preinstall:
-
-.PHONY : magmed_joystick/preinstall
-
-# Recursive "clean" directory target.
-magmed_joystick/clean: magmed_joystick/CMakeFiles/readJoystick.dir/clean
-magmed_joystick/clean: magmed_joystick/CMakeFiles/readJoystickTwist.dir/clean
-magmed_joystick/clean: magmed_joystick/CMakeFiles/PathFinderlib.dir/clean
-
-.PHONY : magmed_joystick/clean
-
-#=============================================================================
 # Directory level rules for directory magmed_maglocator
 
 # Recursive "all" directory target.
-magmed_maglocator/all:
+magmed_maglocator/all: magmed_maglocator/CMakeFiles/draw_circle.dir/all
 
 .PHONY : magmed_maglocator/all
 
@@ -321,144 +146,34 @@ magmed_maglocator/preinstall:
 .PHONY : magmed_maglocator/preinstall
 
 # Recursive "clean" directory target.
-magmed_maglocator/clean:
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/draw_circle.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+magmed_maglocator/clean: magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
 
 .PHONY : magmed_maglocator/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_manipulator
-
-# Recursive "all" directory target.
-magmed_manipulator/all: magmed_manipulator/CMakeFiles/diana_run.dir/all
-magmed_manipulator/all: magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all
-magmed_manipulator/all: magmed_manipulator/CMakeFiles/dianaManipulator.dir/all
-magmed_manipulator/all: magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all
-
-.PHONY : magmed_manipulator/all
-
-# Recursive "preinstall" directory target.
-magmed_manipulator/preinstall:
-
-.PHONY : magmed_manipulator/preinstall
-
-# Recursive "clean" directory target.
-magmed_manipulator/clean: magmed_manipulator/CMakeFiles/diana_run.dir/clean
-magmed_manipulator/clean: magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/clean
-magmed_manipulator/clean: magmed_manipulator/CMakeFiles/dianaManipulator.dir/clean
-magmed_manipulator/clean: magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/clean
-
-.PHONY : magmed_manipulator/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_modules
-
-# Recursive "all" directory target.
-magmed_modules/all: magmed_modules/CMakeFiles/linear_actuator.dir/all
-
-.PHONY : magmed_modules/all
-
-# Recursive "preinstall" directory target.
-magmed_modules/preinstall:
-
-.PHONY : magmed_modules/preinstall
-
-# Recursive "clean" directory target.
-magmed_modules/clean: magmed_modules/CMakeFiles/linear_actuator.dir/clean
-
-.PHONY : magmed_modules/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_msgs
-
-# Recursive "all" directory target.
-magmed_msgs/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all
-
-.PHONY : magmed_msgs/all
-
-# Recursive "preinstall" directory target.
-magmed_msgs/preinstall:
-
-.PHONY : magmed_msgs/preinstall
-
-# Recursive "clean" directory target.
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/clean
-magmed_msgs/clean: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/clean
-
-.PHONY : magmed_msgs/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_stereocamera
-
-# Recursive "all" directory target.
-magmed_stereocamera/all:
-
-.PHONY : magmed_stereocamera/all
-
-# Recursive "preinstall" directory target.
-magmed_stereocamera/preinstall:
-
-.PHONY : magmed_stereocamera/preinstall
-
-# Recursive "clean" directory target.
-magmed_stereocamera/clean:
-
-.PHONY : magmed_stereocamera/clean
-
-#=============================================================================
-# Directory level rules for directory magmed_virtualsurgery
-
-# Recursive "all" directory target.
-magmed_virtualsurgery/all:
-
-.PHONY : magmed_virtualsurgery/all
-
-# Recursive "preinstall" directory target.
-magmed_virtualsurgery/preinstall:
-
-.PHONY : magmed_virtualsurgery/preinstall
-
-# Recursive "clean" directory target.
-magmed_virtualsurgery/clean:
-
-.PHONY : magmed_virtualsurgery/clean
-
-#=============================================================================
-# Directory level rules for directory test
-
-# Recursive "all" directory target.
-test/all: test/CMakeFiles/test_diffKine.dir/all
-
-.PHONY : test/all
-
-# Recursive "preinstall" directory target.
-test/preinstall:
-
-.PHONY : test/preinstall
-
-# Recursive "clean" directory target.
-test/clean: test/CMakeFiles/test_diffKine.dir/clean
-
-.PHONY : test/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
@@ -603,7 +318,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmoc
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=19,20 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -630,7 +345,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=17,18 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=3,4 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -657,7 +372,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=23,24 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=9,10 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -684,7 +399,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=21,22 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -705,1767 +420,730 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target diana7_description/CMakeFiles/_catkin_empty_exported_target.dir
+# Target rules for target magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/all:
-	$(MAKE) -f diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/build.make diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/depend
-	$(MAKE) -f diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/build.make diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _catkin_empty_exported_target"
-.PHONY : diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/all
-
-# Build rule for subdir invocation for target.
-diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/rule
-
-# Convenience name for target.
-_catkin_empty_exported_target: diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/rule
-
-.PHONY : _catkin_empty_exported_target
-
-# clean rule for target.
-diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	$(MAKE) -f diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/build.make diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/clean
-.PHONY : diana7_description/CMakeFiles/_catkin_empty_exported_target.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/pubTipAngle.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/pubTipAngle.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=64,65,66 "Built target pubTipAngle"
-.PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/pubTipAngle.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/pubTipAngle.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/rule
-
-# Convenience name for target.
-pubTipAngle: magmed_camera/CMakeFiles/pubTipAngle.dir/rule
-
-.PHONY : pubTipAngle
-
-# clean rule for target.
-magmed_camera/CMakeFiles/pubTipAngle.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/pubTipAngle.dir/build.make magmed_camera/CMakeFiles/pubTipAngle.dir/clean
-.PHONY : magmed_camera/CMakeFiles/pubTipAngle.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/demo03_grabimage_callback.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=9,10 "Built target demo03_grabimage_callback"
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
-
-# Convenience name for target.
-demo03_grabimage_callback: magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/rule
-
-.PHONY : demo03_grabimage_callback
-
-# clean rule for target.
-magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/build.make magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
-.PHONY : magmed_camera/CMakeFiles/demo03_grabimage_callback.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=7,8 "Built target demo02_grabimage_activestream"
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule
-
-# Convenience name for target.
-demo02_grabimage_activestream: magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/rule
-
-.PHONY : demo02_grabimage_activestream
-
-# clean rule for target.
-magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/build.make magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
-.PHONY : magmed_camera/CMakeFiles/demo02_grabimage_activestream.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/demo01_camera_connect.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/demo01_camera_connect.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=3,4 "Built target demo01_camera_connect"
-.PHONY : magmed_camera/CMakeFiles/demo01_camera_connect.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/demo01_camera_connect.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
-
-# Convenience name for target.
-demo01_camera_connect: magmed_camera/CMakeFiles/demo01_camera_connect.dir/rule
-
-.PHONY : demo01_camera_connect
-
-# clean rule for target.
-magmed_camera/CMakeFiles/demo01_camera_connect.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/demo01_camera_connect.dir/build.make magmed_camera/CMakeFiles/demo01_camera_connect.dir/clean
-.PHONY : magmed_camera/CMakeFiles/demo01_camera_connect.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# clean rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# clean rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# clean rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# clean rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# clean rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# clean rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# clean rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# clean rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# clean rule for target.
-magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_py: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_py
 
 # clean rule for target.
-magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_feeder/CMakeFiles/magrobo_feeder.dir
+# Target rules for target magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir
 
 # All Build rule for target.
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-	$(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/depend
-	$(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=62,63 "Built target magrobo_feeder"
-.PHONY : magmed_feeder/CMakeFiles/magrobo_feeder.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_feeder/CMakeFiles/magrobo_feeder.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-magrobo_feeder: magmed_feeder/CMakeFiles/magrobo_feeder.dir/rule
+roscpp_generate_messages_lisp: magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
-.PHONY : magrobo_feeder
-
-# clean rule for target.
-magmed_feeder/CMakeFiles/magrobo_feeder.dir/clean:
-	$(MAKE) -f magmed_feeder/CMakeFiles/magrobo_feeder.dir/build.make magmed_feeder/CMakeFiles/magrobo_feeder.dir/clean
-.PHONY : magmed_feeder/CMakeFiles/magrobo_feeder.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_genpy"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule
-
-# Convenience name for target.
-magmed_msgs_genpy: magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/rule
-
-.PHONY : magmed_msgs_genpy
+.PHONY : roscpp_generate_messages_lisp
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genpy.dir/clean
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir
+# Target rules for target magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=54,55,56,57,58,59,60,61 "Built target magmed_msgs_generate_messages_py"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_py: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_py
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_gennodejs"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/rule
-
-# Convenience name for target.
-magmed_msgs_gennodejs: magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/rule
-
-.PHONY : magmed_msgs_gennodejs
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gennodejs.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_genlisp"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/rule
-
-# Convenience name for target.
-magmed_msgs_genlisp: magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/rule
-
-.PHONY : magmed_msgs_genlisp
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_genlisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=42,43,44,45,46,47 "Built target magmed_msgs_generate_messages_lisp"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_lisp
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_gencpp"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule
-
-# Convenience name for target.
-magmed_msgs_gencpp: magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/rule
-
-.PHONY : magmed_msgs_gencpp
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_gencpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=48,49,50,51,52,53 "Built target magmed_msgs_generate_messages_nodejs"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_nodejs
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_eus"
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_PFjoystick"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/rule
-
-# Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_PFjoystick: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/rule
-
-.PHONY : _magmed_msgs_generate_messages_check_deps_PFjoystick
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_TipAngle"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/rule
-
-# Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_TipAngle: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/rule
-
-.PHONY : _magmed_msgs_generate_messages_check_deps_TipAngle
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=29,30,31,32,33,34 "Built target magmed_msgs_generate_messages_cpp"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : magmed_msgs_generate_messages_cpp
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_geneus"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 7
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/rule
-
-# Convenience name for target.
-magmed_msgs_geneus: magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/rule
-
-.PHONY : magmed_msgs_geneus
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_geneus.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_lisp"
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_cpp"
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_cpp: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+geometry_msgs_generate_messages_cpp: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 .PHONY : geometry_msgs_generate_messages_cpp
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir
+# Target rules for target magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_nodejs"
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_nodejs: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+geometry_msgs_generate_messages_nodejs: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 
 .PHONY : geometry_msgs_generate_messages_nodejs
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir
+# Target rules for target magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_py"
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_py: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_lisp: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_py
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir
+# Target rules for target magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_RoboStates"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_RoboStates: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/rule
+rosgraph_msgs_generate_messages_eus: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboStates
+.PHONY : rosgraph_msgs_generate_messages_eus
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/clean
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir
+# Target rules for target magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 33
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-magmed_msgs_generate_messages: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/rule
+std_msgs_generate_messages_cpp: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : magmed_msgs_generate_messages
+.PHONY : std_msgs_generate_messages_cpp
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages.dir/clean
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir
+# Target rules for target magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_RoboJoints"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages_eus"
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_RoboJoints: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/rule
-
-.PHONY : _magmed_msgs_generate_messages_check_deps_RoboJoints
-
-# clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir
-
-# All Build rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PFjoystick.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_TipAngle.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboStates.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_RoboJoints.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=35,36,37,38,39,40,41 "Built target magmed_msgs_generate_messages_eus"
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 7
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-magmed_msgs_generate_messages_eus: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
+magmed_msgs_generate_messages_eus: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/rule
 
 .PHONY : magmed_msgs_generate_messages_eus
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir
+# Target rules for target magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_PoseTwist"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_PoseTwist: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/rule
+roscpp_generate_messages_nodejs: magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
-.PHONY : _magmed_msgs_generate_messages_check_deps_PoseTwist
+.PHONY : roscpp_generate_messages_nodejs
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_PoseTwist.dir/clean
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir
+# Target rules for target magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/depend
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck"
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck: magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/rule
+std_msgs_generate_messages_eus: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
-.PHONY : _magmed_msgs_generate_messages_check_deps_SelfCollisionCheck
+.PHONY : std_msgs_generate_messages_eus
 
 # clean rule for target.
-magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/clean:
-	$(MAKE) -f magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/build.make magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/clean
-.PHONY : magmed_msgs/CMakeFiles/_magmed_msgs_generate_messages_check_deps_SelfCollisionCheck.dir/clean
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_controller/CMakeFiles/joyCtrlFeed.dir
+# Target rules for target magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
-	$(MAKE) -f magmed_controller/CMakeFiles/joyCtrlFeed.dir/build.make magmed_controller/CMakeFiles/joyCtrlFeed.dir/depend
-	$(MAKE) -f magmed_controller/CMakeFiles/joyCtrlFeed.dir/build.make magmed_controller/CMakeFiles/joyCtrlFeed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=25,26 "Built target joyCtrlFeed"
-.PHONY : magmed_controller/CMakeFiles/joyCtrlFeed.dir/all
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_lisp"
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 39
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/joyCtrlFeed.dir/all
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_controller/CMakeFiles/joyCtrlFeed.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-joyCtrlFeed: magmed_controller/CMakeFiles/joyCtrlFeed.dir/rule
+geometry_msgs_generate_messages_lisp: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : joyCtrlFeed
+.PHONY : geometry_msgs_generate_messages_lisp
 
 # clean rule for target.
-magmed_controller/CMakeFiles/joyCtrlFeed.dir/clean:
-	$(MAKE) -f magmed_controller/CMakeFiles/joyCtrlFeed.dir/build.make magmed_controller/CMakeFiles/joyCtrlFeed.dir/clean
-.PHONY : magmed_controller/CMakeFiles/joyCtrlFeed.dir/clean
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_controller/CMakeFiles/velCtrlNode.dir
+# Target rules for target magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir
 
 # All Build rule for target.
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlNode.dir/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/depend
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=77,78 "Built target velCtrlNode"
-.PHONY : magmed_controller/CMakeFiles/velCtrlNode.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_controller/CMakeFiles/velCtrlNode.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 39
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velCtrlNode.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_controller/CMakeFiles/velCtrlNode.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
-velCtrlNode: magmed_controller/CMakeFiles/velCtrlNode.dir/rule
+roscpp_generate_messages_py: magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
-.PHONY : velCtrlNode
+.PHONY : roscpp_generate_messages_py
 
 # clean rule for target.
-magmed_controller/CMakeFiles/velCtrlNode.dir/clean:
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlNode.dir/build.make magmed_controller/CMakeFiles/velCtrlNode.dir/clean
-.PHONY : magmed_controller/CMakeFiles/velCtrlNode.dir/clean
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_controller/CMakeFiles/velocityController.dir
+# Target rules for target magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-magmed_controller/CMakeFiles/velocityController.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/depend
-	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=79,80,81 "Built target velocityController"
-.PHONY : magmed_controller/CMakeFiles/velocityController.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_controller/CMakeFiles/velocityController.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 9
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velocityController.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_controller/CMakeFiles/velocityController.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-velocityController: magmed_controller/CMakeFiles/velocityController.dir/rule
+std_msgs_generate_messages_lisp: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : velocityController
+.PHONY : std_msgs_generate_messages_lisp
 
 # clean rule for target.
-magmed_controller/CMakeFiles/velocityController.dir/clean:
-	$(MAKE) -f magmed_controller/CMakeFiles/velocityController.dir/build.make magmed_controller/CMakeFiles/velocityController.dir/clean
-.PHONY : magmed_controller/CMakeFiles/velocityController.dir/clean
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_controller/CMakeFiles/velCtrlLib.dir
+# Target rules for target magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_controller/CMakeFiles/velCtrlLib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/depend
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=73,74,75,76 "Built target velCtrlLib"
-.PHONY : magmed_controller/CMakeFiles/velCtrlLib.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_controller/CMakeFiles/velCtrlLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 37
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_controller/CMakeFiles/velCtrlLib.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_controller/CMakeFiles/velCtrlLib.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-velCtrlLib: magmed_controller/CMakeFiles/velCtrlLib.dir/rule
+rosgraph_msgs_generate_messages_nodejs: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : velCtrlLib
+.PHONY : rosgraph_msgs_generate_messages_nodejs
 
 # clean rule for target.
-magmed_controller/CMakeFiles/velCtrlLib.dir/clean:
-	$(MAKE) -f magmed_controller/CMakeFiles/velCtrlLib.dir/build.make magmed_controller/CMakeFiles/velCtrlLib.dir/clean
-.PHONY : magmed_controller/CMakeFiles/velCtrlLib.dir/clean
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_joystick/CMakeFiles/readJoystick.dir
+# Target rules for target magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystick.dir/all: magmed_joystick/CMakeFiles/PathFinderlib.dir/all
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/depend
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=67,68 "Built target readJoystick"
-.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/all
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages_lisp"
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_joystick/CMakeFiles/readJoystick.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 37
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystick.dir/all
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-readJoystick: magmed_joystick/CMakeFiles/readJoystick.dir/rule
+magmed_msgs_generate_messages_lisp: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : readJoystick
+.PHONY : magmed_msgs_generate_messages_lisp
 
 # clean rule for target.
-magmed_joystick/CMakeFiles/readJoystick.dir/clean:
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystick.dir/build.make magmed_joystick/CMakeFiles/readJoystick.dir/clean
-.PHONY : magmed_joystick/CMakeFiles/readJoystick.dir/clean
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_joystick/CMakeFiles/readJoystickTwist.dir
+# Target rules for target magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir
 
 # All Build rule for target.
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/all: magmed_joystick/CMakeFiles/PathFinderlib.dir/all
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/depend
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=69,70 "Built target readJoystickTwist"
-.PHONY : magmed_joystick/CMakeFiles/readJoystickTwist.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 37
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/readJoystickTwist.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-readJoystickTwist: magmed_joystick/CMakeFiles/readJoystickTwist.dir/rule
+roscpp_generate_messages_cpp: magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
-.PHONY : readJoystickTwist
+.PHONY : roscpp_generate_messages_cpp
 
 # clean rule for target.
-magmed_joystick/CMakeFiles/readJoystickTwist.dir/clean:
-	$(MAKE) -f magmed_joystick/CMakeFiles/readJoystickTwist.dir/build.make magmed_joystick/CMakeFiles/readJoystickTwist.dir/clean
-.PHONY : magmed_joystick/CMakeFiles/readJoystickTwist.dir/clean
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_joystick/CMakeFiles/PathFinderlib.dir
+# Target rules for target magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_joystick/CMakeFiles/PathFinderlib.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/depend
-	$(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=1,2 "Built target PathFinderlib"
-.PHONY : magmed_joystick/CMakeFiles/PathFinderlib.dir/all
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_py"
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_joystick/CMakeFiles/PathFinderlib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 35
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_joystick/CMakeFiles/PathFinderlib.dir/all
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-PathFinderlib: magmed_joystick/CMakeFiles/PathFinderlib.dir/rule
+geometry_msgs_generate_messages_py: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
 
-.PHONY : PathFinderlib
+.PHONY : geometry_msgs_generate_messages_py
 
 # clean rule for target.
-magmed_joystick/CMakeFiles/PathFinderlib.dir/clean:
-	$(MAKE) -f magmed_joystick/CMakeFiles/PathFinderlib.dir/build.make magmed_joystick/CMakeFiles/PathFinderlib.dir/clean
-.PHONY : magmed_joystick/CMakeFiles/PathFinderlib.dir/clean
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_manipulator/CMakeFiles/diana_run.dir
+# Target rules for target magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-magmed_manipulator/CMakeFiles/diana_run.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-	$(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/depend
-	$(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=15,16 "Built target diana_run"
-.PHONY : magmed_manipulator/CMakeFiles/diana_run.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_manipulator/CMakeFiles/diana_run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 35
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/diana_run.dir/all
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_manipulator/CMakeFiles/diana_run.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-diana_run: magmed_manipulator/CMakeFiles/diana_run.dir/rule
+std_msgs_generate_messages_py: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
-.PHONY : diana_run
+.PHONY : std_msgs_generate_messages_py
 
 # clean rule for target.
-magmed_manipulator/CMakeFiles/diana_run.dir/clean:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/diana_run.dir/build.make magmed_manipulator/CMakeFiles/diana_run.dir/clean
-.PHONY : magmed_manipulator/CMakeFiles/diana_run.dir/clean
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir
+# Target rules for target magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/depend
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=13,14 "Built target dianaManipulator_joystick"
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages_cpp"
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule: cmake_check_build_system
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+magmed_msgs_generate_messages_cpp: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : magmed_msgs_generate_messages_cpp
+
+# clean rule for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages_nodejs"
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+magmed_msgs_generate_messages_nodejs: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : magmed_msgs_generate_messages_nodejs
+
+# clean rule for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# clean rule for target.
+magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target geometry_msgs_generate_messages_eus"
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# clean rule for target.
+magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target magmed_msgs_generate_messages_py"
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+magmed_msgs_generate_messages_py: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/rule
+
+.PHONY : magmed_msgs_generate_messages_py
+
+# clean rule for target.
+magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/build.make magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target magmed_maglocator/CMakeFiles/draw_circle.dir
+
+# All Build rule for target.
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/roscpp_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+magmed_maglocator/CMakeFiles/draw_circle.dir/all: magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(MAKE) -f magmed_maglocator/CMakeFiles/draw_circle.dir/build.make magmed_maglocator/CMakeFiles/draw_circle.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/draw_circle.dir/build.make magmed_maglocator/CMakeFiles/draw_circle.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=1,2 "Built target draw_circle"
+.PHONY : magmed_maglocator/CMakeFiles/draw_circle.dir/all
+
+# Build rule for subdir invocation for target.
+magmed_maglocator/CMakeFiles/draw_circle.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/draw_circle.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule
+.PHONY : magmed_maglocator/CMakeFiles/draw_circle.dir/rule
 
 # Convenience name for target.
-dianaManipulator_joystick: magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/rule
+draw_circle: magmed_maglocator/CMakeFiles/draw_circle.dir/rule
 
-.PHONY : dianaManipulator_joystick
+.PHONY : draw_circle
 
 # clean rule for target.
-magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/clean:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/clean
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator_joystick.dir/clean
+magmed_maglocator/CMakeFiles/draw_circle.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/draw_circle.dir/build.make magmed_maglocator/CMakeFiles/draw_circle.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/draw_circle.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_manipulator/CMakeFiles/dianaManipulator.dir
+# Target rules for target magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-magmed_manipulator/CMakeFiles/dianaManipulator.dir/all:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/depend
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=11,12 "Built target dianaManipulator"
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/dianaManipulator.dir/all
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-dianaManipulator: magmed_manipulator/CMakeFiles/dianaManipulator.dir/rule
+rosgraph_msgs_generate_messages_cpp: magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : dianaManipulator
+.PHONY : rosgraph_msgs_generate_messages_cpp
 
 # clean rule for target.
-magmed_manipulator/CMakeFiles/dianaManipulator.dir/clean:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/dianaManipulator.dir/build.make magmed_manipulator/CMakeFiles/dianaManipulator.dir/clean
-.PHONY : magmed_manipulator/CMakeFiles/dianaManipulator.dir/clean
+magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir
+# Target rules for target magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir
 
 # All Build rule for target.
-magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/depend
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=5,6 "Built target demo01_diana7api_connect_test"
-.PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/all
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-demo01_diana7api_connect_test: magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/rule
+roscpp_generate_messages_eus: magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
-.PHONY : demo01_diana7api_connect_test
-
-# clean rule for target.
-magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/clean:
-	$(MAKE) -f magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/build.make magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/clean
-.PHONY : magmed_manipulator/CMakeFiles/demo01_diana7api_connect_test.dir/clean
-
-#=============================================================================
-# Target rules for target magmed_modules/CMakeFiles/linear_actuator.dir
-
-# All Build rule for target.
-magmed_modules/CMakeFiles/linear_actuator.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-	$(MAKE) -f magmed_modules/CMakeFiles/linear_actuator.dir/build.make magmed_modules/CMakeFiles/linear_actuator.dir/depend
-	$(MAKE) -f magmed_modules/CMakeFiles/linear_actuator.dir/build.make magmed_modules/CMakeFiles/linear_actuator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=27,28 "Built target linear_actuator"
-.PHONY : magmed_modules/CMakeFiles/linear_actuator.dir/all
-
-# Build rule for subdir invocation for target.
-magmed_modules/CMakeFiles/linear_actuator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 magmed_modules/CMakeFiles/linear_actuator.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : magmed_modules/CMakeFiles/linear_actuator.dir/rule
-
-# Convenience name for target.
-linear_actuator: magmed_modules/CMakeFiles/linear_actuator.dir/rule
-
-.PHONY : linear_actuator
+.PHONY : roscpp_generate_messages_eus
 
 # clean rule for target.
-magmed_modules/CMakeFiles/linear_actuator.dir/clean:
-	$(MAKE) -f magmed_modules/CMakeFiles/linear_actuator.dir/build.make magmed_modules/CMakeFiles/linear_actuator.dir/clean
-.PHONY : magmed_modules/CMakeFiles/linear_actuator.dir/clean
-
-#=============================================================================
-# Target rules for target test/CMakeFiles/test_diffKine.dir
-
-# All Build rule for target.
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_py.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_eus.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_py.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_camera/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_py.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_lisp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_nodejs.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_cpp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_msgs/CMakeFiles/magmed_msgs_generate_messages_eus.dir/all
-test/CMakeFiles/test_diffKine.dir/all: magmed_controller/CMakeFiles/velCtrlLib.dir/all
-	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/depend
-	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zhang/magmed_ws/build/CMakeFiles --progress-num=71,72 "Built target test_diffKine"
-.PHONY : test/CMakeFiles/test_diffKine.dir/all
-
-# Build rule for subdir invocation for target.
-test/CMakeFiles/test_diffKine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 39
-	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test_diffKine.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhang/magmed_ws/build/CMakeFiles 0
-.PHONY : test/CMakeFiles/test_diffKine.dir/rule
-
-# Convenience name for target.
-test_diffKine: test/CMakeFiles/test_diffKine.dir/rule
-
-.PHONY : test_diffKine
-
-# clean rule for target.
-test/CMakeFiles/test_diffKine.dir/clean:
-	$(MAKE) -f test/CMakeFiles/test_diffKine.dir/build.make test/CMakeFiles/test_diffKine.dir/clean
-.PHONY : test/CMakeFiles/test_diffKine.dir/clean
+magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : magmed_maglocator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

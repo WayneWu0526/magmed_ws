@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="magmed_maglocator" type="draw_circle" name="maglocator_velocityController" output="screen"/>
+    <node pkg="magmed_manipulator" type="diana_run" name="dianamanipulator" output="screen"/>
+    <!-- <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/velctrl_closedloop_pathfollow.bag"/> -->
+</launch>

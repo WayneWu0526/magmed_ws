@@ -1,16 +1,16 @@
 #ifndef MSCRJACOBI_H
 #define MSCRJACOBI_H
 
-// #include <iostream>
-// #include <cmath>
 #include "magmed_controller/velCtrlDef.h"
-// #include <eigen3/Eigen/Dense>
 // #include <cmath>
+// #include <eigen3/Eigen/Dense>
+// #include <algorithm>
 // #include <iostream>
 // #include <utility>
 // #include <tuple>
 
 using namespace Eigen;
+// using namespace std;
 
 // JacobiParams
 class JacobiParams
@@ -20,6 +20,7 @@ public:
     {
         double E; // 909.0e3; // the Young's modulus of the robot
         double r;
+        double W;
         double I;
         double A;
         double L; // the length of the robot
@@ -55,19 +56,32 @@ public:
         MSCRProperties()
         {
             // loadFromYAML("../config/MSCRproperties.yaml");
-            E = 3.0e6;
-            r = (1.086e-03) / 2.0;
+            /* MSCR parameters 1 */
+            E = 30;
+            // r = (1.086e-03) / 2.0;
+            r = 1.5e-3/2;
             I = M_PI * pow(r, 4.0) / 4.0;
             A = M_PI * r * r;
-            L = 24.0e-3;
-            // H0 = 200.0e-3;
-            H0 = 180.0e-3;
-            hatM = {1.0, 0.0, 0.0};
+            // L = 24.0e-3;
+            L = 30.0e-3;
             // normM = 10.0e4;
-            normM = 8.0e4;
+            normM = 1.0;
+            hatM = {1.0, 0.0, 0.0};
+
+            /* MSCR parameters 2 */
+            // E = 60.0;
+            // W = 1.0e-3;
+            // I = pow(W, 4) / 12.0;
+            // A = W * W;
+            // L = 30.0e-3;
+            // hatM = {1.0, 0.0, 0.0};
+            // normM = 1.0;
+            // normM = 10.0e4;
+            H0 = 180.0e-3;
             N = 100;
+            
         };
-        MSCRProperties(double E, double r, double I, double A, double L, double H0, Vector3d hatM, double normM) : 
+        MSCRProperties(double E, double r, double I, double A, double L, Vector3d hatM, double normM) : 
             E(E), r(r), I(I), A(A), L(L), H0(H0), hatM(hatM), normM(normM){};
     }mscrproperties;
 
@@ -90,8 +104,14 @@ public:
     // properties of the robot
     JacobiParams::MSCRProperties pr = JacobiParams::MSCRProperties();              
     // double get_theta();         // get the tip angle of the robot
+    struct MSCRstates{
+        VectorXd theta;
+        RowVector4d jacobian;
+        MatrixXd x;
+        Vector3d jacobian_x;
+    };
     double thetaL = 0.0;
-    std::pair<double, RowVector4d> get_states(double psi, const Vector3d pa); // get the Jacobian of the robot
+    std::tuple<double, RowVector4d, Vector3d> get_states(double psi, const Vector3d pa); // get the Jacobian of the robot
     Matrix3d RotZ(double theta)
     {
         AngleAxisd vecZ(theta, Vector3d(0, 0, 1));
@@ -137,25 +157,11 @@ private:
             -cos(theta), 0.0, -sin(theta);
         return pRY;
     }
-    // struct MSCRState 
-    // {
-    //     double gamma;
-    //     double beta;
-    //     MatrixXd theta;
-    //     MatrixXd x;
-    //     MatrixXd dx;
-    // }mscrstate;
-
-    // struct MSCRResult
-    // {
-    //     double thetaL;
-    //     double jacobian;
-    // }mscrresult;
 
     std::tuple<double, VectorXd, MatrixXd, MatrixXd> fgamma(const Vector3d& xa, const Vector3d& hatma, double gamma);
     std::pair<double, double> g(const double theta, const Vector3d x, const Vector3d dx, const Vector3d pa, const Vector3d hatma);
-    RowVector3d g_ex(const Vector3d x, const Vector3d dx, const Vector2d theta, const Vector3d hatma, const Vector3d pa);
-    std::tuple<VectorXd, double, MatrixXd> newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma);
+    RowVector3d g_ex(double theta, const Vector3d x, const Vector3d dx, const Vector3d hatma, const Vector3d pa);
+    std::tuple<VectorXd, MatrixXd, RowVector4d, Vector3d> newton_method_bvp(const Vector3d pa, const Vector3d hatma, const Vector3d phatma);
 };
 
 class Magnet

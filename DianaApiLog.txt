@@ -1,18 +1,11 @@
  [Info]  [CRobotApiSystem::addRobotApi] the specified ip Robot add success, ip:  192.168.10.75
- [Info] [CSessionUDP::initSession] ret： 1 session type: 0 local ip-port: 0.0.0.0-51930
- [Info] [CSessionUDP::initSession] ret： 1 session type: 1 local ip-port: 0.0.0.0-51896
- [Info] [CSessionUDP::initSession] ret： 1 session type: 2 local ip-port: 0.0.0.0-53429
- [Info] [CSessionUDP::initSession] ret： 1 session type: 3 local ip-port: 0.0.0.0-46179
- [Info] [CSessionUDP::initSession] ret： 1 session type: 4 local ip-port: 0.0.0.0-52719
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 0 local ip-port: 0.0.0.0-52792
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 1 local ip-port: 0.0.0.0-57865
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 2 local ip-port: 0.0.0.0-42985
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 3 local ip-port: 0.0.0.0-40593
+ [Info] [CSessionUDP::initSession] ret： 1 session type: 4 local ip-port: 0.0.0.0-47945
  [Info] [CThreadProcessorBase::start] start thread processor
  [Info] [CThreadProcessorBase::start] start thread processor
  [Info] [CRobotApiImp::requestJointCount] joint cout is  7
- [Warning] [CSocketUDPRaw::receiveFrom] time out, error code:  0 locIP: 192.168.10.1 locPort: 51930
- [Warning]  [CRobotConnectorUDP::receivePacketV1] receive size 0, session type: 0, service_id: 13, seq: 11 ,iLen: -1
- [Warning] [CSocketUDPRaw::receiveFrom] time out, error code:  0 locIP: 192.168.10.1 locPort: 51930
- [Warning]  [CRobotConnectorUDP::receivePacketV1] receive size 0, session type: 0, service_id: 13, seq: 11 ,iLen: -1
  [Info] [CRobotStatusThreadProcessor::run] robot status thread stop
 
- [Info] [CHeartbeatThreadProcessor::run] heartbeat thread stop
- 
- [Info] [CRobotApiSystem::destroyRobotApi] destroy robot api, ip: 192.168.10.75

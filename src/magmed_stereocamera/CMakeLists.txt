@@ -165,6 +165,7 @@ catkin_install_python(PROGRAMS
   # scripts/depth_ZED2i/depthEst.py
   scripts/depth_ZED2i/pubImg4Train.py
   scripts/depth_ZED2i/pubDepthEst.py
+  scripts/depth_D405/pubDepthAprilTag.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
