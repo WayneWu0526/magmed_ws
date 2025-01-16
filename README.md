@@ -47,3 +47,6 @@ ROS_HOSTNAME 添加从机ip
 2. 将velCtrlNode.hpp中的SYSCTRLMODE设置为0
 
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
+
+1. 修改末端关节期望为0
+2. 若关节达到极限，考虑变换

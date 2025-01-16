@@ -15,7 +15,7 @@ double g_dPsi = 0.0;
 static void *WorkThread(void *pUser)
 {
     int nRet = 0;
-    const char *strIpAddress = "192.168.10.75";
+    const char *strIpAddress = "192.168.31.201";
     ros::Rate rate(100); // 推送周期是100Hz
     while (1)
     {
@@ -76,7 +76,7 @@ void wait_move(const char *strIpAddress)
 
 void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
 {
-    strIpAddress = "192.168.10.75";
+    strIpAddress = "192.168.31.201";
     static int staCnt = 1;
     if ((staCnt++ % 1000 == 0) && pinfo)
     {
@@ -95,7 +95,7 @@ void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart 
 
 void errorControl(int e, const char *strIpAddress)
 {
-    strIpAddress = "192.168.10.75";
+    strIpAddress = "192.168.31.201";
     const char *strError = formatError(e); // 该函数后面会介绍
     ROS_ERROR("error code (%d):%s\n", e, strError);
 }
@@ -122,10 +122,10 @@ int main(int argc, char *argv[])
     ros::Rate rate(100);
 
     // 初始化 API，完成其他功能函数使用前的初始化准备工作。
-    const char *strIpAddress = "192.168.10.75";
+    const char *strIpAddress = "192.168.31.201";
     srv_net_st *pinfo = new srv_net_st();
     memset(pinfo->SrvIp, 0x00, sizeof(pinfo->SrvIp));
-    memcpy(pinfo->SrvIp, "192.168.10.75", strlen("192.168.10.75"));
+    memcpy(pinfo->SrvIp, "192.168.31.201", strlen("192.168.31.201"));
     pinfo->LocHeartbeatPort = 0;
     pinfo->LocRobotStatePort = 0;
     pinfo->LocSrvPort = 0;
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
         nRet = initSrv(errorControl, logRobotState, pinfo); // 机械臂的心跳服务会一直向上位机发送信号，可以屏蔽
         if (nRet < 0)
         {
-            ROS_ERROR("192.168.10.75 initSrv failed! nReturn value = %d\n", nRet);
+            ROS_ERROR("192.168.31.201 initSrv failed! nReturn value = %d\n", nRet);
             break;
         }
         if (pinfo)

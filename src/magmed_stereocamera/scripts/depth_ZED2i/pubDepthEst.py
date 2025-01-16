@@ -152,6 +152,21 @@ def main():
             point_msg.point.y = hist_Y / 1000  # 转换为米
             point_msg.point.z = hist_Z / 1000  # 转换为米
             point_pub.publish(point_msg)
+            
+            # # 矫正参数：
+            # ca=0.3205
+            # cb=0.095
+            # cz=0.132 - 0.02
+            # # Theoredical value: 30e-3, 0.0, 0.0
+            # print("Theoredical value: ", 30e-3, 0.0, 0.0)
+            # # 调整a使得a-point_msg.point.z=30e-3，但不重要。
+            # # 调整diffkine.cpp yg+0.3205的系数使得b-point_msg.point.y-z=0，
+            # # 调整相机位置使得-point_msg.point.x=0
+            # x_a = ca-point_msg.point.z
+            # x_b = cb-point_msg.point.y-cz
+            # x_c = -point_msg.point.x
+            # print("Actual value:", x_a, x_b, x_c)
+            # print("Rotation Angle: ", 35.0 * sqrt((x_b**2 + x_c**2)))
 
             # 将深度数据转换为伪彩色图像
             normalized_depth = cv2.normalize(roi_depth, None, 0, 255, cv2.NORM_MINMAX)

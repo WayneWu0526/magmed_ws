@@ -23,6 +23,8 @@ ros/message_operations.h
 -
 std_msgs/Header.h
 -
+geometry_msgs/Point.h
+-
 geometry_msgs/Pose.h
 -
 

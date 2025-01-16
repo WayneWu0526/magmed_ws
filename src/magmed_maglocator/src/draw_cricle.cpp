@@ -91,7 +91,7 @@ int VelCtrlNode::pubVels()
     // jointvels =  jacobiMap(dtcp)
 
     VectorXd jointVels = VectorXd::Zero(JOINTNUM);
-    jointVels << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01;
+    jointVels << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1;
 
     // VectorXd JOINTMAX = params.jointVelLimits;
     // diffkine.scalingJointVels(diana.joint_states_array, jointVels, JOINTMAX);

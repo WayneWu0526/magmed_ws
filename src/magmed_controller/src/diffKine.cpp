@@ -147,21 +147,19 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     // compute the body Jacobian
     MatrixXd Jb = Adjoint(TransInv(Tsb)) * Js;
 
-    // use real input
-    // VectorXd v_sg = VectorXd::Zero(6); // 预留：机器人的twist
-    // diffKine::params.Tsg *= MatrixExp6(VecTose3(v_sg)); // change of robot pose
-
+    /******************* use real inputs *******************/
     phi_d[0] = refPhi[0];
     phi_d[1] = refPhi[1];
-    // printf("phi_d[0]: %f, phi_d[1]: %f\n", phi_d[0], phi_d[1]);
 
     psi_d[0] += magTwist.psi / CTRLFREQ;
     psi_d[1] = magTwist.psi;
 
-    // pos_d[0] += magTwist.pos / CTRLFREQ;
-    // pos_d[1] = magTwist.pos;
+    pos_d[1] = magTwist.pos;
+    pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
 
-    // use mock input
+    // printf("phi_d[0]: %f, phi_d[1]: %f\n", phi_d[0], phi_d[1]);
+
+    /******************* use mock inputs *******************/
     // VectorXd v_sg = VectorXd::Zero(6); // 机器人坐标系的twist
     // double PHI_D = -M_PI / 2.0;
     // phi_d[1] = PHI_D / 30.0; // dphi
@@ -169,9 +167,7 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
 
     // psi_d[1] = 0.0; // dpsi
     // psi_d[0] += psi_d[1] / CTRLFREQ; // psi
-    
-    pos_d[1] = magTwist.pos;
-    pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
+
     // pos_d[1] = Vector3d::Zero();
     // pos_d[0] += pos_d[1] / CTRLFREQ; // dpos
 
@@ -229,7 +225,7 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     dPos << phi_d[1], psi_d[1], pos_d[1]; // For closed-loop control
 
     VectorXd nu_sd(TCPNUM);
-    // 令V_sg的TCPNUM:2*TCPNUM-1的元素赋值给v_sg
+    // 令V_sg的TCPNUM:2*TCPNUM-1的元素赋值给v_sg， as inputs
     VectorXd v_sg(TCPNUM);
     v_sg << V_sg[TCPNUM], V_sg[TCPNUM + 1], V_sg[TCPNUM + 2], V_sg[TCPNUM + 3], V_sg[TCPNUM + 4], V_sg[TCPNUM + 5];
     // v_sg = vsg_mock;
@@ -485,6 +481,8 @@ int diffKine::solveDualModeJointAngles(VectorXd &q0){
     }
     else{
         // opt = nlopt::opt(nlopt::LN_BOBYQA, JOINTNUM);
+        /* 12-21 changes */
+        q0[6] = 0.0; // set initial position as 0
         opt = nlopt::opt(nlopt::GN_MLSL, JOINTNUM);
         lb[5] = 0.0;
         // ub[6] = M_PI / 2.0;
@@ -518,6 +516,17 @@ int diffKine::solveDualModeJointAngles(VectorXd &q0){
         for (int i = 0; i < JOINTNUM; ++i) {
             q0[i] = x[i];
         }
+        /* 12-21 changes */
+        // q0[6] = 0.0; // set q6 to 0
+        // if (CTRLMODEb4Trans == enum_CTRLMODE::DM) {
+        //     q0[6] = -M_PI / 2.0;
+        // }
+        // if (CTRLMODEb4Trans == enum_CTRLMODE::NM) {
+        //     q0[6] = M_PI / 2.0;
+        // }
+        // else {
+        //     q0[6] = -M_PI / 2.0;
+        // }
         // std::cout << "[magmed_controller] Target joint angles found with minuum f: " << minf << std::endl;
         std::cout << "found minimum at f(" << q0.transpose() << ") = " << minf << std::endl;
         return 0;

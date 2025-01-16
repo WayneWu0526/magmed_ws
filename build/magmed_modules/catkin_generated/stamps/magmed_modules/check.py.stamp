@@ -8,6 +8,7 @@ import rospy
 from magmed_msgs.srv import SelfCollisionCheck, SelfCollisionCheckResponse
 # from magmed_msgs.srv import SelfCollisionCheck
 
+# CHECKTHRESHOLD = 0.02
 CHECKTHRESHOLD = 0.02
 
 class MultiPanda_bullet:

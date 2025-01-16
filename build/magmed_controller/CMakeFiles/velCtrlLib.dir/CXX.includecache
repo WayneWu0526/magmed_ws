@@ -23,6 +23,8 @@ ros/message_operations.h
 -
 std_msgs/Header.h
 -
+geometry_msgs/Point.h
+-
 geometry_msgs/Pose.h
 -
 
@@ -170,6 +172,12 @@ magmed_controller/MSCRJacobi.h
 magmed_controller/velCtrlDef.h
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
 
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/optCtrl.h
+magmed_controller/MSCRJacobi.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/MSCRJacobi.h
+magmed_controller/velCtrlDef.h
+/home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/magmed_controller/velCtrlDef.h
+
 /home/zhang/magmed_ws/src/magmed_controller/include/magmed_controller/velCtrlDef.h
 eigen3/Eigen/Dense
 -
@@ -224,9 +232,17 @@ std_msgs/UInt32MultiArray.h
 std_msgs/Float64.h
 -
 
+/home/zhang/magmed_ws/src/magmed_controller/src/MSCRJacobi.cpp
+magmed_controller/MSCRJacobi.h
+/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/MSCRJacobi.h
+
 /home/zhang/magmed_ws/src/magmed_controller/src/diffKine.cpp
 magmed_controller/diffKine.h
 /home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/diffKine.h
+
+/home/zhang/magmed_ws/src/magmed_controller/src/optCtrl.cpp
+magmed_controller/optCtrl.h
+/home/zhang/magmed_ws/src/magmed_controller/src/magmed_controller/optCtrl.h
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string

@@ -1,6 +1,6 @@
 #include "magmed_controller/velCtrlNode.hpp"
 
-// 自动和手动模式。手动：0，openloop：1 cls loop2
+// 自动和手动模式。手动：0，openloop：1, closed loop: 2
 void VelCtrlNode::run()
 {
     int initFlag = 0;
@@ -92,8 +92,7 @@ int VelCtrlNode::pubVels()
 {
     // pub joint vels
     magmed_msgs::RoboJoints joint_vels;
-    magmed_msgs::MagCR magCR_msg;
-    std_msgs::Float64MultiArray magCR_measured_msg;
+    magmed_msgs::MagCR magCR_msg; // magCR state
 
     switch(SYSCTRLMODE)
     {
@@ -118,33 +117,27 @@ int VelCtrlNode::pubVels()
     }
     case 2: // closed-loop version
     {
-        Matrix4d Tsg = la.Tsg;
-        diffkine.getMagPose(optctrl.magPose, diana.joint_states_array, Tsg, CTRLMODE);
+        /*********************** 获取磁铁位姿 magPose ******************************/
+        diffkine.getMagPose(optctrl.magPose, diana.joint_states_array, tsgPoseTwist.Tsg, CTRLMODE);
+        /***********************************************************/
         
-        // 
+        /******************** 计算当前磁铁位姿下的Jacobian matrix ***********************/
         double thetaL_mock;
         RowVector4d jacobian_;
         Vector3d Jx;
         std::tie(thetaL_mock, jacobian_, Jx) = mscrjacobi.get_states(optctrl.magPose.psi, optctrl.magPose.pos);
         // std::cout << "thetaL_mock: " << thetaL_mock << std::endl; 
-        magCR_msg.phi = diffkine.magPhi;
-        magCR_msg.theta = thetaL_mock;
-        // convert diffkine.params.Tsg to geometry_msgs pose
-        // Matrix3d Rsg = diffkine.params.Tsg.block<3, 3>(0, 0);
-        Matrix3d Rsg = Tsg.block<3, 3>(0, 0);
-        Quaterniond qsg(Rsg);
-        magCR_msg.Tsg.orientation.x = qsg.x();
-        magCR_msg.Tsg.orientation.y = qsg.y();
-        magCR_msg.Tsg.orientation.z = qsg.z();
-        magCR_msg.Tsg.orientation.w = qsg.w();
-        magCR_msg.Tsg.position.x = Tsg(0, 3);
-        magCR_msg.Tsg.position.y = Tsg(1, 3);
-        magCR_msg.Tsg.position.z = Tsg(2, 3);
+        /***********************************************************/
 
-        // get mag twist
-        std::array<double, 5> magCRstate = calcMagCRstate(1.52, thetaL_mock, Tsg, 0);
-        stereoCamera.push_magCR_state_measured_msg(magCRstate, Tsg);
+        /*********************** 获取磁铁位姿 magCRstate ******************************/
+        // 获取magCRstate（包含导丝角度、滚转角和尖端位置），利用的是camera计算出来的实际测量值
+        std::array<double, 5> magCRstate = calcMagCRstate(diffkine.magPhi, thetaL_mock, tsgPoseTwist.Tsg, 1);
         // std::cout << "phi:" << magCRstate[0] << " thetaL:" << magCRstate[1] << std::endl;
+        /****************************************************************************/
+
+        /*********************** 打包信息 ******************************/
+        pushMagCR_msg(diffkine.magPhi, thetaL_mock, tsgPoseTwist.Tsg, magCRstate, magCR_msg);
+        /****************************************************************************/
 
         VectorXd jointVels = VectorXd::Zero(JOINTNUM);
         switch(CTRLMODE)
@@ -170,60 +163,53 @@ int VelCtrlNode::pubVels()
                 // VectorXd jointVels = diffkine.jacobiMap(refSignal.ref_phi, jointStates.joint_states_array);
                 // jointVels = diffkine.jacobiMap(joystick.magCR.phi, diana.joint_states_array, CTRLMODE);
                 jointVels = diffkine.ctrlModeTrans(diana.joint_states_array, &CTRLMODE, TRANSMETHOD);
-                la.la_msg.data.clear();
-                la.la_msg.data.push_back(0.0);
-                la.la_msg.data.push_back(1);
+                // la.la_msg.data.clear();
+                // la.la_msg.data.push_back(0.0);
+                // la.la_msg.data.push_back(1);
                 break;
             }
             default:
             {
+                /******************** user commands ********************/
                 /* using joystick control */
-                // refsmoother.refsmooth(joystick.magCR.phi[0], joystick.magCR.theta[0]);
+                refsmoother.refsmooth(joystick.magCR.phi[0], joystick.magCR.theta[0]);
 
                 /* using generator value */
-                refsmoother.refsmooth(refgenerator.refPhi, refgenerator.refTheta);
+                // refsmoother.refsmooth(refgenerator.refPhi, refgenerator.refTheta);
 
-                /* using mock value */
-                // diffkine.magTwist = optctrl.generateMagTwist(refsmoother.magCR.theta, magCR_msg.theta, jacobian_);
-                /* using real value */
+                /******************************************************/
 
+                /****************  calculate (u)  **************/
                 /* using theta controller */
                 diffkine.magTwist = optctrl.generateMagTwist(refsmoother.magCR.theta, magCRstate[1], jacobian_);
+
                 /* using point controller */
                 // double TsgXe;
                 // Vector4d point_g = {magCRstate[2], magCRstate[3], magCRstate[4], 1.0};
                 // Vector4d point_w = TransInv(diffkine.params.Tsw) * Tsg * point_g;
                 // Vector3d point = point_w.segment(0, 3);
                 // std::tie(diffkine.magTwist, TsgXe) = optctrl.generateMagTwist_pos(refgenerator.refPoint, point, Jx); // magCRstate[0]phi的测量值 refgenerator.refPoint
-
-                diffkine.pushMagPoseMsg(optctrl.magPose, diffkine.magTwist);
                 
-                /* using generator value */
+                diffkine.pushMagPoseMsg(optctrl.magPose, diffkine.magTwist); // 打包生成的磁铁数据 
+                /************************************************/
+                
+                /**************** update reference value  *******************/
+                /** using generator value **/
                 /* using mock value */
                 // refgenerator.updateRef_ex(refsmoother.refPhi_, magCR_msg.phi, refsmoother.refTheta_, magCR_msg.theta, magCR_msg.Tsg.position.y);
+                
                 /* using real value */
                 /* using theta controller */
-                refgenerator.updateRef_ex(refsmoother.refPhi_, magCR_msg.phi, refsmoother.refTheta_, magCRstate[1], magCR_msg.Tsg.position.y);
+                // refgenerator.updateRef_ex(refsmoother.refPhi_, magCR_msg.phi, refsmoother.refTheta_, magCRstate[1], magCR_msg.Tsg.position.y);
                 /* using point controller */
                 // refgenerator.updateRef_point(refgenerator.refPhi, diffkine.magPhi, point);
+                /***********************************************************/
 
-                /* using mock Vsg */
-                // Vsg_mock.head(6) += 1.0 / CTRLFREQ * Vsg_mock.segment(6, 6);
-                // VectorXd Vsg_mock = tsgPoseTwist.Tsg_pose_twist;
-                // Vsg_mock[TCPNUM + 3] = joystick.joystick.nJOY1[0];
-                
-                /* using real Vsg */
-                // VectorXd Tsg_pose = se3ToVec(MatrixLog6(diffkine.params.Tsg));
-                VectorXd Tsg_pose = se3ToVec(MatrixLog6(Tsg));
-                // create a 12 dimension vector that contains the twist of the end-effector
-                VectorXd Vsg = VectorXd::Zero(12);
-                // set the first 6 elements to the pose of the end-effector
-                Vsg.head(6) = Tsg_pose;
-                // set the last 6 elements to the twist of the end-effector
-                Vsg.tail(6) = la.gframe_twist;
+                /********************** update jointVels ************************/
+                jointVels = diffkine.jacobiMap(refsmoother.magCR.phi, tsgPoseTwist.Vsg, diana.joint_states_array, CTRLMODE);
+                /***********************************************************/
 
-                jointVels = diffkine.jacobiMap(refsmoother.magCR.phi, Vsg, diana.joint_states_array, CTRLMODE);
-
+                /********************** self-collision check ************************/
                 // 1. 基于当前的diana.joint_states和jointVels一步预测未来的q会不会发生碰撞
                 magmed_msgs::RoboJoints pred_robojoints;
                 for(int i = 0; i < JOINTNUM; ++i)
@@ -232,13 +218,15 @@ int VelCtrlNode::pubVels()
                     // replacing by current joint_states
                     // pred_robojoints.joints.push_back(diana.joint_states_array[i]);
                 }
+                // 关节接近极限时，切换控制模态
+
                 // selfCollisionCheck
                 magmed_msgs::SelfCollisionCheck sCC;
                 sCC.request.joints = pred_robojoints;
                 bool flag = selfcollision_client.call(sCC);
                 if (flag)
                 {
-                    if(sCC.response.checkResult == true) // 1.1.1 如果会碰撞，则检测其他的控制模式
+                    if(sCC.response.checkResult == true) // 1.1.1 如果会碰撞，则检测其他的控制模式 // 如果关节接近极限，则切换控制模态 
                     // if(false) // 关闭 self-collision check
                     {
                         jointVels = VectorXd::Zero(JOINTNUM);
@@ -286,63 +274,60 @@ int VelCtrlNode::pubVels()
                 {
                     ROS_ERROR("[magmed_controller] failed to call selfCollisionCheck service\n");
                 }
+                /***********************************************************/
 
-                // push_back info
+                /********************** update ref_state ************************/
                 refgenerator.ref_state.data.clear();
                 /* using joystick control */
-                // refgenerator.ref_state.data.push_back(joystick.magCR.phi[0]);
-                // refgenerator.ref_state.data.push_back(joystick.magCR.theta[0]);
-                // refgenerator.ref_state.data.push_back(joystick.joystick.nJOY3[0]);
+                refgenerator.pushRef_state(joystick.magCR.phi[0], joystick.magCR.theta[0],
+                     refsmoother.magCR, joystick.feeder.feeder_vel_FB);
                 
-                /* using generator value */
+                /********************* using generator value ******************/
                 /* using theta control */
-                refgenerator.ref_state.data.push_back(refgenerator.refPhi);
-                refgenerator.ref_state.data.push_back(refgenerator.refTheta);
-                refgenerator.ref_state.data.push_back(refgenerator.refTsgX);
-                refgenerator.ref_state.data.push_back(refsmoother.magCR.phi[0]);
-                refgenerator.ref_state.data.push_back(refsmoother.magCR.theta[0]);
+                // refgenerator.pushRef_state(refgenerator.refPhi, refgenerator.refTheta,
+                //      refsmoother.magCR, refgenerator.refTsgX);
                 /* using point control */
                 // refgenerator.ref_state.data.push_back(refgenerator.refPoint(0));
                 // refgenerator.ref_state.data.push_back(refgenerator.refPoint(1));
                 // refgenerator.ref_state.data.push_back(refgenerator.refPoint(2));
                 // refgenerator.ref_state.data.push_back(refgenerator.refPhi);
                 // refgenerator.ref_state.data.push_back(TsgXe);
+                /***************************************************************/
 
+                /********************** update feeder ************************/
+                /* using feeder to insert MSCR */
                 joystick.feeder.feeder_msg.data.clear();
                 joystick.feeder.feeder_msg.data.push_back(joystick.feeder.feeder_vel_FB);
                 joystick.feeder.feeder_msg.data.push_back(static_cast<uint32_t>(0));
 
-                la.la_msg.data.clear();
+                /* using linear_actuator to insert MSCR */
+                // la.la_msg.data.clear();
 
-                /* using joystick control */
+                /* using joystick to control la */
                 // la.la_msg.data.push_back(joystick.joystick.POTA);
                 // la.la_msg.data.push_back(joystick.joystick.nJOY3[0]);
                 
-                /* using generator value */
-                la.la_msg.data.push_back(500.0);
-                double TsgXe = refgenerator.refTsgX - magCR_msg.Tsg.position.y;
-                std::cout << "TsgXe:" << TsgXe << std::endl;
-                if (fabs(TsgXe) < 0.001)
-                {
-                    la.la_msg.data.push_back(TsgXe);
-                }
-                else
-                {
-                    la.la_msg.data.push_back((TsgXe > 0) - (TsgXe < 0));
-                }
+                /* using generated signals to control la */
+                // double TsgXe = refgenerator.refTsgX - magCR_msg.Tsg.position.y;
+                // la.push_la_msg(la, TsgXe);
+                /***************************************************************/
+
                 break;
             }
         }
 
+        /**************************  set jointlimits ***************************/
         VectorXd JOINTMAX = diffkine.params.jointVelLimits;
         diffkine.scalingJointVels(diana.joint_states_array, jointVels, JOINTMAX);
         // std::cout << "jointVels:" << jointVels << std::endl;
-
+        /***********************************************************************/
+        
         for (int i = 0; i < JOINTNUM; ++i)
         {
             // push_back joint_vels
             joint_vels.joints.push_back(jointVels(i));
         }
+        
         break;
 
     }
@@ -366,7 +351,7 @@ int VelCtrlNode::pubVels()
     magCR_state_measured_pub.publish(stereoCamera.magCR_state_measured_msg);
 
     // pub vels for linearactuator
-    linear_actuator_pub.publish(la.la_msg);
+    // linear_actuator_pub.publish(la.la_msg);
 
     // pub magPoseMsg
     magPose_pub.publish(diffkine.magPoseMsg);
@@ -374,6 +359,7 @@ int VelCtrlNode::pubVels()
     // pub magTgb_pub
     magTgb_pub.publish(diffkine.magPoseStamped);
 
+    // pub control mode
     std_msgs::UInt32 control_mode_msg;
     control_mode_msg.data = CTRLMODE;
     control_mode_pub.publish(control_mode_msg);
@@ -381,75 +367,45 @@ int VelCtrlNode::pubVels()
     return 0;
 };
 
-std::array<double, 5> VelCtrlNode::calcMagCRstate(const double alpha, double thetaL_mock, Matrix4d Tsg, int DEEPFLAG)
+std::array<double, 5> VelCtrlNode::calcMagCRstate(double phi_mock, double thetaL_mock, Matrix4d Tsg, int IFMOCK)
 {
-    // 计算tip在g坐标系下的位置
-    // Vector3d proximal_point_vec_sg = tsgPoseTwist.Tsg_pose_twist.segment(2, 3);
-    // Vector3d tip_point_vec_g = stereoCamera.tip_point_vec - proximal_point_vec_sg;
     double tipAngle = 0.0;
-
-    // Matrix4d Tgc = TransInv(diffkine.params.Tsg) * diffkine.params.Tsc;
-    Matrix4d Tgc = TransInv(la.Tsg) * diffkine.params.Tsc;
-    // std::cout << "Tgc:" << Tgc << std::endl;
-    std::vector<MatrixXd> Rp_gc = TransToRp(Tgc);
-    // std::cout << "Rp_gc[0]:" << Rp_gc[0] << std::endl;
-    Vector3d tip_point_vec_g = Rp_gc[0] * stereoCamera.tip_point_vec + Rp_gc[1];
-    // std::cout << "tip_point_vec_g:" << tip_point_vec_g << std::endl;
-    Vector2d v2tip_point_vec_g = tip_point_vec_g.segment(1, 2);
-    double yL = v2tip_point_vec_g.norm();
-    switch(DEEPFLAG)
+    std::array<double, 5> magCRstate = {0.0, 0.0, 0.0, 0.0, 0.0};
+    /** using mock control **/
+    if(IFMOCK)
     {
-        case 0:
-        {
-            double GAIN = 28.00;
-            // tipAngle = 80.2078 * yL - 0.1329;
-            // tipAngle = - 50.0 * (stereoCamera.tip_point.point.y + 0.01) + 0.1;
-            // tipAngle = 50.00 * (yL - 0.01) + 0.01;
-            // tipAngle = 50.00 * yL;
-            tipAngle = GAIN * yL;
+        tipAngle = thetaL_mock;
+        magCRstate[0] = phi_mock; // using magnet angle
+        magCRstate[1] = ((fabs(magCRstate[0]  -  joystick.magCR.phi[0])) <= M_PI / 2.0 ? 1.0 : -1.0) * fabs(tipAngle); // thetaL
+    }
+    else
+    {    
+        double alpha = 1.52;
+        // Matrix4d Tgc = TransInv(diffkine.params.Tsg) * diffkine.params.Tsc;
+        Matrix4d Tgc = TransInv(tsgPoseTwist.Tsg) * diffkine.params.Tsc;
+        // std::cout << "Tgc:" << Tgc << std::endl;
+        std::vector<MatrixXd> Rp_gc = TransToRp(Tgc);
+        // std::cout << "Rp_gc[0]:" << Rp_gc[0] << std::endl;
+        Vector3d tip_point_vec_g = Rp_gc[0] * stereoCamera.tip_point_vec + Rp_gc[1];
+        // std::cout << "tip_point_vec_g:" << tip_point_vec_g << std::endl;
+        Vector2d v2tip_point_vec_g = tip_point_vec_g.segment(1, 2);
+        double yL = v2tip_point_vec_g.norm();
+        tipAngle = alpha * atan(yL / (Vector3d::UnitX().transpose() * tip_point_vec_g));
+        /** using real control **/
+        /* using thetaL control */
+        magCRstate[0] = atan2(v2tip_point_vec_g(1), v2tip_point_vec_g(0));
+        magCRstate[1] = ((fabs(magCRstate[0]  -  joystick.magCR.phi[0])) <= M_PI / 2.0 ? 1.0 : -1.0) * fabs(tipAngle);
+        magCRstate[2] = tip_point_vec_g[0];
+        magCRstate[3] = tip_point_vec_g[1];
+        magCRstate[4] = tip_point_vec_g[2];
 
-            break;
-        }
-        case 1:
-        {
-
-            // 计算角度
-            tipAngle = alpha * atan(yL / 
-                (Vector3d::UnitX().transpose() * tip_point_vec_g));
-        }
-        default:
-        {
-            break;
-        }
+        /* using position control */
+        // magCRstate[2] = tip_point_vec_g[0];
+        // magCRstate[3] = ((fabs(magCRstate[0]  -  diffkine.magPhi)) <= M_PI / 2.0 ? 1.0 : -1.0) * yL;
+        // magCRstate[4] = 0.0;
+        // std::cout << "tip_point_vec_g:" << tip_point_vec_g << std::endl;
     }
 
-    std::array<double, 5> magCRstate = {0.0, 0.0, 0.0, 0.0, 0.0};
-    magCRstate[0] = atan2(v2tip_point_vec_g(1), v2tip_point_vec_g(0));
-    // magCRstate[1] = tipAngle;
-    // std::cout << "v2Pgb:" << v2Pgb << std::endl;
-    // thetaL
-    // if(magCRstate[0] * diffkine.magPhi >= 0)
-    // {
-    //     magCRstate[1] = tipAngle;
-    // }
-    // else
-    // {
-    //     magCRstate[1] = - tipAngle;
-    // }
-    // std::cout << "thetaL_mock:" << thetaL_mock << std::endl;
-    // magCRstate[1] = (thetaL_mock > 0 ? 1.0 : -1.0) * fabs(tipAngle);
-    magCRstate[1] = ((fabs(magCRstate[0]  -  joystick.magCR.phi[0])) <= M_PI / 2.0 ? 1.0 : -1.0) * fabs(tipAngle);
-
-    /* using thetaL control */
-    // magCRstate[2] = tip_point_vec_g[0];
-    // magCRstate[3] = tip_point_vec_g[1];
-    // magCRstate[4] = tip_point_vec_g[2];
-
-    /* using position control */
-    magCRstate[2] = tip_point_vec_g[0];
-    magCRstate[3] = ((fabs(magCRstate[0]  -  diffkine.magPhi)) <= M_PI / 2.0 ? 1.0 : -1.0) * yL;
-    magCRstate[4] = 0.0;
-    // std::cout << "tip_point_vec_g:" << tip_point_vec_g << std::endl;
     return magCRstate;
 };
 

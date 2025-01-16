@@ -3,9 +3,11 @@
     <node pkg="magmed_controller" type="velCtrlNode" name="velocityController" output="screen"/>
     <node pkg="magmed_manipulator" type="diana_run" name="dianamanipulator" output="screen"/>
     <node pkg="magmed_modules" type="check.py" name="collision_checker_service"/>
-    <!-- <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/> -->
-    <node pkg="magmed_modules" type="linear_actuator" name="linear_actuator" output="screen"/>
-    <node pkg="magmed_stereocamera" type="pubDepthEst.py" name="zed_depth_publisher" output="screen"/>
-    <node pkg="magmed_stereocamera" type="pubDepthAprilTag.py" name="apriltag_depth_detector" output="screen"/>
-    <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/velctrl_closedloop_pathfollow.bag"/>
+    <node pkg="magmed_feeder" type="magrobo_feeder" name="magrobo_feeder" output="screen"/>
+    <!-- 线性递送装置 -->
+    <!-- <node pkg="magmed_modules" type="linear_actuator" name="linear_actuator" output="screen"/> -->
+    <!-- 双目深度相机 -->
+    <!-- <node pkg="magmed_stereocamera" type="pubDepthEst.py" name="zed_depth_publisher" output="screen"/> -->
+    <!-- <node pkg="magmed_stereocamera" type="pubDepthAprilTag.py" name="apriltag_depth_detector" output="screen"/> -->
+    <node pkg="rosbag" type="record" name="record" args="-a -o /home/zhang/magmed_ws/record/velctrl_closedloop.bag"/>
 </launch>

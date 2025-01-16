@@ -10,12 +10,16 @@ import geometry_msgs.msg
 import std_msgs.msg
 
 class MagCR(genpy.Message):
-  _md5sum = "18eb392c0287f61819aca93877ff35f7"
+  _md5sum = "d2b6af8e88cbe5faeaf2769acfe589ea"
   _type = "magmed_msgs/MagCR"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-float64 theta
-float64 phi
+
+float64 phi_mock
+float64 thetaL_mock
+float64 phi_msr
+float64 thetaL_msr
+geometry_msgs/Point tipPoint
 geometry_msgs/Pose Tsg
 ================================================================================
 MSG: std_msgs/Header
@@ -34,17 +38,17 @@ time stamp
 string frame_id
 
 ================================================================================
-MSG: geometry_msgs/Pose
-# A representation of pose in free space, composed of position and orientation. 
-Point position
-Quaternion orientation
-
-================================================================================
 MSG: geometry_msgs/Point
 # This contains the position of a point in free space
 float64 x
 float64 y
 float64 z
+
+================================================================================
+MSG: geometry_msgs/Pose
+# A representation of pose in free space, composed of position and orientation. 
+Point position
+Quaternion orientation
 
 ================================================================================
 MSG: geometry_msgs/Quaternion
@@ -55,8 +59,8 @@ float64 y
 float64 z
 float64 w
 """
-  __slots__ = ['header','theta','phi','Tsg']
-  _slot_types = ['std_msgs/Header','float64','float64','geometry_msgs/Pose']
+  __slots__ = ['header','phi_mock','thetaL_mock','phi_msr','thetaL_msr','tipPoint','Tsg']
+  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','geometry_msgs/Point','geometry_msgs/Pose']
 
   def __init__(self, *args, **kwds):
     """
@@ -66,7 +70,7 @@ float64 w
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,theta,phi,Tsg
+       header,phi_mock,thetaL_mock,phi_msr,thetaL_msr,tipPoint,Tsg
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -77,16 +81,25 @@ float64 w
       # message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.theta is None:
-        self.theta = 0.
-      if self.phi is None:
-        self.phi = 0.
+      if self.phi_mock is None:
+        self.phi_mock = 0.
+      if self.thetaL_mock is None:
+        self.thetaL_mock = 0.
+      if self.phi_msr is None:
+        self.phi_msr = 0.
+      if self.thetaL_msr is None:
+        self.thetaL_msr = 0.
+      if self.tipPoint is None:
+        self.tipPoint = geometry_msgs.msg.Point()
       if self.Tsg is None:
         self.Tsg = geometry_msgs.msg.Pose()
     else:
       self.header = std_msgs.msg.Header()
-      self.theta = 0.
-      self.phi = 0.
+      self.phi_mock = 0.
+      self.thetaL_mock = 0.
+      self.phi_msr = 0.
+      self.thetaL_msr = 0.
+      self.tipPoint = geometry_msgs.msg.Point()
       self.Tsg = geometry_msgs.msg.Pose()
 
   def _get_types(self):
@@ -110,7 +123,7 @@ float64 w
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_9d().pack(_x.theta, _x.phi, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w))
+      buff.write(_get_struct_14d().pack(_x.phi_mock, _x.thetaL_mock, _x.phi_msr, _x.thetaL_msr, _x.tipPoint.x, _x.tipPoint.y, _x.tipPoint.z, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -124,6 +137,8 @@ float64 w
     try:
       if self.header is None:
         self.header = std_msgs.msg.Header()
+      if self.tipPoint is None:
+        self.tipPoint = geometry_msgs.msg.Point()
       if self.Tsg is None:
         self.Tsg = geometry_msgs.msg.Pose()
       end = 0
@@ -142,8 +157,8 @@ float64 w
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 72
-      (_x.theta, _x.phi, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w,) = _get_struct_9d().unpack(str[start:end])
+      end += 112
+      (_x.phi_mock, _x.thetaL_mock, _x.phi_msr, _x.thetaL_msr, _x.tipPoint.x, _x.tipPoint.y, _x.tipPoint.z, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w,) = _get_struct_14d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -165,7 +180,7 @@ float64 w
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_9d().pack(_x.theta, _x.phi, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w))
+      buff.write(_get_struct_14d().pack(_x.phi_mock, _x.thetaL_mock, _x.phi_msr, _x.thetaL_msr, _x.tipPoint.x, _x.tipPoint.y, _x.tipPoint.z, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -180,6 +195,8 @@ float64 w
     try:
       if self.header is None:
         self.header = std_msgs.msg.Header()
+      if self.tipPoint is None:
+        self.tipPoint = geometry_msgs.msg.Point()
       if self.Tsg is None:
         self.Tsg = geometry_msgs.msg.Pose()
       end = 0
@@ -198,8 +215,8 @@ float64 w
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 72
-      (_x.theta, _x.phi, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w,) = _get_struct_9d().unpack(str[start:end])
+      end += 112
+      (_x.phi_mock, _x.thetaL_mock, _x.phi_msr, _x.thetaL_msr, _x.tipPoint.x, _x.tipPoint.y, _x.tipPoint.z, _x.Tsg.position.x, _x.Tsg.position.y, _x.Tsg.position.z, _x.Tsg.orientation.x, _x.Tsg.orientation.y, _x.Tsg.orientation.z, _x.Tsg.orientation.w,) = _get_struct_14d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -208,15 +225,15 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_14d = None
+def _get_struct_14d():
+    global _struct_14d
+    if _struct_14d is None:
+        _struct_14d = struct.Struct("<14d")
+    return _struct_14d
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_9d = None
-def _get_struct_9d():
-    global _struct_9d
-    if _struct_9d is None:
-        _struct_9d = struct.Struct("<9d")
-    return _struct_9d

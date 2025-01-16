@@ -16,6 +16,7 @@
 #include <ros/message_operations.h>
 
 #include <std_msgs/Header.h>
+#include <geometry_msgs/Point.h>
 #include <geometry_msgs/Pose.h>
 
 namespace magmed_msgs
@@ -27,14 +28,20 @@ struct MagCR_
 
   MagCR_()
     : header()
-    , theta(0.0)
-    , phi(0.0)
+    , phi_mock(0.0)
+    , thetaL_mock(0.0)
+    , phi_msr(0.0)
+    , thetaL_msr(0.0)
+    , tipPoint()
     , Tsg()  {
     }
   MagCR_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , theta(0.0)
-    , phi(0.0)
+    , phi_mock(0.0)
+    , thetaL_mock(0.0)
+    , phi_msr(0.0)
+    , thetaL_msr(0.0)
+    , tipPoint(_alloc)
     , Tsg(_alloc)  {
   (void)_alloc;
     }
@@ -44,11 +51,20 @@ struct MagCR_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef double _theta_type;
-  _theta_type theta;
+   typedef double _phi_mock_type;
+  _phi_mock_type phi_mock;
 
-   typedef double _phi_type;
-  _phi_type phi;
+   typedef double _thetaL_mock_type;
+  _thetaL_mock_type thetaL_mock;
+
+   typedef double _phi_msr_type;
+  _phi_msr_type phi_msr;
+
+   typedef double _thetaL_msr_type;
+  _thetaL_msr_type thetaL_msr;
+
+   typedef  ::geometry_msgs::Point_<ContainerAllocator>  _tipPoint_type;
+  _tipPoint_type tipPoint;
 
    typedef  ::geometry_msgs::Pose_<ContainerAllocator>  _Tsg_type;
   _Tsg_type Tsg;
@@ -83,8 +99,11 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::magmed_msgs::MagCR_<ContainerAllocator1> & lhs, const ::magmed_msgs::MagCR_<ContainerAllocator2> & rhs)
 {
   return lhs.header == rhs.header &&
-    lhs.theta == rhs.theta &&
-    lhs.phi == rhs.phi &&
+    lhs.phi_mock == rhs.phi_mock &&
+    lhs.thetaL_mock == rhs.thetaL_mock &&
+    lhs.phi_msr == rhs.phi_msr &&
+    lhs.thetaL_msr == rhs.thetaL_msr &&
+    lhs.tipPoint == rhs.tipPoint &&
     lhs.Tsg == rhs.Tsg;
 }
 
@@ -142,12 +161,12 @@ struct MD5Sum< ::magmed_msgs::MagCR_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "18eb392c0287f61819aca93877ff35f7";
+    return "d2b6af8e88cbe5faeaf2769acfe589ea";
   }
 
   static const char* value(const ::magmed_msgs::MagCR_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x18eb392c0287f618ULL;
-  static const uint64_t static_value2 = 0x19aca93877ff35f7ULL;
+  static const uint64_t static_value1 = 0xd2b6af8e88cbe5faULL;
+  static const uint64_t static_value2 = 0xeaf2769acfe589eaULL;
 };
 
 template<class ContainerAllocator>
@@ -167,8 +186,12 @@ struct Definition< ::magmed_msgs::MagCR_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"float64 theta\n"
-"float64 phi\n"
+"\n"
+"float64 phi_mock\n"
+"float64 thetaL_mock\n"
+"float64 phi_msr\n"
+"float64 thetaL_msr\n"
+"geometry_msgs/Point tipPoint\n"
 "geometry_msgs/Pose Tsg\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -187,17 +210,17 @@ struct Definition< ::magmed_msgs::MagCR_<ContainerAllocator> >
 "string frame_id\n"
 "\n"
 "================================================================================\n"
-"MSG: geometry_msgs/Pose\n"
-"# A representation of pose in free space, composed of position and orientation. \n"
-"Point position\n"
-"Quaternion orientation\n"
-"\n"
-"================================================================================\n"
 "MSG: geometry_msgs/Point\n"
 "# This contains the position of a point in free space\n"
 "float64 x\n"
 "float64 y\n"
 "float64 z\n"
+"\n"
+"================================================================================\n"
+"MSG: geometry_msgs/Pose\n"
+"# A representation of pose in free space, composed of position and orientation. \n"
+"Point position\n"
+"Quaternion orientation\n"
 "\n"
 "================================================================================\n"
 "MSG: geometry_msgs/Quaternion\n"
@@ -226,8 +249,11 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.header);
-      stream.next(m.theta);
-      stream.next(m.phi);
+      stream.next(m.phi_mock);
+      stream.next(m.thetaL_mock);
+      stream.next(m.phi_msr);
+      stream.next(m.thetaL_msr);
+      stream.next(m.tipPoint);
       stream.next(m.Tsg);
     }
 
@@ -250,10 +276,17 @@ struct Printer< ::magmed_msgs::MagCR_<ContainerAllocator> >
     s << indent << "header: ";
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "theta: ";
-    Printer<double>::stream(s, indent + "  ", v.theta);
-    s << indent << "phi: ";
-    Printer<double>::stream(s, indent + "  ", v.phi);
+    s << indent << "phi_mock: ";
+    Printer<double>::stream(s, indent + "  ", v.phi_mock);
+    s << indent << "thetaL_mock: ";
+    Printer<double>::stream(s, indent + "  ", v.thetaL_mock);
+    s << indent << "phi_msr: ";
+    Printer<double>::stream(s, indent + "  ", v.phi_msr);
+    s << indent << "thetaL_msr: ";
+    Printer<double>::stream(s, indent + "  ", v.thetaL_msr);
+    s << indent << "tipPoint: ";
+    s << std::endl;
+    Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.tipPoint);
     s << indent << "Tsg: ";
     s << std::endl;
     Printer< ::geometry_msgs::Pose_<ContainerAllocator> >::stream(s, indent + "  ", v.Tsg);

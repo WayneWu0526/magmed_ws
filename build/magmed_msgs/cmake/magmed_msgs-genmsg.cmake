@@ -39,17 +39,17 @@ add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg" "geometry_msgs/Pose:geometry_msgs/Point:geometry_msgs/Twist:std_msgs/Header:geometry_msgs/Vector3:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg" "geometry_msgs/Quaternion:geometry_msgs/Pose:geometry_msgs/Vector3:std_msgs/Header:geometry_msgs/Point:geometry_msgs/Twist"
 )
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg" "geometry_msgs/Quaternion:geometry_msgs/Pose:geometry_msgs/Point:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" NAME_WE)
 add_custom_target(_magmed_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" "magmed_msgs/RoboJoints:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "magmed_msgs" "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv" "std_msgs/Header:magmed_msgs/RoboJoints"
 )
 
 #
@@ -85,13 +85,13 @@ _generate_msg_cpp(magmed_msgs
 _generate_msg_cpp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_cpp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
 
@@ -99,7 +99,7 @@ _generate_msg_cpp(magmed_msgs
 _generate_srv_cpp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/magmed_msgs
 )
 
@@ -166,13 +166,13 @@ _generate_msg_eus(magmed_msgs
 _generate_msg_eus(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_eus(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
 
@@ -180,7 +180,7 @@ _generate_msg_eus(magmed_msgs
 _generate_srv_eus(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/magmed_msgs
 )
 
@@ -247,13 +247,13 @@ _generate_msg_lisp(magmed_msgs
 _generate_msg_lisp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_lisp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
 
@@ -261,7 +261,7 @@ _generate_msg_lisp(magmed_msgs
 _generate_srv_lisp(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/magmed_msgs
 )
 
@@ -328,13 +328,13 @@ _generate_msg_nodejs(magmed_msgs
 _generate_msg_nodejs(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_nodejs(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
 
@@ -342,7 +342,7 @@ _generate_msg_nodejs(magmed_msgs
 _generate_srv_nodejs(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/magmed_msgs
 )
 
@@ -409,13 +409,13 @@ _generate_msg_py(magmed_msgs
 _generate_msg_py(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/PoseTwist.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Vector3.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Twist.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
 _generate_msg_py(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/msg/MagCR.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
 
@@ -423,7 +423,7 @@ _generate_msg_py(magmed_msgs
 _generate_srv_py(magmed_msgs
   "/home/zhang/magmed_ws/src/magmed_msgs/srv/SelfCollisionCheck.srv"
   "${MSG_I_FLAGS}"
-  "/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/zhang/magmed_ws/src/magmed_msgs/msg/RoboJoints.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/magmed_msgs
 )
 

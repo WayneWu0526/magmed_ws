@@ -83,6 +83,7 @@ struct MagCR
     MagCR(){};
 };
 
+// define control mode
 enum enum_CTRLMODE
 {
     NM = 0,
@@ -91,6 +92,7 @@ enum enum_CTRLMODE
     TRANS = 3
 };
 
+// define transition method
 enum enum_TRANSMETHOD
 {
     NT = 0,

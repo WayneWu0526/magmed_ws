@@ -11,8 +11,8 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
-let geometry_msgs = _finder('geometry_msgs');
 let std_msgs = _finder('std_msgs');
+let geometry_msgs = _finder('geometry_msgs');
 
 //-----------------------------------------------------------
 
@@ -21,8 +21,11 @@ class MagCR {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.header = null;
-      this.theta = null;
-      this.phi = null;
+      this.phi_mock = null;
+      this.thetaL_mock = null;
+      this.phi_msr = null;
+      this.thetaL_msr = null;
+      this.tipPoint = null;
       this.Tsg = null;
     }
     else {
@@ -32,17 +35,35 @@ class MagCR {
       else {
         this.header = new std_msgs.msg.Header();
       }
-      if (initObj.hasOwnProperty('theta')) {
-        this.theta = initObj.theta
+      if (initObj.hasOwnProperty('phi_mock')) {
+        this.phi_mock = initObj.phi_mock
       }
       else {
-        this.theta = 0.0;
+        this.phi_mock = 0.0;
       }
-      if (initObj.hasOwnProperty('phi')) {
-        this.phi = initObj.phi
+      if (initObj.hasOwnProperty('thetaL_mock')) {
+        this.thetaL_mock = initObj.thetaL_mock
       }
       else {
-        this.phi = 0.0;
+        this.thetaL_mock = 0.0;
+      }
+      if (initObj.hasOwnProperty('phi_msr')) {
+        this.phi_msr = initObj.phi_msr
+      }
+      else {
+        this.phi_msr = 0.0;
+      }
+      if (initObj.hasOwnProperty('thetaL_msr')) {
+        this.thetaL_msr = initObj.thetaL_msr
+      }
+      else {
+        this.thetaL_msr = 0.0;
+      }
+      if (initObj.hasOwnProperty('tipPoint')) {
+        this.tipPoint = initObj.tipPoint
+      }
+      else {
+        this.tipPoint = new geometry_msgs.msg.Point();
       }
       if (initObj.hasOwnProperty('Tsg')) {
         this.Tsg = initObj.Tsg
@@ -57,10 +78,16 @@ class MagCR {
     // Serializes a message object of type MagCR
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
-    // Serialize message field [theta]
-    bufferOffset = _serializer.float64(obj.theta, buffer, bufferOffset);
-    // Serialize message field [phi]
-    bufferOffset = _serializer.float64(obj.phi, buffer, bufferOffset);
+    // Serialize message field [phi_mock]
+    bufferOffset = _serializer.float64(obj.phi_mock, buffer, bufferOffset);
+    // Serialize message field [thetaL_mock]
+    bufferOffset = _serializer.float64(obj.thetaL_mock, buffer, bufferOffset);
+    // Serialize message field [phi_msr]
+    bufferOffset = _serializer.float64(obj.phi_msr, buffer, bufferOffset);
+    // Serialize message field [thetaL_msr]
+    bufferOffset = _serializer.float64(obj.thetaL_msr, buffer, bufferOffset);
+    // Serialize message field [tipPoint]
+    bufferOffset = geometry_msgs.msg.Point.serialize(obj.tipPoint, buffer, bufferOffset);
     // Serialize message field [Tsg]
     bufferOffset = geometry_msgs.msg.Pose.serialize(obj.Tsg, buffer, bufferOffset);
     return bufferOffset;
@@ -72,10 +99,16 @@ class MagCR {
     let data = new MagCR(null);
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
-    // Deserialize message field [theta]
-    data.theta = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [phi]
-    data.phi = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [phi_mock]
+    data.phi_mock = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [thetaL_mock]
+    data.thetaL_mock = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [phi_msr]
+    data.phi_msr = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [thetaL_msr]
+    data.thetaL_msr = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [tipPoint]
+    data.tipPoint = geometry_msgs.msg.Point.deserialize(buffer, bufferOffset);
     // Deserialize message field [Tsg]
     data.Tsg = geometry_msgs.msg.Pose.deserialize(buffer, bufferOffset);
     return data;
@@ -84,7 +117,7 @@ class MagCR {
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 72;
+    return length + 112;
   }
 
   static datatype() {
@@ -94,15 +127,19 @@ class MagCR {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '18eb392c0287f61819aca93877ff35f7';
+    return 'd2b6af8e88cbe5faeaf2769acfe589ea';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    float64 theta
-    float64 phi
+    
+    float64 phi_mock
+    float64 thetaL_mock
+    float64 phi_msr
+    float64 thetaL_msr
+    geometry_msgs/Point tipPoint
     geometry_msgs/Pose Tsg
     ================================================================================
     MSG: std_msgs/Header
@@ -121,17 +158,17 @@ class MagCR {
     string frame_id
     
     ================================================================================
-    MSG: geometry_msgs/Pose
-    # A representation of pose in free space, composed of position and orientation. 
-    Point position
-    Quaternion orientation
-    
-    ================================================================================
     MSG: geometry_msgs/Point
     # This contains the position of a point in free space
     float64 x
     float64 y
     float64 z
+    
+    ================================================================================
+    MSG: geometry_msgs/Pose
+    # A representation of pose in free space, composed of position and orientation. 
+    Point position
+    Quaternion orientation
     
     ================================================================================
     MSG: geometry_msgs/Quaternion
@@ -158,18 +195,39 @@ class MagCR {
       resolved.header = new std_msgs.msg.Header()
     }
 
-    if (msg.theta !== undefined) {
-      resolved.theta = msg.theta;
+    if (msg.phi_mock !== undefined) {
+      resolved.phi_mock = msg.phi_mock;
     }
     else {
-      resolved.theta = 0.0
+      resolved.phi_mock = 0.0
     }
 
-    if (msg.phi !== undefined) {
-      resolved.phi = msg.phi;
+    if (msg.thetaL_mock !== undefined) {
+      resolved.thetaL_mock = msg.thetaL_mock;
     }
     else {
-      resolved.phi = 0.0
+      resolved.thetaL_mock = 0.0
+    }
+
+    if (msg.phi_msr !== undefined) {
+      resolved.phi_msr = msg.phi_msr;
+    }
+    else {
+      resolved.phi_msr = 0.0
+    }
+
+    if (msg.thetaL_msr !== undefined) {
+      resolved.thetaL_msr = msg.thetaL_msr;
+    }
+    else {
+      resolved.thetaL_msr = 0.0
+    }
+
+    if (msg.tipPoint !== undefined) {
+      resolved.tipPoint = geometry_msgs.msg.Point.Resolve(msg.tipPoint)
+    }
+    else {
+      resolved.tipPoint = new geometry_msgs.msg.Point()
     }
 
     if (msg.Tsg !== undefined) {

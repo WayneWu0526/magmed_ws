@@ -9,6 +9,7 @@
 /*** 重要!!!! set SYSCTRLMODE = 0 for manually-tcp****/
 const int SYSCTRLMODE = 2; // -1: test 0：Manually-tcp，1：Open-loop-circle, 2: Closed-loop 
 
+/** 微分跟踪器模板 **/
 template <typename T>
 class LinearTrackingDifferentiator {
 public:
@@ -46,12 +47,20 @@ private:
     T x2_;
 };
 
+/** TsgPoseTwist，导丝近端，即Tsg构型 **/
 class TsgPoseTwist
 {
 public:
     magmed_msgs::PoseTwist pose_twist;
     VectorXd Tsg_pose_twist;
+    Matrix4d Tsg;
+    VectorXd vsg;
+    VectorXd Vsg;
     TsgPoseTwist(): Tsg_pose_twist(VectorXd::Zero(2*TCPNUM)) {
+        diana7KineSpaceParam params;
+        Tsg = params.Tsg; // initial Tsg
+        vsg = VectorXd::Zero(6);
+        Vsg = VectorXd::Zero(12);
         // Tsg_pose_twist = VectorXd::Zero(2*TCPNUM);
         // se3ToVec(MatrixLog6(diffKine::params.Tsg));
 
@@ -71,49 +80,46 @@ public:
         pose_twist.twist.angular.z = 0.0;
     };
     void feed(magmed_msgs::PoseTwistConstPtr pMsg);
+    void feed_Tsg_aprilTag(std_msgs::Float64ConstPtr pMsg)
+    {
+        Tsg(1, 3) = pMsg->data - 0.248;
+        Vsg.head(6) = se3ToVec(MatrixLog6(Tsg));
+    }
+    void feed_vsg_linearActuator(std_msgs::Float64ConstPtr pMsg)
+    {
+        vsg = VectorXd::Zero(6);
+        vsg(3) = pMsg->data;
+        Vsg.tail(6) = vsg;
+    }
 };
 
+/** 线性驱动器 **/
 class Linear_actuator
 {
 public:
-    VectorXd gframe_twist;
-    Matrix4d Tsg;
     std_msgs::Float64MultiArray la_msg;
-    void feed(std_msgs::Float64ConstPtr pMsg)
-    {
-        // save the linear actuator velocity to gframe_twist(3)
-        gframe_twist = VectorXd::Zero(6);
-        gframe_twist(3) = pMsg->data;
-        // Tsg *= MatrixExp6( 1.0 / CTRLFREQ * VecTose3(gframe_twist));
-        // std::cout << "Tsg: " << Tsg << std::endl;
-    }
-    void feed_TsgY(std_msgs::Float64ConstPtr pMsg)
-    {
-        // Tsg(1, 3) = pMsg->data - 0.28;
-        Tsg(1, 3) = pMsg->data - 0.229;
-    }   
     Linear_actuator() {
-        diana7KineSpaceParam params;
-        Tsg = params.Tsg;
-        gframe_twist = VectorXd::Zero(6);
-
         la_msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
         la_msg.layout.dim[0].label = "la_vel";
         la_msg.layout.dim[0].size = 2;
         la_msg.layout.dim[0].stride = 2;
     };
+
+    void push_la_msg(Linear_actuator la, double TsgXe){
+        la.la_msg.data.push_back(500.0);
+        std::cout << "TsgXe:" << TsgXe << std::endl;
+        if (fabs(TsgXe) < 0.001)
+        {
+            la.la_msg.data.push_back(TsgXe);
+        }
+        else
+        {
+            la.la_msg.data.push_back((TsgXe > 0) - (TsgXe < 0));
+        }
+    };
 };
 
-// camera feedback
-// class TipAngle
-// {
-// public:
-//     magmed_msgs::TipAngle tip_angle;
-//     TipAngle() { tip_angle.tipAngle = 0.0; };
-//     void feed(magmed_msgs::TipAngleConstPtr pMsg);
-// };
-
-// joystick input (manual control)
+/** joystick 控制器 **/
 class Joystick
 {
 public:
@@ -129,13 +135,14 @@ public:
     // 1000.0: 增益系数，控制速度
 };
 
-
+/** 参考信号生成器 **/
 class RefGenerator
 {
 public:
     double refPhi = 0.0; // phi=0.0开始
     double refTheta = 0.0; // theta=0.0开始
-    double refTsgX = -0.06; // 从--100mm开始
+    double refTsgX = -0.1; // 从--100mm开始
+    // double refTsgX = -0.1; // 从--100mm开始
     Vector3d refPoint = Vector3d::Zero();
     // double refTsgX = 0.0;
 
@@ -157,7 +164,7 @@ public:
         // generate ref signals
         refPhi = 0.0;
         refTheta = 0.0;
-        refTsgX = -0.01;        
+        refTsgX = -0.1;        
         // use ros time to generate ref signals
     };
 
@@ -233,7 +240,7 @@ public:
         std::cout << "phi: " << phi << " theta: " << theta << " TsgX: " << TsgX << std::endl;
         std::cout << "phi_e: " << abs(phi_r - phi) << "theta_e: " << abs(theta_r - theta) << " TsgXe: " << abs(refTsgX - TsgX) << std::endl;
         // 角度误差至少在0.1弧度以内，位置误差至少在0.001m以内
-        if((fabs(phi_r - phi) <= 0.01) && ((fabs(theta_r - theta) <= 0.01) || (fabs(theta - last_theta) <= 0.05)) && (fabs(refTsgX - TsgX) <= 0.001))
+        if((fabs(phi_r - phi) <= 0.01) && ((fabs(theta_r - theta) <= 0.01) || (fabs(theta - last_theta) <= 0.02)) && (fabs(refTsgX - TsgX) <= 0.001))
         {
             // 误差不再增加
             if((fabs(phi - last_phi) <= 0.005) && (fabs(theta - last_theta) <= 0.1) && (fabs(TsgX - last_TsgX) <= 0.0001))
@@ -262,16 +269,27 @@ public:
         return;
     };
 
+    void pushRef_state(double refPhi, double refTheta, MagCR magCR, double refInsert){
+        ref_state.data.clear();
+        ref_state.data.push_back(refPhi);
+        ref_state.data.push_back(refTheta);
+        ref_state.data.push_back(refInsert);
+        ref_state.data.push_back(magCR.phi[0]);
+        ref_state.data.push_back(magCR.phi[1]);
+        ref_state.data.push_back(magCR.theta[0]);
+        ref_state.data.push_back(magCR.theta[1]);
+    };
+
     RefGenerator()
     {
-        loadRef("/home/zhang/magmed_ws/src/magmed_controller/path_following_control_ref/pathfollow_points_square.txt");
-        refPhi = data[0][0];
-        refPoint << data[0][1], data[0][2], data[0][3];
+        // loadRef("/home/zhang/magmed_ws/src/magmed_controller/path_following_control_ref/pathfollow_points_square.txt");
+        // refPhi = data[0][0];
+        // refPoint << data[0][1], data[0][2], data[0][3];
         
         ref_state.layout.dim.push_back(std_msgs::MultiArrayDimension());
-        ref_state.layout.dim[0].label = "ref_state";
-        ref_state.layout.dim[0].size = 5;
-        ref_state.layout.dim[0].stride = 5;
+        ref_state.layout.dim[0].label = "refPhi_refThetaL_refTsgX_refSms";
+        ref_state.layout.dim[0].size = 7;
+        ref_state.layout.dim[0].stride = 7;
     };
 private:
     int ind = 0;
@@ -279,6 +297,7 @@ private:
     int MAX_TRY = 300;
 };
 
+/** 参考信号平滑器 **/
 class RefSmoother
 {
 public:
@@ -328,7 +347,7 @@ public:
 private:
 };
 
-// diana states
+/** Diana机械臂状态、控制器 **/
 class Diana
 {
 public:
@@ -340,6 +359,7 @@ public:
     Diana(){};
 };
 
+/** 深度相机 zed2i，获取tip_point **/
 class StereoCamera
 {
 public:
@@ -347,21 +367,6 @@ public:
     Vector3d tip_point_vec = Vector3d::Zero();
     std_msgs::Float64MultiArray magCR_state_measured_msg;
     void feedTip(geometry_msgs::PointStampedConstPtr pMsg);
-    void push_magCR_state_measured_msg(std::array<double, 5> magCRstate, Matrix4d Tsg){
-        magCR_state_measured_msg.data.clear();
-        magCR_state_measured_msg.data.push_back(magCRstate[0]);
-        magCR_state_measured_msg.data.push_back(magCRstate[1]);
-        magCR_state_measured_msg.data.push_back(magCRstate[2]);
-        magCR_state_measured_msg.data.push_back(magCRstate[3]);
-        magCR_state_measured_msg.data.push_back(magCRstate[4]);
-        magCR_state_measured_msg.data.push_back(Tsg(1, 3));
-    }
-    StereoCamera(){
-        magCR_state_measured_msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
-        magCR_state_measured_msg.layout.dim[0].label = "magCR_state_measured";
-        magCR_state_measured_msg.layout.dim[0].size = 6;
-        magCR_state_measured_msg.layout.dim[0].stride = 6;
-    };
 };
 
 // velocity control algorithm
@@ -373,13 +378,10 @@ public:
     VelCtrlNode(){};
     VelCtrlNode(ros::NodeHandle &nh) : nh(nh)
     {
+        /******************* subscriber ********************/
         joystick_sub = nh.subscribe<magmed_msgs::PFjoystick>("/magmed_joystick/joystick_controller",
                                                              10,
                                                              boost::bind(&Joystick::feed, &joystick, _1));
-
-        // tipAngle_sub = nh.subscribe<magmed_msgs::TipAngle>("/magmed_camera/tipAngle",
-        //                                                    10,
-        //                                                    boost::bind(&TipAngle::feed, &tipAngle, _1));
 
         stereoCamera_sub = nh.subscribe<geometry_msgs::PointStamped>("/magmed_stereoCamera/tipPoint",
                                                               10,
@@ -387,7 +389,7 @@ public:
 
         TsgPoseTwist_sub = nh.subscribe<magmed_msgs::PoseTwist>("/magmed_stereoCamera/twist",
                                                             10,
-                                                            boost::bind(&TsgPoseTwist::feed, &tsgPoseTwist, _1));
+                                                            boost::bind(&TsgPoseTwist::feed, &tsgPoseTwist, _1)); // 预留接口，用于接收通过视觉方法获得导丝近端位姿
 
         diana_jointStates_sub = nh.subscribe<magmed_msgs::RoboJoints>("/magmed_manipulator/dianajoints",
                                                                       10,
@@ -399,16 +401,14 @@ public:
         
         linear_actuator_sub = nh.subscribe<std_msgs::Float64>("/linear_actuator/vel",
                                                                         10, 
-                                                                        boost::bind(&Linear_actuator::feed, &la, _1));
+                                                                        boost::bind(&TsgPoseTwist::feed_vsg_linearActuator, &tsgPoseTwist, _1));
 
-        // TsgY_sub = nh.subscribe<std_msgs::Float64>("/magmed_stereoCamera/backgroundDepth",
-        //                                             10,
-        //                                             boost::bind(&Linear_actuator::feed_TsgY, &la, _1));
-
-        TsgY_sub = nh.subscribe<std_msgs::Float64>("/magmed_stereoCamera_D405/april_tag_depth",
+        april_tag_sub = nh.subscribe<std_msgs::Float64>("/magmed_stereoCamera_D405/april_tag_depth",
                                                     10,
-                                                    boost::bind(&Linear_actuator::feed_TsgY, &la, _1));
+                                                    boost::bind(&TsgPoseTwist::feed_Tsg_aprilTag, &tsgPoseTwist, _1));
 
+        
+        /******************* advertise ********************/
         diana_jointVels_pub = nh.advertise<magmed_msgs::RoboJoints>("/magmed_manipulator/joint_vels", 10);
 
         feeder_vel_pub = nh.advertise<std_msgs::UInt32MultiArray>("/magmed_feeder/vel", 10);
@@ -427,6 +427,7 @@ public:
 
         control_mode_pub = nh.advertise<std_msgs::UInt32>("/magmed_controller/control_mode", 10);
 
+        /***** service *****/
         selfcollision_client = nh.serviceClient<magmed_msgs::SelfCollisionCheck>("/magmed_modules/selfCollisionCheck"); 
                 // ros::service::waitForService("/magmed_manipulator/roboStates", -1);
     };
@@ -449,7 +450,7 @@ private:
     ros::Subscriber TsgPoseTwist_sub;
     ros::Subscriber stereoCamera_sub;
     ros::Subscriber linear_actuator_sub;
-    ros::Subscriber TsgY_sub;
+    ros::Subscriber april_tag_sub;
 
     ros::Publisher diana_jointVels_pub;
     ros::Publisher feeder_vel_pub;
@@ -467,21 +468,19 @@ private:
     MSCRJacobi mscrjacobi;
     optCtrl optctrl;
     diffKine diffkine;
-    int pubVels();
-    int loadInitPose();
-    std::array<double, 5> calcMagCRstate(const double alpha, double thetaL_mock, Matrix4d Tsg, int DEEPFLAG);
 
     int nRet = 0;
     enum_CTRLMODE CTRLMODE = enum_CTRLMODE::NM; // CTRLMODE
     enum_TRANSMETHOD TRANSMETHOD = enum_TRANSMETHOD::OFT; // Translation method
     bool SCC_FLAG = false;
+
+    int pubVels();
+    int loadInitPose();
+    std::array<double, 5> calcMagCRstate(double phi_mock, double thetaL_mock, Matrix4d Tsg, int DEEPFLAG);
     // bool isSwitching = false;
 };
 
-// void TipAngle::feed(magmed_msgs::TipAngleConstPtr pMsg)
-// {
-//     tip_angle = *pMsg;
-// };
+/***********************  以下均为feed类函数，用于输入  ***********************/
 
 void StereoCamera::feedTip(geometry_msgs::PointStampedConstPtr pMsg)
 {
@@ -576,15 +575,10 @@ void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
             magCR.theta[1] = joystick.nJOY1[2];
             break;
         }
-        case 2:
+        case 2: // closed-loop
         {
-            /* using mock value */
             magCR.phi[0] = atan2(-joystick.nJOY1[0], joystick.nJOY1[1]);
             magCR.theta[0] = gamma * sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2));
-
-            // printf("ref phi: %f, ref theta: %f\n", joyPhi, joyTheta);           
-            // printf("phi: %f, theta: %f\n", magCR.phi[0], magCR.theta[0]);
-            // printf("dphi: %f, dtheta: %f\n", magCR.phi[1], magCR.theta[1]);
             break;
         }
         default:
@@ -592,11 +586,28 @@ void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
             break;
         }
     }
-    // printf("phi circle %f\n", atan2(-joystick.nJOY1[0], joystick.nJOY1[1]));
-    // printf("theta circle %f\n", sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2)));
-
-    // magCR.phi[0] += magCR.phi[1] / CTRLFREQ;
-    // magCR.theta[0] = 0.0;
-    // magCR.theta[1] = joystick.nJOY1[2];
 };
 
+void pushMagCR_msg(double phi_mock, double thetaL_mock, Matrix4d Tsg, std::array<double, 5> magCRstate, magmed_msgs::MagCR &magCR_msg){
+
+    magCR_msg.header.stamp = ros::Time::now();
+    magCR_msg.header.frame_id = "g-frame";
+
+    magCR_msg.phi_mock = phi_mock;
+    magCR_msg.thetaL_mock = thetaL_mock;
+    magCR_msg.phi_msr = magCRstate[0];
+    magCR_msg.thetaL_msr = magCRstate[1];
+    magCR_msg.tipPoint.x = magCRstate[2];
+    magCR_msg.tipPoint.y = magCRstate[3];
+    magCR_msg.tipPoint.z = magCRstate[4];
+    Matrix3d Rsg = Tsg.block<3, 3>(0, 0);
+    Quaterniond qsg(Rsg);
+    magCR_msg.Tsg.orientation.x = qsg.x();
+    magCR_msg.Tsg.orientation.y = qsg.y();
+    magCR_msg.Tsg.orientation.z = qsg.z();
+    magCR_msg.Tsg.orientation.w = qsg.w();
+    magCR_msg.Tsg.position.x = Tsg(0, 3);
+    magCR_msg.Tsg.position.y = Tsg(1, 3);
+    magCR_msg.Tsg.position.z = Tsg(2, 3);
+    // return;
+};

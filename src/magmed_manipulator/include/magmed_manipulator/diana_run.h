@@ -78,7 +78,7 @@ public:
 
     static void logRobotState(StrRobotStateInfo *pinfo, const char *strIpAddress) // Heart beat server
     {
-        strIpAddress = "192.168.10.75";
+        strIpAddress = "192.168.31.201";
         static int staCnt = 1;
         if ((staCnt++ % 1000 == 0) && pinfo)
         {
@@ -98,7 +98,7 @@ public:
 
     static void errorControl(int e, const char *strIpAddress)
     {
-        strIpAddress = "192.168.10.75";
+        strIpAddress = "192.168.31.201";
         const char *strError = formatError(e); // 该函数后面会介绍
         ROS_ERROR("error code (%d):%s\n", e, strError);
     }
@@ -114,7 +114,7 @@ private:
 
     double joint_vels[JOINTNUM] = {0.0};
     double joints[JOINTNUM] = {0.0};
-    const char *strIpAddress = "192.168.10.75";
+    const char *strIpAddress = "192.168.31.201";
     void M_SLEEP(int milliseconds);
     void wait_move(const char *strIpAddress);
     ros::NodeHandle nh;
@@ -283,7 +283,7 @@ void DianaStateManage::run()
     // 初始化 API，完成其他功能函数使用前的初始化准备工作。
     srv_net_st *pinfo = new srv_net_st();
     memset(pinfo->SrvIp, 0x00, sizeof(pinfo->SrvIp));
-    memcpy(pinfo->SrvIp, "192.168.10.75", strlen("192.168.10.75"));
+    memcpy(pinfo->SrvIp, "192.168.31.201", strlen("192.168.31.201"));
     pinfo->LocHeartbeatPort = 0;
     pinfo->LocRobotStatePort = 0;
     pinfo->LocSrvPort = 0;
@@ -293,7 +293,7 @@ void DianaStateManage::run()
         ret = initSrv(errorControl, logRobotState, pinfo);
         if (ret < 0)
         {
-            ROS_ERROR("[magmed_manipulator] 192.168.10.75 initSrv failed! nReturn value = %d\n", ret);
+            ROS_ERROR("[magmed_manipulator] 192.168.31.201 initSrv failed! nReturn value = %d\n", ret);
             state.VAL = magmed_msgs::RoboStates::TERM;
             break;
         }
