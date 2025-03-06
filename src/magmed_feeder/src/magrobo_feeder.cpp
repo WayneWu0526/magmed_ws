@@ -38,8 +38,8 @@ void Servo::run(serial::Serial& serial_port, const std::string& port, const int 
         // nRet = setVel(static_cast<uint32_t>(-20000)); // 0x4e20-> 20000
         if (nRet < 0)
         {
-            printf("[magmed_feeder %s] Write data failed.\n", port.c_str());
-            break;
+            printf("[magmed_feeder %s] Write Vel data failed.\n", port.c_str());
+            // break;
         }
         ros::spinOnce();
         loop_rete.sleep();
@@ -172,7 +172,7 @@ int Servo::writeModbus_ex(serial::Serial& serial_port, unsigned char addr, uint1
     }
     catch (serial::IOException &e)
     {
-        ROS_ERROR("[magmed_feeder] Unable to write data to the serial port %s.", serial_port.getPort().c_str());
+        ROS_ERROR("[magmed_feeder] Unable to write data to the serial port %s. Exception: %s", serial_port.getPort().c_str(), e.what());
         return -1;
     }
 
@@ -310,33 +310,74 @@ int Servo::setVel(serial::Serial& serial_port, uint32_t vel)
     return 0;
 }
 
+// int Servo::openSerialPort(serial::Serial& serial_port, const std::string& port)
+// {
+//     serial::Timeout timeout = serial::Timeout::simpleTimeout(TIMEOUT);
+//     serial_port.setPort(port);
+//     serial_port.setBaudrate(BAUDRATE);
+//     serial_port.setTimeout(timeout);
+
+//     try
+//     {
+//         serial_port.open();
+//     }
+//     catch (serial::IOException &e)
+//     {
+//         ROS_ERROR("[magmed_feeder] Unable to open port %s.", port.c_str());
+//         return -1;
+//     }
+
+//     // check if the port is open
+//     if (serial_port.isOpen())
+//     {
+//         ROS_INFO("[magmed_feeder] Serial Port %s initialized.", port.c_str());
+//     }
+//     else
+//     {
+//         return -1;
+//     }
+//     return 0;
+// }
+
 int Servo::openSerialPort(serial::Serial& serial_port, const std::string& port)
 {
-    serial::Timeout timeout = serial::Timeout::simpleTimeout(TIMEOUT);
-    serial_port.setPort(port);
-    serial_port.setBaudrate(BAUDRATE);
-    serial_port.setTimeout(timeout);
+    const int max_attempts = 5; // 最大尝试次数
+    const int retry_delay = 1; // 每次尝试之间的延迟时间（秒）
 
-    try
+    for (int attempt = 1; attempt <= max_attempts; ++attempt)
     {
-        serial_port.open();
-    }
-    catch (serial::IOException &e)
-    {
-        ROS_ERROR("[magmed_feeder] Unable to open port %s.", port.c_str());
-        return -1;
+        if (serial_port.isOpen())
+        {
+            printf("[magmed_feeder] Serial port %s is already open.\n", port.c_str());
+            return 0;
+        }
+        else
+        {
+            serial::Timeout timeout = serial::Timeout::simpleTimeout(TIMEOUT);
+            serial_port.setPort(port);
+            serial_port.setBaudrate(BAUDRATE);
+            serial_port.setTimeout(timeout);
+            try
+            {
+                serial_port.open();
+                if (serial_port.isOpen())
+                {
+                    printf("[magmed_feeder] Successfully opened serial port %s on attempt %d.\n", port.c_str(), attempt);
+                    return 0;
+                }
+            }
+            catch (serial::IOException &e)
+            {
+                ROS_ERROR("[magmed_feeder] Failed to open serial port %s on attempt %d.\n", port.c_str(), attempt);
+            }
+        }
+
+        // 如果尝试失败，等待一段时间再重试
+        ros::Duration(retry_delay).sleep();
     }
 
-    // check if the port is open
-    if (serial_port.isOpen())
-    {
-        ROS_INFO("[magmed_feeder] Serial Port %s initialized.", port.c_str());
-    }
-    else
-    {
-        return -1;
-    }
-    return 0;
+    ROS_ERROR("[magmed_feeder] Failed to open serial port %s after %d attempts.\n", port.c_str(), max_attempts);
+    return -1;
 }
 
 int Servo::closeSerialPort(serial::Serial& serial_port)
@@ -375,7 +416,7 @@ int Servo::readSerialPort(serial::Serial& serial_port, std::vector<uint8_t> &pac
     }
     catch (serial::IOException &e)
     {
-        ROS_ERROR("[magmed_feeder] Unable to write data to the serial port %s.", serial_port.getPort().c_str());
+        ROS_ERROR("[magmed_feeder] Unable to write data to the serial port %s. Exception: %s", serial_port.getPort().c_str(), e.what());
         return -1;
     }
     return 0;

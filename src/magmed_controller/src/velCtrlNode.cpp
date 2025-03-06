@@ -135,7 +135,7 @@ int VelCtrlNode::pubVels()
         // std::cout << "phi:" << magCRstate[0] << " thetaL:" << magCRstate[1] << std::endl;
         /****************************************************************************/
 
-        /*********************** 打包信息 ******************************/
+        /******************************** 打包信息 ************************************/
         pushMagCR_msg(diffkine.magPhi, thetaL_mock, tsgPoseTwist.Tsg, magCRstate, magCR_msg);
         /****************************************************************************/
 
@@ -205,9 +205,13 @@ int VelCtrlNode::pubVels()
                 // refgenerator.updateRef_point(refgenerator.refPhi, diffkine.magPhi, point);
                 /***********************************************************/
 
+                // std::cout << "tsgPoseTwist:" << tsgPoseTwist.Vsg << std::endl;
+
                 /********************** update jointVels ************************/
-                jointVels = diffkine.jacobiMap(refsmoother.magCR.phi, tsgPoseTwist.Vsg, diana.joint_states_array, CTRLMODE);
+                jointVels = diffkine.jacobiMap(refsmoother.magCR.phi, refsmoother.magCR.theta, tsgPoseTwist.Vsg, diana.joint_states_array, CTRLMODE);
                 /***********************************************************/
+
+                // std::cout << "jointVels:" << jointVels << std::endl;
 
                 /********************** self-collision check ************************/
                 // 1. 基于当前的diana.joint_states和jointVels一步预测未来的q会不会发生碰撞
@@ -310,6 +314,9 @@ int VelCtrlNode::pubVels()
                 /* using generated signals to control la */
                 // double TsgXe = refgenerator.refTsgX - magCR_msg.Tsg.position.y;
                 // la.push_la_msg(la, TsgXe);
+                
+                // 这里调整路径
+                tsgPoseTwist.Vsg_linear_compute_openloop(joystick.joystick.nJOY3[0], joystick.joystick.nJOY3[1], joystick.joystick.nJOY2[1]);
                 /***************************************************************/
 
                 break;
@@ -322,6 +329,7 @@ int VelCtrlNode::pubVels()
         // std::cout << "jointVels:" << jointVels << std::endl;
         /***********************************************************************/
         
+        joint_vels.header.stamp = ros::Time::now();
         for (int i = 0; i < JOINTNUM; ++i)
         {
             // push_back joint_vels
@@ -346,9 +354,6 @@ int VelCtrlNode::pubVels()
 
     // pub ref_state
     ref_state_pub.publish(refgenerator.ref_state);
-
-    // pub magCR_measured
-    magCR_state_measured_pub.publish(stereoCamera.magCR_state_measured_msg);
 
     // pub vels for linearactuator
     // linear_actuator_pub.publish(la.la_msg);

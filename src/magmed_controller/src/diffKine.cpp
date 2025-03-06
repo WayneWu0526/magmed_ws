@@ -137,7 +137,7 @@ VectorXd diffKine::jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (
     return dthetalist;
 };
 
-VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, const double (&thetaList)[JOINTNUM], const int CTRLMODE)
+VectorXd diffKine::jacobiMap(const double (&refPhi)[2], const double (&refTheta)[2], const VectorXd &V_sg, const double (&thetaList)[JOINTNUM], const int CTRLMODE)
 {
     // compute Jb
     VectorXd thetalist = Map<const VectorXd>(thetaList, JOINTNUM);
@@ -151,8 +151,12 @@ VectorXd diffKine::jacobiMap(const double (&refPhi)[2],const VectorXd &V_sg, con
     phi_d[0] = refPhi[0];
     phi_d[1] = refPhi[1];
 
-    psi_d[0] += magTwist.psi / CTRLFREQ;
-    psi_d[1] = magTwist.psi;
+    /* using feedback */
+    // psi_d[0] += magTwist.psi / CTRLFREQ;
+    // psi_d[1] = magTwist.psi;
+
+    psi_d[0] = refTheta[0];
+    psi_d[1] = refTheta[1];
 
     pos_d[1] = magTwist.pos;
     pos_d[0] += pos_d[1] / CTRLFREQ; // dpos

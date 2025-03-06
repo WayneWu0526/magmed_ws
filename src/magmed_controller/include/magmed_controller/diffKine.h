@@ -53,15 +53,17 @@ struct diana7KineSpaceParam
         
         // 默认的磁性机器人坐标对于机器人坐标的初始位置
         // double xg = 0.51, yg = 0.0, zg = 0.06;
-        // double xg = 0.63, yg = 0.04, zg = 0.132 - H_base;
-        double xg = 0.6, yg = 0.03, zg = 0.132 - H_base;
+        // double xg = 0.65, yg = -0.05, zg = 0.20 - H_base;
+        double xg = 0.6, yg = -0.06, zg = 0.19 - H_base;
+        // double xg = 0.6, yg = 0.03, zg = 0.132 - H_base;
 
-        // 默认的磁性机器人初始位置
+        // 默认的磁性机器人初始位置，这里Tsg会发生变化，做实验时需要重新计算 
         Tsg << 0.0, 0.0, 1.0, xg, // x轴延伸0.3+0.32=0.92m, 0.19+0.32=0.51m
             1.0, 0.0, 0.0, yg,     // 机械臂坐标系的x轴与工作空间坐标系的y轴重合
             0.0, 1.0, 0.0, zg,    // 底盘高度：0.06m
             0.0, 0.0, 0.0, 1.0;
 
+        // tip control时可能会用到，目前没有用到
         Tsw << 0.0, 0.0, 1.0, xg, //
             1.0, 0.0, 0.0, 0.0,     // 
             0.0, 1.0, 0.0, zg,    // 底盘高度：0.06m
@@ -69,8 +71,9 @@ struct diana7KineSpaceParam
 
         Rgb0.diagonal() << -1.0, 1.0, -1.0; // 机械臂相对于机器人的初始位置
 
-        // Pgb0 << pr.L, pr.H0, 0.0;
-        Pgb0 << 0.0, pr.H0, 0.0;
+        // Pgb0 << 2.0 * pr.L, pr.H0, 0.0;
+        Pgb0 << 0.0, 130e-3, 0.0;
+        // Pgb0 << 0.0, pr.H0, 0.0;
 
         // 默认的深度相机与机械臂的初始位置
         Tsc << -1.0, 0.0, 0.0, xg, // 
@@ -122,7 +125,7 @@ public:
     diana7KineSpaceParam params;
     // void initConfig(const double (&thetaList)[JOINTNUM]);
     void getMagPose(MagPose &magPose, const double (&thetaList)[JOINTNUM], Matrix4d Tsg, const int CTRLMODE);
-    VectorXd jacobiMap(const double (&refPhi)[2], const VectorXd &V_sg, const double (&thetaList)[JOINTNUM], const int CTRLMODE);
+    VectorXd jacobiMap(const double (&refPhi)[2], const double (&refTheta)[2], const VectorXd &V_sg, const double (&thetaList)[JOINTNUM], const int CTRLMODE);
     VectorXd jacobiMap_tcp(const double (&tcpVels)[TCPNUM], const double (&thetaList)[JOINTNUM], const unsigned char BANA_MODE);
     int initTransMode(const double (&thetaList)[JOINTNUM], const int TRANSMETHOD, enum_CTRLMODE CTRLMODE);
     int solveDualModeJointAngles(VectorXd &q0);
@@ -165,7 +168,7 @@ public:
         magPoseMsg.layout.dim.push_back(std_msgs::MultiArrayDimension());
         magPoseMsg.layout.dim[0].size = 7;
         magPoseMsg.layout.dim[0].stride = 7;
-        magPoseMsg.layout.dim[0].label = "magPose";
+        magPoseMsg.layout.dim[0].label = "magPose_psi_pos_magTwist_psi_pos";
 
         magPoseStamped.pose.position.x = 0.0;
         magPoseStamped.pose.position.y = 0.0;

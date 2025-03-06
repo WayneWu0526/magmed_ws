@@ -7,8 +7,8 @@
         {
             "name": "ROS: Launch",
             "request": "launch",
-            // "target": "/home/zhang/magmed_ws/src/magmed_controller/launch/joystickVelCtrl.launch",
-            "target": "/home/zhang/magmed_ws/src/magmed_maglocator/launch/maglocator.launch",
+            "target": "/home/zhang/magmed_ws/src/magmed_controller/launch/joystickVelCtrl.launch",
+            // "target": "/home/zhang/magmed_ws/src/magmed_maglocator/launch/maglocator.launch",
             "launch": [
                 "rviz",
                 "gz",

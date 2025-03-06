@@ -68,7 +68,7 @@ private:
     OptCtrlParam optCtrlParam;
     void LESO(const double (&thetaR)[2], double (&hatx)[2], double vrtlCtrlLaw);
     double FF_controller(const double (&thetaR)[2], double (&hatx)[2], double thetaL);
-    MagPose controlAllocation(double virtualControlLaw, RowVector4d jacobian, int CTRLMODE);
+    MagPose controlAllocation(const double (&refTheta)[2], double virtualControlLaw, RowVector4d jacobian, int CTRLMODE);
     RowVector4d getJacobi(MagPose magPose);
 };
 

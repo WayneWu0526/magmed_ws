@@ -53,14 +53,16 @@ class TsgPoseTwist
 public:
     magmed_msgs::PoseTwist pose_twist;
     VectorXd Tsg_pose_twist;
-    Matrix4d Tsg;
-    VectorXd vsg;
-    VectorXd Vsg;
+    Matrix4d Tsg; // Tsg
+    VectorXd vsg; // velocity of Tsg
+    VectorXd Vsg; // twist of vsg
     TsgPoseTwist(): Tsg_pose_twist(VectorXd::Zero(2*TCPNUM)) {
         diana7KineSpaceParam params;
         Tsg = params.Tsg; // initial Tsg
         vsg = VectorXd::Zero(6);
         Vsg = VectorXd::Zero(12);
+        Vsg.head(6) = se3ToVec(MatrixLog6(Tsg));
+        Vsg.tail(6) = vsg;
         // Tsg_pose_twist = VectorXd::Zero(2*TCPNUM);
         // se3ToVec(MatrixLog6(diffKine::params.Tsg));
 
@@ -79,18 +81,35 @@ public:
         pose_twist.twist.angular.y = 0.0;
         pose_twist.twist.angular.z = 0.0;
     };
-    void feed(magmed_msgs::PoseTwistConstPtr pMsg);
+    void feed(magmed_msgs::PoseTwistConstPtr pMsg); // 预留给深度相机的估计结果
     void feed_Tsg_aprilTag(std_msgs::Float64ConstPtr pMsg)
     {
         Tsg(1, 3) = pMsg->data - 0.248;
         Vsg.head(6) = se3ToVec(MatrixLog6(Tsg));
-    }
+    };
     void feed_vsg_linearActuator(std_msgs::Float64ConstPtr pMsg)
     {
-        vsg = VectorXd::Zero(6);
         vsg(3) = pMsg->data;
         Vsg.tail(6) = vsg;
-    }
+    };
+    void Vsg_linear_compute_openloop(double vx, double vy, double vz)
+    {
+        double komega = 5e-2;
+        vsg(3) = komega * vx;
+        vsg(4) = komega * vz;
+        vsg(5) = - komega * vy;
+        Tsg = Tsg * MatrixExp6(VecTose3(vsg) * 1.0 / CTRLFREQ);
+        Vsg.head(6) = se3ToVec(MatrixLog6(Tsg));
+        Vsg.tail(6) = vsg;
+    };
+    void Vsg_load(int numOfTsg) // 召唤Tsg
+    {
+        int numOfdatabase = 5;
+        MatrixXd Tsg_database = MatrixXd::Zero(numOfdatabase, 6);
+        Tsg_database.col(0) << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0;
+        // import the database as input
+        Vsg.head(6) = Tsg_database.col(numOfTsg);
+    };
 };
 
 /** 线性驱动器 **/
@@ -131,7 +150,7 @@ public:
     // LinearTrackingDifferentiator<double> phirltd;
     // LinearTrackingDifferentiator<double> thetarltd;
     void feed(magmed_msgs::PFjoystickConstPtr pMsg);
-    Joystick(): gamma(0.8) {};
+    Joystick(): gamma(0.75 * M_PI) {};
     // 1000.0: 增益系数，控制速度
 };
 
@@ -269,7 +288,7 @@ public:
         return;
     };
 
-    void pushRef_state(double refPhi, double refTheta, MagCR magCR, double refInsert){
+    void pushRef_state(double refPhi, double refTheta, MagCR magCR, uint32_t refInsert){
         ref_state.data.clear();
         ref_state.data.push_back(refPhi);
         ref_state.data.push_back(refTheta);
@@ -287,7 +306,7 @@ public:
         // refPoint << data[0][1], data[0][2], data[0][3];
         
         ref_state.layout.dim.push_back(std_msgs::MultiArrayDimension());
-        ref_state.layout.dim[0].label = "refPhi_refThetaL_refTsgX_refSms";
+        ref_state.layout.dim[0].label = "refPhi_refThetaL_refTsgX_refSms"; // sms: smooth
         ref_state.layout.dim[0].size = 7;
         ref_state.layout.dim[0].stride = 7;
     };
@@ -309,12 +328,13 @@ public:
     double t;
     void refsmooth(double refPhi, double refTheta)
     {
-        if(refPhi > M_PI / 2.0)
+        // solving infeasible tasks
+        if(refPhi > M_PI / 2.0) // if(refPhi > 0.90 * M_PI)
         {
             refPhi -= M_PI;
             refTheta = -refTheta;
         }
-        else if(refPhi < -M_PI / 2.0)
+        else if(refPhi < -M_PI / 2.0) // else if (refPhi < -0.90 * M_PI)
         {
             refPhi += M_PI;
             refTheta = -refTheta;
@@ -527,11 +547,6 @@ void Diana::feedState(magmed_msgs::RoboStatesConstPtr pMsg)
 void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
 {
     joystick = *pMsg;
-    // feeder 数据
-    feeder.FEEDER_VEL_GAIN_FB = joystick.POTA * 50;
-    feeder.feeder_vel_FB = static_cast<uint32_t>(feeder.FEEDER_VEL_GAIN_FB * joystick.nJOY3[0]);
-    feeder.FEEDER_VEL_GAIN_UD = joystick.POTB * 50;
-    feeder.feeder_vel_UD = static_cast<uint32_t>(feeder.FEEDER_VEL_GAIN_UD * joystick.nJOY2[1]);
     // diana tcp 数据
     dianaTcp.TCP_VEL_GAIN = joystick.POTB / 10000.0 * M_PI;
     if (joystick.bJOYD)
@@ -577,8 +592,22 @@ void Joystick::feed(magmed_msgs::PFjoystickConstPtr pMsg)
         }
         case 2: // closed-loop
         {
-            magCR.phi[0] = atan2(-joystick.nJOY1[0], joystick.nJOY1[1]);
-            magCR.theta[0] = gamma * sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2));
+            magCR.phi[0] = atan2(joystick.nJOY1[0], joystick.nJOY1[1]);
+            if(joystick.bJOYD == uint8_t(000))
+            {
+                magCR.theta[0] = gamma * sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2));
+                // feeder 数据
+                feeder.FEEDER_VEL_GAIN_FB = joystick.POTA * 50;
+                feeder.feeder_vel_FB = static_cast<uint32_t>(feeder.FEEDER_VEL_GAIN_FB * joystick.nJOY3[0]);
+                feeder.FEEDER_VEL_GAIN_UD = joystick.POTB * 50;
+                feeder.feeder_vel_UD = static_cast<uint32_t>(feeder.FEEDER_VEL_GAIN_UD * joystick.nJOY2[1]);
+            }
+            else if(joystick.bJOYD == uint8_t(100)){
+                feeder.feeder_vel_FB = uint32_t(0);
+                feeder.feeder_vel_UD = uint32_t(0);
+                // magCR.theta[0] = -gamma * sqrt(pow(joystick.nJOY1[0], 2) + pow(joystick.nJOY1[1], 2));
+            }
+
             break;
         }
         default:

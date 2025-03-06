@@ -1,8 +1,0 @@
-prefix=/home/zhang/magmed_ws/devel
-
-Name: magmed_stereocamera
-Description: Description of magmed_stereocamera
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
