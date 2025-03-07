@@ -3,7 +3,7 @@ import cv2
 import os
 
 # 输入和输出文件名
-input_svo_file = '/home/zhang/文档/ZED/HD1080_SN39073032_17-18-00.svo2'
+input_svo_file = '/home/zhang/文档/ZED/HD1080_SN39073032_17-12-25.svo2'
 output_avi_file = './output_avi/output_left.avi'
 
 # 检查输出目录是否存在，不存在则创建
